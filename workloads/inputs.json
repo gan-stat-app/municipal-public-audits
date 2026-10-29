@@ -21589,6 +21589,36 @@
       "source": "welfare/years.json",
       "target": "source/public/welfare/years.json",
       "sha": "6a25a5e93440e8121c44d64f071a42872555eb83"
+    },
+    {
+      "source": "analysis/article.css",
+      "target": "source/public/analysis/article.css",
+      "sha": "c3259eb6f60bb9b208d97da7cf0a78432b17b089"
+    },
+    {
+      "source": "analysis/death-difference-article.css",
+      "target": "source/public/analysis/death-difference-article.css",
+      "sha": "e48323173ad1f73e1f616ffea9ba75ae72dc65bf"
+    },
+    {
+      "source": "analysis/hub.css",
+      "target": "source/public/analysis/hub.css",
+      "sha": "891befd07653a3250c7b9c4e92df4b26a9a08d7c"
+    },
+    {
+      "source": "analysis/hub.js",
+      "target": "source/public/analysis/hub.js",
+      "sha": "cf800b097861d0a44a6b81142b98fd335570e212"
+    },
+    {
+      "source": "analysis/index.html",
+      "target": "source/public/analysis/index.html",
+      "sha": "06fc45e886f661220687ac6947717ebf5cca8a6d"
+    },
+    {
+      "source": "analysis/mortality-articles-20260910.css",
+      "target": "source/public/analysis/mortality-articles-20260910.css",
+      "sha": "c7db2369614be243251a9f55d7a14402bf244130"
     }
   ],
   "score_sources": [
