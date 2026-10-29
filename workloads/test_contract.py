@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import re
 import tempfile
+import gzip
 import unittest
 from unittest.mock import patch
 import yaml
@@ -62,6 +63,28 @@ class ContractTests(unittest.TestCase):
                 common.checked_public({'path': 'data/x.json', 'sha': common.blob(b'{}'), 'size': 2})
         with patch.object(common, 'download', return_value=b'{}'):
             self.assertEqual(common.checked_public({'path': 'data/x.json', 'sha': common.blob(b'{}')}), b'{}')
+        with patch.object(common, 'download', return_value=gzip.compress(b'{}')):
+            self.assertEqual(common.checked_public({'path': 'data/x.json', 'sha': common.blob(b'{}')}), b'{}')
+        with patch.object(common, 'download', return_value=gzip.compress(b'{"changed":true}')):
+            with self.assertRaises(ValueError):
+                common.checked_public({'path': 'data/x.json', 'sha': common.blob(b'{}')})
+
+    def test_generated_profiles_must_equal_the_reviewed_objects(self):
+        spec = importlib.util.spec_from_file_location('public_site', common.ROOT / 'workloads/site.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        name = 'data/cross-cause-profile-v1/juki-19.json.gz'
+        raw = gzip.compress(b'fixture', mtime=0)
+        data = {'assets': [{'path': name, 'sha': common.blob(raw)}], 'aliases': []}
+        with tempfile.TemporaryDirectory() as directory, patch.object(module, 'SNAPSHOT', Path(directory)):
+            target = Path(directory) / 'source/public' / name
+            target.parent.mkdir(parents=True)
+            target.write_bytes(b'wrong')
+            with self.assertRaises(ValueError):
+                module.complete_generated_assets(data)
+            target.write_bytes(raw)
+            module.complete_generated_assets(data)
+            self.assertEqual((Path(directory) / name).read_bytes(), raw)
 
     def test_sources_cannot_redirect_to_private_or_credential_urls(self):
         for url in ('http://municipal-smr.jp/data.json', 'https://127.0.0.1/x',
@@ -113,6 +136,8 @@ class ContractTests(unittest.TestCase):
         workflow = yaml.load((common.ROOT / '.github/workflows/public-collectors.yml').read_text(), Loader=yaml.BaseLoader)
         self.assertEqual(workflow['on']['schedule'], [{'cron': '37 21 15,25 * *'}, {'cron': '17 23 19 * *'}])
         self.assertNotIn('pull_request', workflow['on'])
+        tohoku = yaml.load((common.ROOT / '.github/workflows/public-tohoku-collector.yml').read_text(), Loader=yaml.BaseLoader)
+        self.assertEqual(tohoku['on']['schedule'], [{'cron': '17 21 15 * *'}])
 
 
 if __name__ == '__main__':

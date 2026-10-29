@@ -19,15 +19,35 @@ def hydrate(data):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
     with ThreadPoolExecutor(max_workers=6) as executor:
-        for _ in executor.map(one, data['assets']):
+        for _ in executor.map(one, [x for x in data['assets'] if not generated(x['path'])]):
             pass
     for item in data['aliases']:
+        if generated(item['source']):
+            continue
         original = safe_path(SNAPSHOT, item['source'])
         target = safe_path(SNAPSHOT, item['target'])
         if blob(original.read_bytes()) != item['sha']:
             raise ValueError('Mirror input mismatch')
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(original, target)
+
+
+def generated(path):
+    return path.startswith('data/cross-cause-profile-v1/')
+
+
+def complete_generated_assets(data):
+    # npm run build regenerates these exact outputs from the byte-checked
+    # annual inputs. Do not depend on the deployed server's older derivatives.
+    for item in data['assets']:
+        if generated(item['path']):
+            source = safe_path(SNAPSHOT / 'source/public', item['path'])
+            raw = source.read_bytes()
+            if blob(raw) != item['sha']:
+                raise ValueError('Rebuilt derivative differs from Git: ' + item['path'])
+            target = safe_path(SNAPSHOT, item['path'])
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
 
 
 COMMANDS = [
@@ -60,6 +80,8 @@ def main():
                              'seconds': round(time.monotonic() - start, 3)})
             if result.returncode:
                 raise RuntimeError('Existing build or UI assertion failed')
+            if command == ['npm', 'run', 'build']:
+                complete_generated_assets(data)
         # Only generated public app assets are retained; never archive fetched
         # spreadsheets, the whole checkout, or detailed document diagnostics.
         dist = SNAPSHOT / 'source/dist'

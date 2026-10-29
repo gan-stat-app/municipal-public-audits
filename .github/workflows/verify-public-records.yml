@@ -20,3 +20,9 @@ jobs:
         run: python3 scripts/verify.py
       - name: Test read-only site comparison gate
         run: python3 -m unittest discover -s scripts -p "test_*.py"
+      - name: Validate every public workflow and export boundary
+        run: |
+          python3 -m pip install PyYAML==6.0.3 openpyxl==3.1.5
+          python3 -m unittest discover -s workloads -p 'test_*.py'
+          python3 snapshot/source/machine-readability/test_pipeline.py
+          python3 snapshot/source/food-business/test_model.py

@@ -2,9 +2,9 @@ name: Public data validation and site build
 on:
   push:
     branches: [main]
-    paths: ['snapshot/**', 'workloads/**', '.github/workflows/public-workloads.yml']
+    paths: ['snapshot/**', 'workloads/inputs.json', 'workloads/common.py', 'workloads/site.py', 'workloads/opendata.py']
   pull_request:
-    paths: ['snapshot/**', 'workloads/**', '.github/workflows/public-workloads.yml']
+    paths: ['snapshot/**', 'workloads/inputs.json', 'workloads/common.py', 'workloads/site.py', 'workloads/opendata.py']
   workflow_dispatch:
     inputs:
       opendata_limit:
