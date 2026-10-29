@@ -128,9 +128,10 @@ class ContractTests(unittest.TestCase):
     def test_heavy_public_jobs_cannot_run_on_prs(self):
         workflow = yaml.load((common.ROOT / '.github/workflows/public-workloads.yml').read_text(), Loader=yaml.BaseLoader)
         for name in ('site-build-and-ui', 'opendata-current-originals'):
-            self.assertEqual(workflow['jobs'][name]['if'], "github.event_name != 'pull_request'")
+            self.assertTrue(workflow['jobs'][name]['if'].startswith("github.event_name != 'pull_request'"))
             self.assertEqual(workflow['jobs'][name]['needs'], 'security-and-contract')
         self.assertNotIn('if', workflow['jobs']['security-and-contract'])
+        self.assertIn('opendata_required', workflow['jobs']['security-and-contract']['outputs'])
 
     def test_existing_monthly_cadence_is_preserved(self):
         workflow = yaml.load((common.ROOT / '.github/workflows/public-collectors.yml').read_text(), Loader=yaml.BaseLoader)
