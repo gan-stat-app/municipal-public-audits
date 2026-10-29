@@ -11,6 +11,8 @@ on:
         description: '0 = all published originals; bounded initial rollout uses 12'
         default: '12'
         type: string
+  schedule:
+    - cron: '0 18 * * 0' # Monday 03:00 JST, before the private 04:00 regression
 permissions:
   contents: read
 concurrency:
@@ -65,6 +67,7 @@ jobs:
             snapshot/source/map-display-review/*.png
           retention-days: 7
           if-no-files-found: error
+          include-hidden-files: true # Only the generated app-build/.vite manifest
   opendata-current-originals:
     needs: security-and-contract
     if: github.event_name != 'pull_request'

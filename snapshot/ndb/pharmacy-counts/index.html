@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>調剤行為の標準化算定回数比｜NDBオープンデータ</title>
+    <meta name="description" content="NDBで公表された調剤行為を性・年齢構成で補正し、2022～2024年度の47都道府県を全国＝100で比較します。" />
+    <link rel="canonical" href="https://municipal-smr.jp/ndb/pharmacy-counts/" />
+    <link rel="stylesheet" href="/ndb/standardized-ratio/style.css?v=11" />
+  </head>
+  <body data-standalone="true" data-prefecture-only="true" data-data-root="/ndb/pharmacy-counts/data">
+    <header>
+      <div>
+        <a href="/ndb/">← NDB入口へ</a>
+        <p>NDBオープンデータ・独自計算</p>
+        <h1>調剤行為の標準化算定回数比</h1>
+        <p>厚生労働省が公表した調剤行為を性・年齢構成の違いで補正し、47都道府県を全国＝100で比較します。</p>
+        <small id="period"></small>
+      </div>
+      <span>公開中・2022～2024年度</span>
+    </header>
+    <main>
+      <section class="caution">
+        <strong>算定回数は患者数ではありません</strong>
+        <p>同じ患者・同じ調剤行為が複数回算定された場合を含みます。医療の質や必要性の優劣を示す値ではありません。公費レセプトを含む公表表を使用しています。</p>
+      </section>
+      <section class="controls card">
+        <label>地域単位<select id="scope"><option value="prefecture">都道府県</option></select></label>
+        <label>年度<select id="year"></select></label>
+        <label>分野<select id="category"><option value="all">すべて</option></select></label>
+        <label>小分類<select id="subcategory"><option value="all">先に分野を選択してください</option></select></label>
+        <label class="search">調剤行為名・コード<input id="query" type="search" placeholder="例：調剤料、服薬管理" /></label>
+        <label><span id="region-label">都道府県</span><select id="region"></select></label>
+      </section>
+      <section class="finder card">
+        <div><strong>調剤行為を探す</strong><p>分野・小分類・調剤行為名・コードを組み合わせて絞り込めます。</p></div>
+        <div class="filter-status"><div id="active-filters"></div><button id="clear-filters" type="button" hidden>すべての条件をクリア</button></div>
+      </section>
+      <section class="workspace">
+        <div><p id="result-count" aria-live="polite"></p><div id="results" class="results"></div><nav class="pagination" aria-label="検索結果のページ移動"><button id="prev-page" type="button">前の100件</button><span id="page-count"></span><button id="next-page" type="button">次の100件</button></nav></div>
+        <div id="detail" class="card detail"><div class="empty"><strong>調剤行為を選択してください</strong><p>検索結果から選ぶと、地図と全国順位を表示します。</p></div></div>
+      </section>
+      <section class="method">
+        <h2>計算と読み方</h2>
+        <div>
+          <article><h3>全国＝100</h3><p>100より大きい場合は、性・年齢構成から期待される算定回数より多く、100より小さい場合は少ないことを示します。</p></article>
+          <article><h3>秘匿値</h3><p id="caveat"></p></article>
+          <article id="area-note" hidden><h3>地域単位</h3><p>調剤行為は都道府県別公表表を使用しています。</p></article>
+        </div>
+        <p id="method-note"></p>
+      </section>
+    </main>
+    <footer>出典：厚生労働省「第9～11回NDBオープンデータ」、総務省統計局「人口推計（2024年10月1日現在）」。<a href="/data-use/">データ利用条件</a></footer>
+    <script src="/ndb/standardized-ratio/app.js?v=25" defer></script>
+  </body>
+</html>

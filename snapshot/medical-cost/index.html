@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>市区町村別 医療費の地域差｜人口ピラミッド × 地域保健データラボ</title>
+  <meta name="description" content="厚生労働省の令和5年度医療費の地域差分析をもとに、市町村国保・後期高齢者医療の1人当たり実績医療費と年齢調整後の地域差指数を確認できます。">
+  <link rel="canonical" href="https://municipal-smr.jp/medical-cost/">
+  <link rel="stylesheet" href="/site-function-shell-v1.css">
+  <link rel="stylesheet" href="/medical-cost/style.css?v=3">
+</head>
+<body class="function-page function-medical-cost">
+  <header class="sitehead"><div>
+    <a class="site-brand" href="/">← 人口ピラミッド × 地域保健データラボ</a>
+    <p>厚生労働省「医療費の地域差分析」</p>
+    <h1>市区町村別 医療費の地域差</h1>
+    <p>1人当たり実績医療費と、年齢構成を調整した地域差指数（全国平均＝1）を分けて確認できます。</p>
+  </div></header>
+
+  <main class="shell">
+    <section class="controls" aria-labelledby="conditions-title">
+      <div class="section-head"><div><p class="eyebrow">2008～2023年度の公表値</p><h2 id="conditions-title">地域と表示指標を選ぶ</h2></div><span class="year-badge" id="year-badge">2023年度</span></div>
+      <div class="control-grid">
+        <label>制度<select id="scheme"><option value="nhi">市町村国民健康保険</option><option value="elderly">後期高齢者医療制度</option></select></label>
+        <label>年度<select id="year"></select></label>
+        <label>都道府県<select id="pref"></select></label>
+        <label>市区町村<select id="city"></select></label>
+        <label>診療区分<select id="category"><option value="0">計</option><option value="1">入院</option><option value="2">入院外</option><option value="3">歯科</option></select></label>
+      </div>
+    </section>
+
+    <section class="definition" aria-label="指標の読み方">
+      <strong>まず見る値：地域差指数</strong>
+      <span>年齢構成の違いを調整した1人当たり医療費です。1より高ければ全国平均より高く、1より低ければ全国平均より低いことを示します。</span>
+    </section>
+
+    <section class="summary" aria-live="polite" aria-labelledby="summary-title">
+      <div class="section-head"><div><p id="selection-label" class="eyebrow"></p><h2 id="summary-title">選択地域の医療費</h2></div></div>
+      <div class="metric-grid">
+        <article class="metric primary"><span>年齢調整後 地域差指数</span><strong id="metric-index">—</strong><small id="metric-index-note">全国平均＝1</small></article>
+        <article class="metric"><span>全国平均との差</span><strong id="metric-diff">—</strong><small>地域差指数から算出</small></article>
+        <article class="metric"><span>1人当たり実績医療費</span><strong id="metric-cost">—</strong><small>年額・年齢調整前</small></article>
+        <article class="metric"><span>参考順位</span><strong id="metric-rank">—</strong><small id="metric-rank-note">高い順</small></article>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="profile-title">
+      <div class="section-head"><div><p class="eyebrow">実額と調整後指標を分けて表示</p><h2 id="profile-title">診療区分別プロフィール</h2></div></div>
+      <h3>年齢調整後の地域差指数</h3><div id="index-dotplot" class="dotplot"></div>
+      <p class="chart-note">中央線は全国平均＝1です。点は年齢構成を調整した地域差指数を示します。</p>
+      <h3>年齢調整前の1人当たり実績医療費</h3><div id="cost-table" class="cost-table"></div>
+      <p class="chart-note">実額は年齢構成を調整していません。2015年度以前の市区町村表には実績医療費の対全国比がないため、金額だけを表示します。</p>
+    </section>
+    <section class="panel" aria-labelledby="trend-title">
+      <div class="section-head"><div><p class="eyebrow">公表値の長期推移</p><h2 id="trend-title">選択地域の経年変化</h2></div><span id="trend-period" class="context-badge"></span></div>
+      <div class="trend-grid"><div><h3>地域差指数</h3><div id="index-trend" class="trend-chart"></div></div><div><h3>1人当たり実績医療費</h3><div id="cost-trend" class="trend-chart"></div></div></div>
+      <p id="trend-note" class="chart-note"></p>
+    </section>
+
+    <section class="panel" aria-labelledby="ranking-title">
+      <div class="section-head"><div><p class="eyebrow">全国の公表単位を参考比較</p><h2 id="ranking-title">地域差指数ランキング</h2></div><span id="ranking-context" class="context-badge"></span></div>
+      <div class="ranking-grid"><div><h3>高い5地域</h3><ol id="rank-high"></ol></div><div><h3>低い5地域</h3><ol id="rank-low"></ol></div></div>
+      <p class="chart-note">指定都市と行政区など、厚生労働省基礎データに掲載された1,912単位をそのまま比較しています。順位は医療の質、住民の健康状態、制度運営の良否を示すものではありません。</p>
+    </section>
+
+    <section class="panel caution" aria-labelledby="caution-title">
+      <p class="eyebrow">解釈上の注意</p><h2 id="caution-title">高い・低いだけで良し悪しは決められません</h2>
+      <ul>
+        <li>地域差指数は年齢構成を調整していますが、疾病構成、医療提供体制、受診行動などの影響は残ります。</li>
+        <li>市町村国保と後期高齢者医療は加入者が異なるため、制度をまたぐ単純比較はできません。</li>
+        <li>1人当たり実績医療費は年齢調整前です。地域差指数と数値の意味が異なります。</li>
+        <li>実績医療費の経年値は各年度の名目額で、物価・診療報酬改定等を調整していません。</li>
+        <li>2014年度以前は、都道府県名・市町村名が後年と完全一致する場合だけ経年表示に接続し、合併・改称は推測で補っていません。</li>
+      </ul>
+    </section>
+
+    <section class="panel source" aria-labelledby="source-title">
+      <p class="eyebrow">出典と再現性</p><h2 id="source-title">使用した公表資料</h2>
+      <p>厚生労働省「医療費の地域差分析」平成20年度～令和5年度 基礎データ（市区町村別データ）。</p>
+      <p><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/database/iryomap/index.html" target="_blank" rel="noopener">厚生労働省の公表ページを確認する ↗</a></p>
+      <p class="chart-note">表示値は公表表の値を丸めています。全国平均との差は（地域差指数−1）×100、順位は同一制度・同一診療区分の公表値から当サイトで算出しています。</p>
+    </section>
+  </main>
+  <footer><p>個人運営の非公式サイト｜地域差だけから原因や個人のリスクは判断できません</p></footer>
+  <script src="/medical-cost/app.js?v=5" defer></script>
+</body>
+</html>

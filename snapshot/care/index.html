@@ -1,0 +1,134 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>全国介護保険 年齢調整地域比較 2012–2024</title>
+<meta name="description" content="全国の介護保険者について、認定率、要介護度、給付費、保険料、サービス構成を年齢調整等により地域比較します。">
+<link rel="canonical" href="https://municipal-smr.jp/care/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="人口ピラミッド × 地域保健データラボ"><meta property="og:title" content="全国介護保険 年齢調整地域比較"><meta property="og:description" content="認定率・要介護度・給付費・保険料を、年齢構成などを考慮して全国の介護保険者間で比較します。"><meta property="og:url" content="https://municipal-smr.jp/care/">
+<link rel="stylesheet" href="app.css?v=7">
+<link rel="preload" href="data/manifest.json" as="fetch" crossorigin><link rel="stylesheet" href="/site-function-shell-v1.css?v=2"></head><body class="function-page function-care"><header><a class="site-brand" href="/">人口ピラミッド × 地域保健データラボ</a><h1>全国介護保険 年齢調整地域比較</h1><div>2012～2024年度</div></header><main>
+<nav class="box tab-nav" aria-label="分析項目">
+<div class="nav-group"><button type="button" data-tab="summary">概要</button></div>
+<div class="nav-group"><span>認定状況</span><button type="button" data-tab="profile">現在・経年</button><button type="button" data-tab="degree">要介護度別の地域比較</button><button type="button" data-tab="ranking">ランキング</button></div>
+<div class="nav-group"><span>費用と保険料</span><button type="button" data-tab="benefit">給付費</button><button type="button" data-tab="premium">保険料</button></div>
+<div class="nav-group"><button type="button" data-tab="service">サービス利用</button></div>
+</nav>
+<div class="box global-controls"><div class="insurer-selector"><strong id="insurer-selector-title">介護保険の保険者を選ぶ（市町村・広域組合）</strong><div class="controls"><label for="globalPref">都道府県<select id="globalPref" aria-label="都道府県"></select></label><label for="globalIns">保険者<select id="globalIns" aria-label="保険者" aria-describedby="insurer-scope"></select></label></div><p id="insurer-scope" class="insurer-scope" aria-live="polite">保険者には、市町村単独のものと複数市町村の広域組合があります。</p></div><div class="global-help">表示値は選択した保険者全体の値です。選択はすべての画面に引き継がれます。年度は指標ごとに選択します。</div></div>
+<aside class="box degree-feature" aria-labelledby="degreeFeatureTitle"><div><div class="feature-kicker">このサイトの特徴</div><h2 id="degreeFeatureTitle">全国の要介護度別認定状況を、条件をそろえて比較</h2><p>全国約1,570保険者について、要支援1・2から要介護1～5までを性・年齢構成の違いを調整して表示します。標準化要介護認定比、95％信頼区間、全国・県内順位を確認できます。</p><p class="s">100が全国基準です。申請行動、認定運用、家族構成、施設・サービス供給などは調整していないため、地域の優劣を示す指標ではありません。</p></div><button type="button" class="feature-cta" data-tab="degree">要介護度別の地域比較を見る</button></aside>
+<section id="summaryTab" hidden>
+<div class="box controls region-controls"><select id="summaryPref"></select><select id="summaryIns"></select></div>
+<div class="box"><h2 id="summaryTitle"></h2><div id="summaryText" class="note"></div></div>
+<div class="box"><h2>主要指標</h2><div class="cards" id="summaryCards"></div><button type="button" class="summary-degree-link" data-tab="degree">この地域の要支援1～要介護5を見る</button></div>
+<div class="box note"><b>読み方</b><br>文章は数値から自動生成した事実記述です。「高い・低い」は全国または県内での相対的位置を表し、自治体の良し悪しや介護サービスの質を評価するものではありません。各カードに記載した年度・計画期間をご確認ください。指標により最新の公表時期が異なります。性・年齢調整認定率は本サイトの独自算出値です。</div>
+</section>
+<section id="historyTab" hidden></section>
+
+<section id="profileTab">
+<div class="box controls recognition-year-controls"><label for="period">認定率の年度</label><select id="period"></select><div class="region-controls"><select id="pref"></select><select id="ins"></select></div></div>
+<div class="box recognition-primary"><h2 id="title">データを読み込んでいます</h2>
+<div class="recognition-comparison" role="group" aria-label="性・年齢調整認定率の全国比較">
+<div class="recognition-local"><div class="s">この地域（性・年齢調整）</div><div class="v" id="adj">読込中…</div><div class="s" id="arank"></div></div>
+<div class="recognition-national"><div class="s">全国</div><div class="v" id="nationalRate">読込中…</div><div class="s" id="nationalPeriod"></div></div>
+<div class="recognition-difference"><div class="s">全国との差</div><div class="v" id="nationalDifference">読込中…</div><div class="s" id="nationalDirection"></div></div>
+</div>
+<p class="s recognition-help">地域の性・年齢構成を同年度の全国にそろえて比較します。差は「地域の調整認定率 − 全国認定率」で、単位はポイントです。地域の調整認定率は独自算出値です。</p>
+<button type="button" class="recognition-method-link" data-tab="data">計算方法と全国値の出典を見る</button></div>
+<div class="box cards" id="cards"></div>
+<div class="box"><h2>認定率の推移：この地域と全国</h2><div class="chart-legend recognition-chart-legend" aria-label="経年グラフの凡例"><span><i class="recognition-line local"></i>この地域（性・年齢調整）</span><span><i class="recognition-line national"></i>全国</span></div><canvas id="chart" width="1000" height="260" role="img" aria-label="2021～2024年度の認定率の推移"></canvas><p class="s">地域は実線、全国は破線。年度ごとに同年度の全国人口構成で調整しているため、固定した人口構成による推移ではありません。</p></div>
+<div class="box"><h2>全国比較の年次表</h2><div class="tablewrap"><table><thead><tr><th>年度</th><th>この地域<br>（性・年齢調整）</th><th>全国</th><th>全国との差</th><th>調整済み軽度</th><th>調整済み重度</th></tr></thead><tbody id="tbl"></tbody></table></div></div>
+<details id="recognitionReference" class="box recognition-reference"><summary>粗認定率・調整による変化を見る</summary>
+<div class="recognition-reference-values"><div><div class="s">粗認定率（調整前）</div><div class="v" id="crude"></div><div class="s" id="crank"></div></div><div><div class="s">調整による変化</div><div class="v" id="adjustmentChange"></div><div class="s">調整認定率 − 粗認定率</div></div></div>
+<h3>参考：年次値と3年値</h3><p id="recognitionReferenceStatus" class="s"></p><div class="tablewrap"><table><thead><tr><th>期間</th><th>粗認定率</th><th>性・年齢調整</th><th>軽度</th><th>重度</th></tr></thead><tbody id="recognitionReferenceBody"></tbody></table></div><p class="s">3年値は3年間の男女×6年齢階級の分子・分母をプールして再標準化した値です。単年の全国値とは比較しません。</p></details>
+
+<details id="recognitionHistoryDetails" class="box recognition-history"><summary>2012～2024年度の長期推移を見る</summary><div class="history-inner"><div class="box controls region-controls"><select id="historyPref"></select><select id="historyIns"></select></div>
+<div class="box"><h2 id="historyTitle">2012～2024年度の長期推移</h2><div id="historySummary" class="note"></div></div>
+<div class="box"><div class="tablewrap"><table><thead><tr><th>年度</th><th>第1号被保険者</th><th>第1号認定者</th><th>粗認定率</th><th>性・年齢調整</th><th>要支援1</th><th>要支援2</th><th>要介護1</th><th>要介護2</th><th>要介護3</th><th>要介護4</th><th>要介護5</th></tr></thead><tbody id="historyBody"></tbody></table></div></div>
+<div class="box note"><b>長期比較の読み方</b><br>2012～2020年度はe-Stat年報原表から再生成し、2021～2024年度は本サイトの検証済みデータを接続しています。粗認定率は第1号認定者数÷第1号被保険者数です。12層の性・年齢調整値は、同じ6年齢階級の人口原表が揃う2015年度から表示します。2012・2013年度は介護年報、2014年度は保存済み住基人口表の年齢区分が不足するため粗値のみです。広域保険者は公式な構成自治体を確認できた期間だけ表示し、推定で補いません。</div></div></details>
+</section>
+<section id="degreeTab" hidden>
+<div class="box controls region-controls"><select id="degreePeriod"></select><select id="degreePref"></select><select id="degreeIns"></select></div>
+<div class="box"><h2 id="degreeTitle">要介護度別・標準化認定比</h2><div id="degreeSummary" class="note">データを読み込んでいます。</div></div>
+<div class="box"><h2>7段階の比較</h2><div id="degreeBars"></div></div>
+<div class="box"><div class="tablewrap"><table><thead><tr><th>要介護度</th><th>観察数</th><th>期待数</th><th>粗認定率</th><th>性・年齢調整率</th><th>標準化認定比</th><th>95%信頼区間</th><th>全国順位</th><th>県内順位</th></tr></thead><tbody id="degreeBody"></tbody></table></div></div>
+<div class="box note"><b>標準化認定比の読み方</b><br>男女×6年齢階級の全国認定率から期待認定者数を求め、観察数÷期待数×100で算出します。100が全国基準、100超は期待数より多く、100未満は少ないことを示します。95%信頼区間はByar近似です。健康状態だけでなく、申請行動、認定運用、家族構成、施設・サービス供給などの影響を受けるため、自治体の優劣を示す指標ではありません。</div>
+</section>
+<section id="rankingTab" hidden>
+<div class="box controls"><select id="rankPeriod"></select><select id="rankMetric"><option value="adjusted">性・年齢調整認定率（独自算出）</option><option value="crude">粗認定率</option></select><select id="rankDir"><option value="high">高い地域</option><option value="low">低い地域</option></select></div>
+<div class="box"><h2 id="rankTitle"></h2><div class="tablewrap"><table><thead><tr><th>保険者</th><th>都道府県</th><th>値</th><th>全国順位</th></tr></thead><tbody id="rankBody"></tbody></table></div></div>
+</section>
+<section id="benefitTab" hidden>
+<div class="box controls"><select id="benefPref" aria-label="都道府県"></select><select id="benefIns" aria-label="保険者"></select><label>年度 <select id="benefAdjYear"></select></label></div>
+<div class="box benefit-primary"><h2>1. 実際の給付費（性・年齢調整前）</h2><h3 id="benefTitle"></h3><div class="cards" id="benefCards"></div><h3>全国と規模をそろえた粗比較</h3><div id="crudeBenefitIndex"></div></div>
+<div class="box benefit-adjusted"><h2>2. 条件をそろえた地域比較</h2><p class="s">性・年齢構成の違いを調整した、第1号被保険者1人当たり月額と全国指数です。実際の給付費総額とは異なります。</p><h3>年齢等調整済み給付費指数（全国＝100）</h3><div id="officialAdjustedBenefit" class="note"></div></div>
+<details class="box benefit-details"><summary>3. 詳しい内訳・経年表を見る</summary>
+<div class="benefit-detail-section"><h3>公式調整済み給付費の経年表</h3><div class="tablewrap"><table><thead><tr><th>年度</th><th>公式調整済み月額<br>（1人当たり）</th><th>総額指数</th><th>在宅</th><th>施設・居住系</th><th>施設</th><th>居住系</th></tr></thead><tbody id="officialAdjustedHistory"></tbody></table></div></div>
+<div class="benefit-detail-section"><h3>給付費の構成</h3><div id="benefitComposition"></div><div class="s">居宅・地域密着型・施設の3大分類。08-2-4hの上位「計」を使用しています。</div></div>
+<div class="benefit-detail-section"><h3>第1号受給者人月当たり給付費（参考）</h3><div id="benefitPerMonth"></div><div class="s">居宅・地域密着は第1号被保険者の受給者延人月、施設は第1号被保険者の4施設種別延人月合算を分母にしています。サービス内容・要介護度構成が異なるため、単純な効率性指標ではありません。</div></div>
+<div class="benefit-detail-section"><h3>認定率 × 1人当たり年間給付費</h3><div id="quadText" class="note"></div>
+<div class="quad-wrap"><canvas id="quadCanvas" width="1000" height="320"></canvas></div>
+<div class="chart-legend" aria-label="散布図の凡例"><span><i class="legend-dot selected"></i>選択地域</span><span><i class="legend-dot same-pref"></i>同じ都道府県</span><span><i class="legend-dot others"></i>その他の保険者</span><span><i class="legend-line"></i>全国中央値</span></div>
+<div class="s">縦軸＝性・年齢調整認定率（独自算出）、横軸＝第1号被保険者1人当たり年間給付費。色付きの大きな点が選択地域です。背景色と4象限は探索用で、優劣を意味しません。</div></div>
+<div class="benefit-detail-section note"><b>給付費の定義</b><br>2021～2024年度の各年について、08-2-4h「（再掲）第1号被保険者分－給付費－」を使用しています。第1号被保険者分は、原表注記に基づく参考値です。月額換算は年間1人当たり額÷12で、厚生労働省公式の調整済み1人当たり給付月額とは別指標です。公式調整値が未公表の年度は別年度で代用しません。</div>
+</details>
+</section>
+<section id="premiumTab" hidden>
+<div class="box controls region-controls"><select id="premiumPref"></select><select id="premiumIns"></select></div>
+<div class="box"><h2 id="premiumTitle">第1号保険料基準額</h2><div id="premiumSummary" class="note"></div><div class="cards" id="premiumCards"></div></div>
+<div class="box"><h2>計画期間別の基準額</h2><div class="tablewrap"><table><thead><tr><th>計画期間</th><th>対象年度</th><th>月額基準額</th><th>全国加重平均</th><th>全国比</th><th>備考</th></tr></thead><tbody id="premiumBody"></tbody></table></div></div>
+<details class="analysis-details"><summary>詳しい分析を見る</summary>
+<div class="box"><h2>保険料 × 性・年齢調整認定率</h2><div id="premiumRecognitionSummary" class="note"></div><div class="scatter-wrap"><canvas id="premiumRecognitionCanvas" width="1000" height="340"></canvas></div><div class="chart-legend"><span><i class="legend-dot selected"></i>選択地域</span><span><i class="legend-dot same-pref"></i>同じ都道府県</span><span><i class="legend-dot others"></i>その他の保険者</span><span><i class="legend-line"></i>全国中央値</span></div><div class="s">横軸＝第8期第1号保険料基準額（月額）、縦軸＝2023年度性・年齢調整認定率（独自算出）。</div></div>
+<div class="box"><h2>保険料 × 年齢等調整済み給付費指数</h2><div id="premiumBenefitSummary" class="note"></div><div class="scatter-wrap"><canvas id="premiumBenefitCanvas" width="1000" height="340"></canvas></div><div class="chart-legend"><span><i class="legend-dot selected"></i>選択地域</span><span><i class="legend-dot same-pref"></i>同じ都道府県</span><span><i class="legend-dot others"></i>その他の保険者</span><span><i class="legend-line"></i>全国中央値</span></div><div class="s">横軸＝第8期第1号保険料基準額（月額）、縦軸＝2023年度公式調整済み給付月額・総額の全国指数（全国＝100）。</div></div>
+<div class="box"><h2>給付費指数からの保険料差（探索値）</h2><div id="premiumResidualSummary" class="note"></div><div class="cards" id="premiumResidualCards"></div><div class="scatter-wrap"><canvas id="premiumResidualCanvas" width="1000" height="340"></canvas></div><div class="chart-legend"><span><i class="legend-dot selected"></i>選択地域</span><span><i class="legend-dot same-pref"></i>同じ都道府県</span><span><i class="legend-dot others"></i>その他の保険者</span><span><i class="legend-line"></i>予測線</span></div><div class="s">横軸＝2023年度公式調整済み給付費指数、縦軸＝第8期月額保険料。差＝実際の保険料－全国単回帰による予測額。正は予測より高く、負は低いことだけを示します。</div><h3>モデルの頑健性確認</h3><div id="premiumRobustness"></div></div>
+<div class="box"><h2>基金の純積立額 × 保険料差（探索値）</h2><div id="fundSummary" class="note"></div><div class="cards" id="fundCards"></div><div class="scatter-wrap"><canvas id="fundCanvas" width="1000" height="340"></canvas></div><div class="chart-legend"><span><i class="legend-dot selected"></i>選択地域</span><span><i class="legend-dot same-pref"></i>同じ都道府県</span><span><i class="legend-dot others"></i>その他の保険者</span><span><i class="legend-line"></i>0円線</span></div><div class="s">横軸＝2021～2023年度の（基金積立金－介護給付費準備基金繰入金）を第1号被保険者1人・月当たりに換算。右側のプラス＝積立超過、左側のマイナス＝取崩し超過です。縦軸＝給付費指数からの保険料差。</div></div>
+<div class="box note"><b>「保険料差」の重要な限界</b><br>これは適正保険料や基金効果の推計ではありません。第8期保険料と2023年度の給付費という時点差があり、基金取崩しのほか、所得構成、所得段階設定、計画策定時の給付見込み、過年度精算、地域支援事業など未調整要因をまとめて含む回帰残差です。正負を自治体運営の優劣とは解釈できません。</div>
+<div class="box note"><b>保険料の読み方</b><br>表示値は第1号被保険者の<b>保険料基準額（月額）</b>です。個人が実際に納める額は、所得段階、世帯の課税状況、公費による軽減、自治体独自の設定などで異なります。保険料が高いことをサービスの質や自治体運営の優劣とは解釈できません。高齢化、給付費、施設・サービス供給、準備基金の取崩し、所得構成など複数の要因を反映します。</div>
+<div class="box note"><b>散布図の解釈</b><br>相関係数は全国保険者のPearson相関係数で、因果関係を示しません。特に保険料と給付費の関連は、保険料が計画期間の給付費見込み、準備基金、所得構成などを踏まえて設定される制度構造を含みます。4象限は探索用の位置づけであり、費用効率や自治体の優劣を判定するものではありません。</div>
+</details>
+</section>
+<section id="serviceTab" hidden><div class="box controls region-controls"><select id="servicePref"></select><select id="serviceIns"></select></div><div class="box"><h2 id="serviceTitle"></h2><div class="cards" id="serviceCards"></div></div><div class="box"><h2>第1号被保険者1,000人当たり・平均月間受給規模</h2><div id="serviceBars"></div></div>
+<div class="box"><h2>認定構成調整サービス利用比</h2><div id="adjustedServiceSummary" class="note">データを読み込んでいます。</div><div class="cards" id="adjustedServiceCards"></div><div class="tablewrap"><table><thead><tr><th>サービス</th><th>観察人月</th><th>期待人月</th><th>調整利用比</th><th>認定者100人当たり月間人月</th><th>全国順位</th><th>県内順位</th></tr></thead><tbody id="adjustedServiceBody"></tbody></table></div></div>
+<div class="box note"><b>認定構成調整サービス利用比の読み方</b><br>要介護度別の全国受給者人月強度と、この地域の要介護度構成から期待人月を計算し、観察人月÷期待人月×100で算出します。100超は要介護度構成から期待されるより利用人月が多く、100未満は少ないことを示します。年度累計人月に対して年度末認定者数を代理分母に使う探索的指標です。性・年齢、供給量、地域単価、区分内のサービス内容は補正していません。繰り返し人月は独立事象ではないため、Poisson信頼区間は表示しません。</div>
+<div class="box note"><b>サービス受給者数の読み方</b><br>05-1h・06-1hは「（再掲）第1号被保険者」の延人月を使用しています。施設は07-1hの第1号被保険者について4施設種別の延人月を合算しています。同一月に複数施設を利用した場合は重複し得るため「施設別合算人月」として表示します。いずれも2024年3月～2025年2月の累計を12で割り、第1号被保険者1,000人当たりに換算しています。3区分を足して実利用者数とは解釈できません。</div></section><section id="dataTab" hidden>
+<div class="box"><h2>データ・検証状況</h2>
+<table><tbody>
+<tr><td>対象年度</td><td>粗認定率・要介護度別原数は2012～2024年度、性・年齢調整認定率と要介護度別標準化認定比は2015～2024年度、公式調整済み給付費は2012～2023年度</td></tr>
+<tr><td>介護保険原表</td><td>02h、04-1-1h、04-1-2h、04-1-3h</td></tr>
+<tr><td>住民基本台帳</td><td>21-04、22-04、23-04、24-04</td></tr>
+<tr><td>2024年度の原データ保険者</td><td>1,573（性・年齢調整値は分母0の2保険者を除く1,571）</td></tr>
+<tr><td>性・年齢調整認定率（独自算出）</td><td>2015～2020年度は全9,449保険者年、2021～2023年度は各年1,569保険者、2024年度は1,571保険者。自治体名完全一致、公式資料で確認した広域保険者構成、明示した名称変更対応だけを使用</td></tr>
+<tr><td>算出不可</td><td>御蔵島村・青ヶ島村（12層の一部で分母0）</td></tr>
+<tr><td>QA</td><td>総認定者=第1号+第2号、第1号=6年齢階級合計、第1号=要介護度合計：2021～2024すべて不一致0</td></tr>
+<tr><td>3年値</td><td>2021～2023の性・年齢別分子・分母をプールして直接標準化</td></tr>
+<tr><td>要介護度別</td><td>要支援1・2、要介護1～5の標準化認定比、95%信頼区間、性・年齢調整率を男女×6年齢階級で算出。2015～2020年度の未算出保険者年は0</td></tr>
+<tr><td>長期粗認定率・要介護度</td><td>2012～2023年度18,894保険者年に、2024年度1,571保険者を接続。年度別の分母・認定者・7要介護度合計を検証</td></tr>
+<tr><td>認定構成調整サービス利用比</td><td>居宅・地域密着型・施設4種別合算について2024年度1,571保険者を算出。元の第1号受給者人月との不一致0</td></tr>
+<tr><td>粗給付費指数</td><td>2024年度の第1号被保険者1人当たり給付費を全国加重平均＝100で指数化。性・年齢調整ではない</td></tr>
+<tr><td>公式調整済み給付費</td><td>2012～2023年度、総額・在宅・施設および居住系・施設・居住系を収録。厚生労働省公式【地域】調整値を同年度の全国値＝100で指数化</td></tr>
+<tr><td>第1号保険料基準額</td><td>厚生労働省「各保険者保険料基準額一覧」から、第8期（2021～2023年度）1,569保険者を収録。月額・全国差・全国比・順位を表示。第9期（2024～2026年度）は同一保険者を参考表示</td></tr>
+<tr><td>給付費指数からの保険料差</td><td>2023年度公式調整済み給付費指数から第8期月額保険料を予測する全国1,567保険者の等ウェイト単回帰。実額－予測額を探索値として表示し、適正額や基金効果とは解釈しない</td></tr>
+<tr><td>介護給付費準備基金</td><td>e-Stat「介護保険事業状況報告」第15表の2021～2023年度保険者別原表から、基金繰入金・基金積立金・2023年度末基金保有額を抽出。1,569保険者すべてを既存保険料データへ結合</td></tr>
+<tr><td>行政環境への配慮</td><td>実行時は同一サイト内のHTML・CSS・JavaScript・JSONだけを使用。外部CDN、外部API、Webフォント、地図配信、広告・アクセス解析への通信は0。通信制限も同一オリジンに固定</td></tr>
+<tr><td>旧版からの訂正</td><td>初期試作時の自治体名部分一致による人口誤合算を廃止。完全一致・公式構成・明示した名称変更だけで全期間を再生成し、順位・百分位・3年値も全件再計算</td></tr>
+</tbody></table></div>
+<div class="box method-detail"><h2>全国認定率の比較基準</h2><p>全国値は、厚生労働省「介護保険事業状況報告（年報）」全国計の、年度末の第1号認定者数を第1号被保険者数で割った率です。保険者ごとの率の単純平均や中央値ではありません。地域の調整値を算出できない保険者も全国計には含まれます。</p><p>地域の性・年齢構成は同年度の全国住基人口構成にそろえています。全国自身に同じ推計分母と全国構成を適用すると、直接標準化率は全国の粗認定率に一致するため、この全国値を比較基準とします。全国との差は丸める前の値から算出し、統計的な有意差や地域の優劣を示しません。</p><p>全国計の原表：<a href="https://www.mhlw.go.jp/topics/kaigo/osirase/jigyo/21/dl/r03_zenkokukei.xlsx">2021年度</a>・<a href="https://www.mhlw.go.jp/topics/kaigo/osirase/jigyo/22/dl/r04_zenkokukei.xlsx">2022年度</a>・<a href="https://www.mhlw.go.jp/topics/kaigo/osirase/jigyo/23/dl/r05_zenkokukei.xlsx">2023年度</a>・<a href="https://www.mhlw.go.jp/topics/kaigo/osirase/jigyo/24/dl/r06_zenkokukei.xlsx">2024年度</a>。第2表「当年度末現在・計」と第4−1表「男女計・第1号被保険者」を使用しています。</p></div>
+<div class="box method-detail"><h2>性・年齢調整認定率の具体的な計算方法</h2>
+<p><b>調整単位は男女×6年齢階級の12層</b>です。年齢階級は65～69歳、70～74歳、75～79歳、80～84歳、85～89歳、90歳以上です。年度ごとに同じ手順で計算します。</p>
+<ol>
+<li><b>12層の分母を作る</b>：介護年報の第1号被保険者総数を、その地域の住民基本台帳における65歳以上人口の男女・年齢構成比で12層へ按分します。層 <i>i</i> の推計分母は「第1号被保険者総数 × 地域の層別人口 ÷ 地域の65歳以上人口」です。</li>
+<li><b>層別認定率を求める</b>：介護年報の層別認定者数を、手順1の推計分母で割ります。</li>
+<li><b>全国構成にそろえる（直接法）</b>：同年度の全国65歳以上住基人口から作った12層の構成比を標準人口の重みとし、地域の12層別認定率を加重平均します。表示値は「Σ（地域の層別認定率 × 全国の層別人口構成比）×100」です。</li>
+</ol>
+<p class=method-formula>調整認定率 ＝ Σ（地域の層別認定率 × 同年度全国の層別人口構成比）× 100</p>
+<p><b>意味：</b>各地域の性・年齢構成が同年度の全国と同じだったと仮定した場合の認定率です。粗認定率との差は、主として地域の性・年齢構成をそろえたことで生じます。</p>
+</div>
+<div class="box method-detail"><h2>要介護度別・標準化認定比の計算方法</h2>
+<p>要支援1・2、要介護1～5ごとに、全国の男女×6年齢階級別認定率を地域の12層推計分母へ掛けて期待認定者数を求めます。</p>
+<p class=method-formula>期待数 ＝ Σ（地域の層別推計分母 × 全国の層別認定率）<br>標準化認定比 ＝ 観察認定者数 ÷ 期待認定者数 × 100</p>
+<p>100が全国基準です。95%信頼区間は観察数を基にByar近似で算出しています。これは直接法の「調整認定率」とは別の、間接法による比です。</p>
+</div>
+<div class="box note"><b>重要な限界</b><br>第1号被保険者の男女・年齢階級別実数は使用できないため、地域の65歳以上住基人口構成で第1号被保険者総数を按分した<b>推計分母</b>を使用しています。したがって本サイトの性・年齢調整認定率と標準化認定比は公式公表値ではなく、比較のための独自算出値です。住基人口と第1号被保険者の構成が異なる地域では誤差が生じ得ます。また、申請行動、認定運用、家族構成、施設・サービス供給は調整していません。</div>
+<div class="box note"><b>年度・地域の取扱い</b><br>2015～2020年度は自治体名の完全一致と、公式資料で構成市町村を確認した広域保険者を採用しています。構成を確定できない広域保険者は推定しません。2021～2024年度も完全一致と公式広域構成を使用しています。3年値は各年率の単純平均ではなく、3年間の性・年齢別分子・分母をプールしてから直接標準化しています。高い・低いは自治体の優劣を意味しません。</div>
+</section>
+<div class="data-footer"><button type="button" data-tab="data">データ・計算方法・検証を見る</button></div>
+</main><script src="app.js?v=14" defer></script></body></html>
+

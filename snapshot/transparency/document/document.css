@@ -1,0 +1,23 @@
+.document {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding: 24px;
+  border: 1px solid #d9e5ed;
+  border-radius: 14px;
+  background: #f8fbfc;
+  color: #243b50;
+  font: 15px/1.8 ui-monospace, SFMono-Regular, Consolas,
+    "Noto Sans Mono CJK JP", "Yu Gothic UI", monospace;
+}
+
+.doc-status {
+  color: #586d82;
+}
+
+.doc-error {
+  border-left: 5px solid #bc4d45;
+  border-radius: 8px;
+  padding: 18px;
+  background: #fff3f2;
+}

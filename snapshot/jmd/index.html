@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>都道府県別 年齢調整死亡率｜5分類・372死因・死因群</title>
+  <meta name="description" content="日本版死亡データベースの都道府県別年齢調整死亡率を、5つの死因分類、372死因・死因群、男女計・男性・女性について全国地図・ランキング・経年推移で確認できます。">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="keywords" content="年齢調整死亡率,日本版死亡データベース,都道府県,死亡率,全国地図,ランキング,経年推移">
+  <link rel="canonical" href="https://municipal-smr.jp/jmd/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="人口ピラミッド × 地域保健データラボ">
+  <meta property="og:title" content="都道府県別 年齢調整死亡率">
+  <meta property="og:description" content="1950～2024年、5分類・372死因・死因群。都道府県別の年齢調整死亡率を全国地図・ランキング・経年推移で確認できます。">
+  <meta property="og:url" content="https://municipal-smr.jp/jmd/">
+  <meta property="og:image" content="https://municipal-smr.jp/assets/og-municipal-smr.png">
+  <meta property="og:image:width" content="1730">
+  <meta property="og:image:height" content="909">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="都道府県別 年齢調整死亡率">
+  <meta name="twitter:description" content="1950～2024年、5分類・372死因・死因群。都道府県別の年齢調整死亡率を地図・ランキング・経年推移で確認できます。">
+  <meta name="twitter:image" content="https://municipal-smr.jp/assets/og-municipal-smr.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/jmd/style.css">
+  <script src="/jmd/app.js" defer></script>
+<link rel="stylesheet" href="/site-function-shell-v1.css?v=2"></head>
+<body class="function-page function-jmd">
+  <main class="wrap" itemscope itemtype="https://schema.org/Dataset">
+    <meta itemprop="name" content="都道府県別 年齢調整死亡率">
+    <meta itemprop="description" content="日本版死亡データベース005_002版の都道府県別年齢調整死亡率を、5つの死因分類、男女計・男性・女性について可視化したデータセットです。">
+    <link itemprop="url" href="https://municipal-smr.jp/jmd/">
+    <meta itemprop="dateModified" content="2026-08-28">
+    <meta itemprop="temporalCoverage" content="1950/2024">
+    <meta itemprop="spatialCoverage" content="日本・47都道府県">
+    <meta itemprop="measurementTechnique" content="年齢調整死亡率（人口10万対・平成27年モデル人口）">
+    <div itemprop="creator" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="人口ピラミッド × 地域保健データラボ（個人運営）">
+      <link itemprop="url" href="https://municipal-smr.jp/">
+    </div>
+    <div itemprop="license" itemscope itemtype="https://schema.org/CreativeWork">
+      <meta itemprop="name" content="データ利用条件・出典">
+      <link itemprop="url" href="https://municipal-smr.jp/data-use/">
+    </div>
+    <meta itemprop="isAccessibleForFree" content="true">
+
+    <nav><a href="/">← 人口ピラミッド × 地域保健データラボへ戻る</a>　<a href="/life-expectancy/">平均寿命を見る</a></nav>
+    <h1>都道府県別 年齢調整死亡率</h1>
+    <p class="note">国立社会保障・人口問題研究所「日本版死亡データベース」005_002版の公表値を可視化します。死因分類によって収録期間と死因数が異なります。検索、グループ、主要死因の優先表示から目的の死因を探せます。</p>
+
+    <section class="card grid">
+      <div>
+        <label for="classification">死因分類</label>
+        <select id="classification"></select>
+        <div id="classificationInfo" class="badge">分類情報を確認中</div>
+      </div>
+      <div>
+        <label for="sex">性別</label>
+        <select id="sex">
+          <option value="both">男女計</option>
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+      </div>
+      <div>
+        <label for="pref">都道府県</label>
+        <select id="pref"></select>
+      </div>
+      <div id="yearControl">
+        <label for="year">地図・ランキング年</label>
+        <select id="year"></select>
+      </div>
+      <div>
+        <label for="causeGroup">死因グループ</label>
+        <select id="causeGroup">
+          <option value="all">すべての死因</option>
+          <option value="main">主要死因</option>
+          <option value="cancer">悪性新生物</option>
+          <option value="circulatory">循環器</option>
+          <option value="respiratory">呼吸器</option>
+          <option value="digestive">消化器</option>
+          <option value="external">外因</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div>
+        <label for="causeSearch">死因名を検索</label>
+        <input id="causeSearch" type="search" placeholder="例：胃、心疾患、自殺" autocomplete="off">
+        <div id="causeSearchInfo" class="badge" aria-live="polite">死因を読み込んでいます</div>
+      </div>
+      <div class="cause-control">
+        <label for="cause">死因・死因群</label>
+        <select id="cause"></select>
+        <div id="availability" class="badge">公表期間を確認中</div>
+      </div>
+    </section>
+
+    <div id="resultContext" class="result-context" role="status" aria-live="polite">表示条件を準備しています…</div>
+
+    <section class="card cause-profile-card" id="causeProfileCard">
+      <h2 id="causeProfileTitle">選択都道府県で高い死因を見る</h2>
+      <p class="note">選択した分類・性別・年について、都道府県の年齢調整死亡率を全国値と比べ、全国比が高い順に表示します。</p>
+      <button id="causeProfileToggle" class="cause-profile-toggle" type="button" aria-expanded="false" aria-controls="causeProfileBody">死因別の特徴を表示</button>
+      <div id="causeProfileBody" hidden>
+        <div class="cause-profile-filters" role="group" aria-label="死因別特徴の表示条件">
+          <button type="button" data-filter="high120" aria-pressed="false">全国比120以上</button>
+          <button type="button" data-filter="above" aria-pressed="true">全国比100超</button>
+          <button type="button" data-filter="all" aria-pressed="false">すべて</button>
+        </div>
+        <p id="causeProfileSummary" class="cause-profile-summary" aria-live="polite"></p>
+        <div id="causeProfileList" class="cause-profile-list"></div>
+        <p class="note">全国比は、同じ死因の全国の年齢調整死亡率を100とした値です。統計的な有意差を示すものではありません。死因・死因群には親子関係や重複があるため、項目同士を合計できません。値が小さい死因では全国比が大きく変動する場合があります。</p>
+      </div>
+    </section>
+
+    <section class="card trend-profile-card" id="trendProfileCard">
+      <h2 id="trendProfileTitle">選択都道府県で最近変化が大きい死因を見る</h2>
+      <p class="note">選択した分類・性別・都道府県について、収録最新年までの直近5年平均と、その前5年平均を比較します。</p>
+      <button id="trendProfileToggle" class="cause-profile-toggle" type="button" aria-expanded="false" aria-controls="trendProfileBody">5年平均の変化を表示</button>
+      <div id="trendProfileBody" hidden>
+        <div class="trend-profile-filters cause-profile-filters" role="group" aria-label="5年平均の変化の表示条件">
+          <button type="button" data-filter="increase" aria-pressed="true">増加した死因</button>
+          <button type="button" data-filter="decrease" aria-pressed="false">減少した死因</button>
+          <button type="button" data-filter="all" aria-pressed="false">すべて</button>
+        </div>
+        <p id="trendProfileSummary" class="cause-profile-summary" aria-live="polite"></p>
+        <div id="trendProfileList" class="cause-profile-list"></div>
+        <p class="note">両期間で各5年すべての公表値が揃う死因だけを表示し、欠測を0として補いません。順位は年齢調整死亡率の変化量（人口10万対）によります。変化率は参考値です。統計的な有意差を示すものではありません。両期間の平均がいずれか1.0未満の死因には「低率・変動注意」と表示します。死因・死因群には親子関係や重複があるため、項目同士を合計できません。</p>
+      </div>
+    </section>
+
+    <section class="card" id="cancerComparisonCard" hidden>
+      <h2 id="cancerComparisonTitle">参考：悪性新生物の部位別比較</h2>
+      <p class="note">選択中の分類・性別・年について、選択都道府県と全国の部位別年齢調整死亡率を並べます。分類に含まれる悪性新生物のうち、公表値がある部位を表示します。</p>
+      <div id="cancerComparison" class="cancer-comparison chart" aria-live="polite"></div>
+    </section>
+
+    <section class="card" id="mapCard">
+      <h2 id="mapTitle">全国地図</h2>
+      <p id="mapContext" class="section-context" aria-label="地図の現在の表示条件"></p>
+      <p class="note">選択年の年齢調整死亡率を、全国の値を100とした比率で色分けします。青は全国より低い地域、中央の淡い色は全国と近い地域、赤は全国より高い地域です。地図を押すと選択都道府県が変わります。</p>
+      <div id="mapLegend" class="map-legend"></div>
+      <div class="map-wrap">
+        <svg id="map" class="map" viewBox="0 0 900 640" role="img" aria-label="都道府県別年齢調整死亡率の全国地図"></svg>
+        <div id="okinawaInsets" class="okinawa-insets" aria-label="沖縄県の島しょ表示"></div>
+      </div>
+      <div id="mapTip" class="map-tip" aria-live="polite"></div>
+    </section>
+
+    <section class="card" id="trendCard">
+      <h2 id="trendTitle">選択都道府県と全国の経年推移</h2>
+      <div class="legend">
+        <span class="key pref" id="prefLegend"></span>
+        <span class="key nat" id="nationalLegend">全国</span>
+      </div>
+      <div class="chart">
+        <svg id="trend" class="trend" viewBox="0 0 900 330" role="img" aria-label="年齢調整死亡率の経年推移"></svg>
+      </div>
+      <p class="note">欠測値は0として補完せず、線を途切れさせます。</p>
+    </section>
+
+    <section class="card" id="rankingCard">
+      <h2 id="rankingTitle">都道府県ランキング</h2>
+      <p id="rankingContext" class="section-context" aria-label="ランキングの現在の表示条件"></p>
+      <div id="status" role="status" aria-live="polite">データを読み込んでいます…</div>
+      <div id="periodWarn"></div>
+      <div id="ranking" class="chart"></div>
+    </section>
+
+    <section class="card">
+      <h2>データの見方</h2>
+      <p class="note">表示値は、人口10万人当たりの年齢調整死亡率（平成27年モデル人口）です。市町村別に表示している標準化死亡比とは別の指標です。「公表値の収録期間」は、その分類系列に非欠測の公表値が存在する期間であり、その疾病自体の発生・存在期間を意味しません。期間外や欠測は0ではありません。</p>
+      <p class="note">死因年次推移分類、JMD（日本版死亡データベース）死因分類（詳細死因・死因群）、人口動態統計死因簡単分類、HCD（Human Cause-of-Death Database）分類を切り替えられます。同じ名称に見える死因でも分類ごとに定義や収録期間が異なるため、分類をまたいで数値を単純比較しないでください。HCD分類の死因名はJMD原本どおり英語で表示します。</p>
+      <p class="note">地図の色は、同じ年・性別・死因の全国値を100とした比率です。地図の色分けは地域差を読みやすくするためのもので、統計的な有意差を示すものではありません。</p>
+      <p class="note">出典：国立社会保障・人口問題研究所「日本版死亡データベース」005_002版。公表された年齢調整死亡率を再計算せず表示します。地図境界：国土交通省「国土数値情報」行政区域をWeb表示向けに軽量化したものです。</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>市区町村別平均寿命（独自推計）2015・2020年｜地域保健データラボ</title>
+  <meta name="description" content="公開データによる2015・2020年の市区町村別平均寿命の独自推計を、厚生労働省の公式値と比較。近似・例外補完、計算方法、検証結果、再計算コードを公開します。">
+  <link rel="canonical" href="https://municipal-smr.jp/life-expectancy/municipal-estimate/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/life-expectancy/style.css?v=20260906">
+  <link rel="stylesheet" href="./style.css?v=20260906-2">
+  <script src="./app.js?v=20260906-2" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <nav><a href="/life-expectancy/?family=life&amp;scope=municipality">← 平均寿命・健康寿命へ</a><a href="./methods.html">計算方法・検証結果</a></nav>
+<p class="note"><a href="/life-expectancy/municipal-reference/">2015～2023年の市区町村別平均寿命の参考推計 →</a></p>
+  <p class="eyebrow">2015・2020年 · 公開データによる参考推計</p>
+  <h1>市区町村別平均寿命<span class="subtitle">独自推計と公式値を比較</span></h1>
+  <p class="lead">その地域の年齢別死亡率が続くと仮定した、0歳の平均余命です。国の公表値に近い計算を、公開データからどこまで行えるかを検証しています。</p>
+  <p class="method-note">独自推計には四半期死亡数の近似を使い、一部の地域には例外補完を適用しています。国の公式値・完全再現値ではありません。<a href="./methods.html">方法と限界を確認する</a></p>
+  <section class="card controls" aria-label="比較条件">
+    <div><label for="year">対象年</label><select id="year" disabled><option value="2020">2020年</option><option value="2015">2015年</option></select></div>
+    <div><label for="pref">都道府県</label><select id="pref" disabled></select></div>
+    <div><label for="sex">性別</label><select id="sex" disabled><option value="male">男性</option><option value="female">女性</option></select></div>
+    <div><label for="area">市区町村</label><select id="area" disabled></select></div>
+  </section>
+  <p id="condition" class="condition" aria-live="polite"></p>
+  <section class="summary" aria-live="polite" aria-label="選択した市区町村の比較">
+    <article><span>独自推計 · 参考値</span><strong id="estimate">—</strong><small>小数第1位で表示</small></article>
+    <article><span>厚生労働省の公式値</span><strong id="official">—</strong><small id="officialSource">2020年市区町村別生命表</small></article>
+    <article><span>検証用の差</span><strong id="difference">—</strong><small id="differenceSource">独自推計 − 公表T₀/l₀</small></article>
+  </section>
+  <p id="yearNote" class="method-note"></p>
+  <p id="exception" class="method-note" hidden></p>
+  <p class="note">差は計算方法の検証用です。地域の優劣や統計的な有意差を示しません。全国の信頼区間・信用区間の妥当性は未検証のため、ここでは点推定のみ表示しています。</p>
+  <section class="card">
+    <h2>市区町村ごとの比較</h2>
+    <p id="tableCondition" class="condition"></p>
+    <div class="ranking-tools"><label for="search">地域名で絞り込む <input id="search" type="search" placeholder="例：秋田市"></label></div>
+    <p id="status" role="status" aria-live="polite">データを読み込んでいます…</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="市区町村の比較表。横にスクロールできます">
+      <table><caption>独自推計と公式平均寿命（単位：年）</caption><thead><tr><th scope="col">地域</th><th scope="col">独自推計</th><th scope="col">公式値</th><th scope="col">検証用の差</th><th scope="col">例外補完の影響</th></tr></thead><tbody id="rows"></tbody></table>
+    </div>
+    <button id="more" type="button" hidden>続きを表示</button>
+    <p id="tableNote" class="note">自治体コード順です。独自推計・公式値は小数第1位、検証用の差は丸め前の独自推計と公表T₀/l₀から計算しています。表示した2値が同じでも、差がゼロとは限りません。</p>
+  </section>
+  <section class="card">
+    <h2>全国で確認できたこと</h2>
+    <div id="nationalSummary2020"><p>1,887市区町村・男女3,774組を計算し、小数第1位は3,579組（94.8％）で公式値と一致しました。平均絶対誤差は約0.0053年、最大絶対誤差は約0.032年でした。生命表の全関数が公表桁で整合した組は0組です。</p>
+    <p class="note">東京都の区部以外39市町村・男女78組には、独自の例外補完が影響します。公式値のない福島県8町村と熊本県球磨村は収録していません。今回の比較結果から地域区分を検討したため、別年・任意期間への精度を保証する検証ではありません。</p></div>
+    <div id="nationalSummary2015" hidden><p>2015年は1,888市区町村・男女3,776組を計算し、小数第1位は3,053組（80.9％）で公式参考値と一致しました。丸められた参考値との差の平均絶対値は約0.0316年、最大は約0.303年（津市・男性）です。</p><p class="note">2015年参考値は小数1桁で、差には最大約±0.05年の丸めが含まれます。丸めだけでは説明できない差も残ります。東京都区部以外39市町村・男性と和歌山県30市町村・男性の計69組には独自補完が影響します。公式値のない福島県8町村は収録していません。</p></div>
+    <p><a href="./methods.html">計算方法・例外処理・検証結果を読む</a></p>
+    <p class="downloads"><a id="csvDownload" href="./data/comparison-2020.csv" download>全市区町村の比較CSV</a><a id="kitDownload" href="./data/reproduction-kit.zip" download>再計算コード・原資料一覧を取得</a></p>
+  </section>
+</main>
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>市区町村別平均寿命の参考推計｜2015～2023年</title>
+<meta name="description" content="2015～2023年を、公開死亡数と人口から独自計算。各年を中心とする3年間の参考推計を地域・男女別に確認できます。">
+<link rel="canonical" href="https://municipal-smr.jp/life-expectancy/municipal-reference/"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/life-expectancy/style.css?v=20260906"><link rel="stylesheet" href="./style.css?v=20260907"><script src="./app.js?v=20260907c" defer></script></head>
+<body><main class="wrap"><nav><a href="/life-expectancy/">← 平均寿命・健康寿命</a><a href="./methods.html">計算方法・検証結果</a></nav>
+<p class="eyebrow">公開データから独自計算 · 研究用の参考値</p><h1>市区町村別平均寿命の参考推計</h1>
+<p class="lead">2015～2023年を中心とする３年間の死亡状況から計算しました。その地域の年齢別死亡率が続くと仮定した、０歳の平均余命です。</p>
+<p class="method-note">国の公表値ではありません。単年の値ではなく、中心年の前後を含む３年間の推計です。人口や推計方式によって値が変わり、差を統計的な有意差とは判断できません。</p>
+<p class="note" id="availability">2024年中心の推計は2023～2025年の死亡数を必要とします。2026年9月7日時点では必要な2025年の確定数が未公表のため、掲載していません（<a href="https://www.mhlw.go.jp/toukei/list/81-1a.html">厚生労働省の公表一覧</a>）。</p>
+<section class="card controls" aria-label="表示条件"><div><label for="year">中心年（死亡数の期間）</label><select id="year"><option value="2024" disabled>2024年（必要な確定数が未公表）</option><option value="2023">2023年（2022～2024年）</option><option value="2022">2022年（2021～2023年）</option><option value="2021">2021年（2020～2022年）</option><option value="2020">2020年（2019～2021年）</option><option value="2019">2019年（2018～2020年）</option><option value="2018">2018年（2017～2019年）</option><option value="2017">2017年（2016～2018年）</option><option value="2016">2016年（2015～2017年）</option><option value="2015">2015年（2014～2016年） ※人口補完あり</option></select></div>
+<div><label for="pref">都道府県</label><select id="pref" disabled></select></div><div><label for="sex">性別</label><select id="sex" disabled><option value="male">男性</option><option value="female">女性</option></select></div><div><label for="area">市区町村</label><select id="area" disabled></select></div></section>
+<p id="condition" class="condition" aria-live="polite"></p><section class="card result" aria-label="選択地域の参考推計"><span>平均寿命 · 独自の参考推計</span><strong id="estimate">—</strong><p id="period"></p><p id="areaNote" class="note"></p></section>
+<p class="note">95％区間は、人口誤差や推計方式の違いを含めた妥当性を確認できていないため表示していません。小さな差や順位で地域の優劣を評価しないでください。</p>
+<section class="card"><h2>地域別の参考推計</h2><p id="tableCondition" class="condition"></p><label for="search">地域名で絞り込む <input id="search" type="search" placeholder="例：秋田市" disabled></label><p id="status" role="status">データを読み込んでいます…</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="地域別参考推計"><table><caption>平均寿命の独自参考推計（単位：年・市区町村コード順）</caption><thead><tr><th scope="col">地域</th><th scope="col">参考推計</th></tr></thead><tbody id="rows"></tbody></table></div><button id="more" type="button" hidden>さらに100件表示</button></section>
+<section class="card"><h2>対象と計算方法</h2><p>各年1,882地域・男女別。日本人の死亡数と人口を使用しています。福島県の８町村を除外し、浜松市は市全体を１地域として扱っています。</p><p><a href="./methods.html">人口・地域区分・推計方式・検証上の限界を確認する →</a></p><p><a href="../municipal-estimate/">2015・2020年の独自推計と公式値の比較 →</a></p><p class="note">2015・2020年の比較画面とは人口分母・計算方式が異なります。値をそのままつないだ経年変化として解釈しないでください。</p>
+<p id="populationNote" class="note" hidden></p><div class="downloads"><a href="./data/reference-estimates.csv" download>９年分の参考推計CSV</a><a href="./data/calculation-kit.zip" download>再計算コード・原資料一覧</a></div></section>
+</main></body></html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>全国病院立入検査・自主点検支援｜人口ピラミッド × 地域保健データラボ</title>
+  <meta name="description" content="令和8年度の国の立入検査要綱・実施通知と医療法等に基づき、病院立入検査の確認事項、根拠資料、必要書類を整理する非公式の自主点検支援ツールです。">
+  <link rel="canonical" href="https://municipal-smr.jp/hospital-inspection/">
+  <link rel="stylesheet" href="/site-function-shell-v1.css?v=2">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body class="function-page">
+<header><a class="site-brand" href="/">人口ピラミッド × 地域保健データラボ</a><h1>全国病院立入検査・自主点検支援</h1><p>法令上の確認事項を、立入検査の準備順に整理</p></header>
+<main>
+  <section class="box intro">
+    <p class="kicker">令和8年度版・非公式・端末内保存</p>
+    <h2>施設条件から、確認すべき項目と必要書類を絞り込みます</h2>
+    <p>令和8年6月12日改正の国の立入検査要綱・年度実施通知、医療法、医療法施行規則等を基に独自に整理した自主点検支援ツールです。各項目の「公式根拠」から資料を参照できます。</p>
+    <p class="notice"><strong>行政機関の公式ツールではありません。</strong> 実際の許可・届出、適否の最終判断は、最新の法令・通知を確認し、所管保健所等へお問い合わせください。</p>
+  </section>
+
+  <section class="box" aria-labelledby="setup-title">
+    <div class="section-head"><div><p class="eyebrow">STEP 1</p><h2 id="setup-title">施設条件</h2></div><button id="toggleSetup" class="text-button" type="button">条件を閉じる</button></div>
+    <div id="setupPanel" class="setup-grid">
+      <p class="fixed-target"><strong>対象施設：</strong>病院（初期版）</p>
+      <fieldset><legend>表示する機能・設備</legend>
+        <div class="condition-tools"><span>初期状態ではすべて表示します。該当しない条件を外してください。</span><div><button id="selectAllConditions" type="button">すべて選択</button><button id="clearAllConditions" type="button">すべて解除</button></div></div>
+        <label><input type="checkbox" data-condition="special" checked> 特定機能病院</label>
+        <label><input type="checkbox" data-condition="labor" checked> 特定労務管理対象機関</label>
+        <label><input type="checkbox" data-condition="lab" checked> 院内で検体検査を実施</label>
+        <label><input type="checkbox" data-condition="food" checked> 院内給食を実施</label>
+        <label><input type="checkbox" data-condition="xray" checked> X線・CT等を使用</label>
+        <label><input type="checkbox" data-condition="ri" checked> RI・PETを使用</label>
+        <label><input type="checkbox" data-condition="epidural" checked> 無痛分娩を実施</label>
+        <label><input type="checkbox" data-condition="hazard" checked> 浸水・土砂災害の対象区域</label>
+        <label><input type="checkbox" data-condition="online" checked> オンライン診療を実施</label>
+        <label><input type="checkbox" data-condition="radiotherapy" checked> 放射線治療装置を使用</label>
+        <label><input type="checkbox" data-condition="asbestos" checked> 石綿調査・対応の対象</label>
+        <label><input type="checkbox" data-condition="largeworkplace" checked> 常時50人以上が勤務</label>
+        <label><input type="checkbox" data-condition="accidentreport" checked> 事故等報告病院に該当</label>
+        <label><input type="checkbox" data-condition="icu" checked> ICU・HCU等を設置</label>
+      </fieldset>
+      <label class="regional-condition"><input type="checkbox" data-condition="tokyo"> 東京都の追加項目を表示</label>
+    </div>
+  </section>
+
+  <section class="box mode-box" aria-labelledby="mode-title">
+    <div><p class="eyebrow">点検範囲</p><h2 id="mode-title">確認する詳しさ</h2></div>
+    <div class="mode-switch" role="group" aria-label="点検範囲"><button type="button" data-mode="quick" class="active">簡易点検</button><button type="button" data-mode="detail">詳細点検</button></div>
+    <p id="modeHelp" class="help">主要事項を短時間で確認します。</p>
+  </section>
+
+  <section class="summary-grid" aria-label="点検状況">
+    <article><span>対象項目</span><strong id="targetCount">0</strong></article>
+    <article><span>適合</span><strong id="okCount">0</strong></article>
+    <article><span>要改善</span><strong id="issueCount">0</strong></article>
+    <article><span>未確認</span><strong id="todoCount">0</strong></article>
+    <article><span>進捗</span><strong id="progressValue">0%</strong></article>
+  </section>
+
+  <section class="box toolbar" aria-labelledby="check-title">
+    <div><p class="eyebrow">STEP 2</p><h2 id="check-title">自主点検</h2></div>
+    <label class="search-label">項目を検索<input id="search" type="search" placeholder="例：医療安全、研修、放射線"></label>
+    <label>表示<select id="statusFilter"><option value="all">すべて</option><option value="todo">未確認のみ</option><option value="issue">要改善のみ</option><option value="ok">適合のみ</option></select></label>
+  </section>
+  <nav id="categoryNav" class="category-nav" aria-label="点検分野"></nav>
+  <div id="checklist" class="checklist"></div>
+  <p id="emptyState" class="box empty" hidden>条件に一致する項目はありません。</p>
+
+  <section class="box" aria-labelledby="docs-title">
+    <div class="section-head"><div><p class="eyebrow">STEP 3</p><h2 id="docs-title">準備する書類</h2></div><span id="docsCount" class="pill"></span></div>
+    <p class="help">施設条件に該当する項目から自動作成しています。書類名は院内の規程名称に読み替えてください。</p>
+    <div class="document-tools">
+      <label><input id="pendingDocsOnly" type="checkbox"> 未準備のみ表示</label>
+      <div><button id="prepareAllDocs" type="button">対象書類をすべて準備済み</button><button id="clearAllDocs" type="button">対象書類をすべて未準備</button></div>
+    </div>
+    <div id="documents" class="documents"></div>
+  </section>
+
+  <section class="box actions" aria-labelledby="output-title">
+    <div><p class="eyebrow">STEP 4</p><h2 id="output-title">保存・出力</h2><p class="help">点検状況をファイルに保存すると、後日または別の端末で作業を再開できます。入力内容はこのブラウザ内だけに保存され、サーバーには送信されません。</p></div>
+    <div class="action-buttons"><button id="printBtn" type="button">印刷・PDF保存</button><button id="exportBtn" type="button">点検データを保存</button><label class="import-button">保存した点検データを復元<input id="importInput" type="file" accept="application/json"></label><button id="resetBtn" class="danger" type="button">端末内データを消去</button></div>
+  </section>
+
+  <section class="box sources">
+    <h2>根拠資料・更新情報</h2>
+    <ul>
+      <li><a href="https://elaws.e-gov.go.jp/document?lawid=323AC0000000205" target="_blank" rel="noopener">医療法（e-Gov法令検索）</a></li>
+      <li><a href="https://elaws.e-gov.go.jp/document?lawid=323M40000100050" target="_blank" rel="noopener">医療法施行規則（e-Gov法令検索）</a></li>
+      <li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryou/johoka/cyber-security.html" target="_blank" rel="noopener">医療機関のサイバーセキュリティ対策（厚生労働省）</a></li>
+      <li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryou/i-anzen/tachiirikensa.html" target="_blank" rel="noopener">医療法に基づく立入検査・通知一覧（厚生労働省）</a></li>
+      <li><a href="https://www.mhlw.go.jp/content/10800000/001711282.pdf" target="_blank" rel="noopener">令和8年6月改正 立入検査要綱・検査表・検査基準（厚生労働省）</a></li>
+      <li><a href="https://www.mhlw.go.jp/content/10800000/001711283.pdf" target="_blank" rel="noopener">令和8年度 立入検査実施通知（厚生労働省）</a></li>
+      <li><a href="https://www.hokeniryo.metro.tokyo.lg.jp/iryo/kanri/tebiki07" target="_blank" rel="noopener">参考：病院管理の手引（東京都）</a></li>
+      <li><a href="https://www.hokeniryo.metro.tokyo.lg.jp/iryo/kanri/checklist" target="_blank" rel="noopener">参考：病院自主管理チェックリスト（東京都）</a></li>
+    </ul>
+    <p>収録内容確認日：2026年9月3日。令和8年度通知は、令和8年3月31日通知を反映した要綱改訂を令和9年度に予定するとしています。法令改正や通知更新があり得るため、各公式リンクの最新版を確認してください。</p>
+  </section>
+</main>
+<script src="app.js?v=1" defer></script>
+</body>
+</html>

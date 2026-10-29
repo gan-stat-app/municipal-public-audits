@@ -1,0 +1,8 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NDB特定健診 データ検証結果 | municipal-smr.jp</title><link rel="stylesheet" href="style.css?v=2"></head><body>
+<header><a href="./">← 地域別「特定健診」</a><h1>NDB特定健診 データ検証結果</h1><p>厚生労働省原表から公開JSONまでの再現性と完全性を確認した記録です。</p></header>
+<main><section class="panel"><div class="panel-head"><div><h2>検証結果：適合</h2><p>検証日 2026年8月29日／対象 2013～2023年度</p></div></div>
+<div class="summary"><div><span>公式原本</span><strong>59ファイル</strong></div><div><span>指標JSON</span><strong>135ファイル</strong></div><div><span>検証数値</span><strong>129,900セル</strong></div></div>
+<h3>確認した内容</h3><ul><li>厚生労働省掲載URLから原本を再取得し、ファイル名・容量・SHA-256を記録しました。</li><li>2013～2017年度の保存原本17ファイルは、再取得した公式ファイルとSHA-256が完全一致しました。</li><li>原表から実測値、40～74歳の年齢調整値、質問票割合を再生成し、再生成前後の全JSONハッシュが一致しました。</li><li>都道府県25,380セルと二次医療圏104,520セルを検査し、NaN・Infinityはありませんでした。</li><li>都道府県ID、北海道から沖縄県までの標準順、沖縄県と全国行の分離を確認しました。</li></ul>
+<h3>欠測の扱い</h3><p>129,900セル中129,816セルは有限値でした。残る84セルは二次医療圏の秘匿または年齢階級不足による算出不可であり、推測や0による補完はしていません。</p>
+<h3>この検証で保証しないこと</h3><p>転記・集計処理の再現性を確認する検証です。特定健診受診者が地域住民全体を代表しない問題、保険者構成、受診率、治療・服薬、測定方法などによる偏りは解消されません。</p>
+<p><a href="validation-report.json">検証結果JSON</a> ／ <a href="source-manifest.json">原本URL・SHA-256一覧</a> ／ <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177182.html">厚生労働省 NDBオープンデータ</a></p></section><section class="panel"><h2>2023年度 拡張指標</h2><p>質問票22問の全53回答区分と、検査値・所見17指標を追加検証しました。全都道府県を含む382地域について、男女・実測値・年齢調整値が有限値または明示的な算出不可であること、全回答区分が算出できる場合は各質問の合計が100%になることを確認しています。</p><p>厚生労働省原表で秘匿された区分は推測せず、その区分を含む年齢階級は算出不可としました。全地域で年齢調整値を算出できない候補指標は公開対象から除外しています。</p></section></main></body></html>
