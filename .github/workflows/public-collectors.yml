@@ -1,0 +1,64 @@
+name: Collect official facility and food records
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: 'Official source family'
+        required: true
+        default: facility
+        type: choice
+        options: [facility, food]
+      limit:
+        description: '0 = full scope; 1 = one-source acceptance run'
+        default: '0'
+        type: string
+  schedule:
+    - cron: '37 21 15,25 * *'
+    - cron: '17 23 19 * *'
+  push:
+    branches: [main]
+    paths: ['workloads/collectors.py', '.github/workflows/public-collectors.yml']
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.run_id }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5
+      - name: Select the existing monthly schedule or bounded acceptance run
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          REQUEST_KIND: ${{ inputs.kind }}
+          REQUEST_LIMIT: ${{ inputs.limit }}
+        run: |
+          python - <<'PY'
+          import os,subprocess,sys
+          kind=os.environ['REQUEST_KIND'] or ('food' if os.environ['SCHEDULE']=='17 23 19 * *' else 'facility')
+          limit=os.environ['REQUEST_LIMIT'] or ('1' if os.environ['EVENT_NAME']=='push' else '0')
+          if kind not in ('facility','food') or not limit.isdigit():raise SystemExit('Invalid acquisition scope')
+          kinds=['facility','food'] if os.environ['EVENT_NAME']=='push' else [kind]
+          codes=[subprocess.call([sys.executable,'workloads/collectors.py',value,'--limit',limit]) for value in kinds]
+          raise SystemExit(1 if any(codes) else 0)
+          PY
+      - name: Retain normalized public rows and immutable original hashes
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: public-collection-${{ github.run_id }}
+          path: |
+            reports/facility.json
+            reports/food.json
+            collections/
+          retention-days: 14
+          if-no-files-found: error

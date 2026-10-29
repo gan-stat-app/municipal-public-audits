@@ -1,0 +1,5 @@
+import{gunzipSync}from'node:zlib';
+const base='https://municipal-smr.jp/data/';
+async function load(basis){const u=`${base}${basis}-Se00-2024-boundary.json.gz`,r=await fetch(u);if(!r.ok)throw new Error(`${u}: ${r.status}`);const b=Buffer.from(await r.arrayBuffer());try{return JSON.parse(b.toString('utf8'))}catch{return JSON.parse(gunzipSync(b).toString('utf8'))}}
+function fields(row){if(Array.isArray(row))return row;return Object.values(row)}
+for(const basis of['juki','census']){const ds=await load(basis),rows=ds.rows||[],issues=[];for(const row of rows){const v=fields(row),text=JSON.stringify(row),nums=v.filter(x=>typeof x==='number');if(/070(08|09|44|45|46|47|48|49)/.test(text))issues.push({kind:'fukushima_watch',row});if(nums.some(x=>!Number.isFinite(x)))issues.push({kind:'non_finite',row})}console.log(JSON.stringify({basis,totalRows:rows.length,watchRows:issues.filter(x=>x.kind==='fukushima_watch').length,nonFiniteRows:issues.filter(x=>x.kind==='non_finite').length,watchSample:issues.filter(x=>x.kind==='fukushima_watch').slice(0,20)}))}

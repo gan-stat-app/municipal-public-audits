@@ -1,0 +1,5 @@
+import assert from'node:assert/strict';import{areasForPrefecture}from'../src/lib/areaCatalog.js';
+const f=(code,name)=>({properties:{area_code:code,name}});
+const cases=[{pref:'01',prefName:'北海道',must:[['01101','中央区'],['01100','札幌市'],['01202','函館市']]},{pref:'13',prefName:'東京都',must:[['13101','千代田区'],['13102','中央区'],['13201','八王子市']]},{pref:'40',prefName:'福岡県',must:[['40101','門司区'],['40100','北九州市'],['40131','東区'],['40130','福岡市'],['40202','大牟田市']]}];
+for(const c of cases){const features=[...c.must.map(([code,name])=>f(code,name)),f(c.pref+'999','所属未定地')],rows=areasForPrefecture(features,c.pref),wide=rows.at(-1);assert.equal(wide.code,c.pref+'000');assert.equal(wide.name,c.prefName+'全体');assert.equal(wide.kind,'prefecture');for(const[code]of c.must)assert(rows.some(x=>x.code===code),`${c.pref}: ${code} が自治体選択に存在`);assert(rows.slice(0,-1).every(x=>x.kind!=='prefecture'),'都道府県全体は末尾に1件だけ');assert(rows.some(x=>x.name.includes('所属未定地')),'特殊地物が境界にあれば現状は候補に入ることを明示')}
+console.log(JSON.stringify({pass:true,prefectures:cases.length,prefectureWidePosition:'last'}));

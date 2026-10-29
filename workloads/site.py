@@ -1,0 +1,89 @@
+"""Run the actual locked app build and existing UI tests in the public repository."""
+from __future__ import annotations
+from concurrent.futures import ThreadPoolExecutor
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+from common import ROOT, SNAPSHOT, blob, checked_public, code_check, receipt, safe_path, sha
+
+
+def hydrate(data):
+    def one(item):
+        path = safe_path(SNAPSHOT, item['path'])
+        if not path.is_file() or blob(path.read_bytes()) != item['sha']:
+            raw = checked_public(item)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(raw)
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        for _ in executor.map(one, data['assets']):
+            pass
+    for item in data['aliases']:
+        original = safe_path(SNAPSHOT, item['source'])
+        target = safe_path(SNAPSHOT, item['target'])
+        if blob(original.read_bytes()) != item['sha']:
+            raise ValueError('Mirror input mismatch')
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(original, target)
+
+
+COMMANDS = [
+    ['npm', 'ci'],
+    ['npm', 'audit', '--package-lock-only', '--ignore-scripts', '--audit-level=low'],
+    ['npm', 'run', 'build'],
+    ['npm', 'test'],
+    ['node', 'scripts/article-hub-browser-test.mjs', '--built', 'dist'],
+    ['node', 'scripts/map-display-browser-test.mjs'],
+    ['node', 'scripts/medical-area-smr-browser-test.mjs'],
+    ['node', 'scripts/death-difference-browser-test.mjs'],
+    ['node', 'scripts/dpc-browser-regression-test.mjs'],
+    ['node', 'scripts/school-trend-browser-test.mjs'],
+    ['node', 'scripts/external-origin-build-audit.mjs'],
+    ['node', 'scripts/light-map-build-test.mjs'],
+    ['node', 'scripts/production-bundle-integrity-test.mjs'],
+]
+
+
+def main():
+    data = code_check()
+    commands = []
+    try:
+        hydrate(data)
+        for command in COMMANDS:
+            start = time.monotonic()
+            print('Run:', ' '.join(command), flush=True)
+            result = subprocess.run(command, cwd=SNAPSHOT / 'source', timeout=1800)
+            commands.append({'command': command, 'exit_code': result.returncode,
+                             'seconds': round(time.monotonic() - start, 3)})
+            if result.returncode:
+                raise RuntimeError('Existing build or UI assertion failed')
+        # Only generated public app assets are retained; never archive fetched
+        # spreadsheets, the whole checkout, or detailed document diagnostics.
+        dist = SNAPSHOT / 'source/dist'
+        emitted = json.loads((dist / '.vite/manifest.json').read_bytes())
+        names = {'index.html', '.vite/manifest.json'}
+        for value in emitted.values():
+            names.add(value['file'])
+            names.update(value.get('css', []))
+            names.update(value.get('assets', []))
+        output = ROOT / 'app-build'
+        files = []
+        for name in sorted(names):
+            source = safe_path(dist, name)
+            raw = source.read_bytes()
+            target = safe_path(output, name)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(raw)
+            files.append({'path': name, 'bytes': len(raw), 'sha256': sha(raw)})
+        receipt('site', {'status': 'passed', 'commands': commands, 'files': files,
+                         'public_assets_checked': len(data['assets']), 'mirrors': len(data['aliases'])})
+    except Exception as exc:
+        receipt('site', {'status': 'failed', 'error_type': type(exc).__name__, 'commands': commands})
+        raise
+
+
+if __name__ == '__main__':
+    main()

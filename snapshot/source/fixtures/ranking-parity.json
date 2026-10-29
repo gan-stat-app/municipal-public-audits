@@ -1,0 +1,26 @@
+{
+  "captured_at":"2026-08-26",
+  "basis":"juki",
+  "datasetCode":"Se00",
+  "prefCode":"05",
+  "sex":"男",
+  "startYear":1999,
+  "endYear":2024,
+  "total":25,
+  "significantHigh":22,
+  "significantLow":1,
+  "high":[
+    {"areaCode":"05303","smr":124.70415559038652},
+    {"areaCode":"05348","smr":117.75236849715304},
+    {"areaCode":"05209","smr":114.88115863514521},
+    {"areaCode":"05202","smr":113.37387165047153},
+    {"areaCode":"05327","smr":113.08572839016439}
+  ],
+  "low":[
+    {"areaCode":"05368","smr":83.09837302557213},
+    {"areaCode":"05203","smr":101.31704155602796},
+    {"areaCode":"05201","smr":101.45520098407552},
+    {"areaCode":"05207","smr":103.35592350610084},
+    {"areaCode":"05214","smr":105.20942515481804}
+  ]
+}

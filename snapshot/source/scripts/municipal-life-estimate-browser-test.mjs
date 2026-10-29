@@ -1,0 +1,108 @@
+import { chromium } from 'playwright-core';
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { readFile, stat } from 'node:fs/promises';
+import { resolve, extname, sep } from 'node:path';
+
+const root=resolve('..');
+const payload=JSON.parse(await readFile(resolve(root,'life-expectancy/municipal-estimate/data/estimates-2020.json'),'utf8'));
+assert.equal(payload.rows.length,1887);
+const older=JSON.parse(await readFile(resolve(root,'life-expectancy/municipal-estimate/data/estimates-2015.json'),'utf8'));
+assert.equal(older.year,2015);assert.equal(older.rows.length,1888);
+assert.equal(older.benchmark,'revised_2015_one_decimal_only');
+assert.equal(older.summary.display_matches,3053);
+assert.equal(older.rows.flatMap(r=>[r.male,r.female]).filter(v=>v.fallback).length,69);
+assert.ok(Math.abs(older.summary.max_absolute_error-0.3025787138238485)<1e-12);
+for(const r of older.rows)for(const sex of ['male','female']){const v=r[sex];assert.ok(Number.isFinite(v.estimate));assert.equal(v.reference,v.official);assert.ok(Math.abs(v.estimate-v.reference-v.difference)<1e-12);}
+const values=payload.rows.flatMap(r=>[r.male,r.female]);
+assert.equal(values.filter(v=>v.fallback).length,78);
+assert.equal(values.filter(v=>Math.floor(v.estimate*10+.5)/10===v.official).length,3579);
+assert.ok(Math.abs(Math.max(...values.map(v=>Math.abs(v.difference)))-0.032043822477746176)<1e-12);
+for(const v of values)assert.ok(Math.abs(v.estimate-v.reference-v.difference)<1e-12);
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.csv':'text/csv; charset=utf-8','.zip':'application/zip'};
+const server=createServer(async(req,res)=>{
+ try{
+  let path=decodeURIComponent(new URL(req.url,'http://localhost').pathname);if(path.endsWith('/'))path+='index.html';
+  const file=resolve(root,`.${path}`);if(!file.startsWith(root+sep)||!(await stat(file)).isFile())throw Error('not file');
+  res.writeHead(200,{'content-type':mime[extname(file)]||'application/octet-stream','content-security-policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'"});res.end(await readFile(file));
+ }catch{res.writeHead(404);res.end('Not found');}
+});
+await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
+const base=`http://127.0.0.1:${server.address().port}`,route='/life-expectancy/municipal-estimate/';
+let browser;
+try{
+ browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'/usr/bin/google-chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
+ for(const viewport of [{width:1280,height:900},{width:390,height:844}]){
+  const page=await browser.newPage({viewport}),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+  page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()}: ${r.url()}`);});
+  await page.goto(base+route,{waitUntil:'networkidle'});
+  assert.equal(await page.inputValue('#area'),'05201');
+  assert.match(await page.textContent('#condition'),/秋田県 秋田市.*男性/);
+  assert.equal(await page.locator('#rows tr').count(),25);
+  assert.equal(await page.textContent('#estimate'),payload.rows.find(r=>r.code==='05201').male.estimate.toFixed(1)+'年');
+  await page.selectOption('#sex','female');
+  assert.match(await page.textContent('#condition'),/女性/);
+  assert.equal(await page.textContent('#estimate'),payload.rows.find(r=>r.code==='05201').female.estimate.toFixed(1)+'年');
+  await page.selectOption('#pref','13');await page.selectOption('#area','13382');
+  assert.equal(await page.locator('#exception').isVisible(),true);
+  assert.match(await page.textContent('#exception'),/80歳/);
+  await page.selectOption('#area','13101');assert.equal(await page.locator('#exception').isVisible(),false);
+  await page.selectOption('#area','13201');assert.equal(await page.locator('#exception').isVisible(),true);
+  assert.match(await page.textContent('#exception'),/直接の入力異常があることを意味しません/);
+  await page.reload({waitUntil:'networkidle'});assert.equal(await page.inputValue('#area'),'13201');
+  await page.selectOption('#pref','all');assert.equal(await page.locator('#rows tr').count(),100);
+  await page.click('#more');assert.equal(await page.locator('#rows tr').count(),200);
+  await page.fill('#search','御蔵島');assert.equal(await page.locator('#rows tr').count(),1);
+  await page.locator('#rows button').click();assert.equal(await page.inputValue('#area'),'13382');
+  await page.fill('#search','存在しない自治体');assert.equal(await page.locator('#rows tr').count(),0);
+  assert.match(await page.textContent('#status'),/該当する市区町村はありません/);
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'mobile page overflow');
+  await page.fill('#search','');
+  if(process.env.SCREENSHOT_DIR)await page.screenshot({path:`${process.env.SCREENSHOT_DIR}/municipal-estimate-${viewport.width}.png`,fullPage:true});
+  await page.selectOption('#year','2015');
+  await page.waitForFunction(()=>!document.getElementById('pref').disabled);
+  assert.match(await page.textContent('#condition'),/2015年/);
+  assert.match(await page.textContent('#yearNote'),/小数1桁/);
+  await page.selectOption('#pref','30');await page.selectOption('#area','30427');await page.selectOption('#sex','male');
+  assert.equal(await page.locator('#exception').isVisible(),true);assert.match(await page.textContent('#exception'),/90歳/);
+  await page.selectOption('#sex','female');assert.equal(await page.locator('#exception').isVisible(),false);
+  assert.match(await page.textContent('#differenceSource'),/小数1桁/);
+  assert.equal(await page.locator('#nationalSummary2020').isVisible(),false);
+  assert.equal(await page.locator('#nationalSummary2015').isVisible(),true);
+  assert.match(await page.locator('#csvDownload').getAttribute('href'),/2015/);
+  assert.match(await page.locator('#kitDownload').getAttribute('href'),/2015/);
+  await page.selectOption('#pref','05');await page.selectOption('#area','05201');
+  assert.equal(await page.textContent('#estimate'),older.rows.find(r=>r.code==='05201').female.estimate.toFixed(1)+'年');
+  await page.reload({waitUntil:'networkidle'});assert.equal(await page.inputValue('#year'),'2015');assert.equal(await page.inputValue('#area'),'05201');
+  await page.selectOption('#pref','04');await page.selectOption('#area','04423');
+  await page.selectOption('#year','2020');await page.waitForFunction(()=>!document.getElementById('pref').disabled);
+  assert.equal(await page.inputValue('#area'),'04216');
+  assert.equal(await page.locator('#nationalSummary2015').isVisible(),false);
+  await page.selectOption('#year','2015');await page.waitForFunction(()=>!document.getElementById('pref').disabled);
+  assert.equal(await page.inputValue('#area'),'04423');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(process.env.SCREENSHOT_DIR)await page.screenshot({path:`${process.env.SCREENSHOT_DIR}/municipal-estimate-2015-${viewport.width}.png`,fullPage:true});
+  await page.goto(base+route+'methods.html',{waitUntil:'networkidle'});
+  assert.match(await page.textContent('h1'),/計算方法と検証結果/);
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  for(const name of ['comparison-2020.csv','sources.json','reproduction-kit.zip','comparison-2015.csv','sources-2015.json','reproduction-kit-2015.zip'])assert.equal((await page.request.get(base+route+'data/'+name)).status(),200);
+  assert.deepEqual(errors,[]);
+  await page.close();
+ }
+ const page=await browser.newPage();
+ await page.goto(base+route+'?year=1999&pref=invalid&sex=total&area=invalid',{waitUntil:'networkidle'});
+ assert.equal(await page.inputValue('#pref'),'05');assert.equal(await page.inputValue('#sex'),'male');
+ await page.route('**/data/estimates-2020.json',r=>r.fulfill({status:503,body:'unavailable'}));
+ await page.reload({waitUntil:'networkidle'});assert.match(await page.textContent('#status'),/データを読み込めませんでした/);
+ assert.equal(await page.locator('#pref').isDisabled(),true);
+ await page.unroute('**/data/estimates-2020.json');
+ await page.goto(base+route,{waitUntil:'networkidle'});
+ await page.route('**/data/estimates-2015.json',r=>r.fulfill({status:503,body:'unavailable'}));
+ await page.selectOption('#year','2015');await page.waitForFunction(()=>document.getElementById('status').className==='error');
+ assert.equal(await page.textContent('#estimate'),'—');assert.equal(await page.locator('#rows tr').count(),0);
+ await page.selectOption('#year','2020');await page.waitForFunction(()=>!document.getElementById('pref').disabled);
+ assert.match(await page.textContent('#condition'),/2020年/);
+ console.log(JSON.stringify({status:'passed',pairs:3774,fallback:78,displayMatches:3579,viewports:[1280,390],checks:['selection','URL restore','fallback labeling','search','pagination','download','strict CSP','failure state']}));
+}finally{await browser?.close();await new Promise(ok=>server.close(ok));}

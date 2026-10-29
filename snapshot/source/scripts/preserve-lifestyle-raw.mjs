@@ -1,0 +1,14 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {basename,join} from 'node:path';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+const [rawDir,outDir]=process.argv.slice(2);if(!rawDir||!outDir)throw new Error('usage: node preserve-lifestyle-raw.mjs RAW_DIR OUT_DIR');
+const sources=[['smoking',2001,'0003136683'],['smoking',2004,'0003136314'],['smoking',2007,'0004052117'],['smoking',2010,'0003045676'],['smoking',2013,'0003169450'],['smoking',2016,'0003201726'],['smoking',2019,'0003442403'],['smoking',2022,'0002041070'],['drinking',2013,'0003169431'],['drinking',2016,'0003201725'],['drinking',2019,'0003442402'],['drinking',2022,'0002041069']];
+await mkdir(outDir,{recursive:true});const retrievedAt=new Date().toISOString(),files=[];
+for(const [topic,year,statsDataId] of sources){const name=`${topic}_${year}.json`,raw=await readFile(join(rawDir,name)),json=JSON.parse(raw),result=json?.GET_STATS_DATA?.RESULT;if(String(result?.STATUS)!=='0')throw new Error(`${name}: invalid e-Stat status`);const values=json?.GET_STATS_DATA?.STATISTICAL_DATA?.DATA_INF?.VALUE,rowCount=Array.isArray(values)?values.length:values?1:0,gz=gzipSync(raw,{level:9}),gzName=`${name}.gz`;await writeFile(join(outDir,gzName),gz);files.push({topic,year,statsDataId,sourceUrl:`https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?statsDataId=${statsDataId}&limit=100000`,retrievedAt,originalFile:name,originalBytes:raw.length,originalSha256:createHash('sha256').update(raw).digest('hex'),storedFile:gzName,storedBytes:gz.length,storedSha256:createHash('sha256').update(gz).digest('hex'),rowCount})}
+const manifest={dataset:'厚生労働省「国民生活基礎調査」健康・都道府県編（喫煙・飲酒）',retrievedAt,compression:'gzip level 9 (lossless)',authentication:'e-Stat appId was supplied only as an environment variable and is not stored',files};
+await writeFile(join(outDir,'source_manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+await writeFile(join(outDir,'source_manifest.csv'),['topic,year,statsDataId,retrievedAt,originalFile,originalBytes,originalSha256,storedFile,storedBytes,storedSha256,rowCount',...files.map(f=>[f.topic,f.year,f.statsDataId,f.retrievedAt,f.originalFile,f.originalBytes,f.originalSha256,f.storedFile,f.storedBytes,f.storedSha256,f.rowCount].join(','))].join('\n')+'\n');
+await writeFile(join(outDir,'checksums.sha256'),files.map(f=>`${f.storedSha256}  ${f.storedFile}`).join('\n')+'\n');
+await writeFile(join(outDir,'README.md'),`# 国民生活基礎調査 喫煙・飲酒 原本保全\n\n2026-08-27取得。e-Stat API原応答12件を改変せずgzip圧縮した保存コピーです。展開後のSHA-256はsource_manifest.jsonのoriginalSha256で検証できます。APIキーは保存していません。公開用加工データとは分離して保管します。\n`);
+console.log(JSON.stringify({files:files.length,originalBytes:files.reduce((s,f)=>s+f.originalBytes,0),storedBytes:files.reduce((s,f)=>s+f.storedBytes,0),rows:files.reduce((s,f)=>s+f.rowCount,0),outDir}));
