@@ -21,7 +21,8 @@ def require(ok, message):
 
 
 def request(path, payload=None):
-    headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + os.environ['GH_TOKEN']}
+    headers = {'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json',
+               'Authorization': 'Bearer ' + os.environ['GH_TOKEN']}
     data = None if payload is None else json.dumps(payload).encode()
     with urllib.request.urlopen(urllib.request.Request(BASE + '/' + path, data=data, headers=headers), timeout=30) as response:
         raw = response.read(2*1024*1024+1)
