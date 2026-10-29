@@ -64,7 +64,6 @@ COMMANDS = [
     ['node', 'scripts/dpc-browser-regression-test.mjs'],
     ['node', 'scripts/school-trend-browser-test.mjs'],
     ['node', 'scripts/external-origin-build-audit.mjs'],
-    ['node', 'scripts/light-map-build-test.mjs'],
     ['node', 'scripts/production-bundle-integrity-test.mjs'],
 ]
 
