@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "source_commit": "ec630446acc61662825b96a2fbfb861c33bd8b6c",
+  "source_repository": "gan-stat-app/municipal-smr-site",
+  "files": [
+    {
+      "path": "analysis/akita-public-excel-review/office-inspection.csv",
+      "git_blob_sha1": "4a7bad646426e1add2c4925c9bfa255da441f73b",
+      "bytes": 2792,
+      "source_url": "https://municipal-smr.jp/analysis/akita-public-excel-review/office-inspection.csv"
+    },
+    {
+      "path": "analysis/akita-public-excel-review/expansion-20261027.csv",
+      "git_blob_sha1": "fd895b1e0b3fdc13dd00041939c2c52ff8e672e4",
+      "bytes": 3775,
+      "source_url": "https://municipal-smr.jp/analysis/akita-public-excel-review/expansion-20261027.csv"
+    },
+    {
+      "path": "analysis/akita-website-quality/findings.csv",
+      "git_blob_sha1": "eb8aaf25bc40af6ece2ba7517215553af99bfbd2",
+      "bytes": 3842,
+      "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/findings.csv"
+    },
+    {
+      "path": "analysis/municipal-machine-readability/all-scores.csv",
+      "git_blob_sha1": "c5207fe03455091f645178dd93751f183d94ebca",
+      "bytes": 37151,
+      "source_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/all-scores.csv"
+    },
+    {
+      "path": "analysis/municipal-machine-readability/all-scores.json",
+      "git_blob_sha1": "48369abcdbd6b5fc2c8166dd818ef50448cf3d22",
+      "bytes": 64083,
+      "source_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/all-scores.json"
+    },
+    {
+      "path": "analysis/akita-website-quality/national.json",
+      "git_blob_sha1": "efed879199c56fe40597d18c0992a9d9fee2ccf7",
+      "bytes": 66068,
+      "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/national.json"
+    },
+    {
+      "path": "analysis/akita-website-quality/findings.json",
+      "git_blob_sha1": "299be8d8623d242a82a3d2d1f3428e7836f83e71",
+      "bytes": 14474,
+      "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/findings.json"
+    },
+    {
+      "path": "analysis/akita-website-quality/national.csv",
+      "git_blob_sha1": "e47482e098f80a0d9b1fd55915e41895ae6e0bdc",
+      "bytes": 3900,
+      "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/national.csv"
+    },
+    {
+      "path": "analysis/akita-public-excel-review/inspection.csv",
+      "git_blob_sha1": "958421149ca1d16260815cbfc6da19fc66bbc5e8",
+      "bytes": 3149,
+      "source_url": "https://municipal-smr.jp/analysis/akita-public-excel-review/inspection.csv"
+    },
+    {
+      "path": "analysis/municipal-machine-readability/progress.json",
+      "git_blob_sha1": "9755d1d96c9cb4cacef9eed81c71bb0c7b8a3c2d",
+      "bytes": 5735,
+      "source_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/progress.json"
+    }
+  ]
+}

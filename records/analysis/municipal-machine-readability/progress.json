@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "snapshot_date": "2026-10-24",
+  "article": "https://municipal-smr.jp/analysis/municipal-machine-readability/",
+  "stage": "original_scores_published_with_audit_caveats",
+  "government_registry_entries": 1794,
+  "registered_source_files": 5956,
+  "attempted_files": 77,
+  "evaluated_files": 76,
+  "evaluated_governments": 55,
+  "formats": {
+    "csv": 46,
+    "xlsx": 30
+  },
+  "local_publication_files": 65,
+  "national_or_prefectural_distribution_files": 11,
+  "population_target_date": "2026-01-01",
+  "population_target_date_verified_files": 9,
+  "food_monthly_new_permits_target": "2026-09",
+  "food_monthly_new_permits_files": 2,
+  "finance_fiscal_year": "FY2024",
+  "finance_year_verified_files": 8,
+  "categories": [
+    {
+      "category": "population",
+      "name": "地域・年齢別人口",
+      "source_files_registered": 2183,
+      "owners_with_source_metadata": 141,
+      "files_evaluated": 35,
+      "owners_evaluated": 27,
+      "direct_files_evaluated": 35
+    },
+    {
+      "category": "food_business",
+      "name": "食品営業許可・届出",
+      "source_files_registered": 635,
+      "owners_with_source_metadata": 157,
+      "files_evaluated": 11,
+      "owners_evaluated": 8,
+      "direct_files_evaluated": 9
+    },
+    {
+      "category": "emergency_sites",
+      "name": "指定緊急避難場所一覧",
+      "source_files_registered": 2017,
+      "owners_with_source_metadata": 1706,
+      "files_evaluated": 12,
+      "owners_evaluated": 12,
+      "direct_files_evaluated": 9
+    },
+    {
+      "category": "public_facilities",
+      "name": "公共施設一覧",
+      "source_files_registered": 339,
+      "owners_with_source_metadata": 188,
+      "files_evaluated": 10,
+      "owners_evaluated": 10,
+      "direct_files_evaluated": 10
+    },
+    {
+      "category": "finance",
+      "name": "財政状況資料集",
+      "source_files_registered": 782,
+      "owners_with_source_metadata": 612,
+      "files_evaluated": 8,
+      "owners_evaluated": 8,
+      "direct_files_evaluated": 2
+    }
+  ],
+  "engine": {
+    "name": "Harunobu",
+    "version": "0.2.2",
+    "commit": "3f70b5309dd3682289f0ee030991ab2d1cb54fef",
+    "mode": "thorough",
+    "ai_disabled": true,
+    "strict": true
+  },
+  "comparisons_require": [
+    "same_category",
+    "same_period",
+    "same_scope",
+    "publication_channel_review",
+    "content_review"
+  ],
+  "sampling": "Acquisition and evaluation checks; not a representative nationwide sample",
+  "scores_published": true,
+  "missing_policy": "Missing, failed, unsupported and unconfirmed are never zero scores",
+  "provenance": {
+    "archive_sha256": "69cba00532f7a51fc748377b9289c02e40e37c2ef0157da78e9e669314e905b9",
+    "coverage_sha256": "16c73f7298eeb73fb4f078fc69bf232a00459119f3ee29579829b87edd263906",
+    "sources_sha256": "b24e1549ee1771b19591b09aabad158894ae5d972834cc97bbd306675565c90c"
+  },
+  "population_findings_reviewed_files": 8,
+  "population_findings_reviewed_governments": 7,
+  "content_review_not_started_files": 0,
+  "other_files_full_finding_review_pending": 68,
+  "additional_candidate_reviewed_files": 4,
+  "score_acceptance_pending_files": 76,
+  "content_review_scope": "既存61資料の比較条件・代表指摘と、追加15資料の原本日付・採点再現性。点数の採用判断とは別。",
+  "population_review_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/population-review.json",
+  "comparison_conditions_reviewed_files": 76,
+  "applicability_counts": {
+    "different_conditions": 41,
+    "needs_confirmation": 16,
+    "accepted": 19
+  },
+  "comparison_cohorts": 12,
+  "comparison_cohorts_with_peers": 4,
+  "initial_population_target_date_verified_files": 8,
+  "initial_food_monthly_new_permits_candidates": 4,
+  "food_monthly_new_permits_scope_pending_files": 1,
+  "food_monthly_new_and_renewal_files": 1,
+  "representative_rule_findings_reviewed_files": 61,
+  "comparison_review_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/comparison-review.json",
+  "initial_evaluated_files": 61,
+  "initial_evaluated_governments": 46,
+  "followup_summary": {
+    "schema_version": 1,
+    "review_date": "2026-10-24",
+    "archive_sha256": "d80f8fb29008f3ac555b326e60f27d7a995bc8546f6d1ec40e448236e4d65681",
+    "additional_files": 15,
+    "additional_governments": 13,
+    "decision_counts": {
+      "different_conditions": 12,
+      "needs_confirmation": 3
+    },
+    "baseline_replayed_files": 61,
+    "baseline_recomputed_level_scores": 183,
+    "baseline_rule_results": 9623,
+    "baseline_reported_finding_occurrences": 211262,
+    "baseline_witness_changed_files": 4,
+    "hash_seed_fixed_for_additional_files": true,
+    "scores_published": false,
+    "rankings_published": false,
+    "national_survey_complete": false
+  },
+  "national_survey_complete": false,
+  "rankings_published": false,
+  "published_score_files": 76,
+  "score_publication_pending_files": 0,
+  "score_review_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/all-scores.json",
+  "score_publication_basis": "保存済み自動得点を全件掲載。比較条件・比較相手・解釈の確認状況は掲載条件にしない。",
+  "score_review_date": "2026-10-27",
+  "additional_score_files": 5,
+  "remaining_65_reviewed_files": 65,
+  "remaining_65_publication_state_counts": {
+    "different_conditions": 36,
+    "needs_confirmation": 16,
+    "peer_waiting": 8,
+    "published_supplemental": 5
+  },
+  "additional_score_review_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/national-65-review.json",
+  "previous_score_review_url": "https://municipal-smr.jp/analysis/municipal-machine-readability/score-review.json"
+}
