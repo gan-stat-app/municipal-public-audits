@@ -1,6 +1,8 @@
 """Bounded public inputs and non-sensitive receipts for independent public jobs."""
 from __future__ import annotations
 import hashlib
+import gzip
+import io
 import json
 from pathlib import Path
 import time
@@ -34,7 +36,7 @@ def public_url(url):
     value = urllib.parse.urlsplit(url)
     host = value.hostname or ''
     allowed = (host == 'municipal-smr.jp' or host.endswith(('.lg.jp', '.go.jp'))
-               or host in {'codeload.github.com', 'raw.githubusercontent.com', 'github.com'})
+               or host in {'codeload.github.com', 'raw.githubusercontent.com', 'github.com', 'data.bodik.jp'})
     if (value.scheme != 'https' or not allowed or value.username or value.password
             or value.port not in (None, 443)):
         raise ValueError('Only approved public HTTPS sources are allowed')
@@ -75,9 +77,19 @@ def manifest():
 def checked_public(item):
     raw = download('https://municipal-smr.jp/' + urllib.parse.quote(item['path'], safe='/'),
                    max(item.get('size', item.get('bytes', 0)) + 1, 32*1024*1024))
-    if blob(raw) != item['sha']:
-        raise ValueError('Public input differs from the reviewed Git blob: ' + item['path'])
-    return raw
+    if blob(raw) == item['sha']:
+        return raw
+    # HTTP transfer compression may wrap the file itself. Only accept the
+    # decoded bytes when they exactly equal the reviewed Git object.
+    if raw.startswith(b'\x1f\x8b'):
+        try:
+            with gzip.GzipFile(fileobj=io.BytesIO(raw)) as stream:
+                decoded = stream.read(128*1024*1024+1)
+            if len(decoded) <= 128*1024*1024 and blob(decoded) == item['sha']:
+                return decoded
+        except (OSError, EOFError):
+            pass
+    raise ValueError('Public input differs from the reviewed Git blob: ' + item['path'])
 
 
 def code_check():
