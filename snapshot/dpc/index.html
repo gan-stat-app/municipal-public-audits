@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DPC急性期入院医療｜二次医療圏・病院別</title>
+    <meta
+      name="description"
+      content="厚生労働省の令和3～6年度DPC退院患者調査から、二次医療圏・病院別のMDC、救急医療入院、救急車搬送、入院後24時間以内死亡、手術あり患者数を確認できます。"
+    />
+    <link rel="canonical" href="https://municipal-smr.jp/dpc/" />
+    <link rel="stylesheet" href="/dpc/style.css?v=20261028-readability" />
+  </head>
+  <body>
+    <a class="skip" href="#main">内容へ移動</a>
+    <header class="hero">
+      <div>
+        <a href="/">← トップへ</a>
+        <p>DPC公開データ</p>
+        <h1>DPC急性期入院医療</h1>
+        <p>
+          病院所在地を基準に、地域の急性期入院機能と病院ごとの診療構成を確認します。
+        </p>
+      </div>
+      <div class="hero-year-status" aria-live="polite">
+        <strong id="current-year-status">現在表示：令和6年度</strong>
+        <span>経年比較：令和3～6年度</span>
+      </div>
+    </header>
+    <main id="main">
+      <section class="caution">
+        <strong>NDBとは対象と読み方が異なります</strong>
+        <p>
+          DPC調査参加施設の退院患者集計です。住民住所地別の受療状況や、地域の全入院患者を示すものではありません。件数の大小だけで医療の質や病院の優劣を評価できません。
+        </p>
+      </section>
+      <section class="year-selector card" aria-labelledby="year-selector-title">
+        <div>
+          <p class="eyebrow">ページ全体の共通条件</p>
+          <h2 id="year-selector-title">表示年度</h2>
+          <p id="year-availability-note">令和6年度の地図・医療圏・病院・MDC・救急指標を表示しています。</p>
+        </div>
+        <div id="year-tabs" class="year-tabs" role="group" aria-label="表示年度を選択">
+          <button type="button" data-year="2021">令和3年度</button>
+          <button type="button" data-year="2022">令和4年度</button>
+          <button type="button" data-year="2023">令和5年度</button>
+          <button type="button" data-year="2024" class="active" aria-pressed="true">令和6年度</button>
+        </div>
+      </section>
+      <section class="dpc-finder-intro card" aria-labelledby="dpc-finder-title">
+        <div>
+          <p class="eyebrow">病院の公表情報を探す</p>
+          <h2 id="dpc-finder-title">何から探しますか？</h2>
+          <p>地域、診療分野、救急・入院機能、疾患・手術から病院別の公表値を確認できます。</p>
+        </div>
+        <div class="dpc-goals" aria-label="病院の探し方">
+          <button type="button" data-hospital-goal="region"><b>地域から探す</b><span>都道府県・二次医療圏</span></button>
+          <button type="button" data-hospital-goal="mdc"><b>診療分野から探す</b><span>MDC別の診療構成</span></button>
+          <button type="button" data-hospital-goal="emergency"><b>救急・入院機能から探す</b><span>救急医療入院・搬送など</span></button>
+          <button type="button" data-hospital-goal="surgery"><b>疾患・手術から探す</b><span>診療分野を選ぶ → 病院を選ぶ → 疾患・手術を検索</span></button>
+        </div>
+        <p class="finder-caution">件数は病院規模や患者構成の影響を受けます。病院の質・治療成績・優劣の順位ではありません。</p>
+      </section>
+      <div class="tabs" role="tablist" aria-label="DPC表示">
+        <button id="area-tab" class="active" role="tab" aria-selected="true">
+          二次医療圏別<span>地域の急性期入院機能</span>
+        </button>
+        <button id="hospital-tab" role="tab" aria-selected="false">
+          病院別<span>MDC・救急・死亡・疾患手術</span>
+        </button>
+        <button id="classification-tab" role="tab" aria-selected="false">
+          DPC分類別<span>年度別に疾患・手術コードから全国検索</span>
+        </button>
+      </div>
+
+      <section id="area-panel" role="tabpanel" aria-labelledby="area-tab">
+        <div class="area-scope card" role="group" aria-label="二次医療圏の集計範囲">
+          <button type="button" class="active" data-area-scope="overall">全体<span>すべての診療分野</span></button>
+          <button type="button" data-area-scope="mdc">診療分野（MDC）<span>選択したMDCで比較</span></button>
+          <label>診療分野（MDC）<select id="area-mdc-select" hidden></select></label>
+        </div>
+        <div class="controls card">
+          <label
+            >表示指標<select id="metric-select">
+              <option value="published">退院患者数</option>
+              <option value="surgeryPublished">手術あり患者数</option>
+              <option value="emergencyPublished">救急医療入院</option>
+              <option value="ambulancePublished">救急車搬送</option>
+              <option value="death24hPublished">入院後24時間以内死亡</option>
+              <option value="hospitalCount">集計対象施設数</option>
+            </select></label
+          >
+          <label>都道府県<select id="prefecture-select"></select></label>
+          <button id="national-button" type="button">全国表示</button>
+        </div>
+        <div class="map-layout card">
+          <section class="map-pane" aria-labelledby="map-title">
+            <h2 id="map-title">二次医療圏地図</h2>
+            <p id="map-caption">色が濃いほど令和6年度の公表分件数が多い医療圏です。医療圏選択後に令和3～6年度の推移を確認できます。</p>
+            <div class="map-tools" id="map-tools" role="group" aria-label="地図の表示操作"><button type="button" data-map-zoom="in" aria-label="地図を拡大">＋ 拡大</button><button type="button" data-map-zoom="out" aria-label="地図を縮小">− 縮小</button><button type="button" data-map-zoom="reset">全体表示</button><output data-map-scale aria-live="polite">1.0倍</output></div><p class="map-help">拡大後はドラッグして移動できます。地域を押すと詳細を表示します。</p>
+            <svg
+              id="area-map"
+              class="map"
+              role="img"
+              aria-labelledby="map-title map-caption"
+            ></svg>
+            <div id="legend" class="legend" aria-label="地図の色の説明"></div>
+          </section>
+          <aside id="area-detail" class="detail" aria-live="polite">
+            <p>地図から二次医療圏を選択してください。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        id="classification-panel"
+        role="tabpanel"
+        aria-labelledby="classification-tab"
+        hidden
+      >
+        <section class="caution">
+          <strong>このタブは全国集計です</strong>
+          <p>
+            診断群分類ごとの集計は病院別・都道府県別・二次医療圏別ではありません。DPCコード、疾患名、ICD-10、手術Kコードから全国の症例構成を探せます。
+          </p>
+        </section>
+        <div class="classification-layout">
+          <section class="card browser">
+            <div class="controls">
+              <label
+                >MDC<select id="classification-mdc">
+                  <option value="">すべて</option>
+                </select></label
+              ><label class="search"
+                >分類・疾患・コード検索<input
+                  id="classification-search"
+                  type="search"
+                  placeholder="例：脳腫瘍、010010、C71、K169"
+              /></label>
+            </div>
+            <p id="classification-result-count" class="result-count"></p>
+            <div id="classification-results" class="hospital-results"></div>
+          </section>
+          <section
+            id="classification-detail"
+            class="card hospital-detail"
+            aria-live="polite"
+          >
+            <p>診断群分類を選択すると、全国集計の詳細を表示します。</p>
+          </section>
+        </div>
+      </section>
+
+      <section
+        id="hospital-panel"
+        role="tabpanel"
+        aria-labelledby="hospital-tab"
+        hidden
+      >
+        <section class="card browser hospital-finder">
+          <div class="hospital-finder-head">
+            <p class="eyebrow">病院検索</p>
+            <h2>条件を選ぶ</h2>
+            <p id="hospital-finder-help">地域や病院名から、選択年度の病院別公表値を探します。</p>
+          </div>
+          <div class="controls hospital-controls">
+            <label>都道府県<select id="hospital-prefecture"></select></label>
+            <label>二次医療圏<select id="hospital-area"><option value="">すべて</option></select></label>
+            <label>診療分野（MDC）<select id="hospital-mdc"><option value="">すべて</option></select></label>
+            <label><span id="hospital-metric-label">カードの主表示・並び順</span><select id="hospital-metric">
+              <option value="published">退院患者数</option>
+              <option value="surgeryPublished">手術あり患者数</option>
+              <option value="emergencyPublished">救急医療入院</option>
+              <option value="ambulancePublished">救急車搬送</option>
+              <option value="death24hPublished">入院後24時間以内死亡</option>
+            </select><small class="hospital-control-note">診療分野を選ぶと、この指標は比較値としてカードに表示します。</small></label>
+            <label class="search">病院名検索<input id="hospital-search" type="search" placeholder="例：秋田大学、中央病院" /></label>
+            <button id="hospital-reset" type="button" class="finder-reset">条件をリセット</button>
+          </div>
+          <p id="hospital-result-count" class="result-count" aria-live="polite"></p>
+          <div id="hospital-results" class="hospital-results hospital-cards"></div>
+          <button id="hospital-more" type="button" class="hospital-more" hidden>さらに表示</button>
+        </section>
+      </section>
+      <dialog id="hospital-dialog" aria-labelledby="hospital-dialog-title">
+        <button id="hospital-dialog-close" class="hospital-dialog-close" type="button" aria-label="閉じる">×</button>
+        <div id="hospital-detail" class="hospital-detail" aria-live="polite">
+          <p>病院カードの「詳しく見る」を押すと、選択年度の詳細を表示します。</p>
+        </div>
+      </dialog>
+
+      <section class="research-entry card">
+        <div>
+          <p class="eyebrow">研究で使われる視点を安全に読む</p>
+          <h2>DPCとNDBを研究的に見る</h2>
+          <p>
+            症例数、構成割合、在院日数、救急・紹介・転院を、データの対象と限界を区別して確認します。病院の優劣や治療成績の順位は示しません。
+          </p>
+        </div>
+        <div class="research-links">
+          <a class="primary-link" href="/dpc/research.html">研究テーマ別の見方</a>
+          <a href="/ndb/">NDB全指標と対照する</a>
+        </div>
+        <div class="compare-grid" aria-label="NDBとDPCの違い">
+          <article><strong>DPC</strong><span>病院所在地基準</span><small>調査参加施設の急性期入院と病院機能</small></article>
+          <article><strong>NDB</strong><span>公表表の地域定義に基づく</span><small>保険診療行為・レセプト出現状況</small></article>
+          <article><strong>比較時の原則</strong><span>単純に足さない</span><small>対象、分母、地域単位、秘匿を確認</small></article>
+        </div>
+      </section>
+      <section class="method">
+        <h2>この画面の集計方法</h2>
+        <div>
+          <article>
+            <h3>地域単位・経年比較</h3>
+            <p>
+              各年度の施設概要表の市町村コードを現行の二次医療圏へ接続し、病院所在地基準で合算しています。区域変更、参加施設、告示番号・通番の変更があるため参考比較です。
+            </p>
+          </article>
+          <article>
+            <h3>秘匿値</h3>
+            <p>
+              原表の「－」を0に置き換えません。表示値は数値として公表されたセルの合計で、秘匿がある場合は「公表分○件以上」と表示します。
+            </p>
+          </article>
+          <article>
+            <h3>救急医療入院</h3>
+            <p>
+              予定外入院全体ではなく、原表の「救急医療入院」欄です。救急車搬送とも定義が異なります。
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="source">
+        <h2>出典・収録範囲</h2>
+        <p>
+          厚生労働省「令和3～6年度DPCの評価・検証等に係る調査『退院患者調査』」。各年度の差替え後公表表から、施設概要、MDC別、予定・救急医療入院、救急車搬送、入院後24時間以内死亡、疾患別手術別集計、診断群分類毎の集計を使用しています。
+        </p>
+        <p>
+          <a href="https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html"
+            >厚生労働省の公表ページ</a
+          >
+          ／ <a href="/dpc/provenance.html">原本・加工・検証記録</a> ／
+          <a href="/ndb/">NDBとの違いを見る</a>
+        </p>
+      </section>
+    </main>
+    <footer>
+      <a href="/">トップ</a> ／ <a href="/ndb/">NDB</a> ／
+      <a href="/data-use/">データ利用条件</a>
+    </footer>
+    <script src="/map-view.js?v=1" defer></script>
+  <script src="/dpc/app.js?v=20261028-readability" defer></script>
+  </body>
+</html>
+

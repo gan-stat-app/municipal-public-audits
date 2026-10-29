@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DPCデータの原本・加工・検証</title><link rel="canonical" href="https://municipal-smr.jp/dpc/provenance">
+    <link rel="stylesheet" href="/dpc/style.css?v=8" />
+  </head>
+  <body>
+    <header class="hero"><div><a href="/dpc/">← DPCへ</a><p>データ来歴</p><h1>DPC原本・加工・検証</h1></div></header>
+    <main>
+      <section class="source">
+        <h2>年度別の収録範囲</h2>
+        <p>厚生労働省「DPCの評価・検証等に係る調査」の差替え後公表表を年度ごとに取得しています。令和3～6年度の表示年度を切り替えると、ページ全体が同じ年度へ連動します。</p>
+        <div class="trend-table-wrap"><table class="mdc-table"><thead><tr><th>公表年度</th><th>施設・MDC</th><th>救急医療入院</th><th>救急車搬送</th><th>24時間以内死亡</th><th>疾患・手術別</th><th>診断群分類</th></tr></thead><tbody>
+          <tr><th>令和3年度</th><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>4,557分類</td></tr>
+          <tr><th>令和4年度</th><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>4,726分類</td></tr>
+          <tr><th>令和5年度</th><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>4,726分類</td></tr>
+          <tr><th>令和6年度</th><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>収録</td><td>3,248分類</td></tr>
+        </tbody></table></div>
+      </section>
+      <section class="method"><h2>加工規則</h2><div>
+        <article><h3>施設と地域</h3><p>告示番号と通番で各年度の公表表を接続し、施設概要表の市町村コードから現行二次医療圏を付与しました。年度間の参加施設・名称・番号・診断群定義の変化があるため、増減を需要や質の変化と断定できません。</p></article>
+        <article><h3>秘匿値</h3><p>原表の「－」を0へ変換しません。施設・地域表は数値公表セルの合計と秘匿セル数を別々に保持し、診断群分類表の非公表値は「－」のまま表示します。</p></article>
+        <article><h3>疾患・手術別</h3><p>件数と平均在院日数は選択年度の原表を表示します。手術区分の定義は年度で変わり得るため、令和6年度の手術名・Kコードを過年度へ流用しません。詳細な手術名・Kコード展開は令和6年度だけです。</p></article>
+        <article><h3>全国分類</h3><p>診断群分類毎の集計は全国集計で、病院別・都道府県別・二次医療圏別ではありません。全体、DPC対象病院、DPC準備病院＋出来高算定病院を区別し、地域集計には混ぜていません。</p></article>
+      </div></section>
+      <section class="source">
+        <h2>二次医療圏×MDC集計の再現性</h2>
+        <p>令和3～6年度の病院別MDC公表値を、病院所在地の現行二次医療圏へ年度別・MDC別に合算しています。退院患者、手術あり、救急医療入院、救急車搬送、入院後24時間以内死亡について、公表件数と秘匿セル数を別々に保持します。</p>
+        <ul>
+          <li><code>scripts/build-dpc-area-mdc-summary.mjs</code>：年度別病院データから335医療圏×18 MDCを再生成</li>
+          <li><code>scripts/verify-dpc-area-mdc-summary.mjs</code>：公開データと再集計結果を全年度・全医療圏・全MDC・全指標で照合</li>
+          <li>次年度追加時：病院別年度データを収録後に再生成し、全件監査とブラウザ連携試験を合格させてから公開</li>
+        </ul>
+        <p>監査対象は4年度×335医療圏×18 MDC×11項目です。「－」は0件に変換せず、数値公表分の合計と秘匿セル数を保持します。</p>
+      </section>
+      <section class="source">
+        <h2>公式原本</h2>
+        <ul>
+          <li><a href="https://www.mhlw.go.jp/stf/shingi2/0000196043_00006.html">令和3年度 調査結果</a></li>
+          <li><a href="https://www.mhlw.go.jp/stf/shingi2/newpage_39119.html">令和4年度 調査結果</a></li>
+          <li><a href="https://www.mhlw.go.jp/stf/shingi2/newpage_00137.html">令和5年度 調査結果</a></li>
+          <li><a href="https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html">令和6年度 調査結果</a></li>
+        </ul>
+        <p>原本URL、ファイル容量、SHA-256、生成物件数は<a href="/dpc/data/year-source-manifest.json">年度別source manifest</a>に保持しています。表示値は診療実績の公表集計であり、住民住所地別患者数、地域の全医療需要、治療成績、病院の優劣を意味しません。</p>
+        <p><a href="/data-use/">データ利用条件</a></p>
+      </section>
+    <section class="card"><h2>年度別Kコード定義</h2><ul><li>令和3年度：令和3年11月24日定義テーブル</li><li>令和4年度：令和5年3月14日定義テーブル</li><li>令和5年度：令和5年11月21日定義テーブル</li><li>令和6年度：令和7年3月18日定義テーブル</li></ul><p>指定手術グループ01～06は、選択年度の定義表から手術名とKコードを展開します。別年度の定義は流用しません。</p></section></main>
+  </body>
+</html>

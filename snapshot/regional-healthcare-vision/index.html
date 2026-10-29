@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>2040年地域医療構想・地域診断｜人口・DPC・NDBを横断</title>
+    <meta
+      name="description"
+      content="全国335二次医療圏について、2040年の人口構造、DPC急性期入院、NDB医療提供量を一画面で確認する地域診断です。"
+    />
+    <link
+      rel="canonical"
+      href="https://municipal-smr.jp/regional-healthcare-vision/"
+    />
+    <link rel="stylesheet" href="/regional-healthcare-vision/style.css?v=2" />
+    <link
+      rel="stylesheet"
+      href="/regional-healthcare-vision/enhancements.css?v=16"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">内容へ移動</a>
+    <header class="hero">
+      <div class="hero-inner">
+        <a class="back" href="/">← トップへ</a>
+        <p class="kicker">2026年3月 新たな地域医療構想策定ガイドライン対応</p>
+        <h1>2040年地域医療構想・地域診断</h1>
+        <p class="lead">
+          選んだ地域の将来人口、急性期入院医療、救急・在宅・リハビリ等の公表値を、このページ内でまとめて確認します。
+        </p>
+      </div>
+    </header>
+    <main id="main">
+      <section class="region-selector" aria-labelledby="region-selector-title">
+        <div>
+          <p class="eyebrow">全国47都道府県・335二次医療圏</p>
+          <h2 id="region-selector-title">地域を選ぶ</h2>
+          <p>選択すると、下の地域診断がその場で切り替わります。</p>
+        </div>
+        <div class="selector-controls">
+          <label>都道府県<select id="vision-prefecture"></select></label
+          ><label>二次医療圏<select id="vision-area"></select></label>
+        </div>
+        <div id="selected-region" class="selected-region" aria-live="polite">
+          地域データを読み込んでいます…
+        </div>
+        <div class="scope-guide" aria-label="選択条件と表示範囲">
+          <span class="area-scope"
+            >二次医療圏の選択と連動：人口・DPC・がん拠点病院・NDB</span
+          >
+        </div>
+      </section>
+
+      <section class="diagnosis" aria-labelledby="diagnosis-title">
+        <div class="section-head">
+          <p class="eyebrow">公表データから確認できる範囲</p>
+          <h2 id="diagnosis-title">選択地域の地域診断</h2>
+          <p class="section-intro">
+            異なる集計単位・調査を混ぜて一つの点数にはせず、人口、入院医療、医療提供量を分けて表示します。
+          </p>
+        </div>
+        <div id="diagnosis-loading" class="loading-panel">
+          人口・DPC・NDBデータを読み込んでいます…
+        </div>
+        <div id="diagnosis-content" hidden>
+          <article class="diagnosis-block population-block">
+            <div class="block-head">
+              <div>
+                <p id="population-scope" class="scope">
+                  二次医療圏単位・社人研令和5年推計
+                </p>
+                <h3 id="population-title">1. 2040年の人口構造</h3>
+              </div>
+              <a id="vision-population-link" href="/population/"
+                >市区町村別の詳細</a
+              >
+            </div>
+            <div id="population-cards" class="metric-grid"></div>
+            <p id="population-reading" class="reading"></p>
+            <div class="demand-panel">
+              <h4>人口構造からみた医療需要の変化</h4>
+              <div id="demand-index" class="index-grid"></div>
+              <h4 class="subheading">厚生労働省の構想区域別医療需要推計</h4>
+              <div id="official-demand" class="demand-comparison"></div>
+              <p id="demand-note">
+                人口群別指数と、2024年度の受療率に将来推計人口を乗じた公式の現状投影を分けて表示します。
+              </p>
+            </div>
+          </article>
+          <article class="diagnosis-block dpc-block">
+            <div class="block-head">
+              <div>
+                <p id="dpc-scope" class="scope">
+                  二次医療圏単位・令和6年度DPC調査
+                </p>
+                <h3 id="dpc-title">2. 急性期入院・救急・手術</h3>
+              </div>
+              <a id="vision-dpc-link" href="/dpc/">病院・疾患・手術の詳細</a>
+            </div>
+            <div id="dpc-cards" class="metric-grid"></div>
+            <p id="dpc-reading" class="reading"></p>
+            <div class="facility-panel">
+              <div class="facility-head">
+                <div>
+                  <h4>DPC調査参加施設を検索</h4>
+                  <p id="dpc-facility-count"></p>
+                </div>
+                <div class="facility-controls">
+                  <label
+                    >並べ替え<select id="dpc-facility-sort">
+                      <option value="published">退院患者数の多い順</option>
+                      <option value="surgeryPublished">手術ありの多い順</option>
+                      <option value="emergencyPublished">
+                        救急医療入院の多い順
+                      </option>
+                      <option value="ambulancePublished">
+                        救急車搬送の多い順
+                      </option>
+                      <option value="dpcBeds">DPC病床数の多い順</option>
+                      <option value="name">施設名順</option>
+                    </select></label
+                  ><label
+                    >施設名・所在地で絞り込み<input
+                      id="dpc-facility-search"
+                      type="search"
+                      placeholder="例：市立、大学病院"
+                  /></label>
+                </div>
+              </div>
+              <div id="dpc-facilities" class="facility-list"></div>
+            </div>
+          </article>
+          <article class="diagnosis-block cancer-block">
+            <div class="block-head">
+              <div>
+                <p id="cancer-scope" class="scope">
+                  二次医療圏単位・がん診療連携拠点病院等
+                </p>
+                <h3 id="cancer-title">3. 圏内のがん拠点病院</h3>
+              </div>
+              <a href="/cancer-care/">がん診療実績の詳細</a>
+            </div>
+            <div id="cancer-facilities" class="facility-list"></div>
+            <p id="cancer-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block beds-block">
+            <div class="block-head">
+              <div>
+                <p id="beds-scope" class="scope">
+                  構想区域単位・病床機能報告等
+                </p>
+                <h3 id="beds-title">4. 病床数・予定数・必要数</h3>
+              </div>
+              <a
+                href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000080850_00014.html"
+                rel="noopener"
+                >厚生労働省の原資料</a
+              >
+            </div>
+            <div id="beds-cards" class="metric-grid"></div>
+            <p id="beds-reading" class="reading"></p>
+            <div id="future-function-status" class="function-status"></div>
+            <section class="bed-function-report" aria-labelledby="bed-function-title">
+              <div class="bed-function-head">
+                <div>
+                  <h4 id="bed-function-title">医療機関別の病床機能</h4>
+                  <p>病院ごとに、報告病床を機能別に色分けします。「病棟別の詳細を見る」で病棟名、現在と予定の機能、病床数、入院基本料等を確認できます。</p>
+                </div>
+                <label>施設名で絞り込み<input id="bed-function-search" type="search" placeholder="例：市立、大学病院" /></label>
+              </div>
+              <div class="bed-function-legend" aria-label="病床機能の色">
+                <span><i class="bed-high-acute"></i>高度急性期</span>
+                <span><i class="bed-acute"></i>急性期</span>
+                <span><i class="bed-recovery"></i>回復期</span>
+                <span><i class="bed-chronic"></i>慢性期</span>
+                <span><i class="bed-other"></i>休棟中等・その他</span>
+              </div>
+              <p id="bed-function-count" class="bed-function-count"></p>
+              <div id="bed-function-facilities" class="bed-function-facilities"></div>
+              <p class="detail-note">病床機能は各医療機関が病棟ごとに報告した内容です。同じ機能区分でも実際の診療内容や患者の状態は異なり、病床機能や病床数だけで医療機関の優劣・医療の質は判断できません。「—」は未報告・対象外等を含み、0とは異なります。</p>
+            </section>
+          </article>
+          <article class="diagnosis-block flow-block">
+            <div class="block-head">
+              <div>
+                <p id="flow-scope" class="scope">構想区域単位・2024年度NDB</p>
+                <h3 id="flow-title">5. 実際の患者流出入</h3>
+              </div>
+              <a
+                href="https://www.mhlw.go.jp/content/10800000/001738532.xlsx"
+                rel="noopener"
+                >厚生労働省の原資料</a
+              >
+            </div>
+            <div
+              class="flow-controls"
+              role="group"
+              aria-label="患者流動の病床機能"
+            >
+              <button type="button" data-flow-type="acute" class="active">
+                高度急性期＋急性期</button
+              ><button type="button" data-flow-type="inclusive">包括期</button
+              ><button type="button" data-flow-type="chronic">慢性期</button>
+            </div>
+            <div
+              class="flow-direction-controls"
+              role="group"
+              aria-label="矢印の表示方向"
+            >
+              <span>矢印</span
+              ><button type="button" data-flow-direction="both" class="active">
+                流入・流出</button
+              ><button type="button" data-flow-direction="out">流出のみ</button
+              ><button type="button" data-flow-direction="in">流入のみ</button>
+            </div>
+            <div id="flow-cards" class="metric-grid"></div>
+            <section class="flow-map-panel" aria-labelledby="flow-map-title">
+              <div class="flow-map-head">
+                <div>
+                  <h4 id="flow-map-title">都道府県内の患者流動</h4>
+                  <p>
+                    <strong
+                      >色＝全入院の流出率、矢印＝選択中の機能区分の流入・流出。</strong
+                    >
+                    区域を選ぶと上部の地域選択も切り替わります。
+                  </p>
+                </div>
+                <div class="flow-legend">
+                  <span><i class="flow-band-1"></i>5％未満</span
+                  ><span><i class="flow-band-2"></i>5～10％未満</span
+                  ><span><i class="flow-band-3"></i>10～20％未満</span
+                  ><span><i class="flow-band-4"></i>20％以上</span
+                  ><span><i class="flow-band-na"></i>未収録</span
+                  ><span><i class="flow-out-line"></i>流出</span
+                  ><span><i class="flow-in-line"></i>流入</span>
+                </div>
+              </div>
+              <div
+                id="flow-map"
+                class="flow-map"
+                role="img"
+                aria-label="構想区域別患者流出率と流入・流出矢印の地図"
+              ></div>
+              <p id="flow-map-note" class="reading"></p>
+            </section>
+            <section
+              class="flow-map-panel national-flow-panel"
+              aria-labelledby="national-flow-map-title"
+            >
+              <div class="flow-map-head">
+                <div>
+                  <h4 id="national-flow-map-title">県外との患者流動</h4>
+                  <p>
+                    選択区域と県外の相手区域へ自動的に拡大し、矢印上に割合を表示します。
+                  </p>
+                </div>
+                <div class="flow-legend">
+                  <span><i class="selected-area-key"></i>選択区域</span
+                  ><span><i class="external-area-key"></i>県外の相手区域</span
+                  ><span><i class="flow-out-line"></i>流出</span
+                  ><span><i class="flow-in-line"></i>流入</span>
+                </div>
+              </div>
+              <div
+                id="flow-national-map"
+                class="flow-map national-flow-map"
+                role="img"
+                aria-label="県外の患者流入・流出を示す拡大地図"
+              ></div>
+              <p id="flow-national-map-note" class="reading"></p>
+              <aside
+                class="flow-reading-guide"
+                aria-labelledby="flow-reading-guide-title"
+              >
+                <h5 id="flow-reading-guide-title">県外患者流動の読み方</h5>
+                <ul>
+                  <li>
+                    <strong>流出</strong
+                    >：選択区域に住む入院患者のうち、県外の医療機関へ入院した患者の流れです。
+                  </li>
+                  <li>
+                    <strong>流入</strong
+                    >：選択区域内の医療機関へ入院した患者のうち、県外に住む患者の流れです。
+                  </li>
+                  <li>
+                    矢印は2024年度NDBで相手区域が公表された主な流動だけを示します。
+                  </li>
+                  <li>矢印がない場合も、県外との患者移動が0とは限りません。</li>
+                </ul>
+              </aside>
+            </section>
+            <div id="flow-partners" class="flow-partners"></div>
+            <div id="flow-external" class="flow-partners flow-external"></div>
+            <div class="classification-note">
+              <strong>NDBと患者調査は別の統計です。</strong>
+              この画面の流入率・流出率は2024年度NDBによる実績集計です。厚生労働省原資料に併記された2023年患者調査の値は標本調査による推計であり、数値を直接比較しません。
+            </div>
+            <p id="flow-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block capacity-block">
+            <div class="block-head">
+              <div>
+                <p id="capacity-scope" class="scope">
+                  構想区域・医療機関単位・令和7年度病床機能報告等
+                </p>
+                <h3 id="capacity-title">6. 急性期・人材・在宅の受け皿</h3>
+              </div>
+              <a
+                href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/open_data_00020.html"
+                rel="noopener"
+                >厚生労働省の原資料</a
+              >
+            </div>
+            <div id="capacity-cards" class="metric-grid"></div>
+            <section
+              class="outpatient-report"
+              aria-labelledby="outpatient-report-title"
+            >
+              <h4 id="outpatient-report-title">外来機能報告</h4>
+              <p>
+                紹介・逆紹介、外来部門の人員、医療機器を令和7年度の医療機関別報告から確認します。
+              </p>
+              <div
+                id="outpatient-summary"
+                class="metric-grid compact-grid"
+              ></div>
+            </section>
+            <div class="facility-panel">
+              <div class="facility-head">
+                <div>
+                  <h4>医療機関別の体制・実績</h4>
+                  <p id="capacity-facility-count"></p>
+                </div>
+                <div class="facility-controls">
+                  <label
+                    >並べ替え<select id="capacity-sort">
+                      <option value="ambulance">救急車受入の多い順</option>
+                      <option value="general_anesthesia">
+                        全身麻酔手術の多い順
+                      </option>
+                      <option value="doctors_fulltime">常勤医師の多い順</option>
+                      <option value="beds">病床数の多い順</option>
+                      <option value="name">施設名順</option>
+                    </select></label
+                  ><label
+                    >施設名・所在地で絞り込み<input
+                      id="capacity-search"
+                      type="search"
+                      placeholder="例：市立、秋田市"
+                  /></label>
+                </div>
+              </div>
+              <div id="capacity-facilities" class="facility-list"></div>
+            </div>
+            <p id="capacity-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block care-block">
+            <div class="block-head">
+              <div>
+                <p id="care-scope" class="scope">
+                  構成市区町村・2024年度介護保険
+                </p>
+                <h3 id="care-title">7. 介護の受け皿</h3>
+              </div>
+              <a id="vision-care-detail-link" href="/care/">介護保険の詳細</a>
+            </div>
+            <div id="care-cards" class="metric-grid"></div>
+            <div id="care-composition"></div>
+            <div id="care-insurers" class="care-insurers"></div>
+            <p id="care-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block ndb-block">
+            <div class="block-head">
+              <div>
+                <p id="ndb-scope" class="scope">
+                  二次医療圏単位・第11回NDBオープンデータ
+                </p>
+                <h3 id="ndb-title">8. 救急・専門医療・リハビリの提供量</h3>
+              </div>
+              <a id="vision-ndb-link" href="/ndb/service-volume/"
+                >全指標・年度推移の詳細</a
+              >
+            </div>
+            <div id="ndb-cards" class="metric-grid"></div>
+            <p id="ndb-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block scale-block">
+            <div class="block-head">
+              <div>
+                <p class="scope">新ガイドラインの構想区域検討</p>
+                <h3 id="scale-title">9. 構想区域の規模と広域連携</h3>
+              </div>
+            </div>
+            <div class="cooperation-controls">
+              <label
+                >医療機能<select id="cooperation-type">
+                  <option value="acute">高度急性期＋急性期</option>
+                  <option value="inclusive">包括期</option>
+                  <option value="chronic">慢性期</option>
+                </select></label
+              ><label
+                >患者流動<select id="cooperation-direction">
+                  <option value="both">流入・流出</option>
+                  <option value="out">流出先</option>
+                  <option value="in">流入元</option>
+                </select></label
+              >
+            </div>
+            <div id="regional-scale-cards" class="metric-grid"></div>
+            <div id="regional-partners" class="cooperation-panel"></div>
+            <div id="regional-comparison" class="comparison-panel"></div>
+            <p id="regional-scale-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block pathway-block">
+            <div class="block-head">
+              <div>
+                <p class="scope">救急・入院・退院・生活支援の連続性</p>
+                <h3 id="pathway-title">10. 高齢者救急から在宅・介護まで</h3>
+              </div>
+            </div>
+            <div id="care-pathway" class="care-pathway"></div>
+            <p id="pathway-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block workforce-block">
+            <div class="block-head">
+              <div>
+                <p class="scope">医療従事者確保・地理的アクセス</p>
+                <h3 id="workforce-title">11. 人材とアクセス</h3>
+              </div>
+            </div>
+            <h4>人材の現状</h4>
+            <div id="workforce-cards" class="metric-grid"></div>
+            <p id="workforce-reading" class="reading"></p>
+            <h4>アクセスの確認</h4>
+            <div id="access-cards" class="metric-grid"></div>
+            <p id="access-reading" class="reading"></p>
+          </article>
+          <article class="diagnosis-block pdca-block">
+            <div class="block-head">
+              <div>
+                <p class="scope">地域協議・PDCAのたたき台</p>
+                <h3 id="pdca-title">12. 地域協議用サマリー</h3>
+              </div>
+            </div>
+            <div id="pdca-summary" class="pdca-summary"></div>
+            <div class="pdca-actions">
+              <button id="pdca-copy" type="button">文章をコピー</button
+              ><button id="pdca-download" type="button">テキストで保存</button
+              ><button id="pdca-print" type="button">印刷</button>
+            </div>
+            <p class="reading">
+              自動生成した論点整理であり、病床削減・区域統合・病院機能の指定を提案するものではありません。地域の協議で検証・更新してください。
+            </p>
+          </article>
+          <section class="discussion" aria-labelledby="discussion-title">
+            <h3 id="discussion-title">この地域で次に確認すべきこと</h3>
+            <ul id="discussion-list"></ul>
+          </section>
+          <section class="data-years" aria-labelledby="data-years-title">
+            <h3 id="data-years-title">この画面で使うデータの時点</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>分野</th>
+                    <th>時点</th>
+                    <th>資料</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>人口構造</td>
+                    <td>2020・2040年</td>
+                    <td>社人研令和5年推計</td>
+                  </tr>
+                  <tr>
+                    <td>DPC</td>
+                    <td>2024年度</td>
+                    <td>令和6年度DPC調査</td>
+                  </tr>
+                  <tr>
+                    <td>患者流入・流出</td>
+                    <td>2024年度</td>
+                    <td>NDB</td>
+                  </tr>
+                  <tr>
+                    <td>病床・医師・救急・手術</td>
+                    <td>2025年度</td>
+                    <td>病床機能報告等</td>
+                  </tr>
+                  <tr>
+                    <td>介護保険</td>
+                    <td>2023年度</td>
+                    <td>介護保険事業状況報告</td>
+                  </tr>
+                  <tr>
+                    <td>医療提供量</td>
+                    <td>第11回</td>
+                    <td>NDBオープンデータ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="notice" aria-labelledby="notice-title">
+        <h2 id="notice-title">
+          この画面だけで病床削減や病院の優劣は判断できません
+        </h2>
+        <p>
+          表示値は地域の現状を確認する出発点です。医療従事者、病床機能報告、住所地に基づく患者流動、移動時間、受入余力、自治体・医療機関の計画を加えて地域で協議する必要があります。
+        </p>
+      </section>
+
+      <section aria-labelledby="detail-title">
+        <div class="section-head">
+          <p class="eyebrow">元データを詳しく確認</p>
+          <h2 id="detail-title">選択条件を引き継いで詳細画面へ</h2>
+        </div>
+        <div class="detail-links">
+          <a id="vision-care-link" href="/care/"
+            ><strong>介護の受け皿</strong
+            ><span>認定率、要介護度、給付費、サービス構成</span></a
+          >
+          <a id="vision-flow-link" href="/ndb/patient-flow/"
+            ><strong>地域内の医療提供量の偏り</strong
+            ><span>実際の患者流動ではなく、提供量分布の参考表示</span></a
+          >
+        </div>
+      </section>
+
+      <section class="coverage" aria-labelledby="coverage-title">
+        <h2 id="coverage-title">ガイドラインの論点と現在の収録状況</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>検討分野</th>
+                <th>このページ</th>
+                <th>現時点の範囲</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>将来人口・医療需要の前提</td>
+                <td><span class="status available">表示</span></td>
+                <td>
+                  二次医療圏の2020・2040年人口、年齢3区分、75歳以上・85歳以上
+                </td>
+              </tr>
+              <tr>
+                <td>入院・救急・手術</td>
+                <td><span class="status available">表示</span></td>
+                <td>
+                  DPC調査参加施設と病床機能報告等から、施設別の救急搬送・全身麻酔手術・病床・医師数を表示
+                </td>
+              </tr>
+              <tr>
+                <td>がん医療</td>
+                <td><span class="status available">表示</span></td>
+                <td>圏内のがん診療連携拠点病院等、指定区分・所在地</td>
+              </tr>
+              <tr>
+                <td>外来・在宅・専門医療・リハビリ</td>
+                <td><span class="status partial">一部表示</span></td>
+                <td>NDBの主要9指標。全指標は詳細画面</td>
+              </tr>
+              <tr>
+                <td>介護との連携</td>
+                <td><span class="status partial">一部表示</span></td>
+                <td>
+                  構成市区町村の介護保険実績。全国統一の施設定員・訪問看護人員は元データ未収載
+                </td>
+              </tr>
+              <tr>
+                <td>病床機能・医療機関機能</td>
+                <td><span class="status available">表示</span></td>
+                <td>
+                  病床数・予定数・必要数、救急・手術・在宅療養支援の施設別実績
+                </td>
+              </tr>
+              <tr>
+                <td>医療従事者・住所地患者流動</td>
+                <td><span class="status available">表示</span></td>
+                <td>
+                  常勤医師・非常勤医師換算と、住所地に基づく入院患者の流入・流出
+                </td>
+              </tr>
+              <tr>
+                <td>地理的アクセス</td>
+                <td><span class="status partial">一部表示</span></td>
+                <td>
+                  人口密度と患者流動を表示。全国統一の公式移動時間は元データ未収載
+                </td>
+              </tr>
+              <tr>
+                <td>構想区域・広域連携</td>
+                <td><span class="status available">表示</span></td>
+                <td>
+                  2040年人口の20万人基準、主な患者流動先、連携時の人口・病床・医師を比較
+                </td>
+              </tr>
+              <tr>
+                <td>高齢者救急・在宅・介護の連携</td>
+                <td><span class="status partial">一部表示</span></td>
+                <td>
+                  救急、急性期治療、リハビリ、在宅、介護の既存指標を連続表示
+                </td>
+              </tr>
+              <tr>
+                <td>地域協議・PDCA</td>
+                <td><span class="status available">表示</span></td>
+                <td>
+                  選択地域の論点、データ不足、確認指標をサマリーとして保存・印刷
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="source-note" aria-labelledby="source-title">
+        <h2 id="source-title">出典と読み方</h2>
+        <p>
+          厚生労働省「新たな地域医療構想策定ガイドライン」（2026年3月）・「構想区域別の医療需要推計」、国立社会保障・人口問題研究所「日本の地域別将来推計人口（令和5年推計）」、令和4年医師・歯科医師・薬剤師統計、厚生労働省DPC調査、第11回NDBオープンデータ、国立がん研究センター「がん診療連携拠点病院等
+          現況報告」を使用しています。
+        </p>
+        <p>
+          非公表セルがある場合は、その件数と「表示値に含まれない」ことを数値の下に示します。非公表値を0件とは扱いません。人口は構成市区町村の推計値を合算しています。
+        </p>
+        <p>
+          <a
+            href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000080850_00014.html"
+            rel="noopener"
+            >厚生労働省「2040年に向けた地域医療構想」</a
+          >／<a
+            href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/gan/gan_byoin.html"
+            rel="noopener"
+            >がん診療連携拠点病院等</a
+          >
+        </p>
+      </section>
+    </main>
+    <dialog id="regional-detail-dialog">
+      <button id="regional-detail-close" class="dialog-close" type="button">
+        閉じる
+      </button>
+      <div id="regional-detail-body"></div>
+    </dialog>
+    <footer>
+      <a href="/">トップへ戻る</a>｜<a href="/transparency/"
+        >データと計算方法</a
+      >
+    </footer>
+    <script src="/regional-healthcare-vision/app.js?v=29" defer></script>
+  </body>
+</html>

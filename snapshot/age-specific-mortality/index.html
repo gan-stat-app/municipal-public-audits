@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>死亡率ピラミッド・年齢別死亡率の推移｜全国・都道府県・市区町村</title>
+ <meta name="description" content="都道府県・市区町村の死亡率ピラミッドで男女別の年齢別全国比・死亡率・死亡数を比較。全国を含む年次推移も確認できます。">
+ <link rel="canonical" href="https://municipal-smr.jp/age-specific-mortality/">
+ <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+<main class="shell">
+ <header><div><p class="eyebrow">人口ピラミッド × 地域保健データラボ</p><h1>死亡率ピラミッド・年齢別死亡率の推移</h1><p>年齢階級ごとの推移と、都道府県・市区町村の全年代の全国比較を確認できます。</p></div><a href="/">主要機能へ戻る</a></header>
+ <section class="controls" aria-label="表示条件"><label>地域区分<select id="level"><option value="national">全国</option><option value="prefecture">都道府県</option><option value="municipality">市区町村</option></select></label><label id="prefWrap" hidden>都道府県<select id="pref"></select></label><label id="areaWrap">地域<select id="area"></select></label><label>性別<select id="sex"></select></label><label id="causeWrap">死因<select id="cause"></select></label></section>
+ <section class="status" id="status" aria-live="polite">データを読み込んでいます…</section>
+ <section><div class="heading"><div><h2 id="title">年齢階級別死亡率</h2><p id="subtitle"></p></div><div><span>死亡率：人口10万人対</span><div class="legend" id="comparisonLegend" hidden><span class="legend-region">選択地域</span><span class="legend-national">全国</span></div></div></div><div class="charts" id="charts"></div></section>
+ <aside><strong>死因別データの選び方</strong><p>全国の「年次：」は、収録済みの1999～2024年の死因簡単分類データを使用します。分類変更等により選択できる期間は死因ごとに異なり、「2016年以前」の系列は別に表示します。死亡数をJMDのリスク対応生存延べ年数で割り、人口10万人対に換算した値です。「抜粋年を含む：」は従来の死因年次推移分類の公表死亡率で、古い年は飛び飛びの収録です。両系列は計算方法・分類が異なるため、混ぜて欠けた年を埋めていません。収録値のない年は0ではなく、点を描かず線を切って表示します。</p><strong>読み方</strong><p>縦軸は年齢階級ごとに異なり、すべて0から始まります。年齢階級間の死亡率の高さではなく、各年齢階級内の推移を確認する表示です。全国・都道府県の全死亡は、日本版死亡データベース（JMD）の死亡数とリスク対応生存延べ年数から算出した年次死亡率です。年次推移では比較用の全国値を破線で表示します。都道府県・市区町村の全年代比較は、全国＝1の比と95％信頼区間を表示します。市区町村の比較は2015～2024年の人口動態統計の死亡数と日本人住民の住民基本台帳人口を使用し、全国側も同じ分母にそろえています。市制施行による同一区域のコード変更を接続し、浜松市の再編前後の区はつながず市全体で比較します。欠測を含む期間は計算しません。小規模な地域や死亡数の少ない年齢階級では年ごとの値が大きく変動するため、単年の上下だけで傾向を判断しないでください。死因名に「2016年以前」とある系列は、分類変更後の同名・類似死因とは定義が異なるため別系列です。変更前後の値を一続きの傾向として比較しないでください。</p></aside>
+ <footer>出典：国立社会保障・人口問題研究所「日本版死亡データベース」、厚生労働省「人口動態統計」、総務省「住民基本台帳に基づく人口」／個人運営の非公式サイト</footer>
+</main>
+<script src="comparison.js?v=5"></script>
+<script src="app.js?v=10"></script>
+</body>
+</html>
+
+

@@ -12,6 +12,14 @@ import site as python_site
 
 
 class ContractTests(unittest.TestCase):
+    def test_official_attachment_formats_without_a_normal_filename(self):
+        from opendata import source_format
+        self.assertEqual(source_format('https://i2fas.mhlw.go.jp/page/opendatadownload.jsp?param=01000_food_business_all.csv'), 'csv')
+        self.assertEqual(source_format('https://www.city.example.lg.jp/download/.xlsx'), 'xlsx')
+        self.assertEqual(source_format('https://www.city.example.lg.jp/data.CSV?version=2'), 'csv')
+        with self.assertRaises(ValueError):
+            source_format('https://www.city.example.lg.jp/index.html')
+
     def test_snapshot_is_byte_identical_and_contains_only_selected_code(self):
         data = common.code_check()
         self.assertGreater(len(data['code']), 150)

@@ -10,6 +10,7 @@ import csv
 import io
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -22,13 +23,20 @@ import pipeline
 from score_audit import independent_scores
 
 
+def source_format(url):
+    # Public APIs use download.jsp?param=...csv and some servers name an
+    # attachment literally '.xlsx'; Path.suffix is empty for both cases.
+    match = re.search(r'\.(csv|tsv|xlsx|xlsm|xls)(?:$|[?&#/])', urllib.parse.unquote(url), re.I)
+    if not match:
+        raise ValueError('Unknown scored national format')
+    return match.group(1).lower()
+
+
 def public_sources(data):
     national = list(csv.DictReader(io.StringIO(checked_public(data['score_sources'][0]).decode('utf-8-sig'))))
     rows = []
     for r in national:
-        extension = Path(urllib.parse.urlsplit(r['original_url']).path).suffix.lower().lstrip('.')
-        if extension not in {'csv', 'tsv', 'xlsx', 'xlsm', 'xls'}:
-            raise ValueError('Unknown scored national format')
+        extension = source_format(r['original_url'])
         rows.append({'id': r['source_id'], 'url': r['original_url'], 'format': extension,
                      'sha256': r['original_sha256'],
                      'scores': {str(i): float(r['L' + str(i)]) if r['L' + str(i)] else None for i in (1, 2, 3)}})
@@ -106,4 +114,8 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception as exc:
+        receipt('opendata', {'status': 'failed', 'error_type': type(exc).__name__})
+        raise

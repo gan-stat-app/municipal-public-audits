@@ -1,0 +1,22 @@
+.controls{grid-template-columns:1fr 1fr}
+.map-metric-control{grid-column:1/-1;display:grid;grid-template-columns:minmax(180px,420px) 1fr;align-items:end;gap:6px 16px;margin:0;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.map-metric-control legend{padding:0;font-size:.82rem;font-weight:800}
+.map-metric-control small{color:var(--muted);padding-bottom:10px}
+@media(max-width:560px){.map-metric-control{grid-template-columns:1fr}.map-metric-control small{padding-bottom:0}}
+.cause-bar{display:grid;grid-template-columns:minmax(130px,1.2fr) 3fr auto;gap:10px;align-items:center}
+.cause-bar-graphic{display:block;width:100%;height:15px;border-radius:99px;overflow:hidden}
+.cause-bar strong{font-size:.9rem}
+@media(max-width:560px){.cause-bar{grid-template-columns:1fr auto}.cause-bar-graphic{grid-column:1/-1;grid-row:2}}
+.card-badges,.card-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.scope-badge{border-radius:999px;padding:6px 10px;font-size:.76rem;font-weight:800;white-space:nowrap}
+.scope-fixed{background:#eceee8;color:#536058}
+.scope-selected{background:#e3f1eb;color:var(--green);border:1px solid #b9d8ca}
+@media(max-width:560px){.card-head{align-items:flex-start}.card-actions{justify-content:flex-start}.scope-badge{white-space:normal}}
+.scope-guide{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:10px 2px 18px;color:var(--muted);font-size:.82rem}
+.month-chart{display:grid;grid-template-columns:repeat(12,minmax(30px,1fr));gap:6px;height:300px;align-items:end;margin-top:18px;border-bottom:1px solid var(--line);padding:24px 2px 0}
+.month-column{height:100%;display:grid;grid-template-rows:auto 1fr auto;justify-items:center;min-width:0}
+.month-value{font-size:.72rem;font-weight:800;white-space:nowrap;margin-bottom:5px}
+.month-value small{font-size:.65rem;margin-left:2px;color:var(--muted)}
+.month-bar-area{display:block;width:min(32px,80%);height:100%;min-height:0}
+.month-column b{font-size:.75rem;padding:7px 0;white-space:nowrap}
+@media(max-width:560px){.month-chart{height:250px;gap:2px}.month-value{font-size:.65rem;writing-mode:vertical-rl}.month-value small{display:none}.month-bar-area{width:75%}.month-column b{font-size:.68rem}}

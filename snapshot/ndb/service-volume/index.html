@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NDB医療提供量マップ｜二次医療圏・都道府県</title>
+    <meta
+      name="description"
+      content="第6～11回NDBオープンデータの医科診療行為を、全国335二次医療圏・47都道府県の地図で検索・比較できます。"
+    />
+    <link rel="canonical" href="https://municipal-smr.jp/ndb/service-volume/" />
+    <link rel="stylesheet" href="/ndb/service-volume/style.css?v=6" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <a href="/ndb/">← NDB入口へ</a>
+        <p>第10・11回NDBオープンデータ</p>
+        <h1>NDB医療提供量マップ</h1>
+        <p>
+          医療機関所在地ごとの算定回数から、医療提供機能の地域的な集中を探索します。
+        </p>
+      </div>
+      <span>公開中</span>
+    </header>
+    <main>
+      <section class="caution">
+        <strong>この地図で分かること／分からないこと</strong>
+        <p>
+          表示するのは患者数ではなく、医療機関所在地別の算定回数です。年齢・人口調整はしていません。順位は評価ではなく探索用の参考順位です。「流入出の可能性」は患者住所を使った実測値ではありません。
+        </p>
+      </section>
+      <section class="year-picker" aria-labelledby="year-heading">
+        <div class="year-heading"><span id="year-heading">表示年度</span><strong id="current-year-status" aria-live="polite">令和6年度レセプト</strong></div>
+        <div id="year-tabs" class="year-tabs" role="tablist" aria-label="NDB医療提供量の年度">
+          <button type="button" role="tab" data-year="2024" aria-selected="true">令和6年度</button>
+          <button type="button" role="tab" data-year="2023" aria-selected="false">令和5年度</button>
+          <button type="button" role="tab" data-year="2022" aria-selected="false">令和4年度</button>
+          <button type="button" role="tab" data-year="2021" aria-selected="false">令和3年度</button>
+          <button type="button" role="tab" data-year="2020" aria-selected="false">令和2年度</button>
+          <button type="button" role="tab" data-year="2019" aria-selected="false">令和元年度</button>
+        </div>
+        <p id="year-note">年度を選ぶと、代表9指標・全指標検索・地図・地域選択がすべて連動します。</p>
+      </section>
+      <nav class="tabs" aria-label="データ範囲">
+        <button data-surface="featured" class="active">
+          <strong id="featured-count">代表9指標</strong
+          ><small>主要分野と流入出の可能性</small></button
+        ><button data-surface="all">
+          <strong>NDB全指標検索</strong><small id="all-metric-count">13,544指標を検索・地図化</small>
+        </button>
+      </nav>
+      <section class="card controls" aria-label="表示条件">
+        <div>
+          <span>地図</span>
+          <div class="segments">
+            <button data-scope="area" class="active">全国・二次医療圏</button
+            ><button data-scope="prefecture">全国・都道府県</button
+            ><button data-scope="detail">選択県を拡大</button>
+          </div>
+        </div>
+        <label>都道府県<select id="prefecture"></select></label>
+        <label>医療圏<select id="area"></select></label>
+        <label id="metric-wrap"
+          >表示する指標<select id="metric"></select
+        ></label>
+      </section>
+      <section id="featured" class="surface">
+        <div class="mode-row">
+          <div class="segments">
+            <button data-mode="count" class="active">算定回数</button
+            ><button data-mode="proxy">流入出の可能性（試算）</button>
+          </div>
+          <button id="details-open" class="outline">全9指標・計算方法</button>
+        </div>
+        <p id="reading" class="reading"></p>
+        <div class="card map-layout">
+          <div class="map-pane">
+            <svg id="featured-map" class="map" role="img"></svg>
+            <div id="featured-legend" class="legend"></div>
+          </div>
+          <aside id="featured-detail" class="detail"></aside>
+        </div>
+      </section>
+      <section id="all" class="surface" hidden>
+        <div class="catalog-head">
+          <div>
+            <h2>NDB全指標検索</h2>
+            <p id="catalog-status">指標索引を読み込んでいます…</p>
+          </div>
+          <span>二次医療圏別</span>
+        </div>
+        <div class="card search-controls">
+          <label
+            >分野<select id="category">
+              <option value="all">すべての分野</option>
+            </select></label
+          ><label class="search"
+            >診療行為名・コードを検索<input
+              id="query"
+              type="search"
+              placeholder="例：心臓、リハビリ、180012010"
+          /></label>
+        </div>
+        <div class="all-layout">
+          <div>
+            <p id="result-count"></p>
+            <div id="results" class="results"></div>
+          </div>
+          <div id="all-map-card" class="card all-map-card">
+            <div class="empty">
+              <strong>指標を選択してください</strong>
+              <p>検索結果から診療行為を選ぶと地図を表示します。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="method">
+        <h2>読み方</h2>
+        <div>
+          <article>
+            <h3>「○回以上」</h3>
+            <p>秘匿セルを0とは扱わず、公表されたセルだけを足した下限値です。</p>
+          </article>
+          <article>
+            <h3>参考順位</h3>
+            <p>
+              表示中の地域を公表値・下限値で並べた探索用順位です。医療の質や住民の健康状態の順位ではありません。
+            </p>
+          </article>
+          <article>
+            <h3>流入出の可能性</h3>
+            <p>
+              専門医療の全国シェア ÷
+              救急医療管理の全国シェア。1より高いほど救急規模に比べ専門医療が集中します。
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+    <dialog id="details">
+      <form method="dialog">
+        <button class="close" aria-label="閉じる">×</button>
+        <h2>代表9指標の計算方法</h2>
+        <p>選択地域の全指標、公表状態、参考順位と計算方法です。</p>
+        <input
+          id="detail-query"
+          type="search"
+          placeholder="指標名・分野・計算方法を検索"
+        />
+        <div id="detail-table"></div>
+      </form>
+    </dialog>
+    <footer>
+      出典：厚生労働省 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00010.html">第6回</a>・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00011.html">第7回</a>・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00012.html">第8回</a>・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00014.html">第9回</a>・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00016.html">第10回</a>・<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000177221_00017.html">第11回NDBオープンデータ</a>（医科診療行為・算定回数）
+    </footer>
+    <script src="/ndb/service-volume/app.js?v=8" defer></script>
+  </body>
+</html>

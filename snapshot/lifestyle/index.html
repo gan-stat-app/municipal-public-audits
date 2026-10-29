@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>都道府県別 生活習慣・栄養・身体活動｜人口ピラミッド × 地域保健データラボ</title>
+  <meta name="description" content="都道府県別の喫煙・飲酒、BMI、野菜摂取量、食塩摂取量、歩数を全国地図と経年推移で比較します。">
+  <link rel="canonical" href="https://municipal-smr.jp/lifestyle/">
+  <meta property="og:title" content="都道府県別 生活習慣・栄養・身体活動">
+  <meta property="og:description" content="喫煙・飲酒、BMI、野菜、食塩、歩数を全国地図と経年推移で比較">
+  <meta property="og:url" content="https://municipal-smr.jp/lifestyle/">
+  <meta property="og:image" content="https://municipal-smr.jp/assets/og-municipal-smr.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/site-function-shell-v1.css?v=2"></head>
+<body class="function-page function-lifestyle">
+<header class="site-head"><a href="/">人口ピラミッド × 地域保健データラボ</a><nav><a href="/population/">人口</a><a href="/jmd/">死亡</a><a href="/life-expectancy/">平均寿命</a></nav></header>
+<main>
+  <section class="intro"><p class="eyebrow">公的統計から見る生活習慣と健康</p><h1>都道府県別 生活習慣・栄養・身体活動</h1><p>喫煙・飲酒に加え、国民健康・栄養調査のBMI、野菜摂取量、食塩摂取量、歩数を、日本地図と経年推移で比較します。公的統計を独自に整理した非公式サイトです。</p><p><a href="/cancer-screening/" class="chip">がん検診受診率（2007～2022年）を地図・順位・推移で見る →</a></p></section>
+  <div id="status" role="status" aria-live="polite">データを読み込んでいます…</div>
+  <section class="domain-switch" aria-label="比較分野"><button class="active" data-domain="smoking">喫煙</button><button data-domain="drinking">飲酒</button><button data-domain="nutrition">栄養・身体活動</button></section>
+  <section class="controls" aria-label="表示条件">
+    <label><span>都道府県</span><select id="pref"></select></label>
+    <fieldset><legend>性別</legend><div class="segments" id="sex"><button data-value="男女計" class="active">男女計</button><button data-value="男性">男性</button><button data-value="女性">女性</button></div></fieldset>
+    <label><span>調査年</span><select id="year"></select></label>
+    <fieldset id="modeControl"><legend>表示する率</legend><div class="segments" id="mode"><button data-value="粗率" class="active">粗率</button><button data-value="年齢調整率">年齢調整率</button></div></fieldset>
+    <fieldset id="drinkControl" hidden><legend>飲酒指標</legend><div class="segments" id="drink"><button data-value="monthly" class="active">月1日以上</button><button data-value="daily">毎日</button></div></fieldset>
+    <fieldset id="nutritionControl" hidden><legend>健康・栄養指標</legend><div class="segments nutrition-segments" id="nutrition"><button data-value="bmi" class="active">BMI</button><button data-value="vegetable">野菜</button><button data-value="salt">食塩</button><button data-value="steps">歩数</button></div></fieldset>
+  </section>
+  <p id="definition" class="notice"></p>
+  <section class="summary">
+    <article class="primary"><span id="selectedLabel">—</span><strong id="selectedValue">—</strong></article>
+    <article><span>全国平均との差</span><strong id="differenceValue">—</strong><small id="nationalValue">—</small></article>
+    <article><span>全国順位（高い順）</span><strong id="rankValue">—</strong><small id="rankBase">—</small></article>
+    <article><span>前回調査から</span><strong id="changeValue">—</strong><small id="changeYear">—</small></article>
+  </section>
+  <section class="workspace">
+    <article class="card map-card">
+      <div class="card-head"><div><p class="eyebrow">全国を比較</p><h2 id="mapTitle">全国地図</h2></div><span id="mapCondition" class="chip"></span></div>
+      <p class="note">全国平均との差（ポイント）を固定7区分で表示します。青は全国より低く、赤は全国より高い地域です。</p>
+      <div id="mapLegend" class="map-legend"></div>
+      <svg id="map" class="map" viewBox="0 0 900 640" role="img" aria-label="都道府県別生活習慣の全国地図"></svg>
+      <div id="mapTip" class="map-tip" aria-live="polite"></div>
+    </article>
+    <article class="card">
+      <div class="card-head"><div><p class="eyebrow">時間で比較</p><h2 id="trendTitle">選択県と全国の推移</h2></div></div>
+      <div class="chart"><svg id="trend" viewBox="0 0 900 360" role="img" aria-label="選択県と全国の経年推移"></svg></div>
+      <div class="line-key"><span><i class="local"></i><b id="localKey"></b></span><span><i class="national"></i>全国</span></div>
+    </article>
+  </section>
+  <section class="card" id="ageCard">
+    <div class="card-head"><div><p class="eyebrow">年齢で比較</p><h2 id="ageTitle">年齢階級別粗率</h2></div><span class="chip">粗率</span></div>
+    <div id="ageChart" class="age-chart"></div>
+    <div class="age-key"><span><i></i>選択県</span><span><u></u>全国</span></div>
+    <p class="age-sample-note">標本調査に基づく推計割合です。都道府県・性別・年齢階級に分けると標本数が限られるため、小さな差や単年の変動の解釈には注意が必要です。</p>
+  </section>
+  <section class="rank-grid"><article class="card"><h2 id="highTitle">率が高い県</h2><ol id="highRank" class="ranking"></ol></article><article class="card"><h2 id="lowTitle">率が低い県</h2><ol id="lowRank" class="ranking low"></ol></article></section>
+  <section class="method">
+    <div><p class="eyebrow">計算方法と注意</p><h2>数字の意味を隠さない</h2></div>
+    <div class="method-grid"><p><b>年齢調整率</b><span>20–29、30–39、40–49、50–59、60–69、70–79、80歳以上の7階級と2015年モデル人口による直接法です。厚生労働省の公表済み年齢調整値ではなく、本サイトの再計算値です。</span></p><p><b>標本誤差</b><span>国民生活基礎調査は標本調査です。小さな差だけで地域差や原因を断定できません。欠測は0として補完しません。</span></p><p><b>既知の例外</b><span>2016年の熊本県は熊本地震の影響で調査対象外です。年齢調整に必要な全階級がない地域も非表示になります。</span></p></div>
+  </section>
+  <section class="source"><h2>出典・データ版</h2><p>喫煙・飲酒：厚生労働省「国民生活基礎調査」健康・都道府県編。栄養・身体活動：厚生労働省「国民健康・栄養調査」（2012・2016・2024年）。2016年の熊本県は熊本地震の影響で調査対象外です。原表、公式PDF、取得・変換手順、検証記録を保全しています。閲覧時の外部サイト接続はありません。</p></section>
+</main>
+<footer><a href="/">人口ピラミッド × 地域保健データラボ</a>｜個人運営の非公式データラボ</footer>
+<script src="app.js" defer></script>
+</body>
+</html>

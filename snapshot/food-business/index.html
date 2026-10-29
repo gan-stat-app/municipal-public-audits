@@ -1,0 +1,39 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>食品営業許可・届出施設を調べる｜全国市町村別標準化死亡比</title><meta name="description" content="市区町村・営業の種類・施設名から食品営業許可・届出の公表情報を検索し、CSV保存と毎月の掲載変化を確認できます。"><link rel="canonical" href="https://municipal-smr.jp/food-business/"><link rel="stylesheet" href="/food-business/style.css"></head><body><header><a href="/">全国市町村別標準化死亡比</a><nav><a href="/food-business/">食品営業許可・届出</a><a href="/analysis/food-business/">毎月の記録</a><a href="/analysis/">解説記事</a></nav></header><main><p class="eyebrow">地域の飲食・食品産業を公表情報から調べる</p>
+<h1>食品営業許可・届出施設を調べる</h1>
+<p class="lead">地域と営業の種類を選び、施設名や所在地から探せます。検索結果はCSVで保存できます。</p>
+<section aria-labelledby="search-title">
+  <h2 id="search-title">地域と検索条件を選ぶ</h2>
+  <div class="controls">
+    <label>都道府県<select id="prefecture"></select></label>
+    <label>市区町村<select id="municipality"><option value="">市区町村を指定しない</option></select></label>
+    <label>許可・届出<select id="kind"><option value="permit">許可情報</option><option value="notification">届出情報</option><option value="">両方</option></select></label>
+    <label class="source-select">公表元と資料<select id="source"></select></label>
+    <label>営業の種類<select id="business"><option value="">すべての営業の種類</option></select></label>
+    <label class="search">施設名・施設所在地・営業の種類<input id="query" type="search" placeholder="例：土崎 飲食店、秋田市 菓子" aria-describedby="search-help"></label>
+    <p id="search-help" class="control-help">スペースで区切ると、すべての言葉を含む情報を検索します。市区町村は公表された施設所在地で絞ります。移動営業・所在地非公表などは地域を特定しません。</p>
+  </div>
+  <div id="source-guidance" class="source-guidance"></div>
+  <div id="search-results">
+    <h2 id="search-results-title" tabindex="-1">選択した公表元の検索結果</h2>
+    <p id="status" role="status" aria-live="polite">公表元の一覧を読み込んでいます。</p>
+    <p id="kind-note" class="notice" hidden></p>
+    <p id="source-note"></p>
+    <p id="record-note">件数は許可・届出の掲載情報です。1施設が複数の情報を持つ場合があります。新規掲載を新規開店、掲載消失を閉店と判定していません。</p>
+    <div class="actions results-toolbar">
+      <label>並べ替え<select id="sort"><option value="published">保存資料の順</option><option value="name">施設名順</option><option value="newest">許可開始日が新しい順</option><option value="expiry">許可満了日が早い順</option></select></label>
+      <button id="download" disabled>検索結果をCSVで保存</button>
+      <button id="clear-filters">絞り込みを解除</button>
+      <a id="official" href="https://i2fas.mhlw.go.jp/" target="_blank" rel="noopener">公式の公開ページ</a>
+      <a id="article" href="/analysis/food-business/">この公表元の記録を読む</a>
+    </div>
+    <p id="empty-note" class="notice" hidden>この条件に一致する掲載情報はありません。検索語や営業の種類を減らすか、「公表元と資料」で別の資料をお試しください。未掲載を、地域に施設がないという意味では扱いません。</p>
+    <div class="tablewrap facility-table"><table><caption class="sr-only">検索条件に一致する許可・届出の掲載情報</caption><thead><tr><th scope="col">施設名</th><th scope="col">施設所在地</th><th scope="col">営業の種類</th><th scope="col">許可開始日</th><th scope="col">許可満了日</th><th scope="col">掲載上の廃業日</th></tr></thead><tbody id="results"></tbody></table></div>
+    <div class="actions pagination"><button id="previous" disabled>前の50件</button><span id="page"></span><button id="next" disabled>次の50件</button></div>
+  </div>
+  <details id="changes-panel"><summary id="changes-title">前回からの掲載変化</summary><p id="changes-note"></p><div id="changes-controls" hidden><label>表示する変化<select id="change-kind"><option value="">すべての変化</option><option value="added">掲載追加</option><option value="removed">掲載消失</option><option value="changed">記載変更</option></select></label><p>上の市区町村・許可／届出・業種・検索語も適用します。記載変更は変更前後のいずれかが条件に一致する情報を表示します。</p><button id="changes-download" disabled>掲載変化をCSVで保存</button></div><p id="changes-status" role="status" aria-live="polite"></p><div id="changes-results"></div><button id="changes-more" hidden>次の50件を表示</button></details>
+  <details id="source-comparison" class="source-comparison" hidden><summary>秋田県内の公表元と収録件数を比較する</summary><p class="comparison-note">件数は検索条件で絞る前の許可・届出の掲載情報で、実際の施設数ではありません。廃業情報を含む場合があり、公表元間で重複するため合算しません。公表元を選んでも、許可・届出の選択と検索語は引き継ぎます。</p><a class="results-link" href="#search-results-title">検索結果へ進む</a><div id="comparison-main" class="source-cards"></div><details class="source-center-details"><summary id="comparison-centers-title">県型保健所の年度内新規一覧を比較する</summary><p>各保健所の管轄地域について、年度内の新規許可・届出だけを掲載した資料です。現在営業中の全施設一覧ではありません。未公表・未記入の期間を0件とはみなしません。</p><ul id="comparison-centers" class="source-centers"></ul></details></details>
+</section>
+<details><summary>収録範囲と更新について</summary><p>県型保健所の地域は都道府県、市・特別区の管轄は各自治体が公表します。国のCSVは電子申請された情報のうち公開に同意したものが対象です。国と自治体独自の一覧は重複するため、公開元を選んで表示します。</p><p>国の「市区町村名」列は管轄自治体の所在地なので、施設の検索には「営業施設所在地」を使っています。非公開の施設名・所在地は推測して補っていません。市区町村の選択肢は既存の自治体一覧で、全地域の施設を収録したことを意味しません。同名の市町村を識別できない所在地は地域別の絞り込みから除きます。</p><p>県型保健所の新規一覧は、現在営業中の全施設一覧と分けて表示します。掲載時点・業種・旧法／新法の範囲が違う公開元を単純合算しません。食品衛生上の良否や検査結果を評価するものではありません。</p><p>毎月の原本を保存し、同一公開元・同一範囲で比較します。取得失敗時は前回の保存版を保持し、取得できなかった資料の件数を0に置き換えません。許可満了日や廃業日の有無だけで、現在の営業状況を断定しません。</p></details>
+<noscript><p>検索にはJavaScriptが必要です。<a href="/analysis/food-business/">公表元別の静的な記録</a>でも、件数と出典を確認できます。</p></noscript>
+<script type="module" src="/food-business/app.js"></script>
+</main><footer>出典となる公表情報を加工して掲載しています。掲載状況と実際の営業状況は一致しない場合があります。</footer></body></html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>平均寿命・健康寿命｜都道府県・市区町村の比較</title>
+  <meta name="description" content="全国・都道府県の平均寿命、国民生活基礎調査に基づく健康寿命、要介護度に基づく平均自立期間、市区町村別の公式平均寿命を比較。公表年、算定方法、95％信頼区間を確認できます。">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://municipal-smr.jp/life-expectancy/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="人口ピラミッド × 地域保健データラボ">
+  <meta property="og:title" content="平均寿命・健康寿命">
+  <meta property="og:description" content="平均寿命、生活の制限に基づく健康寿命、要介護度に基づく平均自立期間を、定義を区別して地域別に確認できます。">
+  <meta property="og:url" content="https://municipal-smr.jp/life-expectancy/">
+  <meta property="og:image" content="https://municipal-smr.jp/assets/og-municipal-smr.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/life-expectancy/style.css?v=20260906">
+  <script src="/life-expectancy/app.js?v=20260906" defer></script>
+<link rel="stylesheet" href="/site-function-shell-v1.css?v=2"></head>
+<body class="function-page function-life">
+  <main class="wrap" itemscope itemtype="https://schema.org/Dataset">
+    <meta itemprop="name" content="平均寿命・健康寿命の地域比較">
+    <meta itemprop="description" content="JMDの平均寿命、健康寿命研究班の健康寿命、国保中央会の平均自立期間、厚生労働省の市区町村別生命表の公表値を可視化します。">
+    <link itemprop="url" href="https://municipal-smr.jp/life-expectancy/">
+    <meta itemprop="dateModified" content="2026-09-06">
+    <meta itemprop="temporalCoverage" content="1947/2024">
+    <meta itemprop="spatialCoverage" content="日本・47都道府県・市区町村（指標により対象地域が異なる）">
+    <meta itemprop="measurementTechnique" content="各公表資料の生命表・健康寿命算定方法。系列ごとに区別して表示。">
+    <div itemprop="creator" itemscope itemtype="https://schema.org/Organization">
+      <meta itemprop="name" content="人口ピラミッド × 地域保健データラボ（個人運営）">
+      <link itemprop="url" href="https://municipal-smr.jp/">
+    </div>
+    <div itemprop="license" itemscope itemtype="https://schema.org/CreativeWork">
+      <meta itemprop="name" content="データ利用条件・出典">
+      <link itemprop="url" href="https://municipal-smr.jp/data-use/">
+    </div>
+    <meta itemprop="isAccessibleForFree" content="true">
+
+    <nav><a href="/">← データラボへ戻る</a><a href="/jmd/">年齢調整死亡率を見る</a></nav>
+<p class="note"><a href="/life-expectancy/municipal-reference/">2015～2023年の市区町村別平均寿命の参考推計 →</a></p>
+    <h1>平均寿命・健康寿命</h1>
+    <div class="indicator-tabs" role="group" aria-label="指標の切り替え">
+      <button type="button" data-family="life" aria-pressed="true">平均寿命</button>
+      <button type="button" data-family="health" aria-pressed="false">健康寿命<span>生活の制限</span></button>
+      <button type="button" data-family="kdb" aria-pressed="false">平均自立期間<span>要介護度</span></button>
+    </div>
+    <p id="definition" class="lead">公表データを読み込んでいます。</p>
+
+    <section class="card controls">
+      <div><label for="scope">地域の単位</label><select id="scope"><option value="prefecture">全国・都道府県</option><option value="municipality">市区町村</option></select></div>
+      <div><label for="sex">性別</label><select id="sex"><option value="total">総数</option><option value="male">男性</option><option value="female">女性</option></select></div>
+      <div><label for="pref">都道府県</label><select id="pref"></select><div id="availability" class="badge"></div></div>
+      <div><label for="year">公表値の対象年</label><select id="year"></select></div>
+      <div id="areaControl" hidden><label for="area">地域を選ぶ</label><select id="area"></select></div>
+      <div id="measureControl" hidden><label for="measure">表示する指標</label><select id="measure"></select></div>
+    </section>
+    <p id="condition" class="condition" aria-live="polite"></p>
+    <p id="methodNote" class="method-note"></p>
+    <p class="note"><a href="/life-expectancy/municipal-estimate/">市区町村別平均寿命の独自推計（2015・2020年）を公式値と比較する →</a></p>
+
+    <section class="summary" aria-live="polite">
+      <article><span>選択地域</span><strong id="selectedValue">—</strong><small id="selectedLabel"></small><small id="selectedCI"></small></article>
+      <article><span>全国</span><strong id="nationalValue">—</strong><small id="nationalLabel"></small><small id="nationalCI"></small></article>
+      <article><span>全国との差</span><strong id="differenceValue">—</strong><small>選択地域 − 全国</small></article>
+      <article><span>長い順の参考順位</span><strong id="rankValue">—</strong><small id="rankDenominator"></small></article>
+    </section>
+    <section id="pairedSection" class="card" hidden>
+      <h2>同じ資料の関連指標</h2>
+      <div id="pairedValues" class="paired-values"></div>
+      <p id="pairedNote" class="note"></p>
+    </section>
+
+    <section class="card">
+      <h2 id="trendTitle">選択地域と全国の経年推移</h2>
+      <div class="legend"><span class="key pref" id="prefLegend"></span><span class="key nat">全国</span></div>
+      <div class="chart"><svg id="trend" viewBox="0 0 900 350" role="img" aria-label="平均寿命の経年推移"></svg></div>
+      <p id="trendNote" class="note">欠測は0として補完しません。</p>
+      <details><summary>年別の値・信頼区間を確認</summary><div class="table-scroll"><table><thead><tr><th>年</th><th>選択地域</th><th>95％信頼区間</th><th>全国</th></tr></thead><tbody id="trendTable"></tbody></table></div></details>
+    </section>
+
+    <section class="card">
+      <h2 id="mapTitle">全国地図</h2>
+      <p id="mapCondition" class="condition"></p>
+      <p id="mapNote" class="note"></p>
+      <div id="mapLegend" class="map-legend"></div>
+      <svg id="map" class="map" viewBox="0 0 900 640" role="img" aria-label="都道府県別平均寿命の全国地図"></svg>
+      <div id="mapTip" class="map-tip" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2 id="rankingTitle">地域別の値を比較</h2>
+      <p id="rankingCondition" class="condition"></p>
+      <p class="note">順位は公表値の長い順です。同じ公表値は同順位とし、差の有意性や地域の優劣は示しません。短い「制限のある期間」だけで健康状態の改善とは判断できません。</p>
+      <div class="ranking-tools"><label for="search">地域名で絞り込む <input id="search" type="search" placeholder="例：秋田市"></label><label id="rankingScopeControl" hidden>比較する地域 <select id="rankingScope"><option value="prefecture">選択都道府県内</option><option value="all">全国の市区町村</option></select></label></div>
+      <div id="status" role="status" aria-live="polite">データを読み込んでいます…</div>
+      <div id="ranking" class="ranking"></div>
+      <button type="button" id="more" hidden>続きを表示</button>
+    </section>
+
+    <section class="card">
+      <h2>データの見方</h2>
+      <p class="note">平均寿命は、その年の年齢別死亡率が将来も続くと仮定した期間生命表における0歳の平均余命です。その年に死亡した人の平均年齢ではありません。</p>
+      <p class="note">都道府県の単年値は、人口規模や死亡数の影響で年ごとに変動します。地域の生活習慣、医療、社会経済状況などの原因を、この値だけで特定することはできません。</p>
+      <p class="note">健康寿命と平均自立期間は定義が異なります。病気のない期間や、個人が将来必ず健康でいられる年齢を示すものではありません。男女計が公表されていない系列では男性・女性のみ表示します。</p>
+      <p class="note">市区町村平均寿命は厚生労働省の公表値です。独自に生命表を計算した値ではありません。国・県との比較も市区町村別生命表に付属する参考値を使います。指定都市全体と行政区は重複するため、指定都市全体・東京都区部全体を市区町村の順位から除外します。</p>
+      <details><summary>出典・収録年・算定上の注意</summary><div id="sourceNote" class="note"></div></details>
+    </section>
+  </main>
+</body>
+</html>
+
+

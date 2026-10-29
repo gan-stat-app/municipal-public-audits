@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://municipal-smr.jp/sitemap.xml
+# Static JSON pilot catalog (listed selections only): https://municipal-smr.jp/smr-json/v1/index.json
+# Retrieval guide: https://municipal-smr.jp/transparency/#static-json
