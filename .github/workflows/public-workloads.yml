@@ -2,9 +2,9 @@ name: Public data validation and site build
 on:
   push:
     branches: [main]
-    paths: ['snapshot/**', 'workloads/inputs.json', 'workloads/common.py', 'workloads/site.py', 'workloads/opendata.py']
+    paths: ['snapshot/**', 'workloads/inputs.json', 'workloads/common.py', 'workloads/site.py', 'workloads/opendata.py', '.github/workflows/public-workloads.yml']
   pull_request:
-    paths: ['snapshot/**', 'workloads/inputs.json', 'workloads/common.py', 'workloads/site.py', 'workloads/opendata.py']
+    paths: ['snapshot/**', 'workloads/inputs.json', 'workloads/common.py', 'workloads/site.py', 'workloads/opendata.py', '.github/workflows/public-workloads.yml']
   workflow_dispatch:
     inputs:
       opendata_limit:
@@ -22,10 +22,13 @@ jobs:
   security-and-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    outputs:
+      opendata_required: ${{ steps.changes.outputs.opendata_required }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           persist-credentials: false
+          fetch-depth: 2
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.12'
@@ -33,6 +36,23 @@ jobs:
       - run: python -m unittest discover -s workloads -p 'test_*.py'
       - run: python snapshot/source/machine-readability/test_pipeline.py
       - run: python snapshot/source/food-business/test_model.py
+      - id: changes
+        name: Keep successful scoring when only site execution changes
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          python - <<'PY'
+          import os,subprocess
+          required=True
+          if os.environ['GITHUB_EVENT_NAME']=='push':
+              try:
+                  paths=subprocess.check_output(['git','diff','--name-only',os.environ['BEFORE'],os.environ['GITHUB_SHA']],text=True).splitlines()
+                  common={'workloads/inputs.json','workloads/common.py','workloads/opendata.py','.github/workflows/public-workloads.yml'}
+                  required=not paths or any(p in common or p.startswith('snapshot/source/machine-readability/') for p in paths)
+              except (KeyError,subprocess.CalledProcessError):
+                  pass
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('opendata_required='+str(required).lower()+'\n')
+          PY
   site-build-and-ui:
     needs: security-and-contract
     if: github.event_name != 'pull_request'
@@ -70,7 +90,7 @@ jobs:
           include-hidden-files: true # Only the generated app-build/.vite manifest
   opendata-current-originals:
     needs: security-and-contract
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && needs.security-and-contract.outputs.opendata_required == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:

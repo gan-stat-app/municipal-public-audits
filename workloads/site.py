@@ -77,7 +77,8 @@ def main():
         for command in COMMANDS:
             start = time.monotonic()
             print('Run:', ' '.join(command), flush=True)
-            result = subprocess.run(command, cwd=SNAPSHOT / 'source', timeout=1800)
+            result = subprocess.run(command, cwd=SNAPSHOT / 'source', timeout=1800,
+                                    env={**os.environ, 'CHROMIUM_PATH': os.environ.get('CHROMIUM_PATH', '/usr/bin/google-chrome')})
             commands.append({'command': command, 'exit_code': result.returncode,
                              'seconds': round(time.monotonic() - start, 3)})
             if result.returncode:
