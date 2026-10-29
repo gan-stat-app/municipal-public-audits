@@ -19,8 +19,10 @@ def hydrate(data):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
     with ThreadPoolExecutor(max_workers=6) as executor:
-        for _ in executor.map(one, [x for x in data['assets'] if not generated(x['path'])]):
-            pass
+        selected = [x for x in data['assets'] if not generated(x['path'])]
+        for count, _ in enumerate(executor.map(one, selected), 1):
+            if count % 200 == 0 or count == len(selected):
+                print('Verified public inputs:', count, '/', len(selected), flush=True)
     for item in data['aliases']:
         if generated(item['source']):
             continue

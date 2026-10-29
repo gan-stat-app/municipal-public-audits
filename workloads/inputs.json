@@ -21619,6 +21619,86 @@
       "source": "analysis/mortality-articles-20260910.css",
       "target": "source/public/analysis/mortality-articles-20260910.css",
       "sha": "c7db2369614be243251a9f55d7a14402bf244130"
+    },
+    {
+      "source": "food-poisoning/data/cases-2011.json",
+      "target": "source/food-poisoning/data/cases-2011.json",
+      "sha": "7eac091c0c0b39013726564cad5205a1f6a05e13"
+    },
+    {
+      "source": "food-poisoning/data/cases-2012.json",
+      "target": "source/food-poisoning/data/cases-2012.json",
+      "sha": "5cc2c768d76c400c339f154be20160a04c80f1ea"
+    },
+    {
+      "source": "food-poisoning/data/cases-2013.json",
+      "target": "source/food-poisoning/data/cases-2013.json",
+      "sha": "1e56d34bb6c236cfe5ccb1db7cde5420d71ccc47"
+    },
+    {
+      "source": "food-poisoning/data/cases-2014.json",
+      "target": "source/food-poisoning/data/cases-2014.json",
+      "sha": "1438bedfc04d218df690c6393d581b29e84ce146"
+    },
+    {
+      "source": "food-poisoning/data/cases-2015.json",
+      "target": "source/food-poisoning/data/cases-2015.json",
+      "sha": "a2767cf2dcde3ba24ec1262e6a1ede0b2095dbec"
+    },
+    {
+      "source": "food-poisoning/data/cases-2016.json",
+      "target": "source/food-poisoning/data/cases-2016.json",
+      "sha": "249325ebb6e4abf7bc8f3ffd8d0e3512b29f7046"
+    },
+    {
+      "source": "food-poisoning/data/cases-2017.json",
+      "target": "source/food-poisoning/data/cases-2017.json",
+      "sha": "958ab98964924bbd81af58fc3e74d47ff9cdf5eb"
+    },
+    {
+      "source": "food-poisoning/data/cases-2018.json",
+      "target": "source/food-poisoning/data/cases-2018.json",
+      "sha": "92ee4fa2e4ce0d3c2dc0ab6d135f9c59814ab9fa"
+    },
+    {
+      "source": "food-poisoning/data/cases-2019.json",
+      "target": "source/food-poisoning/data/cases-2019.json",
+      "sha": "b76d7c0bfd4ec571de2fae031cb3ea26f4974212"
+    },
+    {
+      "source": "food-poisoning/data/cases-2020.json",
+      "target": "source/food-poisoning/data/cases-2020.json",
+      "sha": "c40ace5823a4d7df3d57ac62cee1fe3b68b1adbf"
+    },
+    {
+      "source": "food-poisoning/data/cases-2021.json",
+      "target": "source/food-poisoning/data/cases-2021.json",
+      "sha": "ac5c1415289d8ba86767f3df40aa5d946e2c8b09"
+    },
+    {
+      "source": "food-poisoning/data/cases-2022.json",
+      "target": "source/food-poisoning/data/cases-2022.json",
+      "sha": "eb32bcd928c1bf70e830e0c807fcd123397491cd"
+    },
+    {
+      "source": "food-poisoning/data/cases-2023.json",
+      "target": "source/food-poisoning/data/cases-2023.json",
+      "sha": "4662c200fbd6c73149865b2012995b3b75a9e5ae"
+    },
+    {
+      "source": "food-poisoning/data/cases-2024.json",
+      "target": "source/food-poisoning/data/cases-2024.json",
+      "sha": "200de80d9c22800e2037284d00272faa6a56531d"
+    },
+    {
+      "source": "food-poisoning/data/cases-2025.json",
+      "target": "source/food-poisoning/data/cases-2025.json",
+      "sha": "f580ee92e322df104d7e71d261d1e29b0aecd4d7"
+    },
+    {
+      "source": "food-poisoning/data/summary.json",
+      "target": "source/food-poisoning/data/summary.json",
+      "sha": "a63a79dc4eb5209b24fdb9d4f104fb66749a95ba"
     }
   ],
   "score_sources": [
@@ -22325,6 +22405,18 @@
     {
       "path": "source/machine-readability/review_periods.py",
       "sha": "1ca067223c3b654a413c84668e6765eb32673a19"
+    },
+    {
+      "path": "source/food-poisoning/app.js",
+      "sha": "0695dd75ad5668731ea80e43a318acc3948cff9c"
+    },
+    {
+      "path": "source/food-poisoning/index.html",
+      "sha": "2a3f2a53085e65e3831c83ced18302f63bacdc1a"
+    },
+    {
+      "path": "source/food-poisoning/style.css",
+      "sha": "d6b0d92fca1f967db7596a5bb2cbe464bad3ca81"
     }
   ]
 }

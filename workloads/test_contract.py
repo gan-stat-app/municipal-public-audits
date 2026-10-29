@@ -48,7 +48,7 @@ class ContractTests(unittest.TestCase):
         original = {r['path']: r['sha'] for r in data['assets']}
         for item in data['aliases']:
             self.assertEqual(original[item['source']], item['sha'])
-            self.assertTrue(item['target'].startswith('source/public/'))
+            self.assertTrue(item['target'].startswith(('source/public/', 'source/food-poisoning/data/')))
 
     def test_only_original_source_code_can_be_used(self):
         with patch.object(common, 'manifest', return_value={'code': [{'path': 'x', 'sha': '0'*40}]}), \
