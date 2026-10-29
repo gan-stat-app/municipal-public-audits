@@ -18,3 +18,5 @@ jobs:
           persist-credentials: false
       - name: Check public records and cross-format consistency
         run: python3 scripts/verify.py
+      - name: Test read-only site comparison gate
+        run: python3 -m unittest discover -s scripts -p "test_*.py"
