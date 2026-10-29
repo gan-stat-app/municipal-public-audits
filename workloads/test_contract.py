@@ -112,6 +112,15 @@ class ContractTests(unittest.TestCase):
             self.assertNotRegex(text, r'(?i)secrets\s*[.\[]')
             for job in workflow['jobs'].values():
                 self.assertEqual(job['runs-on'], 'ubuntu-latest')
+                permissions = job.get('permissions', workflow['permissions'])
+                if permissions.get('contents') == 'write':
+                    self.assertIs(job, workflow['jobs']['publish'])
+                    self.assertEqual(permissions, {'contents': 'write', 'actions': 'read'})
+                    self.assertIn("github.ref == 'refs/heads/main'", job['if'])
+                    self.assertIn("github.event_name != 'pull_request'", job['if'])
+                    self.assertEqual([s['run'] for s in job['steps'] if 'run' in s], ['python workloads/publish.py'])
+                else:
+                    self.assertEqual(permissions, {'contents': 'read'})
                 self.assertNotIn('continue-on-error', job)
                 self.assertNotIn('environment', job)
                 for step in job['steps']:

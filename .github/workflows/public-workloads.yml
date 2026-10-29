@@ -113,3 +113,21 @@ jobs:
           path: reports/opendata.json
           retention-days: 14
           if-no-files-found: error
+  publish:
+    needs: [security-and-contract, site-build-and-ui]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    permissions:
+      contents: write
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          sparse-checkout: workloads/publish.py
+          sparse-checkout-cone-mode: false
+      - name: Publish reviewed public outputs without cross-repository credentials
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python workloads/publish.py

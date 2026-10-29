@@ -17,7 +17,7 @@ on:
     - cron: '17 23 19 * *'
   push:
     branches: [main]
-    paths: ['workloads/collectors.py', '.github/workflows/public-collectors.yml']
+    paths: ['workloads/collectors.py']
 permissions:
   contents: read
 concurrency:
@@ -62,3 +62,21 @@ jobs:
             collections/
           retention-days: 14
           if-no-files-found: error
+  publish:
+    needs: collect
+    if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.collect.result != 'cancelled'
+    permissions:
+      contents: write
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          sparse-checkout: workloads/publish.py
+          sparse-checkout-cone-mode: false
+      - name: Publish only normalized public data and hash receipts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python workloads/publish.py

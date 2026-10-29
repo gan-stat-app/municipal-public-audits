@@ -9,7 +9,7 @@ municipal-smr.jpで公開する確認済み記録・集計表の保存と検証�
 - `records/analysis/akita-public-excel-review/`: Excel、Office、追加調査の集計CSV。
 - `records/analysis/municipal-machine-readability/`: 公開済み76資料の得点CSV/JSON、進捗JSON。
 
-サイトのHTML、詳細文書JSON、採点の全指摘、ポータルの下位ページは今回の移行対象外です。原本の再配布・検査ログの公開は個別確認が必要です。
+`records/` の初回登録にはサイトのHTML、詳細文書JSON、採点の全指摘、ポータルの下位ページを含めません。別途、下記の実処理用 `snapshot/` には選択したコードと既に公開済みのHTML等を保存します。原本の再配布・検査ログの公開は個別確認が必要です。
 
 ## 検証
 
