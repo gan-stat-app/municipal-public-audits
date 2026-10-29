@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-27",
+  "scope": {
+    "whole_site_complete": false,
+    "legal_compliance_determined": false,
+    "accessibility_conformance_test_completed": false,
+    "html_baseline_pages": 2121,
+    "focused_content_review_pages": 9,
+    "legal_reviewed_cases": 0,
+    "accessibility_retested_pages": 0,
+    "note": "利用案内・募集と選考結果・県の方針等の重点確認を引き継ぎ、水温ページの保存構造と周辺説明を個別に照合した。本文の全数値・全法令・全ページの意味を監査した結果ではない。",
+    "retained_scan": {
+      "checked_at": "2026-10-27T12:08:44.047100+00:00",
+      "records": 2139,
+      "integrity_verified": 2121,
+      "rule_checked": 2080,
+      "body_unconfirmed": 41,
+      "other_unconfirmed": 18,
+      "saved_frontier": 9393,
+      "imported_queue": 9380,
+      "source_sha256": "1373f30330948bfa431325358dd231aab6f0abbde388a31606238f3f56bd15ad"
+    },
+    "google_forms": {
+      "checked_at": "2026-10-27T13:42:34.743670+00:00",
+      "retained_html_verified": 2271,
+      "source_pages": [
+        {
+          "url": "https://www.pref.akita.lg.jp/pages/archive/11155",
+          "sha256": "aec719318093f797e382f103470c9691ade85f85cbeca3ccb9c71f164fdf104a",
+          "checked_at": "2026-10-27T13:42:11.464254+00:00"
+        },
+        {
+          "url": "https://www.pref.akita.lg.jp/pages/archive/100021",
+          "sha256": "76a16bbd279a941b41ea3b1fd22ce982d1b7bca2b4fa4afb939184ba28f05c96",
+          "checked_at": "2026-10-27T13:42:20.731682+00:00"
+        },
+        {
+          "url": "https://www.pref.akita.lg.jp/pages/archive/100097",
+          "sha256": "daaa449468419e3d1ac4a94fe4bfd0c42b934217ef57a0bf6e4292801b1f78e4",
+          "checked_at": "2026-10-27T13:42:30.815683+00:00"
+        },
+        {
+          "url": "https://www.pref.akita.lg.jp/pages/archive/2423",
+          "sha256": "3a5b8fe4ee470e25196d31012efc7feed9cc76a6128cd27fa8bec49f68f10e3a",
+          "checked_at": "2026-10-27T13:42:38.907927+00:00"
+        },
+        {
+          "url": "https://www.pref.akita.lg.jp/pages/archive/100055",
+          "sha256": "f982e5e35dcb4b51a190a5f14ceb9855f9419f6ed6586be330ef24b128a8b543",
+          "checked_at": "2026-10-27T13:42:47.344110+00:00"
+        }
+      ],
+      "form_urls": 5,
+      "public_pages_observed": 5,
+      "owner_settings_verified": 0,
+      "owner_settings_unconfirmed": 5,
+      "note": "公開回答画面では、回答の概要・回答用シートへ進むリンクは見つかりませんでした。ただし、送信後にだけ表示される概要や、回答用シート・共同編集者の共有権限は未確認です。これは漏えいがないとの判定ではありません。概要の共有、編集権限、必要最小限の個人情報収集と利用目的の説明を引き続き確認します。回答の送信、回答一覧・シートの取得、編集操作は行っていません。"
+    }
+  },
+  "references": [
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/41008",
+      "title": "秋田県ウェブアクセシビリティ方針",
+      "role": "目標とする規格・適合レベルと例外範囲を確認する。"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/R1accessibilityresult",
+      "title": "秋田県 令和6年度ページ検証結果",
+      "role": "県公表の過去の検証と今回の独立点検を区別する。"
+    },
+    {
+      "url": "https://www.digital.go.jp/resources/introduction-to-web-accessibility-guidebook",
+      "title": "デジタル庁 ウェブアクセシビリティ導入ガイドブック",
+      "role": "点検方法と改善案の参考資料。法令そのものとは区別する。"
+    },
+    {
+      "url": "https://www.w3.org/WAI/test-evaluate/tools/selecting/",
+      "title": "W3C WAI 評価ツールの選び方",
+      "role": "自動評価で確認できる範囲と、判断・操作確認が必要な範囲を区別する。"
+    },
+    {
+      "url": "https://www.ppc.go.jp/personalinfo/legal/",
+      "title": "個人情報保護委員会 法令・ガイドライン等",
+      "role": "個人情報に関わる指摘では、行政機関等に適用する現行の法令・解釈を個別に確認する。"
+    },
+    {
+      "url": "https://www.pref.akita.lg.jp/pages/archive/1417",
+      "title": "秋田県 RSS配信サービス",
+      "role": "新着・更新ページの発見に使用する。RSSだけで全変更を把握したとは扱わない。"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html",
+      "title": "W3C 1.1.1 非テキストコンテンツの解説",
+      "role": "画像の目的と同等のテキスト、装飾等の例外を確認するための参考。"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html",
+      "title": "W3C 1.3.1 情報及び関係性の解説",
+      "role": "見出し・表の関係をプログラムで伝えられるか確認するための参考。"
+    },
+    {
+      "title": "Googleフォームを公開して回答者と共有する",
+      "url": "https://support.google.com/docs/answer/2839588?hl=ja",
+      "role": "結果の概要を共有すると回答全文やグラフが回答者に表示される場合があるという、設定の確認根拠。個々のフォームで有効になっている証拠とは区別する。"
+    }
+  ],
+  "findings": [
+    {
+      "id": "AKQ-0001",
+      "title": "ブラウザ名「Safari」のつづりの誤り",
+      "category": "accuracy",
+      "status": "confirmed",
+      "priority": "低",
+      "first_checked": "2026-10-27T10:44:20.225444+00:00",
+      "last_checked": "2026-10-27T10:44:20.225444+00:00",
+      "source_title": "秋田県「ガイドライン」",
+      "source_url": "https://www.pref.akita.lg.jp/pages/guideline",
+      "source_sha256": "5c0d01c797c1e1da2e8da4e02521c66483f4d2d122c29b05adaf4f615339bcb7",
+      "location": "JavaScriptへの対応にある見出し",
+      "fact": "Safariの設定手順を説明する見出しが「Sarafiの場合」となっている。直後の手順ではSafariと記載されている。",
+      "impact": "見出しに表記の不一致がある。手順全体の利用不能や、申請・法令への影響は確認していない。",
+      "suggestion": "見出しの製品名をSafariに修正する。",
+      "limits": "利用案内のこの見出しを原文で確認した。県サイト全体の誤字を確認した結果ではない。",
+      "verification": {
+        "source_rechecked": true,
+        "sensitive_content_removed": true,
+        "kind": "official_html"
+      },
+      "authority": [],
+      "history": [
+        {
+          "at": "2026-10-27T10:44:20.225444+00:00",
+          "status": "confirmed",
+          "reason": "公開HTMLの見出しと、その直後の設定手順の製品名を照合した。"
+        }
+      ]
+    },
+    {
+      "id": "AKQ-0002",
+      "title": "県の2024年度試験で、アクセシビリティの課題を公表",
+      "category": "accessibility",
+      "status": "official_report",
+      "priority": "参考",
+      "first_checked": "2026-10-27T10:48:09.209245+00:00",
+      "last_checked": "2026-10-27T10:48:09.209245+00:00",
+      "source_title": "秋田県「令和6年度 ページ検証結果」",
+      "source_url": "https://www.pref.akita.lg.jp/pages/R1accessibilityresult",
+      "source_sha256": "b4ee1e13c5a724f435dea7bd231de750e37a2ffa59cc667604d5ad0f77ed0637",
+      "location": "達成した適合レベル・対応度／問題点",
+      "fact": "県は、2024年10月から2025年3月までの試験について、JIS X 8341-3:2016のレベルAAに一部準拠と公表している。機械的検証21,783ページ、詳細な検証40ページが対象で、代替テキスト・箇条書きの構造・コントラスト等の課題を挙げている。",
+      "impact": "当時の試験で情報の理解や視認性に関わる課題が記録されている。今後の再確認で優先する観点になる。",
+      "suggestion": "県の試験結果と方針を参照し、現在の該当ページを具体的に再確認してから、個別の指摘を追加する。",
+      "limits": "県が公表した過去の試験結果の紹介である。今回、現在の全ページや40ページを再試験したものではなく、当時の課題が今も残るとの認定でもない。",
+      "verification": {
+        "source_rechecked": true,
+        "sensitive_content_removed": true,
+        "kind": "official_past_report"
+      },
+      "authority": [],
+      "history": [
+        {
+          "at": "2026-10-27T10:48:09.209245+00:00",
+          "status": "official_report",
+          "reason": "県の公表ページを取得し、試験期間・対象範囲・対応度と記載する課題を確認した。"
+        }
+      ]
+    },
+    {
+      "id": "AKQ-0003",
+      "title": "推薦選考結果の実施年が募集要項と一致しない",
+      "category": "accuracy",
+      "status": "confirmed",
+      "priority": "中",
+      "first_checked": "2026-10-27T11:07:12.743046+00:00",
+      "last_checked": "2026-10-27T11:12:41.764997+00:00",
+      "source_title": "令和９年度秋田県林業トップランナー養成研修 研修生選考(推薦)の結果",
+      "source_url": "https://www.pref.akita.lg.jp/pages/archive/99988",
+      "source_sha256": "28d5b096a5052f8c6f70e017730bb60ab57efe4052c8af9837640c6077f207a3",
+      "location": "本文冒頭の推薦選考実施日",
+      "fact": "結果ページは実施日を令和９年１０月１７日（土）と記載している。一方、同年度の公式募集要項の「Ⅱ 選考方法及び日程」は推薦選考日を令和８年10月17日（土）、合格発表を令和８年10月26日（月）としている。令和9年10月17日は日曜日で、結果ページの曜日とも一致しない。",
+      "impact": "どの年の推薦選考結果かを読む際に混乱を招く。合否自体の誤りや実際の不利益は確認していない。",
+      "suggestion": "募集要項と実施記録を確認し、結果本文の実施年を整合させる。",
+      "limits": "公開HTMLと募集要項の日程表の不一致を確認した。県の内部実施記録や受験者への影響は未確認。年度名の令和9年度そのものを誤りとしたものではない。",
+      "verification": {
+        "source_rechecked": true,
+        "sensitive_content_removed": true,
+        "kind": "official_html_and_official_pdf",
+        "method": "HTML本文、公式PDFの2ページ目（印刷1ページ）日程表の描画表示、暦計算を照合した。",
+        "pdf_url": "https://www.pref.akita.lg.jp/uploads/public/archive_0000094770_00/%E4%BB%A4%E5%92%8C%EF%BC%99%E5%B9%B4%E5%BA%A6%E7%A0%94%E4%BF%AE%E7%94%9F%E5%8B%9F%E9%9B%86%E8%A6%81%E9%A0%85.pdf",
+        "pdf_sha256": "8ee88546bac75de55ee0bbdff0c44c3cb532da3b8f7a4384daa6fd1e3f829227",
+        "pdf_checked_at": "2026-10-27T11:11:20.784782+00:00",
+        "recruitment_page_url": "https://www.pref.akita.lg.jp/pages/archive/94770",
+        "recruitment_page_sha256": "ff48ffcdbb34244213d176b0bd8a99a83b2d98c68682dfd861b13f64b789408d"
+      },
+      "authority": [],
+      "history": [
+        {
+          "at": "2026-10-27T11:12:41.764997+00:00",
+          "status": "confirmed",
+          "reason": "公式HTML、公式募集要項の選考日と暦を照合。受験番号などの不要な情報は記録本文に転載しない。"
+        }
+      ]
+    },
+    {
+      "id": "AKQ-0004",
+      "title": "水温グラフの代替説明と表の読み上げ対応を追加確認",
+      "category": "accessibility",
+      "status": "needs_review",
+      "priority": "中",
+      "first_checked": "2026-10-27T12:08:44.047100+00:00",
+      "last_checked": "2026-10-27T12:08:44.047100+00:00",
+      "source_title": "秋田県「きょうの水温」",
+      "source_url": "https://www.pref.akita.lg.jp/pages/archive/2203",
+      "source_sha256": "2e2f9bf7e1e7a23d482f60b75b3c9ca5e5ece16bab40dd65722f41bbea71779b",
+      "location": "本文の水温グラフ画像と直近7日分の表",
+      "fact": "保存HTMLで、グラフ画像1点にalt属性がなく、水温表の見出しもthではなくtdで記述されていることを確認した。直近7日分はHTML表で提供され、長期のテキストデータへのリンクもある。",
+      "impact": "グラフが伝える情報を代替手段でどこまで読み取れるか、表の見出しと数値の関係が読み上げで伝わるかは追加確認が必要。水温データを全く取得できないと判断したものではない。",
+      "suggestion": "画像が伝える期間・比較内容と既存の表・テキストの対応を確認し、必要な代替説明と表の見出し構造を整える。",
+      "limits": "2026年10月27日取得の保存HTMLの構造と周辺本文を照合した記録。現在の表示、画像内の全情報、スクリーンリーダーによる実操作、JIS適合性は未確認。",
+      "verification": {
+        "source_rechecked": true,
+        "sensitive_content_removed": true,
+        "kind": "retained_html",
+        "method": "取得ログのSHA-256と長さを照合し、画像属性、表の全行・セル、周辺の説明と長期データへのリンクを確認した。保存原文の事実と、利用上の影響・現在の表示の評価を分ける。"
+      },
+      "authority": [
+        {
+          "url": "https://www.pref.akita.lg.jp/pages/41008",
+          "provision": "秋田県ウェブアクセシビリティ方針 1・2・3",
+          "effective_date": "2020-10-13改訂の公表方針を2026-10-27確認",
+          "applicability": "CMS本文を対象とする方針。添付ファイル等の例外と本文の代替説明を区別し、保存構造だけでAA不適合とは判定しない。",
+          "kind": "policy"
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-10-27T12:08:44.047100+00:00",
+          "status": "needs_review",
+          "reason": "保存原文でalt属性と表の見出しセルの状態、既存の代替データを確認。現在の実操作と代替範囲は未確認。"
+        }
+      ]
+    }
+  ]
+}
