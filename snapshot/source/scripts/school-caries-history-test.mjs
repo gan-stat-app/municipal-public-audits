@@ -1,0 +1,12 @@
+import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';
+const root=new URL('../public/school-dental/',import.meta.url),html=readFileSync(new URL('index.html',root),'utf8'),js=readFileSync(new URL('app.js',root),'utf8'),data=JSON.parse(gunzipSync(readFileSync(new URL('data/school-caries-history.json.gz',root))));
+if(data.rows.length!==306)throw Error(`歴史系列の行数が不正: ${data.rows.length}`);
+if(!html.includes('全国・学校種別のむし歯被患率等の推移'))throw Error('歴史資料の表示欄がありません');
+if(!html.includes('12歳DMFTとは対象も単位も異なる'))throw Error('比較不能性の説明がありません');
+if(!js.includes('function renderHistory()'))throw Error('歴史グラフの描画処理がありません');
+const get=(school,year)=>data.rows.find(r=>r.school===school&&r.year===year);
+if(get('elementary',1949).caries_rate!==42.08)throw Error('1949年度小学校値が不正');
+if(get('kindergarten',1970).caries_rate!==95.4)throw Error('1970年度幼稚園値が不正');
+if(get('elementary',2025).caries_rate!==30.83)throw Error('2025年度小学校値が不正');
+if(get('junior_high',2025).untreated_rate!==10.08)throw Error('2025年度中学校未処置値が不正');
+console.log(JSON.stringify({ok:true,rows:data.rows.length,years:data.meta.years}));

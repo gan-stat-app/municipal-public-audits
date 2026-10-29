@@ -1,0 +1,53 @@
+{
+  "name": "municipal-smr-source",
+  "private": true,
+  "version": "0.1.0-reconstruction",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build-cross-cause-data.mjs && vite build",
+    "preview": "vite preview",
+    "test": "node scripts/self-test.mjs && node scripts/cross-cause-profile-test.mjs && node scripts/regional-healthcare-vision-test.mjs && node scripts/regional-healthcare-vision-data-test.mjs && node scripts/url-state-test.mjs && node scripts/designated-city-map-test.mjs && node scripts/municipality-selector-regression-test.mjs && node scripts/area-scope-switch-regression-test.mjs && node scripts/maintenance-regression-test.mjs && node scripts/population-pyramid-test.mjs && node scripts/responsive-accessibility-test.mjs && node scripts/national-ranking-map-test.mjs && node scripts/prefecture-aggregation-regression-test.mjs && node scripts/csp-regression-test.mjs && node scripts/jmd-discoverability-test.mjs && node scripts/dataset-structured-data-test.mjs && node scripts/school-dental-test.mjs && node scripts/school-caries-history-test.mjs && node scripts/ndb-annual-tabs-test.mjs && node scripts/dpc-data-test.mjs && node scripts/cancer-screening-latest-year-test.mjs && node scripts/food-poisoning-test.mjs",
+    "test:url": "node scripts/url-state-test.mjs",
+    "test:city-map": "node scripts/designated-city-map-test.mjs",
+    "test:selector": "node scripts/municipality-selector-regression-test.mjs",
+    "test:maintenance": "node scripts/maintenance-regression-test.mjs",
+    "test:population": "node scripts/population-pyramid-test.mjs",
+    "test:live": "node scripts/live-data-test.mjs",
+    "test:ranking": "node scripts/ranking-live-test.mjs",
+    "test:map": "node scripts/map-live-test.mjs",
+    "test:pref-map": "node scripts/prefecture-map-live-test.mjs",
+    "test:official": "node scripts/official-live-test.mjs",
+    "audit:fukushima": "node scripts/fukushima-prefecture-audit.mjs",
+    "audit:pref-map-performance": "node scripts/prefecture-map-performance-audit.mjs",
+    "audit:build-performance": "node scripts/production-build-performance-audit.mjs",
+    "audit:browser-performance": "node scripts/browser-performance-audit.mjs",
+    "candidate:pref-map": "node scripts/build-prefecture-map-candidate.mjs",
+    "candidate:muni-map": "node scripts/build-municipality-map-candidate.mjs",
+    "build:areas": "node scripts/build-area-catalog.mjs",
+    "capture:parity": "node scripts/capture-parity-cases.mjs",
+    "test:scope-switch": "node scripts/area-scope-switch-regression-test.mjs",
+    "test:medical-area-smr": "node scripts/medical-area-smr-test.mjs",
+    "test:medical-area-death-difference": "node scripts/medical-area-death-difference-test.mjs",
+    "audit:origins": "node scripts/external-origin-build-audit.mjs",
+    "test:a11y": "node scripts/responsive-accessibility-test.mjs",
+    "audit:all-prefectures": "node scripts/all-prefecture-all-cause-audit.mjs",
+    "test:pref-aggregation": "node scripts/prefecture-aggregation-regression-test.mjs",
+    "test:csp": "node scripts/csp-regression-test.mjs",
+    "test:jmd-discoverability": "node scripts/jmd-discoverability-test.mjs",
+    "test:dataset-structured-data": "node scripts/dataset-structured-data-test.mjs",
+    "test:dpc": "node scripts/dpc-data-test.mjs",
+    "test:dpc-browser": "node scripts/dpc-browser-regression-test.mjs",
+    "test:regional-data": "node scripts/regional-healthcare-vision-data-test.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.1",
+    "mapshaper": "0.7.95",
+    "playwright-core": "1.63.0",
+    "vite": "8.3.5"
+  }
+}

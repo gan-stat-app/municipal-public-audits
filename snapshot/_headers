@@ -1,0 +1,194 @@
+/*
+  Strict-Transport-Security: max-age=86400
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-heUEjm4XTT0hnYhpFJJfuDmwDj7t4juME+wG9u5JNxY=' 'sha256-QaFAJtElgViW5sM/cD7dzSWV8ai5gvHyEvzwyS7yR1w=' 'sha256-rnHE6Tb4V9j2WeE+mCQ4377I10jvS4TilW6++gke81A=' 'sha256-IGIw5AMsYDhf4d4NudFIXPkBLDYiJayN1AKaicPg7x0=' 'sha256-EmpK3PDzD2gu3WbogIOb5vLkRF6h4MAQi1dcCPHHpy8='; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; frame-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+
+/care/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-EmpK3PDzD2gu3WbogIOb5vLkRF6h4MAQi1dcCPHHpy8='; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; frame-src 'none'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'
+
+/learning/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-heUEjm4XTT0hnYhpFJJfuDmwDj7t4juME+wG9u5JNxY=' 'sha256-EmpK3PDzD2gu3WbogIOb5vLkRF6h4MAQi1dcCPHHpy8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; frame-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
+
+/jmd/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/facility-standards/*
+  Cache-Control: no-cache, no-store, must-revalidate, no-transform
+
+/data/*
+  Cache-Control: public, max-age=3600
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate, no-transform
+
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate, no-transform
+
+/dpc/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/esophageal-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/stomach-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/colon-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/liver-intrahepatic-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/gallbladder-biliary-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/pancreatic-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/lung-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/breast-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/uterine-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/leukemia-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/diabetes-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/hypertensive-diseases-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/heart-disease-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/acute-myocardial-infarction-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/other-ischemic-heart-disease-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/arrhythmia-conduction-disorders-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/heart-failure-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/cerebrovascular-disease-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/subarachnoid-hemorrhage-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/intracerebral-hemorrhage-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/cerebral-infarction-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/aortic-aneurysm-dissection-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/pneumonia-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/copd-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/asthma-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/liver-disease-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/renal-failure-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/senility-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/unintentional-injuries-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/traffic-accidents-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/suicide-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/colorectal-cancer-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/ischemic-heart-disease-smr-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/selected-causes-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/all-cause-age-ranking-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/dpc-surgery-ranking-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/data/cross-cause-profile-v1/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/tokyo-cause-smr-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/smr-map-explorer/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+# One segment for the prefecture code; keep the suffix and subtree exact.
+# Do not widen to /analysis/* or /analysis/prefecture-* (different cache policies).
+/analysis/prefecture-:prefecture-cause-smr-2020-2024/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/jmd-mortality-guide/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/regional-healthcare-guide/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/ndb-medical-guide/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/municipality/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/prefecture-life-expectancy/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/population-pyramid/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/population-pyramid/japan/x-post.txt
+  Content-Type: text/plain; charset=utf-8
+
+
+
+/food-business/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/food-business/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+
+
+/analysis/municipal-machine-readability/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+
+/analysis/aomori-finance-excel-conversion/*
+  Cache-Control: public, max-age=0, must-revalidate, no-transform

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "project": "全国自治体の公開データ機械可読性評価",
+  "production_site": "https://municipal-smr.jp/",
+  "future_public_route": "/data-readability/",
+  "publication_state": "research_inputs_only",
+  "scope": [
+    {
+      "id": "population",
+      "name": "地域・年齢別人口",
+      "comparison_period": "2026-01-01",
+      "period_kind": "observation_date"
+    },
+    {
+      "id": "food_business",
+      "name": "食品営業許可・届出",
+      "comparison_period": "2026-09",
+      "period_kind": "separate_monthly_and_snapshot_cohorts"
+    },
+    {
+      "id": "emergency_sites",
+      "name": "指定緊急避難場所一覧",
+      "comparison_period": "CY2026",
+      "period_kind": "declared_snapshot_date"
+    },
+    {
+      "id": "public_facilities",
+      "name": "公共施設一覧",
+      "comparison_period": "CY2026",
+      "period_kind": "declared_snapshot_date"
+    },
+    {
+      "id": "finance",
+      "name": "財政状況資料集",
+      "comparison_period": "FY2024",
+      "period_kind": "fiscal_year"
+    }
+  ],
+  "channels": [
+    "municipal_direct",
+    "delegated_catalog",
+    "national_platform",
+    "prefectural_aggregate"
+  ],
+  "direct_publication_channels": [
+    "municipal_direct",
+    "delegated_catalog"
+  ],
+  "rules": {
+    "no_municipality_overall_score": true,
+    "no_zero_for_missing_or_failed": true,
+    "preserve_original_bytes": true,
+    "keep_each_file_and_format": true,
+    "separate_national_platform_from_local_publication": true,
+    "separate_ownership_from_geographic_coverage": true,
+    "manual_review_before_publishing_findings": true,
+    "no_cross_municipality_bulk_year_comparison": true,
+    "food_cohorts": [
+      "all_permits",
+      "monthly_new_permits",
+      "fiscal_year_new_permits_and_notifications",
+      "national_consent_records",
+      "scope_unconfirmed"
+    ],
+    "unconfirmed_source_is_not_unpublished": true,
+    "no_unattended_schedule_created": true
+  },
+  "engine": {
+    "name": "Harunobu",
+    "version": "0.2.2",
+    "commit": "3f70b5309dd3682289f0ee030991ab2d1cb54fef",
+    "mode": "thorough",
+    "ai_disabled": true,
+    "strict": true
+  },
+  "limits": {
+    "download_bytes": 52428800,
+    "download_timeout_seconds": 45,
+    "evaluation_timeout_seconds": 300,
+    "xlsx_rows": 10000,
+    "xlsx_columns": 500
+  }
+}

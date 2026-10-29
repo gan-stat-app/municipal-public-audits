@@ -1,0 +1,11 @@
+import{loadJson}from'./dataClient.js';
+export const historicalYears=Array.from({length:26},(_,i)=>1999+i);export const futureYears=[2020,2025,2030,2035,2040,2045,2050];
+async function loadWithParts(path,parts){try{return await loadJson(path)}catch(primary){if(typeof DecompressionStream!=='function')throw primary;const responses=await Promise.all(parts.map(p=>fetch(p,{credentials:'same-origin'})));if(responses.some(r=>!r.ok))throw primary;const buffers=await Promise.all(responses.map(r=>r.arrayBuffer())),blob=new Blob(buffers);return JSON.parse(await new Response(blob.stream().pipeThrough(new DecompressionStream('gzip'))).text())}}
+let cache=null;export function loadPopulationData(){return cache??=Promise.all([loadWithParts('/data/population-historical-juki-2024-boundary.json.gz',Array.from({length:9},(_,i)=>`/population/historical-${String(i).padStart(2,'0')}.part`)),loadWithParts('/data/population-future-ipss-2023.json.gz',Array.from({length:3},(_,i)=>`/population/future-${String(i).padStart(2,'0')}.part`))]).then(([historical,future])=>({historical,future}))}
+export function populationAgeValues(dataset,row,mode='historical',detail=false){if(mode!=='historical'||detail)return dataset.ages.map((label,i)=>({label,value:row[4][i]})).filter(x=>x.value!=null);const first=dataset.ages.slice(0,16).map((label,i)=>({label,value:row[4][i]})),age80=row[4][16]==null?row[4].slice(17).reduce((s,v)=>s+(v??0),0):row[4][16];return[...first,{label:'80歳以上',value:age80}]}
+export function populationRows(dataset,year,areaCode){return dataset?.rows?.filter(r=>r[0]===year&&r[1]===areaCode)??[]}
+export function populationScaleMax(dataset,areaCode,mode='historical',detail=false){let max=1;for(const row of dataset?.rows??[])if(row[1]===areaCode)for(const item of populationAgeValues(dataset,row,mode,detail))max=Math.max(max,item.value??0);return max}
+export function nextPopulationYear(year,years){const i=years.indexOf(year);return i<0||i>=years.length-1?year:years[i+1]}
+export function replayStartYear(year,years){return year===years.at(-1)?years[0]:year}
+
+let demographicContextCache=null;export function loadDemographicContext(){return demographicContextCache??=loadJson('/data/demographic-context-ssdse-a-2026.json.gz')}

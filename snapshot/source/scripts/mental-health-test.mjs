@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const data=JSON.parse(fs.readFileSync('mental-health/data/mental-health-history.json','utf8'));
+const page=fs.readFileSync('mental-health/index.html','utf8');
+const app=fs.readFileSync('mental-health/app.js','utf8');
+const style=fs.readFileSync('mental-health/style.css','utf8');
+assert.deepEqual(data.meta.years,[2019,2020,2021,2022,2023,2024]);
+for(const a of data.annual){
+  assert.equal(a.rows.length,48);
+  assert.equal(a.rows.filter(r=>r.prefecture!=='全国').length,47);
+  assert.ok(a.rows.every(r=>r.population>0));
+  assert.ok(a.rows.every(r=>Number.isFinite(r.medical_protection_notifications)));
+  assert.ok(a.rows.every(r=>Number.isFinite(r.measure_inpatients)));
+  assert.ok(a.rows.every(r=>Number.isFinite(r.certificate_registry)));
+}
+const latest=data.annual.at(-1).rows,oldest=data.annual[0].rows;
+assert.equal(latest.find(r=>r.prefecture==='全国').notifications,26246);
+assert.equal(latest.find(r=>r.prefecture==='秋田県').pathways.police.reports,63);
+assert.equal(oldest.find(r=>r.prefecture==='秋田県').notifications,82);
+assert.equal(oldest.find(r=>r.prefecture==='秋田県').medical_protection_notifications,2321);
+assert.equal(data.annual[4].rows.find(r=>r.prefecture==='全国').medical_protection_notifications,184861);
+assert.match(page,/2019～2024年度/);
+assert.match(page,/通報数≠措置入院数/);
+assert.match(page,/精神疾患の有病率や行政の優劣を直接示しません/);
+assert.match(page,/指定都市の再掲値は重複加算していません/);
+assert.match(app,/swatch-\$\{i\}/);
+assert.doesNotMatch(app,/style="background:/);
+assert.match(page,/value="no_exam_share">診察不要となった割合/);
+assert.match(app,/p\.no_exam\/r\.notifications\*100/);
+assert.match(app,/通報だけを分母にした割合ではありません/);
+const akita2024=latest.find(r=>r.prefecture==='秋田県');
+assert.equal(akita2024.pathways.total.no_exam/akita2024.notifications*100,60);
+for(let i=0;i<7;i++)assert.match(style,new RegExp(`\\.swatch-${i}\\{background:`));
+console.log('mental-health history and legend: ok');

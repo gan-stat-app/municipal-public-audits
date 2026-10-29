@@ -1,0 +1,24 @@
+{
+  "reference_branch": "main",
+  "reference_index_blob_sha": "68f8a32eedf2640bd4f8f76f144f625da5ad851e",
+  "production": {
+    "origin": "https://municipal-smr.jp",
+    "root_element": "root",
+    "javascript": "/assets/formal-app-Bczh_25D.js",
+    "stylesheet": "/assets/formal-CJG_-x8v.css",
+    "data_prefix": "/data/",
+    "population_prefix": "/population/",
+    "analysis_prefix": "/analysis/",
+    "transparency_prefix": "/transparency/"
+  },
+  "network_policy": {
+    "same_origin_only": true,
+    "external_runtime_dependency_allowed": false
+  },
+  "reconstruction_policy": {
+    "keep_existing_data_paths": true,
+    "keep_url_selection_compatibility": true,
+    "keep_statistical_output_identical": true,
+    "do_not_replace_main_until_parity": true
+  }
+}

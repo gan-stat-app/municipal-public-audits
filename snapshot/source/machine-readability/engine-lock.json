@@ -1,0 +1,14 @@
+{
+  "commit": "3f70b5309dd3682289f0ee030991ab2d1cb54fef",
+  "implementation_sha256": "13a962c0e0cdab39f48f4339ba4d6c85c11c186880c5c1da39f681fc3e50ce90",
+  "magika_available": false,
+  "name": "Harunobu",
+  "runtime_dependencies": {
+    "PyYAML": "6.0.3",
+    "openpyxl": "3.1.5",
+    "pydantic": "2.14.0"
+  },
+  "source_archive_sha256": "a55c0786dbdb314bd2cec907d123082039934412af9ebdb60861d88598b4650f",
+  "source_archive_url": "https://codeload.github.com/digital-go-jp/machine_readability_rule/zip/3f70b5309dd3682289f0ee030991ab2d1cb54fef",
+  "version": "0.2.2"
+}

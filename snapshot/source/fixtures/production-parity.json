@@ -1,0 +1,13 @@
+{
+  "captured_at": "2026-08-26",
+  "correction": {"date":"2026-09-11","source_commit":"03014754461b97423343a38c48d871f55c065c55","audit":"source/smr-audit-2015-2018/repair.json","case":"sapporo-juki-male-full","observed_delta":2},
+  "cases": [
+    {"id":"akita-juki-male-full","basis":"juki","datasetCode":"Se00","areaCode":"05201","sex":"男","startYear":1999,"endYear":2024,"observed":44518,"expected":43879.465585,"smr":101.45520098407552,"ci95Low":100.51491930926892,"ci95High":102.4020892702369,"years":26},
+    {"id":"akita-juki-female-full","basis":"juki","datasetCode":"Se00","areaCode":"05201","sex":"女","startYear":1999,"endYear":2024,"observed":41911,"expected":42329.261174,"smr":99.01188642938821,"ci95Low":98.06620640984652,"ci95High":99.9644153464908,"years":26},
+    {"id":"akita-juki-total-full","basis":"juki","datasetCode":"Se00","areaCode":"05201","sex":"男女計","startYear":1999,"endYear":2024,"observed":86429,"expected":86208.726759,"smr":100.25551153494678,"ci95Low":99.58822596537867,"ci95High":100.92615829189653,"years":26},
+    {"id":"akita-juki-male-recent","basis":"juki","datasetCode":"Se00","areaCode":"05201","sex":"男","startYear":2015,"endYear":2024,"observed":19247,"expected":18930.343975999996,"smr":101.67274310705321,"ci95Low":100.24136658398201,"ci95High":103.1194461273963,"years":10},
+    {"id":"akita-census-male-full","basis":"census","datasetCode":"Se00","areaCode":"05201","sex":"男","startYear":1999,"endYear":2024,"observed":44518,"expected":43638.27448,"smr":102.01594937124104,"ci95Low":101.07047070872443,"ci95High":102.96807116021097,"years":26},
+    {"id":"akita-pref-juki-male-full","basis":"juki","datasetCode":"Se00","areaCode":"05000","sex":"男","startYear":1999,"endYear":2024,"observed":190798,"expected":179526.32396299994,"smr":106.27856449582464,"ci95Low":105.8022147471304,"ci95High":106.75652768383954,"years":26},
+    {"id":"sapporo-juki-male-full","basis":"juki","datasetCode":"Se00","areaCode":"01100","sex":"男","startYear":1999,"endYear":2024,"observed":224040,"expected":224440.1129769999,"smr":99.82172840153538,"ci95Low":99.40880773933415,"ci95High":100.23593955290364,"years":26}
+  ]
+}
