@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_commit": "6a0dfc3701af920c937823650ae65021ed55fbe0",
+  "source_commit": "5ed8e956292d60bf5aebb734aa0f46ffb6852be4",
   "source_repository": "gan-stat-app/municipal-smr-site",
   "files": [
     {
@@ -17,8 +17,8 @@
     },
     {
       "path": "analysis/akita-website-quality/findings.csv",
-      "git_blob_sha1": "eb8aaf25bc40af6ece2ba7517215553af99bfbd2",
-      "bytes": 3842,
+      "git_blob_sha1": "dc342e578dee39a94aec079f9799bac8b575407a",
+      "bytes": 12761,
       "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/findings.csv"
     },
     {
@@ -35,20 +35,20 @@
     },
     {
       "path": "analysis/akita-website-quality/national.json",
-      "git_blob_sha1": "b3fcf018b52c1e66c522fd76732710254a484a19",
-      "bytes": 68673,
+      "git_blob_sha1": "4c2dd5ffd15bc3bb9c2562579e1e8181d8959156",
+      "bytes": 89752,
       "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/national.json"
     },
     {
       "path": "analysis/akita-website-quality/findings.json",
-      "git_blob_sha1": "299be8d8623d242a82a3d2d1f3428e7836f83e71",
-      "bytes": 14474,
+      "git_blob_sha1": "c0a91308f69ed3b45db6fd5a6d18a7bcde6e13b1",
+      "bytes": 31563,
       "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/findings.json"
     },
     {
       "path": "analysis/akita-website-quality/national.csv",
-      "git_blob_sha1": "ecea2d5c38909404f2c8998d4c17ccc420b5bab6",
-      "bytes": 5069,
+      "git_blob_sha1": "8203acb28011dff8137af3cfabbacb510e810ed2",
+      "bytes": 14498,
       "source_url": "https://municipal-smr.jp/analysis/akita-website-quality/national.csv"
     },
     {
