@@ -1,0 +1,29 @@
+{
+  "kind": "synthetic-binary-roundtrip-test",
+  "original": {
+    "size": 1153434,
+    "sha256": "0a00429d63cc6accf284ce7ec5f88992cc7f46eba635a0ccd2ed57d05d39a530",
+    "construction": "bytes 0..255 repeated and truncated; no real data"
+  },
+  "method": "byte splitting only; concatenate parts in listed order",
+  "chunks": [
+    {
+      "path": "part-000.bin",
+      "offset": 0,
+      "size": 524288,
+      "sha256": "33bc8aab40703678c3ebe94d2dd8f2afff285dd901f9234e841e4679f8204fd5"
+    },
+    {
+      "path": "part-001.bin",
+      "offset": 524288,
+      "size": 524288,
+      "sha256": "33bc8aab40703678c3ebe94d2dd8f2afff285dd901f9234e841e4679f8204fd5"
+    },
+    {
+      "path": "part-002.bin",
+      "offset": 1048576,
+      "size": 104858,
+      "sha256": "51dea60906c2aafba213bb27287f572d001e91522ec3fb994d3701d33821cbc5"
+    }
+  ]
+}
