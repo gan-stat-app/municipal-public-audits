@@ -4,7 +4,7 @@ import hashlib
 import io
 import json
 import os
-from pathlib import PurePosixPath
+from pathlib import PurePosixPath, Path
 import re
 import urllib.error
 import urllib.parse
@@ -56,6 +56,8 @@ def artifact_bytes(artifact):
 
 
 def validate(raw, name):
+    if name.startswith('public-dataset-'):
+        return validate_dataset(raw, name.removeprefix('public-dataset-'))
     site = name == 'public-site-build'
     require(site or re.fullmatch(r'public-(?:collection|tohoku)-\d+', name), 'Unapproved artifact')
     with zipfile.ZipFile(io.BytesIO(raw)) as archive:
@@ -119,6 +121,31 @@ def validate_site_inventory(archive):
             require(not credential.search(archive.read(name).decode('utf-8')), 'Credential-like output')
 
 
+def validate_dataset(raw, domain):
+    from datasets import load_registry
+    registry = load_registry()
+    require(domain in registry['groups'], 'Unknown dataset')
+    group = registry['groups'][domain]
+    fingerprint = hashlib.sha256(json.dumps(group, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    expected = {x['path']: x['sha'] for x in group['assets']}
+    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+        items = archive.infolist()
+        require(len(items) == len(expected)+1 and sum(x.file_size for x in items) <= 256*1024*1024, 'Dataset bounds')
+        require(len({x.filename for x in items}) == len(items), 'Duplicate dataset member')
+        require({x.filename for x in items} == {'receipt.json'} | {'files/'+p for p in expected}, 'Unreviewed dataset member')
+        for item in items:
+            require(not item.is_dir() and (item.external_attr >> 16) & 0o170000 in (0, 0o100000), 'Non-regular dataset member')
+        report = json.loads(archive.read('receipt.json'))
+        require(report.get('status') == 'passed' and report.get('domain') == domain and report.get('fingerprint') == fingerprint, 'Wrong dataset receipt')
+        require(report.get('coverage') == group['coverage'] and report.get('generation') == group['generation'], 'Inflated coverage')
+        require([c['command'] for c in report['commands']] == group['commands'] and all(c['exit_code']==0 for c in report['commands']), 'Incomplete checks')
+        require(len(report['files']) == len(expected) and {f['path'] for f in report['files']} == set(expected), 'Incomplete inventory')
+        for item in report['files']:
+            value = archive.read('files/'+item['path'])
+            blob = hashlib.sha1(b'blob '+str(len(value)).encode()+b'\0'+value).hexdigest()
+            require(blob == expected[item['path']] == item['git_blob'] and len(value) == item['bytes'] and hashlib.sha256(value).hexdigest() == item['sha256'], 'Changed dataset')
+
+
 def main():
     require(os.environ.get('GITHUB_REPOSITORY') == REPO and os.environ.get('GITHUB_REF') == 'refs/heads/main'
             and os.environ.get('GITHUB_EVENT_NAME') in {'push', 'schedule', 'workflow_dispatch'}, 'Untrusted publisher context')
@@ -129,8 +156,16 @@ def main():
     require(artifacts['total_count'] == len(artifacts['artifacts']), 'Incomplete artifact inventory')
     names = {'public-site-build', 'public-collection-' + str(run_id), 'public-tohoku-' + str(run_id)}
     selected = [a for a in artifacts['artifacts'] if a['name'] in names and not a.get('expired')]
-    require(len(selected) == 1, 'Ambiguous public output')
-    artifact = selected[0]
+    if run.get('path') == '.github/workflows/public-datasets.yml':
+        selected = [a for a in artifacts['artifacts'] if a['name'].startswith('public-dataset-') and not a.get('expired')]
+        require(selected and len({a['name'] for a in selected}) == len(selected), 'Missing or duplicate datasets')
+    else:
+        require(len(selected) == 1, 'Ambiguous public output')
+    for artifact in selected:
+        publish_artifact(artifact, run_id, run)
+
+
+def publish_artifact(artifact, run_id, run):
     raw = artifact_bytes(artifact)
     validate(raw, artifact['name'])
     tag = 'ci-handoff-' + str(run_id)

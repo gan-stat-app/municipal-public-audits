@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "source_commit": "a2851022e129960ac011780190a2ce84caf0d44d",
+  "excluded": [
+    "arbitrary-period-smr",
+    "private-originals",
+    "unreviewed-document-findings"
+  ],
+  "groups": {
+    "ndb": {
+      "commands": [
+        [
+          "node",
+          "scripts/ndb-annual-tabs-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "ndb/"
+      ]
+    },
+    "dpc": {
+      "commands": [
+        [
+          "node",
+          "scripts/dpc-data-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "dpc/"
+      ]
+    },
+    "care": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "care/"
+      ]
+    },
+    "population": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "population/"
+      ]
+    },
+    "age-specific-mortality": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "age-specific-mortality/"
+      ]
+    },
+    "life-expectancy": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "life-expectancy/"
+      ]
+    },
+    "school-dental": {
+      "commands": [
+        [
+          "node",
+          "scripts/school-dental-test.mjs"
+        ],
+        [
+          "node",
+          "scripts/school-caries-history-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "school-dental/"
+      ]
+    },
+    "regional-healthcare-vision": {
+      "commands": [
+        [
+          "node",
+          "scripts/regional-healthcare-vision-data-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "regional-healthcare-vision/"
+      ]
+    },
+    "welfare": {
+      "commands": [
+        [
+          "node",
+          "scripts/welfare-data-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "welfare/"
+      ]
+    },
+    "cancer-screening": {
+      "commands": [
+        [
+          "node",
+          "scripts/cancer-screening-latest-year-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "cancer-screening/"
+      ]
+    },
+    "cancer-care": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "cancer-care/"
+      ]
+    },
+    "medical-cost": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "medical-cost/"
+      ]
+    },
+    "mental-health": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "mental-health/"
+      ]
+    },
+    "food-poisoning": {
+      "commands": [
+        [
+          "node",
+          "scripts/food-poisoning-test.mjs"
+        ]
+      ],
+      "coverage": "existing-regression",
+      "generation": "not-migrated",
+      "prefixes": [
+        "food-poisoning/"
+      ]
+    },
+    "lifestyle": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "lifestyle/"
+      ]
+    },
+    "food-business": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "existing-public-collector",
+      "prefixes": [
+        "food-business/"
+      ]
+    },
+    "facility-standards": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "existing-public-collector",
+      "prefixes": [
+        "facility-standards/",
+        "data/facility-standards/",
+        "data/tohoku-facility-standards/"
+      ]
+    },
+    "hospital-inspection": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "hospital-inspection/"
+      ]
+    },
+    "jmd": {
+      "commands": [],
+      "coverage": "byte-identity-only",
+      "generation": "not-migrated",
+      "prefixes": [
+        "jmd/",
+        "data/jmd/"
+      ]
+    }
+  }
+}
