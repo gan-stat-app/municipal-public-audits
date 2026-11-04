@@ -1,0 +1,41 @@
+name: DPC public aggregate generation
+on:
+  push:
+    branches: [main]
+    paths: ['workloads/dpc_generation.py', 'workloads/test_dpc_generation.py', 'workloads/dpc-generation-inputs.json', 'workloads/common.py', 'dpc-snapshot/scripts/*dpc-area-mdc-summary.mjs', '.github/workflows/dpc-generation.yml']
+  pull_request:
+    paths: ['workloads/dpc_generation.py', 'workloads/test_dpc_generation.py', 'workloads/dpc-generation-inputs.json', 'workloads/common.py', 'dpc-snapshot/scripts/*dpc-area-mdc-summary.mjs', '.github/workflows/dpc-generation.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            workloads/common.py
+            workloads/dpc_generation.py
+            workloads/test_dpc_generation.py
+            workloads/dpc-generation-inputs.json
+            dpc-snapshot/scripts/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22.23.2'
+          package-manager-cache: false
+      - run: python -m unittest discover -s workloads -p 'test_dpc_generation.py'
+      - name: Rebuild and compare published DPC aggregate
+        run: python workloads/dpc_generation.py
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: dpc-generation
+          path: dpc-generation-output/
+          retention-days: 1
+          if-no-files-found: error
