@@ -1,5 +1,7 @@
 """Stage 1: regenerate only area/MDC summaries from pinned public aggregates."""
 from concurrent.futures import ThreadPoolExecutor
+import base64
+import gzip
 import hashlib
 import json
 from pathlib import Path
@@ -26,6 +28,14 @@ def validate(data):
         if len(item['sha']) != 40 or any(c not in '0123456789abcdef' for c in item['sha']):
             raise ValueError('Invalid input pin')
     return data
+
+
+def compare(published, rebuilt, mirror):
+    original_json = gzip.decompress(base64.b64decode(published, validate=True))
+    rebuilt_json = gzip.decompress(base64.b64decode(rebuilt, validate=True))
+    if rebuilt_json != original_json or mirror != rebuilt:
+        raise ValueError('Regenerated JSON bytes differ from published JSON bytes')
+    return rebuilt_json
 
 
 def main():
@@ -56,18 +66,23 @@ def main():
     commands = [run(['node', 'scripts/verify-dpc-area-mdc-summary.mjs'])]
     commands.append(run(['node', 'scripts/build-dpc-area-mdc-summary.mjs']))
     rebuilt = (SNAPSHOT / data['output']['path']).read_bytes()
-    if rebuilt != published or mirror.read_bytes() != published:
-        raise ValueError('Generated output differs byte-for-byte from published output')
+    rebuilt_json = compare(published, rebuilt, mirror.read_bytes())
+    # The published gzip embeds its original timestamp and filename. Keep the
+    # public container unchanged; never silently republish a recompressed file.
     report = {'schema_version': 1, 'scope': data['scope'], 'status': 'passed',
               'inputs_sha256': hashlib.sha256(MANIFEST.read_bytes()).hexdigest(),
-              'output_git_blob': blob(rebuilt), 'output_sha256': hashlib.sha256(rebuilt).hexdigest(),
+              'output_git_blob': blob(published), 'output_sha256': hashlib.sha256(published).hexdigest(),
+              'regenerated_container_sha256': hashlib.sha256(rebuilt).hexdigest(),
+              'decoded_json_sha256': hashlib.sha256(rebuilt_json).hexdigest(),
               'input_files': len(data['inputs']), 'numeric_cells': 4*335*18*11,
-              'byte_identity': True, 'upstream_originals': 'not-migrated',
+              'decoded_byte_identity': True, 'container_byte_identity': rebuilt == published,
+              'upstream_originals': 'not-migrated',
               'commands': commands, 'seconds': round(time.monotonic()-started, 3)}
     out = ROOT / 'dpc-generation-output'
     out.mkdir(exist_ok=True)
     (out/'receipt.json').write_text(json.dumps(report, indent=2)+'\n')
-    (out/'area-mdc-summary.json.gz.b64').write_bytes(rebuilt)
+    (out/'area-mdc-summary.json.gz.b64').write_bytes(published)
+    (out/'regenerated-area-mdc-summary.json.gz.b64').write_bytes(rebuilt)
     print(json.dumps(report))
 
 
