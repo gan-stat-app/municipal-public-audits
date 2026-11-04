@@ -2,9 +2,9 @@ name: DPC public aggregate generation
 on:
   push:
     branches: [main]
-    paths: ['workloads/dpc_generation.py', 'workloads/test_dpc_generation.py', 'workloads/dpc-generation-inputs.json', 'workloads/common.py', 'dpc-snapshot/scripts/*dpc-area-mdc-summary.mjs', '.github/workflows/dpc-generation.yml']
+    paths: ['workloads/dpc_generation.py', 'workloads/test_dpc_generation.py', 'workloads/dpc-generation-inputs.json', 'workloads/common.py', 'dpc-snapshot/scripts/*dpc-area-mdc-summary.mjs', 'stage2/**', '.github/workflows/dpc-generation.yml']
   pull_request:
-    paths: ['workloads/dpc_generation.py', 'workloads/test_dpc_generation.py', 'workloads/dpc-generation-inputs.json', 'workloads/common.py', 'dpc-snapshot/scripts/*dpc-area-mdc-summary.mjs', '.github/workflows/dpc-generation.yml']
+    paths: ['workloads/dpc_generation.py', 'workloads/test_dpc_generation.py', 'workloads/dpc-generation-inputs.json', 'workloads/common.py', 'dpc-snapshot/scripts/*dpc-area-mdc-summary.mjs', 'stage2/**', '.github/workflows/dpc-generation.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -37,5 +37,26 @@ jobs:
         with:
           name: dpc-generation
           path: dpc-generation-output/
+          retention-days: 1
+          if-no-files-found: error
+
+  definitions-from-official-excel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - run: python -m pip install openpyxl==3.1.5 et-xmlfile==2.0.0
+      - run: python -m unittest discover -s stage2 -p 'test_stage2.py'
+      - name: Rebuild 2024 surgery definitions from official Excel
+        run: python stage2/run.py
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: dpc-official-definitions
+          path: dpc-stage2-output/
           retention-days: 1
           if-no-files-found: error
