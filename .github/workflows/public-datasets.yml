@@ -1,0 +1,75 @@
+name: Public non-SMR datasets
+on:
+  push:
+    branches: [main]
+    paths: ['workloads/inputs.json', 'workloads/common.py', 'snapshot/source/scripts/**', 'workloads/datasets.json', 'workloads/datasets.py', 'workloads/test_datasets.py', 'workloads/publish.py', '.github/workflows/public-datasets.yml']
+  pull_request:
+    paths: ['workloads/inputs.json', 'workloads/common.py', 'snapshot/source/scripts/**', 'workloads/datasets.json', 'workloads/datasets.py', 'workloads/test_datasets.py', 'workloads/publish.py', '.github/workflows/public-datasets.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - run: python -m pip install PyYAML==6.0.3
+      - run: python -m unittest discover -s workloads -p 'test_*.py'
+      - run: python workloads/datasets.py --check
+  dataset:
+    needs: contract
+    if: github.event_name != 'pull_request'
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        domain: [ndb, dpc, care, population, age-specific-mortality, life-expectancy, school-dental, regional-healthcare-vision, welfare, cancer-screening, cancer-care, medical-cost, mental-health, food-poisoning, lifestyle, food-business, facility-standards, hospital-inspection, jmd]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22.23.2'
+          package-manager-cache: false
+      - name: Verify and preserve fixed public dataset
+        env:
+          DATASET_DOMAIN: ${{ matrix.domain }}
+        run: python workloads/datasets.py --domain "$DATASET_DOMAIN"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: public-dataset-${{ matrix.domain }}
+          path: dataset-output/${{ matrix.domain }}/
+          retention-days: 1
+          if-no-files-found: error
+  publish:
+    needs: [contract, dataset]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.contract.result == 'success'
+    permissions:
+      contents: write
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            workloads/publish.py
+            workloads/datasets.json
+            workloads/datasets.py
+            workloads/common.py
+            workloads/inputs.json
+          sparse-checkout-cone-mode: false
+      - name: Preserve verified public datasets as immutable release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python workloads/publish.py
