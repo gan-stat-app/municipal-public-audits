@@ -12,7 +12,7 @@ on:
         default: '12'
         type: string
   schedule:
-    - cron: '0 18 * * 0' # Monday 03:00 JST, before the private 04:00 regression
+    - cron: '0 18 * * 0' # Monday 03:00 JST: original-file checks only; no scheduled site build
 permissions:
   contents: read
 concurrency:
@@ -55,7 +55,7 @@ jobs:
           PY
   site-build-and-ui:
     needs: security-and-contract
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.event_name != 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 50
     steps:

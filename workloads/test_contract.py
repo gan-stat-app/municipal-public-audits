@@ -142,6 +142,15 @@ class ContractTests(unittest.TestCase):
         self.assertNotIn('if', workflow['jobs']['security-and-contract'])
         self.assertIn('opendata_required', workflow['jobs']['security-and-contract']['outputs'])
 
+    def test_weekly_original_checks_do_not_build_or_publish_the_site(self):
+        workflow = yaml.load((common.ROOT / '.github/workflows/public-workloads.yml').read_text(), Loader=yaml.BaseLoader)
+        self.assertEqual(workflow['on']['schedule'], [{'cron': '0 18 * * 0'}])
+        self.assertIn("github.event_name != 'schedule'", workflow['jobs']['site-build-and-ui']['if'])
+        self.assertNotIn("github.event_name != 'schedule'", workflow['jobs']['opendata-current-originals']['if'])
+        self.assertIn('site-build-and-ui', workflow['jobs']['publish']['needs'])
+        self.assertNotIn('always()', workflow['jobs']['publish']['if'])
+        self.assertIn('workflow_dispatch', workflow['on'])
+
     def test_existing_monthly_cadence_is_preserved(self):
         workflow = yaml.load((common.ROOT / '.github/workflows/public-collectors.yml').read_text(), Loader=yaml.BaseLoader)
         self.assertEqual(workflow['on']['schedule'], [{'cron': '37 21 15,25 * *'}, {'cron': '17 23 19 * *'}])
