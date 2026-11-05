@@ -1,6 +1,15 @@
 name: Public-source API review with encrypted results
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: One approved document request, or the existing key probe
+        type: choice
+        options: [document-once, key-check]
+        default: document-once
+  push:
+    branches: [main]
+    paths: ['api_review/queue.json']
   pull_request:
     paths: ['api_review/**', '.github/workflows/public-api-review.yml']
   schedule:
@@ -25,7 +34,7 @@ jobs:
       - run: python -m unittest discover -s api_review -p 'test_*.py'
   execute:
     needs: test
-    if: github.event_name == 'schedule' && github.ref == 'refs/heads/main' && vars.PUBLIC_API_ENABLED == 'true'
+    if: (github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'document-once')) && github.ref == 'refs/heads/main' && vars.PUBLIC_API_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     permissions:
@@ -43,9 +52,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           API_RESULT_KEY: ${{ secrets.API_RESULT_KEY }}
+          PUBLIC_RUN_MODE: ${{ inputs.mode }}
         run: python api_review/worker.py
   key-check:
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && vars.PUBLIC_API_ENABLED == 'true'
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'key-check' && github.ref == 'refs/heads/main' && vars.PUBLIC_API_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 3
     permissions:

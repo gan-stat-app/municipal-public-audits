@@ -54,9 +54,12 @@ Workは必要な原本・表示・文脈の最終照合だけを行い、記事/
 `python -m unittest discover -s api_review -p 'test_*.py'`
 
 新workflowのPRジョブは固定応答テストだけ。PR・forkにはSecretを渡さない。
-実行ジョブは公開mainのscheduleかつ明示有効化時だけ。成果物アップロードやキャッシュは使わない。
+文書処理ジョブは公開mainのschedule・承認キュー更新push・明示document-onceかつ有効化時だけ。成果物アップロードやキャッシュは使わない。
 既存の原本取得・採点・施設/食品・本番配信・全体CIを起動しない。
 この仕組みの設置は、実API成功・非公開Actions削減・全国完了を意味しない。
 
 ## 利用者依頼のキー確認（2026-11-05）
-workflow_dispatchではmainの専用key-checkジョブだけが既存Secretを使い、固定の短文1要求（出力16tokens、store:false）でResponsesの受理を確認する。通常文書キューは送信しない。api-public-stateのapi-runtime/key-check.jsonへ送信前にCAS予約し、成功・失敗・中断を問わず同じprobeを再送しない。ログは固定状態・HTTP番号・許可済み診断・使用量だけ。キー・応答本文を表示しない。API_RESULT_KEYの形式とローカル暗号化を確認するが、両側の鍵一致や結果受信まで成功したとはしない。定期workerのschedule制限は維持する。
+workflow_dispatchのkey-check選択時はmainの専用key-checkジョブが既存Secretを使い、固定の短文1要求（出力16tokens、store:false）でResponsesの受理を確認する。通常文書キューは送信しない。api-public-stateのapi-runtime/key-check.jsonへ送信前にCAS予約し、成功・失敗・中断を問わず同じprobeを再送しない。ログは固定状態・HTTP番号・許可済み診断・使用量だけ。キー・応答本文を表示しない。API_RESULT_KEYの形式とローカル暗号化を確認するが、両側の鍵一致や結果受信まで成功したとはしない。定期workerのschedule制限は維持する。
+
+## 起動復旧と受信確認（2026-11-05）
+定期実行を待つだけで停止しないよう、既存workflowのdocument-onceで最大1要求を処理できる。全キューの事前検証・送信前CAS予約・中断/失敗/完了の再送禁止は共通。mainへレビュー済みqueue.jsonが更新された場合も通常処理を起動する。6時間scheduleは維持。workflow/worker変更だけのpushでAPIを送信せず、PRでは固定応答検査のみ。非公開側のimport-onlyは結果受信だけを実行し、新しいAPI送信をしない。単発復旧の成功と定期起動の成功は区別する。

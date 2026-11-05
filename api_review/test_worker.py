@@ -46,6 +46,25 @@ class WorkerTests(unittest.TestCase):
         return w.drain({'schema_version': 1, 'entries': entries}, store or MemoryStore(),
                        'sk-test-key', self.key, sender=sender or (lambda *a, **k: response()), **kwargs)
 
+    def test_manual_document_mode_is_bounded_and_other_events_rejected(self):
+        self.assertEqual(w.execution_limit('workflow_dispatch', 'document-once'), 1)
+        self.assertIsNone(w.execution_limit('schedule', None))
+        self.assertIsNone(w.execution_limit('push', None))
+        for event, mode in [('pull_request', 'document-once'), ('workflow_dispatch', 'key-check'), ('workflow_dispatch', '')]:
+            with self.assertRaises(w.Stop):
+                w.execution_limit(event, mode)
+
+    def test_manual_limit_preserves_remaining_queue_and_uses_existing_reservations(self):
+        second = bundle()
+        second['documents'][0]['text'] += '\\nD4=300'
+        store = MemoryStore()
+        result = self.run_queue([bundle(), second], store, max_requests=1)
+        self.assertEqual(result['attempted'], 1)
+        self.assertEqual(len(store.state['requests']), 1)
+        self.assertEqual(self.run_queue([bundle()], store, max_requests=1)['attempted'], 0)
+        with self.assertRaises(w.Stop):
+            self.run_queue([bundle()], max_requests=0)
+
     def test_payload_is_bounded_and_does_not_store_at_provider(self):
         p = w.payload(bundle())
         self.assertFalse(p['store'])

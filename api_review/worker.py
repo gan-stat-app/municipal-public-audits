@@ -185,10 +185,12 @@ class Store:
         self.sha = data['content']['sha']
 
 
-def drain(queue, store, api_key, result_key, *, seconds=2400, clock=time.monotonic, sender=fetch):
+def drain(queue, store, api_key, result_key, *, seconds=2400, max_requests=None, clock=time.monotonic, sender=fetch):
     if (len(result_key) != 32 or not isinstance(queue, dict) or set(queue) != {'schema_version', 'entries'}
             or queue['schema_version'] != 1 or not isinstance(queue['entries'], list)
             or len(queue['entries']) > 1000):
+        raise Stop()
+    if max_requests is not None and (type(max_requests) is not int or max_requests < 1):
         raise Stop()
     # Validate the whole approved manifest before making any API request.
     prepared, seen = [], set()
@@ -206,6 +208,8 @@ def drain(queue, store, api_key, result_key, *, seconds=2400, clock=time.monoton
     started = clock()
     prior_keys = {k for r in state['requests'].values() for k in r['source_keys']}
     for bundle, request, identity, source_keys in prepared:
+        if max_requests is not None and attempted >= max_requests:
+            break
         if clock() - started >= seconds - 90 or len(raw(state)) > 1_600_000:
             break
         if identity in state['requests'] or any(k in prior_keys for k in source_keys):
@@ -243,18 +247,26 @@ def drain(queue, store, api_key, result_key, *, seconds=2400, clock=time.monoton
     return {'attempted': attempted, 'completed': completed, 'held': held}
 
 
+def execution_limit(event, mode):
+    if event in ('schedule', 'push'):
+        return None
+    if event == 'workflow_dispatch' and mode == 'document-once':
+        return 1
+    raise Stop()
+
+
 def main():
     try:
         if (os.environ.get('GITHUB_REPOSITORY') != REPO
-                or os.environ.get('GITHUB_REF') != 'refs/heads/main'
-                or os.environ.get('GITHUB_EVENT_NAME') != 'schedule'):
+                or os.environ.get('GITHUB_REF') != 'refs/heads/main'):
             raise Stop()
+        limit = execution_limit(os.environ.get('GITHUB_EVENT_NAME'), os.environ.get('PUBLIC_RUN_MODE'))
         api_key = os.environ['OPENAI_API_KEY']
         key = base64.b64decode(os.environ['API_RESULT_KEY'], validate=True)
         if not api_key.startswith('sk-') or len(key) != 32:
             raise Stop()
         queue = json.loads(Path('api_review/queue.json').read_text())
-        print(json.dumps(drain(queue, Store(os.environ['GH_TOKEN']), api_key, key)))
+        print(json.dumps(drain(queue, Store(os.environ['GH_TOKEN']), api_key, key, max_requests=limit)))
         return 0
     except Exception:
         print('{"status":"stopped","reason":"configuration_or_checkpoint_unavailable"}')
