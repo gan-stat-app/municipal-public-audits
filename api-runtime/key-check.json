@@ -1,1 +1,1 @@
-{"requests": {"4b3429c30cd9b1a20a16f5027fb178f0d66a02ec2953cf822dd035b4206454b3": {"status": "reserved_or_interrupted", "usage": {}}}, "schema_version": 1}
+{"requests": {"4b3429c30cd9b1a20a16f5027fb178f0d66a02ec2953cf822dd035b4206454b3": {"encryption_ready": true, "status": "api_accepted", "usage": {"input_tokens": 11, "output_tokens": 16, "total_tokens": 27}}}, "schema_version": 1}
