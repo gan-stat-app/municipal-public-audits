@@ -109,16 +109,30 @@ class ContractTests(unittest.TestCase):
             self.assertEqual(workflow['permissions'], {'contents': 'read'}, path.name)
             self.assertNotIn('pull_request_target', workflow['on'])
             self.assertNotIn('workflow_run', workflow['on'])
-            self.assertNotRegex(text, r'(?i)secrets\s*[.\[]')
-            for job in workflow['jobs'].values():
+            api_executor = path.name == 'public-api-review.yml'
+            if api_executor:
+                self.assertEqual(re.findall(r'secrets\.([A-Z_]+)', text), ['OPENAI_API_KEY', 'API_RESULT_KEY'])
+                self.assertNotIn('workflow_dispatch', workflow['on'])
+                self.assertEqual(set(workflow['jobs']), {'test', 'execute'})
+                self.assertNotIn('secrets', str(workflow['jobs']['test']))
+            else:
+                self.assertNotRegex(text, r'(?i)secrets\s*[.\[]')
+            for job_name, job in workflow['jobs'].items():
                 self.assertEqual(job['runs-on'], 'ubuntu-latest')
                 permissions = job.get('permissions', workflow['permissions'])
                 if permissions.get('contents') == 'write':
-                    self.assertIs(job, workflow['jobs']['publish'])
-                    self.assertEqual(permissions, {'contents': 'write', 'actions': 'read'})
-                    self.assertIn("github.ref == 'refs/heads/main'", job['if'])
-                    self.assertIn("github.event_name != 'pull_request'", job['if'])
-                    self.assertEqual([s['run'] for s in job['steps'] if 'run' in s], ['python workloads/publish.py'])
+                    if api_executor:
+                        self.assertEqual(job_name, 'execute')
+                        self.assertEqual(permissions, {'contents': 'write'})
+                        self.assertEqual(job['if'], "github.event_name == 'schedule' && github.ref == 'refs/heads/main' && vars.PUBLIC_API_ENABLED == 'true'")
+                        self.assertEqual([s['run'] for s in job['steps'] if 'run' in s],
+                                         ['python -m pip install cryptography==50.0.2', 'python api_review/worker.py'])
+                    else:
+                        self.assertIs(job, workflow['jobs']['publish'])
+                        self.assertEqual(permissions, {'contents': 'write', 'actions': 'read'})
+                        self.assertIn("github.ref == 'refs/heads/main'", job['if'])
+                        self.assertIn("github.event_name != 'pull_request'", job['if'])
+                        self.assertEqual([s['run'] for s in job['steps'] if 'run' in s], ['python workloads/publish.py'])
                 else:
                     self.assertEqual(permissions, {'contents': 'read'})
                 self.assertNotIn('continue-on-error', job)

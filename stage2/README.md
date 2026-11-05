@@ -36,3 +36,5 @@ https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html
 元build-dpc-data.pyのGit blob 168d60fceea4dab39001120d84ef528b2bd8aef4からtext/code/load_facilitiesを本文変更なしで抽出した。実原本について元関数と移行関数の辞書全体一致を確認。6,372キーの中間結果（最終公開病院件数ではない）、JSON 1,193,650バイト。受入ハッシュを固定し、原本や抽出結果の変更は失敗とする。
 
 限定実行：`python -m unittest discover -s stage2 -p 'test_facilities.py'`、`python stage2/run_facilities.py --source /path/to/facility.xlsx`。公開統計・URL・既存最終JSONは変更しない。最終出力にはmdc.xlsx、admission.xlsx、ambulance.xlsx、medical-area-municipalities.xlsx等が必要で、未取得のまま。80原本参照中2件照合済み、78件未取得。本変更では全体CIを避けるため[skip ci]を付け、ローカルDPC限定検証のみ実施する。
+
+PR #17/#18統合：同一URL・サイズ・SHA-256のfacility原本は1件として計上する。18:44:42 JSTと19:06:55 JSTの取得は別の確認履歴としてinventory.jsonのacquisition_historyに保持する。詳細な訂正情報・PDL1.0・例外・外部リンク先を含まない権利確認範囲はPR #18から採用。施設抽出の移行と6,372キー一致はPR #17のreceiptを参照。照合済み2/80、未取得78を維持する。

@@ -2,7 +2,9 @@ name: Verify public audit records
 on:
   push:
     branches: [main]
+    paths-ignore: ['api_review/**', '.github/workflows/public-api-review.yml']
   pull_request:
+    paths-ignore: ['api_review/**', '.github/workflows/public-api-review.yml']
 permissions:
   contents: read
 concurrency:
