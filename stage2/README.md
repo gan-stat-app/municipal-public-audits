@@ -24,3 +24,17 @@ https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00045.html
 第1段階の公開main run 41807228318 は1ジョブ18秒（09:24:30Z–09:24:48Z）。これは本単位の移行前基準ではなく削減実績に流用しない。今回は公開・非公開とも新規Actions起動0件。移行前後の同じ入力・処理に対応する両repoの実測が未取得のため、合算削減量は未確定。0秒削減とも断定しない。PR・main・失敗/再試行・受渡しを含む全関連ジョブを合計し、丸め課金分と実行秒を分けて比較する。単に公開側へ移したことを実行時間削減とは報告しない。
 
 次位置：本単位のDPC専用CI→公開main成功→同一入力の非公開処理で重複が存在するか確認。残る4本とbuild-dpc-data.py残部はnot-migratedを維持。公式原本が未取得の項目を完了数に含めない。
+
+## Facility原本の限定移行（2026-11-05）
+
+出典：厚生労働省「令和６年度DPCの評価・検証等に係る調査『退院患者調査』の結果報告について」
+https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html
+施設概要表（2026-06-30差替え）、https://www.mhlw.go.jp/content/12404000/001717940.xlsx を加工して抽出する。厚生労働省作成のJSONではない。
+利用条件 https://www.mhlw.go.jp/chosakuken/index.html はPDL1.0、出典・加工表示が必要。公式掲載箇所と全2シートのセル文字列に別の第三者権利表示は認めなかった。権利不存在を保証する判断ではない。
+
+694,194バイトとSHA-256が既存台帳に一致。取得日時はfacility-local-receipt.json。原本は一時取得のみでコミットしない。
+元build-dpc-data.pyのGit blob 168d60fceea4dab39001120d84ef528b2bd8aef4からtext/code/load_facilitiesを本文変更なしで抽出した。実原本について元関数と移行関数の辞書全体一致を確認。6,372キーの中間結果（最終公開病院件数ではない）、JSON 1,193,650バイト。受入ハッシュを固定し、原本や抽出結果の変更は失敗とする。
+
+限定実行：`python -m unittest discover -s stage2 -p 'test_facilities.py'`、`python stage2/run_facilities.py --source /path/to/facility.xlsx`。公開統計・URL・既存最終JSONは変更しない。最終出力にはmdc.xlsx、admission.xlsx、ambulance.xlsx、medical-area-municipalities.xlsx等が必要で、未取得のまま。80原本参照中2件照合済み、78件未取得。本変更では全体CIを避けるため[skip ci]を付け、ローカルDPC限定検証のみ実施する。
+
+PR #17/#18統合：同一URL・サイズ・SHA-256のfacility原本は1件として計上する。18:44:42 JSTと19:06:55 JSTの取得は別の確認履歴としてinventory.jsonのacquisition_historyに保持する。詳細な訂正情報・PDL1.0・例外・外部リンク先を含まない権利確認範囲はPR #18から採用。施設抽出の移行と6,372キー一致はPR #17のreceiptを参照。照合済み2/80、未取得78を維持する。

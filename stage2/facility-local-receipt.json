@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "scope": "facility-only intermediate extraction; no published dataset regenerated",
+  "retrieved_jst": "2026-11-05T18:44:42.893943+09:00",
+  "bytes": 694194,
+  "sha256": "7293e1737c9c4e64bd3d1805c08419f221eb02dcad71968ec2f2e28e25902c9d",
+  "facility_count": 6372,
+  "extracted_bytes": 1193650,
+  "extracted_sha256": "2d2de14392f50a8f9d5651a475ec437e56d0fbbad13cf9697f551c73b82a5827",
+  "original_function_result_identity": true,
+  "rights_notice_text_matches": [],
+  "sheets_reviewed": [
+    "施設概要表",
+    "合併分割医療機関の取扱い"
+  ],
+  "full_ci_run": false
+}
