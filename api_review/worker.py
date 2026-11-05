@@ -157,6 +157,13 @@ def seal(report, key, identity):
 
 
 def unseal(envelope, key, identity):
+    if envelope.get('version') == 2:
+        if (set(envelope) != {'version', 'format', 'body', 'sha256'}
+                or envelope['format'] != 'public-json'
+                or digest(envelope['body']) != envelope['sha256']
+                or envelope['body']['payload_sha256'] != identity):
+            raise Stop()
+        return envelope['body']
     if envelope['version'] != 1 or envelope['key_id'] != hashlib.sha256(key).hexdigest()[:16]:
         raise Stop()
     data = base64.b64decode(envelope['ciphertext'], validate=True)
@@ -180,13 +187,19 @@ class Store:
         if len(raw(state)) > 1_900_000:
             raise Stop()
         data = fetch(self.url, {'branch': STATE_REF, 'sha': self.sha,
-                               'message': 'Checkpoint encrypted API review [skip ci]',
+                               'message': 'Checkpoint public API candidates [skip ci]',
                                'content': base64.b64encode(raw(state)).decode()}, self.token, method='PUT')
         self.sha = data['content']['sha']
 
 
-def drain(queue, store, api_key, result_key, *, seconds=2400, max_requests=None, clock=time.monotonic, sender=fetch):
-    if (len(result_key) != 32 or not isinstance(queue, dict) or set(queue) != {'schema_version', 'entries'}
+def public_report(report):
+    # Public candidates are not approval for the production site.
+    return {'version': 2, 'format': 'public-json', 'body': report,
+            'sha256': digest(report)}
+
+
+def drain(queue, store, api_key, result_key=None, *, seconds=2400, max_requests=None, clock=time.monotonic, sender=fetch):
+    if (not isinstance(queue, dict) or set(queue) != {'schema_version', 'entries'}
             or queue['schema_version'] != 1 or not isinstance(queue['entries'], list)
             or len(queue['entries']) > 1000):
         raise Stop()
@@ -205,6 +218,44 @@ def drain(queue, store, api_key, result_key, *, seconds=2400, max_requests=None,
         prepared.append((bundle, request, identity, source_keys))
     state = store.read()
     attempted = completed = held = 0
+    migrated = legacy_held = 0
+    # Recover only approved queue sources locally, without another API call.
+    for bundle, request, identity, source_keys in prepared:
+        record = state['requests'].get(identity)
+        if not record or record.get('report', {}).get('version') != 1:
+            continue
+        if result_key is None:
+            legacy_held += 1
+            continue
+        try:
+            report = unseal(record['report'], result_key, identity)
+            fields = ('status', 'usage', 'source_keys', 'payload_sha256', 'date')
+            if (any(report[f] != record[f] for f in fields)
+                    or report['payload_sha256'] != identity or report['source_keys'] != source_keys):
+                raise Stop()
+            if report['status'] == 'completed':
+                core = {'id', 'assessment', 'evidence', 'rationale', 'draft_title', 'draft_fact', 'next_check'}
+                meta = {'fact_confirmed', 'publication_approved', 'source_sha256', 'source_url'}
+                docs = {d['id']: d for d in bundle['documents']}
+                for item in report['items']:
+                    if (set(item) != core | meta or item['fact_confirmed'] is not False
+                            or item['publication_approved'] is not False
+                            or item['source_sha256'] != docs[item['id']]['source_sha256']
+                            or item['source_url'] != docs[item['id']]['url']):
+                        raise Stop()
+                candidate = {'status': 'completed', 'output': [{'type': 'message', 'content': [{
+                    'type': 'output_text', 'text': json.dumps({'items': [
+                        {k: item[k] for k in core} for item in report['items']]})}]}]}
+                report['items'] = validate_response(candidate, bundle)
+            elif report['status'] not in ('invalid_output', 'request_failed_or_unknown') or report['items']:
+                raise Stop()
+        except Exception:
+            legacy_held += 1
+            continue
+        record['legacy_encrypted_report'] = record['report']
+        record['report'] = public_report(report)
+        store.write(state)
+        migrated += 1
     started = clock()
     prior_keys = {k for r in state['requests'].values() for k in r['source_keys']}
     for bundle, request, identity, source_keys in prepared:
@@ -238,13 +289,14 @@ def drain(queue, store, api_key, result_key, *, seconds=2400, max_requests=None,
             # Transport, provider or unknown failure: hold, do not retry, end run.
             stop_run = True
         report.update(usage=record['usage'], source_keys=source_keys, payload_sha256=identity, date=record['date'])
-        record.update(status=report['status'], report=seal(report, result_key, identity))
+        record.update(status=report['status'], report=public_report(report))
         store.write(state)  # Failure preserves reservation; never resend.
         completed += int(report['status'] == 'completed')
         held += int(report['status'] != 'completed')
         if stop_run:
             break
-    return {'attempted': attempted, 'completed': completed, 'held': held}
+    return {'attempted': attempted, 'completed': completed, 'held': held,
+            'legacy_migrated': migrated, 'legacy_held': legacy_held}
 
 
 def execution_limit(event, mode):
@@ -262,8 +314,14 @@ def main():
             raise Stop()
         limit = execution_limit(os.environ.get('GITHUB_EVENT_NAME'), os.environ.get('PUBLIC_RUN_MODE'))
         api_key = os.environ['OPENAI_API_KEY']
-        key = base64.b64decode(os.environ['API_RESULT_KEY'], validate=True)
-        if not api_key.startswith('sk-') or len(key) != 32:
+        # Optional legacy recovery only; new work never requires this key.
+        try:
+            key = base64.b64decode(os.environ.get('API_RESULT_KEY', ''), validate=True)
+            if len(key) != 32:
+                key = None
+        except ValueError:
+            key = None
+        if not api_key.startswith('sk-'):
             raise Stop()
         queue = json.loads(Path('api_review/queue.json').read_text())
         print(json.dumps(drain(queue, Store(os.environ['GH_TOKEN']), api_key, key, max_requests=limit)))

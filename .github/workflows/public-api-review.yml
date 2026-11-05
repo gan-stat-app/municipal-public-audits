@@ -1,4 +1,4 @@
-name: Public-source API review with encrypted results
+name: Public-source API review
 on:
   workflow_dispatch:
     inputs:
@@ -47,7 +47,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install cryptography==50.0.2
-      - name: Drain approved public excerpts; checkpoint encrypted responses
+      - name: Drain approved public excerpts; checkpoint public candidates
         env:
           GH_TOKEN: ${{ github.token }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -74,3 +74,4 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           API_RESULT_KEY: ${{ secrets.API_RESULT_KEY }}
         run: python api_review/key_check.py
+

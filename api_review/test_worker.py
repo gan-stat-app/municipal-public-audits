@@ -123,9 +123,47 @@ class WorkerTests(unittest.TestCase):
             self.assertEqual(next(iter(store.state['requests'].values()))['status'], 'reserved_or_interrupted')
             return response()
         self.assertEqual(self.run_queue([bundle()], store, send)['completed'], 1)
-        self.assertNotIn('記事案', json.dumps(store.state, ensure_ascii=False))
-        result = receive(store.state, self.key)
+        result = receive(store.state)
         self.assertEqual(next(iter(result['requests'].values()))['items'][0]['id'], 'one')
+
+    def test_new_results_need_no_key_and_remain_unapproved(self):
+        store = MemoryStore()
+        result = w.drain({'schema_version': 1, 'entries': [bundle()]}, store,
+                         'sk-test-key', sender=lambda *a, **k: response())
+        self.assertEqual(result['completed'], 1)
+        report = next(iter(receive(store.state)['requests'].values()))
+        self.assertFalse(report['items'][0]['publication_approved'])
+        self.assertFalse(report['items'][0]['fact_confirmed'])
+        with patch('worker.fetch') as send:
+            self.assertEqual(w.drain({'schema_version': 1, 'entries': [bundle()]},
+                                    store, 'sk-test-key', sender=send)['attempted'], 0)
+            send.assert_not_called()
+
+    def test_legacy_migration_retains_ciphertext_without_resending(self):
+        store = MemoryStore()
+        self.run_queue([bundle()], store)
+        identity, record = next(iter(store.state['requests'].items()))
+        original = w.seal(record['report']['body'], self.key, identity)
+        record['report'] = original
+        with patch('worker.fetch') as send:
+            result = self.run_queue([bundle()], store, send)
+            send.assert_not_called()
+        self.assertEqual(result['legacy_migrated'], 1)
+        self.assertEqual(result['attempted'], 0)
+        self.assertEqual(store.state['requests'][identity]['legacy_encrypted_report'], original)
+        self.assertEqual(len(receive(store.state)['requests']), 1)
+
+    def test_unreadable_legacy_does_not_block_independent_new_work(self):
+        store = MemoryStore()
+        self.run_queue([bundle()], store)
+        identity, record = next(iter(store.state['requests'].items()))
+        record['report'] = w.seal(record['report']['body'], self.key, identity)
+        second = bundle()
+        second['documents'][0]['text'] += '\nD4=300'
+        result = w.drain({'schema_version': 1, 'entries': [bundle(), second]}, store,
+                         'sk-test-key', sender=lambda *a, **k: response())
+        self.assertEqual((result['completed'], result['legacy_held']), (1, 1))
+        self.assertEqual(receive(store.state)['legacy_held'], 1)
 
     def test_reservation_failure_never_calls_api(self):
         with patch('worker.fetch') as send, self.assertRaises(w.Stop):
@@ -155,7 +193,8 @@ class WorkerTests(unittest.TestCase):
             calls.append(1)
             return response(evidence=['not in source']) if len(calls) == 1 else response()
         result = self.run_queue([bundle(), second], sender=send)
-        self.assertEqual(result, {'attempted': 2, 'completed': 1, 'held': 1})
+        self.assertEqual(result, {'attempted': 2, 'completed': 1, 'held': 1,
+                                  'legacy_migrated': 0, 'legacy_held': 0})
 
     def test_transport_failure_stops_run_without_resend(self):
         second = bundle()
@@ -186,3 +225,4 @@ class WorkerTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
