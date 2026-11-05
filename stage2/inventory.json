@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "five generators inventoried; only 2024 surgery definitions extraction migrated",
+  "scope": "five generators inventoried; only 2024 surgery definitions extraction migrated; facility-only intermediate extraction migrated (no final payload regeneration)",
   "sources": [
     {
       "filename": "facility.xlsx",
@@ -8,10 +8,13 @@
       "bytes": 694194,
       "sha256": "7293e1737c9c4e64bd3d1805c08419f221eb02dcad71968ec2f2e28e25902c9d",
       "page": "https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html",
-      "status": "not-attempted",
+      "status": "acquired-hash-verified",
       "terms_url": "https://www.mhlw.go.jp/chosakuken/index.html",
-      "third_party_review": "not-reviewed",
-      "page_status": "recorded-not-rechecked"
+      "third_party_review": "Official page and all workbook cell text reviewed; no separate third-party rights notice observed",
+      "page_status": "confirmed-link-in-official-page",
+      "retrieved_jst": "2026-11-05T18:44:42.893943+09:00",
+      "storage": "ephemeral official download; original not committed",
+      "terms_review": "PDL1.0; attribution and processing disclosure required"
     },
     {
       "filename": "mdc.xlsx",
