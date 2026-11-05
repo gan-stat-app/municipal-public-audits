@@ -8,10 +8,54 @@
       "bytes": 694194,
       "sha256": "7293e1737c9c4e64bd3d1805c08419f221eb02dcad71968ec2f2e28e25902c9d",
       "page": "https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html",
-      "status": "not-attempted",
+      "status": "acquired-hash-verified",
       "terms_url": "https://www.mhlw.go.jp/chosakuken/index.html",
-      "third_party_review": "not-reviewed",
-      "page_status": "recorded-not-rechecked"
+      "third_party_review": "Official facility statistics and merger/split handling sheets inspected; no separate third-party rights notice observed in workbook XML text or landing page. Hospital-indicator hyperlinks are references only; linked external contents were not fetched and their rights are not covered by this review.",
+      "page_status": "confirmed-link-in-official-page",
+      "retrieved_jst": "2026-11-05T19:06:55.011115+09:00",
+      "storage": "Official HTTPS download once to ephemeral scratch /tmp/facility.xlsx, unchanged; not committed or uploaded as artifact. Re-download and verify expected bytes/SHA-256 for subsequent generation.",
+      "label": "施設概要表［678KB］",
+      "page_correction": "一部病院の告示番号に誤りがあったためデータ差替え（令和8年6月30日）",
+      "terms_review": {
+        "status": "confirmed",
+        "license": "PDL1.0",
+        "checked_jst": "2026-11-05",
+        "license_url": "https://www.digital.go.jp/resources/open_data/public_data_license_v1.0",
+        "exceptions_url": "https://www.mhlw.go.jp/chosakuken/exhibit.html",
+        "requirements": "Attribute MHLW and source URL; disclose processing and its author; third-party rights are excluded. DPC facility table is not listed among separate-rule exceptions."
+      },
+      "verification": {
+        "actual_bytes": 694194,
+        "actual_sha256": "7293e1737c9c4e64bd3d1805c08419f221eb02dcad71968ec2f2e28e25902c9d",
+        "size_match": true,
+        "sha256_match": true,
+        "zip_crc": "passed",
+        "worksheets": [
+          "施設概要表",
+          "合併分割医療機関の取扱い"
+        ],
+        "facility_rows_with_notice_and_serial": 6372,
+        "unique_notice_serial_keys": 6372
+      },
+      "next_migration_unit": {
+        "candidate": "build-dpc-data.py: load_facilities + code + text",
+        "source_git_blob": "168d60fceea4dab39001120d84ef528b2bd8aef4",
+        "required_sources": [
+          "facility.xlsx"
+        ],
+        "missing_sources": [],
+        "status": "input-ready; extraction and equivalence validation not yet migrated",
+        "scope": "Facility metadata dictionary only; not a complete existing published dataset.",
+        "full_build_missing_sources": [
+          "mdc.xlsx",
+          "admission.xlsx",
+          "ambulance.xlsx",
+          "death24h.xlsx (source manifest only)",
+          "diagnosis-groups.xlsx",
+          "medical-area-municipalities.xlsx"
+        ],
+        "notes": "definition-table.xlsx was already verified. Full build requires all six remaining inputs, including mapping landing-page/terms confirmation. History aliases history/2024-facility.xlsx refer to this same input; do not count twice."
+      }
     },
     {
       "filename": "mdc.xlsx",
