@@ -1,19 +1,19 @@
 {
-  "schema_version": 1,
-  "entries": [
-    {
-      "id": "akita-10745-visible-20261105",
-      "executor": "public",
-      "public_export_approved": true,
-      "documents": [
+    "schema_version": 1,
+    "entries": [
         {
-          "id": "akita-10745-award-date",
-          "title": "平成２７年度秋田県バリアフリー推進賞の表彰について",
-          "text": "平成２７年度の秋田県バリアフリー推進賞の受賞者が決定し、平成２７年３月２４日（木）に、県庁３階の第一応接室で表彰式が開催されました。",
-          "url": "https://www.pref.akita.lg.jp/pages/archive/10745",
-          "source_sha256": "bd563d13ceec3c82777c70cfeae3e739cc975ef7d32b086c0cb9b47f47195917"
+            "id": "akita-10745-visible-20261105",
+            "executor": "public",
+            "public_export_approved": true,
+            "documents": [
+                {
+                    "id": "akita-10745-award-date",
+                    "title": "平成２７年度秋田県バリアフリー推進賞の表彰について",
+                    "text": "平成２７年度の秋田県バリアフリー推進賞の受賞者が決定し、平成２７年３月２４日（木）に、県庁３階の第一応接室で表彰式が開催されました。",
+                    "url": "https://www.pref.akita.lg.jp/pages/archive/10745",
+                    "source_sha256": "bd563d13ceec3c82777c70cfeae3e739cc975ef7d32b086c0cb9b47f47195917"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
