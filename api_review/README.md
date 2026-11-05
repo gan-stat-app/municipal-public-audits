@@ -1,65 +1,42 @@
 # 公開側の継続API処理
 
-公開可視抜粋だけをこの公開repo自身の標準Ubuntuで処理する。
-原本・非表示内容・個人情報・私的検査台帳・未確認の指摘は入力として公開しない。
-API結果はAES-256-GCMで暗号化し、公開するのは件数・状態・tokensと暗号文だけ。
-非公開repoにアクセスするトークンは公開側へ登録しない。APIはstore:false。
+公開承認済みの公式資料の可視抜粋だけを処理する。非表示内容・個人情報・私的台帳は入力として公開しない。
+2026-11-06の利用者指示により、新しいAPI結果は暗号化せず、version=2 / format=public-jsonで保存する。
+結果は未確認の候補であり、fact_confirmed=false / publication_approved=falseを維持する。
+公開候補には誤りがあり得る。本番記事の承認とは別であり、出典・引用・原本・表示を確認してから掲載する。
+処理状態・件数・使用量は従来から平文であり、新方式でも公開する。APIキー・認証情報は公開しない。
 
-## 稼働条件
+## 稼働と重複防止
 
-公開repoのSecret `OPENAI_API_KEY` と `API_RESULT_KEY` が必要。
-前者は既存APIキーを利用可。後者はランダム32バイトをbase64にした専用鍵。
-鍵の値はチャット・Git・ログに出さず、受信する非公開側のSecretにも同じ値を設定する。
-公開側のVariable `PUBLIC_API_ENABLED=true` は設定が完了するまで有効にしない。
-APIキー作成・Secretの移送・課金設定変更をこのコードは行わない。
+既存Secret OPENAI_API_KEYとVariable PUBLIC_API_ENABLED=trueを使う。新しい結果にAPI_RESULT_KEYは不要。
+6時間schedule、キュー更新push、document-onceの起動条件、最大40分、1要求3資料/16KB/出力1200tokens、
+送信前CAS予約、concurrency、原本SHA+本文の重複防止を維持する。失敗・中断・保存不明は自動再送しない。
+APIはstore:false。空キューは待機せず終了する。課金・予算・原本収集・本番公開の設定は変更しない。
 
-`api-public-state` ブランチの `api-runtime/ledger.json` を
-`{"schema_version":1,"requests":{}}` で初期化してから有効にする。
-既存台帳を空にして上書きしない。暗号鍵の変更時は旧鍵を保管し、旧結果の受信完了後に切り替える。
+正本はapi-public-stateブランチのapi-runtime/ledger.json。既存台帳を空にして初期化しない。
+api_review/queue.jsonには公開再配布を確認した抜粋をPRで追加する。
+公開入力とAPIの下書き候補が公開repoで閲覧可能になることを確認する。
+非公開側へ移管する場合は従来どおり委任台帳・原本SHA・本文・要求IDを照合し、二重投入しない。
+自動収集・キュー補充・記事掲載の工程そのものはこのworkerに含まれない。
 
-## キューと重複防止
+## 旧暗号化結果の復旧
 
-`api_review/queue.json` は公開レビュー済み抜粋だけをPRで追加する。
-各entryはid、executor=public、public_export_approved=true、documentsのみ。
-documentsはid/title/text/url/source_sha256のみ、1要求3資料・16KB・出力1200tokens・通信45秒。
-本文は可視範囲とセル/節位置、前後の文脈を含める。公開承認フラグは自動判定ではない。
-公開本文であることと、抜粋を公開repoに再配布してよいことの両方を確認する。
+API_RESULT_KEYは旧version=1結果の復旧にだけ任意使用する。新しい結果の必須条件ではない。
+公開側の既存鍵で、現行承認キューと要求ID・出典・引用・状態・使用量が一致した旧結果だけを、
+APIへ再送せずversion=2へ変換する。旧暗号文はlegacy_encrypted_reportに保持する。
+鍵がない/読めない/一致しない旧結果はlegacy_heldに明記し、新規の独立資料を止めない。
+既存結果・失敗・予約を消したりIDを変えて再送したりしない。
 
-今回の初期キューは空。非公開側の7件19資料を二重登録しない。
-移管時は非公開側の自然runと最新ledgerを先に照合し、実行中は移管しない。
-非公開queueに`held/reason=delegated_to_public`と公開entry ID・元payload SHAをCAS記録してから
-公開PRを統合する。旧失敗の訂正再確認は今回許可済み各1回だけで、無条件再送は不可。
-公開PRが失敗しても自動的に非公開pendingへ戻さず、再開条件を記録する。
+## 受信
 
-6時間ごとの自然実行で、未処理がある間は最大40分連続して消化する。
-空キューでは待機せず終了。未処理は次回へ残す。API提供側/通信エラーはその回を止める。
-失敗・中断・結果保存不明の予約は再送せず、独立資料を次回処理する。
-IDを変えても同一原本SHA＋可視本文は重複送信しない。
-予約のCAS保存が成功してからAPIを呼ぶ。並行実行はconcurrencyで直列化する。
-状態ファイル1.6MB到達時は新規送信を止め、復号・私的保全後に別途レビューして世代更新する。
-独自の日/月要求回数上限は設けない。残高不足・rate limit等は失敗として停止する。
-
-## 非公開側への受け渡し
-
-公開 `api-public-state/api-runtime/ledger.json` を読み取り、非公開環境で
-`API_RESULT_KEY` を使い `python api_review/receive.py --checkpoint <保存JSON> --out <私的出力JSON>`。
-受信コードはレビュー済みcommitへ固定する。出力先は非公開作業領域のみ。
-暗号認証・request digest・状態・tokens・source keyの一致を確認し、既存私的台帳へ接続する。
-公開に復号鍵や平文結果をコミット/ログ出力しない。受信は公開承認ではない。
-Workは必要な原本・表示・文脈の最終照合だけを行い、記事/X案を再生成しない。
-自動収集・キュー補充・本番公開の工程はこのworker自体に含まれない。
+サイト側は固定の公式GitHub HTTPS endpointから読み、委任要求・本文SHA・出典・引用・状態・使用量を再検証する。
+version=2のSHAは転送破損の検出用であり、署名ではない。取得元と私的な委任台帳の照合を省かない。
+新しい結果は鍵なしで受信できる。旧暗号化結果は鍵不在/不一致なら保留件数に示し、平文結果の取り込みを続ける。
+api_review/receive.pyもversion=2を鍵なしで読み取れる。受信を本番公開承認とは扱わない。
+非公開repoの資格情報を公開側へ渡さない。ログへAPIキーや結果本文を出さない。
 
 ## 限定検証
 
-`python -m unittest discover -s api_review -p 'test_*.py'`
-
-新workflowのPRジョブは固定応答テストだけ。PR・forkにはSecretを渡さない。
-文書処理ジョブは公開mainのschedule・承認キュー更新push・明示document-onceかつ有効化時だけ。成果物アップロードやキャッシュは使わない。
-既存の原本取得・採点・施設/食品・本番配信・全体CIを起動しない。
-この仕組みの設置は、実API成功・非公開Actions削減・全国完了を意味しない。
-
-## 利用者依頼のキー確認（2026-11-05）
-workflow_dispatchのkey-check選択時はmainの専用key-checkジョブが既存Secretを使い、固定の短文1要求（出力16tokens、store:false）でResponsesの受理を確認する。通常文書キューは送信しない。api-public-stateのapi-runtime/key-check.jsonへ送信前にCAS予約し、成功・失敗・中断を問わず同じprobeを再送しない。ログは固定状態・HTTP番号・許可済み診断・使用量だけ。キー・応答本文を表示しない。API_RESULT_KEYの形式とローカル暗号化を確認するが、両側の鍵一致や結果受信まで成功したとはしない。定期workerのschedule制限は維持する。
-
-## 起動復旧と受信確認（2026-11-05）
-定期実行を待つだけで停止しないよう、既存workflowのdocument-onceで最大1要求を処理できる。全キューの事前検証・送信前CAS予約・中断/失敗/完了の再送禁止は共通。mainへレビュー済みqueue.jsonが更新された場合も通常処理を起動する。6時間scheduleは維持。workflow/worker変更だけのpushでAPIを送信せず、PRでは固定応答検査のみ。非公開側のimport-onlyは結果受信だけを実行し、新しいAPI送信をしない。単発復旧の成功と定期起動の成功は区別する。
+python -m unittest discover -s api_review -p 'test_*.py'
+PRでは固定応答テストのみ。無関係な全体CI、原本の再取得、APIの再送は行わない。
+key-checkは旧来の一度限りの診断経路として保持し、通常の新方式の稼働条件にはしない。
