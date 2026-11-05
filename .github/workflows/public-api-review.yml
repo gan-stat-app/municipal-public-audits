@@ -1,5 +1,6 @@
 name: Public-source API review with encrypted results
 on:
+  workflow_dispatch:
   pull_request:
     paths: ['api_review/**', '.github/workflows/public-api-review.yml']
   schedule:
@@ -43,3 +44,23 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           API_RESULT_KEY: ${{ secrets.API_RESULT_KEY }}
         run: python api_review/worker.py
+  key-check:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && vars.PUBLIC_API_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - run: python -m pip install cryptography==50.0.2
+      - name: Check existing key once without draining document queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          API_RESULT_KEY: ${{ secrets.API_RESULT_KEY }}
+        run: python api_review/key_check.py
