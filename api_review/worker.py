@@ -1,5 +1,6 @@
 """Public-source API executor. Never prints inputs, model output or exceptions."""
 import base64
+from datetime import datetime
 import hashlib
 import json
 import os
@@ -8,6 +9,7 @@ import re
 import time
 import urllib.error
 import urllib.request
+from zoneinfo import ZoneInfo
 
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
@@ -209,7 +211,8 @@ def drain(queue, store, api_key, result_key, *, seconds=2400, clock=time.monoton
         if identity in state['requests'] or any(k in prior_keys for k in source_keys):
             continue
         record = {'status': 'reserved_or_interrupted', 'source_keys': source_keys,
-                  'payload_sha256': identity, 'usage': {}}
+                  'payload_sha256': identity, 'usage': {},
+                  'date': datetime.now(ZoneInfo('Asia/Tokyo')).date().isoformat()}
         state['requests'][identity] = record
         store.write(state)  # Durable CAS reservation must succeed BEFORE API.
         prior_keys.update(source_keys)
@@ -230,7 +233,7 @@ def drain(queue, store, api_key, result_key, *, seconds=2400, clock=time.monoton
         except Exception:
             # Transport, provider or unknown failure: hold, do not retry, end run.
             stop_run = True
-        report.update(usage=record['usage'], source_keys=source_keys, payload_sha256=identity)
+        report.update(usage=record['usage'], source_keys=source_keys, payload_sha256=identity, date=record['date'])
         record.update(status=report['status'], report=seal(report, result_key, identity))
         store.write(state)  # Failure preserves reservation; never resend.
         completed += int(report['status'] == 'completed')

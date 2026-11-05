@@ -19,7 +19,8 @@ def receive(state, key):
             continue  # Unconfirmed send remains reserved; never resend.
         report = unseal(record['report'], key, identity)
         if (report['status'] != record['status'] or report['usage'] != record['usage']
-                or report['source_keys'] != record['source_keys'] or report['payload_sha256'] != identity):
+                or report['source_keys'] != record['source_keys'] or report['payload_sha256'] != identity
+                or report['date'] != record['date']):
             raise ValueError()
         result[identity] = {**report, 'usage': record['usage'], 'source_keys': record['source_keys']}
     return {'schema_version': 1, 'requests': result, 'publication_approved': False}
