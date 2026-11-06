@@ -45,3 +45,12 @@ class MDCTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'extraction differs'):
                     run_mdc.extract(b'x',Path(d))
             self.assertEqual(mdc.RAW, previous)
+
+    def test_original_dictionary_mismatch_rejected(self):
+        original = "MDC_NAMES = {}\ndef text(v): return str(v)\ndef code(v): return str(v)\ndef public_number(v): return (0, 0)\ndef load_mdc(a, b): return {'different': 1}\n"
+        with tempfile.TemporaryDirectory() as d:
+            previous = mdc.RAW
+            with patch.object(run_mdc, 'SOURCE', {'bytes': 1, 'sha256': run_mdc.hashlib.sha256(b'x').hexdigest()}), patch.object(mdc, 'load_mdc', return_value={}):
+                with self.assertRaisesRegex(ValueError, 'dictionary differs'):
+                    run_mdc.extract(b'x', Path(d), original)
+            self.assertEqual(mdc.RAW, previous)

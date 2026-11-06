@@ -55,3 +55,8 @@ PR #17/#18統合：同一URL・サイズ・SHA-256のfacility原本は1件とし
 実行：`python -m unittest discover -s stage2 -p 'test_mdc.py'`（3テスト成功）、`python stage2/run_mdc.py --source /path/to/mdc.xlsx`（実原本PASS）。ローカルDPC限定検証であり、Actions成功とは扱わない。コミットには `[skip ci]` を付け、既存の抱き合わせジョブも起動しない。
 
 照合済み3/80、未取得77。history/2024-mdc.xlsxは同一原本の別名で二重計上しない。最終生成の残依存はadmission.xlsx、ambulance.xlsx、diagnosis-groups.xlsx、medical-area-municipalities.xlsx、およびmanifest用death24h.xlsx。施設・定義表は照合済み。過年度生成器等4本は引き続き未移行。残る77原本の取得・全体CI・公開成果物再生成は行っていない。
+
+
+### MDC専用CI
+
+既存dpc-generation.ymlは差分に応じて集計・定義表・MDCを選択する。MDC単位ではtest_mdc.pyとrun_mdc.pyのみ実行。公式mdc.xlsxのサイズ/SHA-256、公開参照の元コードGit blob、元関数との6,372キー辞書全体一致、抽出バイト数/SHA-256を検証する。元コードはASTからMDC定数と4関数だけを実行し、他の原本を取得しない。原本・中間JSONは一時領域のみ、artifactなし。全体検証workflowはこの独立stage2変更では検証ステップをスキップする。手動実行はscopeでmdc/definitions/aggregateを明示選択する。
