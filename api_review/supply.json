@@ -1,1 +1,88 @@
-{"schema_version": 1, "candidates": []}
+{
+  "schema_version": 1,
+  "candidates": [
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261107-1",
+        "documents": [
+          {
+            "id": "aomori-25954-public-table",
+            "title": "【南部町】地域・年齢別人口（2025年7月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2025年7月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2386.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=16005\nG2=7631\nH2=8374\nI2=163\nJ2=165\nK2=244\nL2=226\nM2=264\nN2=279\nO2=309\nP2=289\nQ2=222\nR2=221\nS2=258\nT2=208\nU2=301\nV2=292\nW2=350\nX2=339\nY2=448\nZ2=366\nAA2=474\nAB2=428\nAC2=554\nAD2=537\nAE2=576\nAF2=607\nAG2=661\nAH2=628\nAI2=674\nAJ2=688\nAK2=724\nAL2=812\nAM2=663\nAN2=728\nAO2=396\nAP2=577\nAQ2=350\nAR2=984\nAS2=7358\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2386.html",
+            "source_sha256": "1119dac02c549d4c8e93b633f637d8472651f7bb05da061589c355a0e1b4a603"
+          },
+          {
+            "id": "aomori-26009-public-table",
+            "title": "【南部町】地域・年齢別人口（2025年8月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2025年8月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2388.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15988\nG2=7629\nH2=8359\nI2=161\nJ2=162\nK2=247\nL2=226\nM2=264\nN2=275\nO2=308\nP2=291\nQ2=223\nR2=220\nS2=254\nT2=205\nU2=304\nV2=298\nW2=349\nX2=334\nY2=451\nZ2=371\nAA2=475\nAB2=421\nAC2=555\nAD2=542\nAE2=575\nAF2=604\nAG2=662\nAH2=623\nAI2=668\nAJ2=686\nAK2=720\nAL2=806\nAM2=673\nAN2=739\nAO2=394\nAP2=566\nAQ2=346\nAR2=990\nAS2=7370\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2388.html",
+            "source_sha256": "922ff1fbf77040a6dea0e05025b525b51ddf82a14b239192a8b532ac3b13f1d6"
+          },
+          {
+            "id": "aomori-26114-public-table",
+            "title": "【南部町】地域・年齢別人口（2025年9月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2025年9月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2395.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15966\nG2=7616\nH2=8350\nI2=164\nJ2=160\nK2=246\nL2=227\nM2=257\nN2=276\nO2=308\nP2=288\nQ2=225\nR2=222\nS2=255\nT2=203\nU2=302\nV2=298\nW2=347\nX2=335\nY2=446\nZ2=365\nAA2=480\nAB2=423\nAC2=549\nAD2=538\nAE2=575\nAF2=610\nAG2=665\nAH2=617\nAI2=667\nAJ2=683\nAK2=712\nAL2=809\nAM2=682\nAN2=745\nAO2=392\nAP2=556\nAQ2=344\nAR2=995\nAS2=7373\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2395.html",
+            "source_sha256": "6ebeb3753bb5e795b3994b1e7f2f7fc59b75df7eaac192cc31b41cbb686335dd"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "60d4ede904002ca581d7de2f292b88cab1eda4e7eb146e386ebd710adbdec1f5",
+        "review_commit": "c4f289e9c4daa0d904257604e4988ae70cebd988",
+        "exclusive_public_ownership": {
+          "private_state_commit": "c4f289e9c4daa0d904257604e4988ae70cebd988",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-25954-public-table",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2386.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2386/resource/28032/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_7%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "1119dac02c549d4c8e93b633f637d8472651f7bb05da061589c355a0e1b4a603",
+            "text_sha256": "5a3dc61a1e3874964f0016bd1053c1764fb3d36f812ef6710a812605c852c214",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T00:06:11.287874+09:00",
+            "public_scope": "シート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-26009-public-table",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2388.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2388/resource/28068/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_8%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "922ff1fbf77040a6dea0e05025b525b51ddf82a14b239192a8b532ac3b13f1d6",
+            "text_sha256": "8984aea4811d6eb8d0cb8c51c2ee21eeb2a0e90882f509f9de1290b176e9921f",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T00:06:11.287874+09:00",
+            "public_scope": "シート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-26114-public-table",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2395.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2395/resource/28117/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_9%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "6ebeb3753bb5e795b3994b1e7f2f7fc59b75df7eaac192cc31b41cbb686335dd",
+            "text_sha256": "8aab39c4dcceffd0f1acb8ecbe62930912e95f3d1cc6feb48bb02522ef0c23a4",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T00:06:11.287874+09:00",
+            "public_scope": "シート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
+    }
+  ]
+}
