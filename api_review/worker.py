@@ -38,6 +38,20 @@ class Stop(RuntimeError):
     pass
 
 
+class InvalidOutput(Stop):
+    """Fixed validation code only; never retain response text or exception details."""
+    def __init__(self, code):
+        self.code = code
+
+
+def output_diagnostic(exc):
+    allowed = {'response_not_completed', 'output_token_limit', 'output_json',
+               'items_shape', 'item_identity', 'item_fields', 'assessment',
+               'text_shape', 'evidence_shape', 'evidence_mismatch',
+               'verify_without_evidence', 'draft_without_verify'}
+    return exc.code if isinstance(exc, InvalidOutput) and exc.code in allowed else 'output_shape'
+
+
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, *args, **kwargs):
         return None
@@ -116,35 +130,45 @@ def payload(bundle):
 
 def validate_response(data, bundle):
     if data.get('status') != 'completed':
-        raise Stop()
+        details = data.get('incomplete_details')
+        if (data.get('status') == 'incomplete' and isinstance(details, dict)
+                and details.get('reason') == 'max_output_tokens'):
+            raise InvalidOutput('output_token_limit')
+        raise InvalidOutput('response_not_completed')
     output = ''.join(c['text'] for o in data.get('output', []) if o.get('type') == 'message'
                      for c in o.get('content', []) if c.get('type') == 'output_text')
-    parsed = json.loads(output)
-    if set(parsed) != {'items'} or not isinstance(parsed['items'], list):
-        raise Stop()
+    try:
+        parsed = json.loads(output)
+    except ValueError:
+        raise InvalidOutput('output_json') from None
+    if not isinstance(parsed, dict) or set(parsed) != {'items'} or not isinstance(parsed['items'], list):
+        raise InvalidOutput('items_shape')
     items = parsed['items']
     by_id = {d['id']: d for d in bundle['documents']}
-    if len(items) != len(by_id) or {i['id'] for i in items} != set(by_id):
-        raise Stop()
+    if (len(items) != len(by_id)
+            or any(not isinstance(i, dict) or not isinstance(i.get('id'), str) for i in items)
+            or {i['id'] for i in items} != set(by_id)):
+        raise InvalidOutput('item_identity')
     for item in items:
         if set(item) != {'id', 'assessment', 'evidence', 'rationale', 'draft_title', 'draft_fact', 'next_check'}:
-            raise Stop()
+            raise InvalidOutput('item_fields')
         if item['assessment'] not in ('verify', 'hold', 'reject'):
-            raise Stop()
+            raise InvalidOutput('assessment')
         if any(not isinstance(item[k], str) or len(item[k]) > 800
                for k in ('rationale', 'draft_title', 'draft_fact', 'next_check')):
-            raise Stop()
+            raise InvalidOutput('text_shape')
         quotes = item['evidence']
         text = ' '.join(by_id[item['id']]['text'].split())
         if not isinstance(quotes, list) or len(quotes) > 4:
-            raise Stop()
-        if any(not isinstance(q, str) or not q.strip() or len(q) > 180
-               or ' '.join(q.split()) not in text for q in quotes):
-            raise Stop()
+            raise InvalidOutput('evidence_shape')
+        if any(not isinstance(q, str) or not q.strip() or len(q) > 180 for q in quotes):
+            raise InvalidOutput('evidence_shape')
+        if any(' '.join(q.split()) not in text for q in quotes):
+            raise InvalidOutput('evidence_mismatch')
         if item['assessment'] == 'verify' and not quotes:
-            raise Stop()
+            raise InvalidOutput('verify_without_evidence')
         if item['assessment'] != 'verify' and (item['draft_title'] or item['draft_fact']):
-            raise Stop()
+            raise InvalidOutput('draft_without_verify')
         item.update(fact_confirmed=False, publication_approved=False,
                     source_sha256=by_id[item['id']]['source_sha256'], source_url=by_id[item['id']]['url'])
     return items
@@ -283,8 +307,9 @@ def drain(queue, store, api_key, result_key=None, *, seconds=2400, max_requests=
             try:
                 items = validate_response(data, bundle)
                 report = {'status': 'completed', 'items': items}
-            except (Stop, KeyError, TypeError, ValueError):
+            except (Stop, KeyError, TypeError, ValueError, AttributeError) as exc:
                 report['status'] = 'invalid_output'
+                record['diagnostic'] = output_diagnostic(exc)
         except Exception:
             # Transport, provider or unknown failure: hold, do not retry, end run.
             stop_run = True

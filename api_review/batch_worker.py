@@ -102,8 +102,9 @@ def tick(queue, store, api, *, max_requests=100):
             if response.get('status_code') == 200:
                 try:
                     report = {'status': 'completed', 'items': w.validate_response(data, bundle)}
-                except (w.Stop, KeyError, TypeError, ValueError):
+                except (w.Stop, KeyError, TypeError, ValueError, AttributeError) as exc:
                     report['status'] = 'invalid_output'
+                    record['diagnostic'] = w.output_diagnostic(exc)
             report.update(usage=record['usage'], source_keys=record['source_keys'],
                           payload_sha256=identity, date=record['date'])
             record.update(status=report['status'], report=w.public_report(report))
@@ -162,4 +163,5 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+
 
