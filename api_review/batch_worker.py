@@ -89,9 +89,13 @@ def tick(queue, store, api, *, max_requests=100):
                     rows[identity] = row
         for identity in identities:
             record = state['requests'][identity]
-            if identity not in prepared:
-                continue  # Keep pending result until its approved source is restored.
-            bundle = prepared[identity][0]
+            # Prompt/schema changes alter payload hashes, but must not strand
+            # already submitted work. Match the exact ordered approved sources.
+            candidates = [entry[0] for entry in prepared.values()
+                          if entry[2] == record['source_keys']]
+            if len(candidates) != 1:
+                continue  # Missing/ambiguous approval: retain pending result.
+            bundle = candidates[0]
             row = rows.get(identity, {})
             response = row.get('response') or {}
             data = response.get('body') or {}

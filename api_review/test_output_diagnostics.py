@@ -86,6 +86,18 @@ class DiagnosticTests(unittest.TestCase):
         self.assertNotIn('diagnostic', record)
         self.assertFalse(record['report']['body']['items'][0]['publication_approved'])
 
+    def test_three_document_compact_hold_reject_output_is_valid(self):
+        source = bundle()
+        source['documents'] = [{**source['documents'][0], 'id': str(i)} for i in range(3)]
+        items = [{'id': str(i), 'assessment': 'hold' if i == 0 else 'reject',
+                  'evidence': [], 'rationale': '抜粋に明白な不一致なし',
+                  'draft_title': '', 'draft_fact': '', 'next_check': ''} for i in range(3)]
+        data = {'status': 'completed', 'output': [{'type': 'message', 'content': [
+            {'type': 'output_text', 'text': json.dumps({'items': items})}]}]}
+        validated = w.validate_response(data, source)
+        self.assertEqual(len(validated), 3)
+        self.assertTrue(all(i['publication_approved'] is False for i in validated))
+
     def test_unknown_exception_details_are_never_diagnostics(self):
         for exc in [w.Stop('untrusted-detail'), ValueError('untrusted-detail'),
                     w.InvalidOutput('untrusted-detail')]:
