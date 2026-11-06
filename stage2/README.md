@@ -38,3 +38,20 @@ https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html
 限定実行：`python -m unittest discover -s stage2 -p 'test_facilities.py'`、`python stage2/run_facilities.py --source /path/to/facility.xlsx`。公開統計・URL・既存最終JSONは変更しない。最終出力にはmdc.xlsx、admission.xlsx、ambulance.xlsx、medical-area-municipalities.xlsx等が必要で、未取得のまま。80原本参照中2件照合済み、78件未取得。本変更では全体CIを避けるため[skip ci]を付け、ローカルDPC限定検証のみ実施する。
 
 PR #17/#18統合：同一URL・サイズ・SHA-256のfacility原本は1件として計上する。18:44:42 JSTと19:06:55 JSTの取得は別の確認履歴としてinventory.jsonのacquisition_historyに保持する。詳細な訂正情報・PDL1.0・例外・外部リンク先を含まない権利確認範囲はPR #18から採用。施設抽出の移行と6,372キー一致はPR #17のreceiptを参照。照合済み2/80、未取得78を維持する。
+
+## MDC原本の限定移行（2026-11-06）
+
+厚生労働省「令和６年度DPCの評価・検証等に係る調査『退院患者調査』」参考資料２（１）MDC別医療機関別件数（割合）を加工して中間抽出する。厚生労働省作成のJSONではない。
+掲載ページ：https://www.mhlw.go.jp/stf/shingi2/newpage_00203.html
+原本：https://www.mhlw.go.jp/content/12404000/001718078.xlsx
+利用条件：https://www.mhlw.go.jp/chosakuken/index.html （PDL1.0、出典・加工表示）。別紙の例外一覧に当該表はない。掲載箇所と全2シートを含むXMLテキストの権利関連語を確認し、別の第三者権利表示は認めなかった。外部リンク先や権利不存在の保証を含まない。
+
+原本2,573,930バイト、SHA-256 `d2c86dfebc9eb7c6f99306c6b69e30d8aca6fc7ce7b690a3268f92bbf067e588` は期待値と一致、ZIP CRC正常。取得日時・確認範囲はinventoryとmdc-local-receiptに保存。原本は一時取得し、コミットやartifactに含めない。
+
+変更→影響先→限定検証：原本台帳と独立MDC抽出→中間辞書のみ→原本ハッシュ、元Git blobの定数・関数本文一致、実原本での辞書全体一致、抽出結果ハッシュ、抑制値・手術有無・施設/医療圏結合の固定入力テスト。公開JSON・統計値・URLの変更はない。
+
+`mdc.py` は既存Git blob `168d60fceea4dab39001120d84ef528b2bd8aef4` のMDC_NAMES/text/code/public_number/load_mdcを本文変更なしで抽出。load_mdcは施設辞書・医療圏対応辞書を引数に取る。単独受入では両方に空辞書を明示し、未結合の6,372キー（最終公開病院数ではない）、9,831,751バイト、SHA-256 `c6f62bf70d1838af5135145ac5bc94bd09b77c56369dcf8e38321b114e27994e` を元関数と全件一致確認した。この未結合結果を公開統計には使わない。関数の引数は維持し、施設・医療圏情報を与えた結合は固定入力テストで確認する。
+
+実行：`python -m unittest discover -s stage2 -p 'test_mdc.py'`（3テスト成功）、`python stage2/run_mdc.py --source /path/to/mdc.xlsx`（実原本PASS）。ローカルDPC限定検証であり、Actions成功とは扱わない。コミットには `[skip ci]` を付け、既存の抱き合わせジョブも起動しない。
+
+照合済み3/80、未取得77。history/2024-mdc.xlsxは同一原本の別名で二重計上しない。最終生成の残依存はadmission.xlsx、ambulance.xlsx、diagnosis-groups.xlsx、medical-area-municipalities.xlsx、およびmanifest用death24h.xlsx。施設・定義表は照合済み。過年度生成器等4本は引き続き未移行。残る77原本の取得・全体CI・公開成果物再生成は行っていない。
