@@ -166,6 +166,172 @@
           }
         ]
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261107-6",
+        "documents": [
+          {
+            "id": "aomori-26488-public-table",
+            "title": "【南部町】地域・年齢別人口（2026年1月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年1月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2414.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15919\nG2=7589\nH2=8330\nI2=166\nJ2=158\nK2=244\nL2=219\nM2=252\nN2=284\nO2=300\nP2=297\nQ2=243\nR2=227\nS2=260\nT2=199\nU2=286\nV2=293\nW2=340\nX2=329\nY2=439\nZ2=367\nAA2=482\nAB2=408\nAC2=550\nAD2=550\nAE2=571\nAF2=597\nAG2=675\nAH2=628\nAI2=644\nAJ2=674\nAK2=710\nAL2=788\nAM2=689\nAN2=774\nAO2=388\nAP2=545\nAQ2=350\nAR2=993\nAS2=7359\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2414.html",
+            "source_sha256": "206a05a4ec546a92f658643988bf9efabd0370a93227e11cd0b6ec64cc1b9001"
+          },
+          {
+            "id": "aomori-26530-public-table",
+            "title": "【南部町】地域・年齢別人口（2026年2月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年2月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2417.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15890\nG2=7573\nH2=8317\nI2=165\nJ2=167\nK2=244\nL2=214\nM2=255\nN2=288\nO2=298\nP2=297\nQ2=245\nR2=229\nS2=258\nT2=201\nU2=288\nV2=288\nW2=337\nX2=324\nY2=434\nZ2=373\nAA2=485\nAB2=410\nAC2=548\nAD2=546\nAE2=572\nAF2=593\nAG2=667\nAH2=626\nAI2=650\nAJ2=672\nAK2=699\nAL2=782\nAM2=698\nAN2=785\nAO2=379\nAP2=543\nAQ2=351\nAR2=979\nAS2=7352\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2417.html",
+            "source_sha256": "e3fa9bee764ebee7e9cc4fcf0c47d6bf552243d02c941b277a8d8234cc49931b"
+          },
+          {
+            "id": "aomori-26691-public-table",
+            "title": "【南部町】地域・年齢別人口（2026年3月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年3月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2442.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15857\nG2=7563\nH2=8294\nI2=166\nJ2=164\nK2=243\nL2=214\nM2=256\nN2=287\nO2=297\nP2=293\nQ2=244\nR2=232\nS2=252\nT2=195\nU2=293\nV2=290\nW2=334\nX2=323\nY2=433\nZ2=372\nAA2=483\nAB2=412\nAC2=544\nAD2=538\nAE2=576\nAF2=591\nAG2=657\nAH2=626\nAI2=655\nAJ2=674\nAK2=690\nAL2=783\nAM2=708\nAN2=788\nAO2=382\nAP2=535\nAQ2=350\nAR2=977\nAS2=7346\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2442.html",
+            "source_sha256": "112fd52fb439e9eb05577ce390f6aff579f7ab004d7e2e7553a26a1034f461d3"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "9d48209e686a391feb0228ea63f39a22ac573b40a692bef714c9b65109036556",
+        "review_commit": "e71e06dc3bb19e6d705d691b11bdd7deb56cda07",
+        "exclusive_public_ownership": {
+          "private_state_commit": "e71e06dc3bb19e6d705d691b11bdd7deb56cda07",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-26488-public-table",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2414.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2414/resource/28405/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_1%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "206a05a4ec546a92f658643988bf9efabd0370a93227e11cd0b6ec64cc1b9001",
+            "text_sha256": "566d52aec8c7c3358390205cc61261dd7a91b3ad562cc1ce1266071921cf5e78",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T06:06:11.772860+09:00",
+            "public_scope": "シート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-26530-public-table",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2417.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2417/resource/28427/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_2%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "e3fa9bee764ebee7e9cc4fcf0c47d6bf552243d02c941b277a8d8234cc49931b",
+            "text_sha256": "716eb3f55d25bc87a63955cecf4506882b76beac00c96fc1701db7d0a294bab0",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T06:06:11.772860+09:00",
+            "public_scope": "シート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-26691-public-table",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2442.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2442/resource/28562/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_3%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "112fd52fb439e9eb05577ce390f6aff579f7ab004d7e2e7553a26a1034f461d3",
+            "text_sha256": "07955f20abbe747a286fb6478bb5bc998957a6d1e3f08a4f0e0f37069a45cf55",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T06:06:11.772860+09:00",
+            "public_scope": "シート「04.地域・年齢別人口」E1:AT2。総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。抜粋外の内容は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261107-6b",
+        "documents": [
+          {
+            "id": "aomori-26699-visible-population",
+            "title": "よくわかる青森県2026　基本情報　人口／2-1_総人口及び男女別人口の推移",
+            "text": "よくわかる青森県2026　基本情報　人口／2-1_総人口及び男女別人口の推移\n出典：青森県／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2443.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「データ」の可視セル C7,C8,F8,G8,H8,I8,C40,F40,G40,H40,C41,F41,G41,H41,C42,F42,G42,H42。C列は表示形式yyyyの年、数値は保存済み表示形式に従う。見出し・出典・単位と全指標列を保持。グラフ補助D/E列、他の行、非表示行、将来推計の追加範囲は含めない。抜粋外は未確認。\nC7=総人口及び男女別人口（青森県、各年10月1日現在）（資料：総務省統計局「国勢調査」（1945年のみ「人口調査」）、県総合政策部「青森県人口移動統計調査」）（単位：人）\nC8=西暦\nF8=男\nG8=女\nH8=総数\nI8=※5年毎の表記としているが、2010年以降は各年のデータあり。データの連続性の関係で行を非表示にしている。なお、直近の国勢調査年以降は各年の推計人口を掲載している。\nC40=2023\nF40=558746\nG40=625812\nH40=1184558\nC41=2024\nF41=549256\nG41=615496\nH41=1164752\nC42=2025\nF42=540296\nG42=605179\nH42=1145475",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2443.html",
+            "source_sha256": "fa93a4a382bac5bc6530a81ece7d1d5125ca390d6904d7e659df134cba8e87bb"
+          },
+          {
+            "id": "aomori-26696-visible-population",
+            "title": "よくわかる青森県2026　基本情報　人口／2-2_年齢3区分別人口の推移",
+            "text": "よくわかる青森県2026　基本情報　人口／2-2_年齢3区分別人口の推移\n出典：青森県／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2443.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「データ」の可視セル C7,C8,F8,G8,H8,I8,J8,K8,L8,C27,F27,G27,H27,I27,J27,K27,L27,C28,F28,G28,H28,I28,J28,K28,L28,C29,F29,G29,H29,I29,J29,K29,L29。C列は表示形式yyyyの年、数値は保存済み表示形式に従う。見出し・出典・単位と全指標列を保持。グラフ補助D/E列、他の行、非表示行、将来推計の追加範囲は含めない。抜粋外は未確認。\nC7=年齢3区分別人口（青森県、各年10月1日現在)（資料：総務省統計局「国勢調査」(1945年のみ「人口調査」）、国立社会保障・人口問題研究所「日本の地域別将来推計人口(令和5年推計)について」）（単位：人）\nC8=西暦\nF8=計\nG8=15歳未満人口(年少人口)\nH8=15～64歳人口(生産年齢人口)\nI8=65歳以上人口(老年人口)\nJ8=年少人口割合\nK8=生産年齢人口割合\nL8=老年人口割合\nC27=2010\nF27=1373339\nG27=171842\nH27=843587\nI27=352768\nJ27=12.6\nK27=61.7\nL27=25.8\nC28=2015\nF28=1308265\nG28=148208\nH28=757867\nI28=390940\nJ28=11.4\nK28=58.5\nL28=30.1\nC29=2020\nF29=1237984\nG29=130259\nH29=689910\nI29=417815\nJ29=10.5\nK29=55.7\nL29=33.7",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2443.html",
+            "source_sha256": "5582aa8a88e3a8ea17c6f08bbc5b546f84de59ef9fb3c2c818e6e838a5aa7398"
+          },
+          {
+            "id": "aomori-26700-visible-population",
+            "title": "よくわかる青森県2026　基本情報　人口／2-4_本県の人口動態の推移",
+            "text": "よくわかる青森県2026　基本情報　人口／2-4_本県の人口動態の推移\n出典：青森県／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2443.html\nCC BY 4.0。原本の可視セルをセル番地付きテキストへ加工。\nシート「データ」の可視セル C7,C8,F8,G8,H8,C54,F54,G54,H54,C55,F55,G55,H55,C56,F56,G56,H56。C列は表示形式yyyyの年、数値は保存済み表示形式に従う。見出し・出典・単位と全指標列を保持。グラフ補助D/E列、他の行、非表示行、将来推計の追加範囲は含めない。抜粋外は未確認。\nC7=本県の人口動態の推移（資料：厚生労働省「人口動態統計」、総務省「住民基本台帳人口移動報告」）（単位：人）\nC8=西暦\nF8=人口増減数\nG8=自然増減数\nH8=社会増減数\nC54=2021\nF54=-16581\nG54=-12272\nH54=-4309\nC55=2022\nF55=-18707\nG55=-14132\nH55=-4575\nC56=2023\nF56=-20795\nG56=-15139\nH56=-5656",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2443.html",
+            "source_sha256": "d5a0968e38a801e760371bf6aa395217bc28450932fdd7be8a3c9de5e8741187"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "ae00bc38fbcd192d15b259a8c9e26caca038d2e259b62909d9d50db275dfb5d2",
+        "review_commit": "e71e06dc3bb19e6d705d691b11bdd7deb56cda07",
+        "exclusive_public_ownership": {
+          "private_state_commit": "e71e06dc3bb19e6d705d691b11bdd7deb56cda07",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-26699-visible-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2443.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2443/resource/28566/2-1_%E7%B7%8F%E4%BA%BA%E5%8F%A3%E5%8F%8A%E3%81%B3%E7%94%B7%E5%A5%B3%E5%88%A5%E4%BA%BA%E5%8F%A3%E3%81%AE%E6%8E%A8%E7%A7%BB.xlsx",
+            "source_sha256": "fa93a4a382bac5bc6530a81ece7d1d5125ca390d6904d7e659df134cba8e87bb",
+            "text_sha256": "56c77c491c317cbf9f6ce917d99e6fdfc4ce67a897c5946fae10ce13a6e47935",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T06:07:35.844586+09:00",
+            "public_scope": "シート「データ」の可視セル C7,C8,F8,G8,H8,I8,C40,F40,G40,H40,C41,F41,G41,H41,C42,F42,G42,H42。C列は表示形式yyyyの年、数値は保存済み表示形式に従う。見出し・出典・単位と全指標列を保持。グラフ補助D/E列、他の行、非表示行、将来推計の追加範囲は含めない。抜粋外は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-26696-visible-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2443.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2443/resource/28567/2-2___3________.xlsx",
+            "source_sha256": "5582aa8a88e3a8ea17c6f08bbc5b546f84de59ef9fb3c2c818e6e838a5aa7398",
+            "text_sha256": "c9ead8530a668060c5234ba6cab361cd8376be2a15ff86f01d9cff2ec44a8f2f",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T06:07:35.844586+09:00",
+            "public_scope": "シート「データ」の可視セル C7,C8,F8,G8,H8,I8,J8,K8,L8,C27,F27,G27,H27,I27,J27,K27,L27,C28,F28,G28,H28,I28,J28,K28,L28,C29,F29,G29,H29,I29,J29,K29,L29。C列は表示形式yyyyの年、数値は保存済み表示形式に従う。見出し・出典・単位と全指標列を保持。グラフ補助D/E列、他の行、非表示行、将来推計の追加範囲は含めない。抜粋外は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-26700-visible-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2443.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2443/resource/28569/2-4_%E6%9C%AC%E7%9C%8C%E3%81%AE%E4%BA%BA%E5%8F%A3%E5%8B%95%E6%85%8B%E3%81%AE%E6%8E%A8%E7%A7%BB.xlsx",
+            "source_sha256": "d5a0968e38a801e760371bf6aa395217bc28450932fdd7be8a3c9de5e8741187",
+            "text_sha256": "a08340da525317100d6f08b6e31cafe02115c4336ac3ccf95fd7afa0f033b21c",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-07T06:07:35.844586+09:00",
+            "public_scope": "シート「データ」の可視セル C7,C8,F8,G8,H8,C54,F54,G54,H54,C55,F55,G55,H55,C56,F56,G56,H56。C列は表示形式yyyyの年、数値は保存済み表示形式に従う。見出し・出典・単位と全指標列を保持。グラフ補助D/E列、他の行、非表示行、将来推計の追加範囲は含めない。抜粋外は未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
     }
   ]
 }
