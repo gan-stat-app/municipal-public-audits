@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "scope": "MDC-only intermediate with empty facility/area maps; not a published hospital or area dataset",
+  "retrieved_jst": "2026-11-06T18:10:21.601674+09:00",
+  "bytes": 2573930,
+  "sha256": "d2c86dfebc9eb7c6f99306c6b69e30d8aca6fc7ce7b690a3268f92bbf067e588",
+  "hospital_keys": 6372,
+  "extracted_bytes": 9831751,
+  "extracted_sha256": "c6f62bf70d1838af5135145ac5bc94bd09b77c56369dcf8e38321b114e27994e",
+  "original_function_result_identity": true,
+  "source_git_blob": "168d60fceea4dab39001120d84ef528b2bd8aef4",
+  "rights_notice_text_matches": [],
+  "sheets_reviewed": [
+    "件数",
+    "割合 "
+  ],
+  "full_ci_run": false
+}

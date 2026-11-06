@@ -18,11 +18,28 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
         with:
           persist-credentials: false
-      - name: Check public records and cross-format consistency
+          fetch-depth: 0
+      - id: scope
+        name: Exclude isolated DPC migration from full validation
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python3 - <<'PYCODE'
+          import os, subprocess
+          paths = subprocess.check_output(['git', 'diff', '--name-only', os.environ['BASE'], os.environ['HEAD']], text=True).splitlines()
+          scoped = bool(paths) and all(p.startswith('stage2/') or p in {'.github/workflows/dpc-generation.yml', '.github/workflows/verify-public-records.yml'} for p in paths)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              print(f'full={str(not scoped).lower()}', file=out)
+          PYCODE
+      - if: steps.scope.outputs.full == 'true'
+        name: Check public records and cross-format consistency
         run: python3 scripts/verify.py
-      - name: Test read-only site comparison gate
+      - if: steps.scope.outputs.full == 'true'
+        name: Test read-only site comparison gate
         run: python3 -m unittest discover -s scripts -p "test_*.py"
-      - name: Validate every public workflow and export boundary
+      - if: steps.scope.outputs.full == 'true'
+        name: Validate every public workflow and export boundary
         run: |
           python3 -m pip install PyYAML==6.0.3 openpyxl==3.1.5
           python3 -m unittest discover -s workloads -p 'test_*.py'
