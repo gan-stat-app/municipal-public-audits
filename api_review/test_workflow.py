@@ -30,6 +30,12 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(check['steps'][-1]['env'], {k: v for k, v in execute['steps'][-1]['env'].items() if k != 'PUBLIC_RUN_MODE'})
         self.assertEqual(workflow['on']['push'], {'branches': ['main'], 'paths': ['api_review/queue.json']})
         self.assertNotIn('secrets', str(workflow['jobs']['test']))
+        self.assertEqual(workflow['jobs']['test']['if'], "github.event_name == 'pull_request'")
+        self.assertNotIn('needs', execute)  # Scheduled work must not depend on the skipped PR job.
+        self.assertIn('batch_worker.py', execute['steps'][-1]['run'])
+        self.assertIn('workflow_dispatch', execute['steps'][-1]['run'])
+        self.assertEqual(execute['steps'][0]['with']['sparse-checkout'].split(),
+                         ['api_review', '.github/workflows'])
         self.assertEqual(workflow['concurrency']['cancel-in-progress'], 'false')
 
     def test_no_output_upload_cache_or_private_repository_credential(self):
