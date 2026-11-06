@@ -1,6 +1,7 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
 
 import batch_worker as b
 import worker as w
@@ -55,6 +56,30 @@ class BatchTests(unittest.TestCase):
         self.assertFalse(record['report']['body']['items'][0]['publication_approved'])
         self.assertEqual(record['usage']['input_tokens'], 10)
         self.assertEqual(self.tick()['submitted'], 0)
+        self.assertEqual(self.api.submissions, 1)
+
+    def test_prompt_change_collects_old_batch_without_resending_any_source(self):
+        self.tick()
+        identity = self.api.lines[0]['custom_id']
+        self.api.status = 'completed'
+        self.api.rows = [{'custom_id': identity, 'response': {'status_code': 200, 'body': response()}}]
+        with patch.object(w, 'INSTRUCTIONS', w.INSTRUCTIONS + ' revised'):
+            self.assertNotEqual(w.digest(w.payload(bundle())), identity)
+            result = self.tick()
+            self.assertEqual((result['completed'], result['submitted']), (1, 0))
+            self.assertEqual(self.tick()['submitted'], 0)
+        self.assertEqual(self.api.submissions, 1)
+        self.assertEqual(list(self.store.state['requests']), [identity])
+
+    def test_prompt_change_does_not_resend_held_or_inflight_sources(self):
+        self.tick()
+        with patch.object(w, 'INSTRUCTIONS', w.INSTRUCTIONS + ' revised'):
+            self.assertEqual(self.tick()['submitted'], 0)
+            self.api.status = 'completed'
+            self.api.rows = [{'custom_id': self.api.lines[0]['custom_id'],
+                             'response': {'status_code': 200, 'body': response(evidence=['invented'])}}]
+            self.assertEqual(self.tick()['held'], 1)
+            self.assertEqual(self.tick()['submitted'], 0)
         self.assertEqual(self.api.submissions, 1)
 
     def test_reservation_failure_makes_no_upload_or_submission(self):

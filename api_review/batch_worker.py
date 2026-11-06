@@ -68,6 +68,7 @@ def tick(queue, store, api, *, max_requests=100):
         prepared[identity] = (bundle, request, keys)
     state = store.read()
     completed = held = submitted = 0
+    triage_counts = {assessment: 0 for assessment in ('reject', 'hold', 'verify')}
     groups = {}
     for identity, record in state['requests'].items():
         if record.get('status') == 'batch_submitted':
@@ -89,9 +90,13 @@ def tick(queue, store, api, *, max_requests=100):
                     rows[identity] = row
         for identity in identities:
             record = state['requests'][identity]
-            if identity not in prepared:
-                continue  # Keep pending result until its approved source is restored.
-            bundle = prepared[identity][0]
+            # Prompt/schema changes alter payload hashes, but must not strand
+            # already submitted work. Match the exact ordered approved sources.
+            candidates = [entry[0] for entry in prepared.values()
+                          if entry[2] == record['source_keys']]
+            if len(candidates) != 1:
+                continue  # Missing/ambiguous approval: retain pending result.
+            bundle = candidates[0]
             row = rows.get(identity, {})
             response = row.get('response') or {}
             data = response.get('body') or {}
@@ -108,6 +113,8 @@ def tick(queue, store, api, *, max_requests=100):
             report.update(usage=record['usage'], source_keys=record['source_keys'],
                           payload_sha256=identity, date=record['date'])
             record.update(status=report['status'], report=w.public_report(report))
+            for item in report['items']:
+                triage_counts[item['assessment']] += 1
             completed += int(report['status'] == 'completed')
             held += int(report['status'] != 'completed')
         store.write(state)
@@ -139,6 +146,9 @@ def tick(queue, store, api, *, max_requests=100):
         store.write(state)
         submitted = len(selected)
     return {'submitted': submitted, 'completed': completed, 'held': held,
+            'triage_no_finding': triage_counts['reject'],
+            'triage_needs_evidence': triage_counts['hold'],
+            'triage_candidates': triage_counts['verify'],
             'in_flight': sum(r['status'] == 'batch_submitted' for r in state['requests'].values())}
 
 
