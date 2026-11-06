@@ -8,6 +8,7 @@ import urllib.request
 from zoneinfo import ZoneInfo
 
 import worker as w
+from supply import refill
 
 TERMINAL = {'completed', 'failed', 'expired', 'cancelled'}
 
@@ -150,7 +151,9 @@ def main():
         if not key.startswith('sk-'):
             raise w.Stop()
         queue = json.loads(Path('api_review/queue.json').read_text())
-        print(json.dumps(tick(queue, w.Store(os.environ['GH_TOKEN']), API(key))))
+        catalog = json.loads(Path('api_review/supply.json').read_text())
+        queue, supply_status = refill(queue, catalog)
+        print(json.dumps({**tick(queue, w.Store(os.environ['GH_TOKEN']), API(key)), **supply_status}))
         return 0
     except Exception:
         print('{"status":"stopped","reason":"batch_configuration_transport_or_checkpoint"}')
@@ -159,3 +162,4 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+

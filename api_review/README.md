@@ -21,7 +21,7 @@ APIはstore:false。空キューは待機せず終了する。課金・予算・
 api_review/queue.jsonには公開再配布を確認した抜粋をPRで追加する。
 公開入力とAPIの下書き候補が公開repoで閲覧可能になることを確認する。
 非公開側へ移管する場合は従来どおり委任台帳・原本SHA・本文・要求IDを照合し、二重投入しない。
-自動収集・キュー補充・記事掲載の工程そのものはこのworkerに含まれない。
+公式資料の収集・公開承認・記事掲載は既存工程で行う。承認済み在庫の補充は下記のsupply経路を使う。
 
 ## 旧暗号化結果の復旧
 
@@ -60,3 +60,20 @@ Batchは資料を自動収集しない。公開キューが既処理1件だけ�
 稼働確認では投入数/処理中/回収完了/検証保留/実tokenを別々に数える。
 
 公式仕様: https://developers.openai.com/api/docs/guides/batch
+
+
+## 承認済み在庫からの自動補充
+
+既存の6時間scheduleで、batch_workerはsupply.jsonを読み、承認済みbundleをメモリ上のキューへ補充してから既存Batch処理を1回実行する。mainへの書込み、新規workflow、追加の定期タスク、待機、手動API送信は追加しない。queue.jsonの既存4要求は変更せず、送信済み3要求の結果回収にも同じ入力を使う。catalogの変更は次の自然scheduleで処理する。
+
+supply.jsonは公開レビューを通した可視抜粋の在庫であり、収集先一覧ではない。未承認本文・原本・非表示情報・個人情報・非公開台帳をここへ移さない。未承認候補は従来の非公開収集台帳に保持する。公開可能な候補でも承認情報が不足すればsupply_confirmation_requiredとして件数のみ記録し送信しない。現在の在庫は空であり、新規資料の承認完了や無停止供給の達成を意味しない。
+
+登録は既存の収集・検査・prepare/previewを担当する工程で行う。候補ごとにbundleとapprovalのみを登録する。approvalはbundle_sha256（worker.digestによる正規化JSONのSHA）、review_commit、documents、exclusive_public_ownershipを持つ。documentsはbundle順にid/source_url/original_url/source_sha256/text_sha256/terms_url/license/checked_at_jst/public_scope/visible_only/no_personal_information/redistribution_approvedを記録する。本文変更・原本更新・範囲変更は再レビューする。URLや利用条件の存在だけを公開承認とみなさない。
+
+公開前に非公開側の全履歴（処理中・保留・完了・中断予約を含む）を原本SHAと本文/要求IDで照合する。既存の委任手順で対象を公開側専有として永続予約し、非公開キューをdelegated_to_publicにしてから、確認したprivate_state_commit、reserved=true、no_prior_attempt=trueだけを公開可能な承認記録として記載する。非公開台帳やrequest_pathは転記しない。既存履歴がある・照合不能・委任予約できない場合はこの承認を作成せず確認待ちにする。専有予約は公開側に保留や失敗が生じても解除しない。再試行は別途照合を要する。
+
+公開workerは非公開資格情報を持たないため、この委任証跡の真偽を非公開側へ照会できない。review_commitとprivate_state_commitは署名ではなく、レビュー時に確認した固定版の参照である。担当工程で実照合・予約を完了することが必須であり、推測でtrueを設定しない。自動収集した新規原本を自動承認する機能は追加しない。
+
+同一原本SHAまたはbundle IDは在庫/既存キュー内で重複補充しない。API送信自体は従来のpayload/source_keysと永続CAS予約で全状態に対して再送を防ぐ。queue.jsonと承認済みcatalogは回収・履歴照合用に保持し、処理済みだからという理由で削除しない。上限1000要求に達した場合は確認待ちとして運用整理し、履歴を消さない。
+
+確認した既存のworkloads/collectors.pyは施設基準・食品営業の取得/正規化で、API公開承認の代替にならない。既存のPR/CI監視タスクにも補充指示があるため、同工程はsupply.jsonへのレビュー済み登録に集約し、同じ資料をqueue.jsonへ重複追加したり手動送信したりしない。既存スケジュール・購入・自動チャージは変更しない。
