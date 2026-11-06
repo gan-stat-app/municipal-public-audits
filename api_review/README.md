@@ -9,7 +9,11 @@
 ## 稼働と重複防止
 
 既存Secret OPENAI_API_KEYとVariable PUBLIC_API_ENABLED=trueを使う。新しい結果にAPI_RESULT_KEYは不要。
-6時間schedule、キュー更新push、document-onceの起動条件、最大40分、1要求3資料/16KB/出力1200tokens、
+6時間scheduleとキュー更新pushはBatch APIへ最大100要求（最大300資料）を一括投入し、即終了する。
+API側のcompletion_windowは24h。次の定期実行で状態を1回だけ確認し、完了結果を回収する。
+待機ループやsleepはなく、APIの処理時間中にActions runnerを占有しない。
+PR時だけ固定応答テストを実行し、定期実行では再実行しない。checkoutもAPI関連に限定する。
+document-onceは既存の同期1要求に限定したまま。1要求3資料/16KB/出力1200tokens、
 送信前CAS予約、concurrency、原本SHA+本文の重複防止を維持する。失敗・中断・保存不明は自動再送しない。
 APIはstore:false。空キューは待機せず終了する。課金・予算・原本収集・本番公開の設定は変更しない。
 
@@ -40,3 +44,19 @@ api_review/receive.pyもversion=2を鍵なしで読み取れる。受信を本�
 python -m unittest discover -s api_review -p 'test_*.py'
 PRでは固定応答テストのみ。無関係な全体CI、原本の再取得、APIの再送は行わない。
 key-checkは旧来の一度限りの診断経路として保持し、通常の新方式の稼働条件にはしない。
+
+## Batchの運用と残る供給工程
+
+同期workerと同じpayload SHA/原本SHA＋本文キーを使い、過去の完了・保留・予約を再送しない。
+送信前CAS予約→ファイル投入→Batch ID保存→後続runで回収。送信結果が不明な場合は予約を残し自動再送しない。
+Batch失敗/期限切れ/部分失敗も結果と使用量を保存し、完了していない範囲を成功扱いにしない。
+新規結果は従来と同じpublic-jsonで、根拠引用の検証と公開承認falseを維持する。
+API残高の自動取得や無料枠超過の自動課金許可を追加していない。追加購入・自動チャージを変更しない。
+
+Batchは資料を自動収集しない。公開キューが既処理1件だけなら新規送信0件になる。
+継続供給には保存済み未処理資料の公開可視範囲を確認し、私的キューとの二重委任を防ぎ、
+元の出典/SHA/本文/要求IDを保持して公開キューへ補充する必要がある。
+未確認の原本・非表示内容・私的台帳を一括公開して件数を増やさない。
+稼働確認では投入数/処理中/回収完了/検証保留/実tokenを別々に数える。
+
+公式仕様: https://developers.openai.com/api/docs/guides/batch
