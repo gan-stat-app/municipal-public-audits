@@ -25,3 +25,7 @@ Prompt edits change payload hashes. Recover existing Batch results by matching e
 ## Validation
 
 API-only unittest discovery: 47 tests passed. Includes fixed incomplete/token-limit responses, completed output at the ceiling, evidence mismatch/shape checks, compact three-document hold/reject output, changed-prompt in-flight/held deduplication and old Batch collection. No live API calls, retries, full generation or full CI. Old failures are not reclassified without evidence. Review future diagnostic codes and actual usage before considering any ceiling increase.
+
+## Superseding policy: triage first
+
+The user subsequently authorized triage-only API output. New requests omit both draft fields, bound rationale/next_check to 100 characters in validation, and preserve the token ceiling and evidence checks. Only validated verify items get a deterministic candidate from the source title, rationale and first exact quote; all evidence remains saved. There is no extra model call. Legacy seven-field responses are retained for in-flight compatibility. Batch collection reports no-finding/evidence-needed/candidate document counts so Work can skip no-finding text and focus on candidate review. The earlier combined article/X instruction above is superseded. API-only suite: 52 tests passed; no live requests or ledger changes.
