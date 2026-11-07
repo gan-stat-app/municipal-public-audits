@@ -131,6 +131,8 @@ def tick(queue, store, api, *, max_requests=100):
         # A failed or ambiguous submission is held, never silently resubmitted.
         for identity, request, keys in selected:
             state['requests'][identity] = {'status': 'reserved_or_interrupted',
+                'output_contract': 'triage-concise-v2',
+                'max_output_tokens': request['max_output_tokens'],
                 'source_keys': keys, 'payload_sha256': identity, 'usage': {},
                 'date': datetime.now(ZoneInfo('Asia/Tokyo')).date().isoformat()}
         if len(w.raw(state)) > 1_600_000:
@@ -173,5 +175,3 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
-
-
