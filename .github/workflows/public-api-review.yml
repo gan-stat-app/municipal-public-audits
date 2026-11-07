@@ -9,7 +9,7 @@ on:
         default: document-once
   push:
     branches: [main]
-    paths: ['api_review/queue.json']
+    paths: ['api_review/queue.json', 'api_review/supply.json']
   pull_request:
     paths: ['api_review/**', '.github/workflows/public-api-review.yml']
   schedule:

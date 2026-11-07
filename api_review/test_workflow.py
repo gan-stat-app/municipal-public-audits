@@ -28,7 +28,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(check['steps'][-1]['run'], 'python api_review/key_check.py')
         self.assertNotIn('worker.py', str(check['steps']))
         self.assertEqual(check['steps'][-1]['env'], {k: v for k, v in execute['steps'][-1]['env'].items() if k != 'PUBLIC_RUN_MODE'})
-        self.assertEqual(workflow['on']['push'], {'branches': ['main'], 'paths': ['api_review/queue.json']})
+        self.assertEqual(workflow['on']['push'], {'branches': ['main'], 'paths': ['api_review/queue.json', 'api_review/supply.json']})
         self.assertNotIn('secrets', str(workflow['jobs']['test']))
         self.assertEqual(workflow['jobs']['test']['if'], "github.event_name == 'pull_request'")
         self.assertNotIn('needs', execute)  # Scheduled work must not depend on the skipped PR job.
