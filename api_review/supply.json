@@ -373,6 +373,47 @@
           }
         ]
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261108-2",
+        "documents": [
+          {
+            "id": "aomori-27454-visible-farm-entities",
+            "title": "よくわかる青森県2026／3-1-1-1_農業経営体数",
+            "text": "よくわかる青森県2026／3-1-1-1_農業経営体数\n出典：青森県 https://opendata.pref.aomori.lg.jp/dataset/2444.html\nCC BY 4.0。保存原本の可視セルをセル番地付きテキストに加工（ふりがな除外）。\n可視シート「データ」のC7,C8,F8:H8,C9:C16,F9:H16。見出し・資料名・単位・全指標列・2005〜2024年の全8時点を保持。C列は表示形式yyyy、数値は原本の千区切り表示。空欄は空欄のままで、0や集計不能と補完しない。A/BおよびD/E列はグラフ補助用で対象外。グラフ表示全体や抜粋外は未確認。\nC7=農業経営体数の推移（資料：農林水産省「農林業センサス」、「農業構造動態調査」）（単位：経営体）\nC8=西暦\nF8=農業経営体数\nG8=個人経営体\nH8=団体経営体\nC9=2005\nF9=52,266\nG9=51,280\nH9=986\nC10=2010\nF10=44,667\nG10=43,653\nH10=1,014\nC11=2015\nF11=35,914\nG11=35,037\nH11=877\nC12=2020\nF12=29,022\nG12=28,232\nH12=790\nC13=2021\nF13=27,800\nG13=\nH13=\nC14=2022\nF14=26,800\nG14=\nH14=\nC15=2023\nF15=25,100\nG15=\nH15=\nC16=2024\nF16=24,100\nG16=\nH16=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "source_sha256": "2fc25e7e06b649ea607eef119aa773662973e323d2ec9daa3d1caa492deca202"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "668ef5b3d72cf3eb0f9f60e64991ae4607ea5f641c53f28915971d786d4d1573",
+        "review_commit": "b50470d762841e9c283f5e34b34dd5c0bf736a0a",
+        "exclusive_public_ownership": {
+          "private_state_commit": "b50470d762841e9c283f5e34b34dd5c0bf736a0a",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-27454-visible-farm-entities",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2444/resource/28570/3-1-1-1_%E8%BE%B2%E6%A5%AD%E7%B5%8C%E5%96%B6%E4%BD%93%E6%95%B0.xlsx",
+            "source_sha256": "2fc25e7e06b649ea607eef119aa773662973e323d2ec9daa3d1caa492deca202",
+            "text_sha256": "837dbd274d0b6c1a7275be2ea5ffeb7599aa4de1d108535443c0b24324a8edec",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-08T08:06:00+09:00",
+            "public_scope": "可視シート「データ」C7,C8,F8:H8,C9:C16,F9:H16。見出し・出典・単位・全指標列と全8時点、表示年・千区切り・空欄を保持。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
     }
   ]
 }
