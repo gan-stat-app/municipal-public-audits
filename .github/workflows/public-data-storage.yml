@@ -1,0 +1,44 @@
+name: Public data Release storage
+on:
+  push:
+    branches: [main]
+    paths: ['storage/**', '.github/workflows/public-data-storage.yml']
+  pull_request:
+    paths: ['storage/**', '.github/workflows/public-data-storage.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: public-data-release-storage
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            storage
+            workloads/common.py
+      - run: python -m unittest discover -s storage -p 'test_*.py'
+  publish:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    permissions:
+      contents: write
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            storage
+            workloads/common.py
+      - name: Verify published bytes and archive directly to Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python storage/publish_data.py
