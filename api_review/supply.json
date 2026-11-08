@@ -455,6 +455,47 @@
           }
         ]
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261108-4",
+        "documents": [
+          {
+            "id": "aomori-26756-visible-new-farmers",
+            "title": "よくわかる青森県2026／3-1-1-3_新規就農者数",
+            "text": "よくわかる青森県2026／3-1-1-3_新規就農者数\n出典：青森県 https://opendata.pref.aomori.lg.jp/dataset/2444.html\nCC BY 4.0。保存原本の可視セルをセル番地付きテキストに加工（ふりがな除外）。\n可視シート「グラフデータ」C7,C8,F8:I8,C9:C25,F9:I25。2008〜2024年の全17時点、新規学卒・農家出身者・非農家出身者・合計の全列、資料名・単位を保持。C列は表示形式yyyy、人数はGeneral。I24/I25は保存原本の数式と保存済み表示値を区別し、再計算していない。A/B,D/E列および作業用メモ・グラフ描画・抜粋外は対象外。\nC7=就農形態別新規就農者数（資料：県農林水産部「新規就農状況調査」）（単位：人）\nC8=西暦\nF8=新規学卒\nG8=農家出身者\nH8=非農家出身者\nI8=合計値\nC9=2008\nF9=50\nG9=60\nH9=22\nI9=132\nC10=2009\nF10=48\nG10=51\nH10=40\nI10=139\nC11=2010\nF11=82\nG11=64\nH11=29\nI11=175\nC12=2011\nF12=52\nG12=98\nH12=40\nI12=190\nC13=2012\nF13=83\nG13=137\nH13=47\nI13=267\nC14=2013\nF14=63\nG14=125\nH14=70\nI14=258\nC15=2014\nF15=71\nG15=144\nH15=81\nI15=296\nC16=2015\nF16=72\nG16=98\nH16=93\nI16=263\nC17=2016\nF17=59\nG17=122\nH17=65\nI17=246\nC18=2017\nF18=72\nG18=106\nH18=99\nI18=277\nC19=2018\nF19=51\nG19=94\nH19=111\nI19=256\nC20=2019\nF20=65\nG20=118\nH20=109\nI20=292\nC21=2020\nF21=55\nG21=100\nH21=148\nI21=303\nC22=2021\nF22=63\nG22=81\nH22=121\nI22=265\nC23=2022\nF23=69\nG23=79\nH23=109\nI23=257\nC24=2023\nF24=60\nG24=84\nH24=142\nI24=286（保存済み表示値；数式 =SUM(F24:H24)）\nC25=2024\nF25=51\nG25=80\nH25=179\nI25=310（保存済み表示値；数式 =SUM(F25:H25)）",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "source_sha256": "5ce0cfa6d023e782389f232972a3127ec57a032c9f56da435988e1038722242f"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "5a848bde30f8c8a321676580c274352613f953764a9745b152d8503e89743188",
+        "review_commit": "e98146ac71ba2bcc9376bd3ea7a3c5508da3dbd9",
+        "exclusive_public_ownership": {
+          "private_state_commit": "e98146ac71ba2bcc9376bd3ea7a3c5508da3dbd9",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-26756-visible-new-farmers",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2444/resource/28572/3-1-1-3_KPI1-8__%E6%96%B0%E8%A6%8F%E5%B0%B1%E8%BE%B2%E8%80%85%E6%95%B0.xlsx",
+            "source_sha256": "5ce0cfa6d023e782389f232972a3127ec57a032c9f56da435988e1038722242f",
+            "text_sha256": "06260823d6470eaae99cdb525928b3d5f26bc1825ac0168c85efdb0073906de1",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-08T23:31:33.762718+09:00",
+            "public_scope": "Visible worksheet グラフデータ C7,C8,F8:I8,C9:C25,F9:I25; 17 years and all four numeric columns; yyyy dates; I24/I25 stored cached values plus formulas explicitly labeled; no recalculation. Excludes helper columns, work notes, drawing and other cells.",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
     }
   ]
 }
