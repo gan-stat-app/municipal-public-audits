@@ -414,6 +414,47 @@
           }
         ]
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261108-3",
+        "documents": [
+          {
+            "id": "aomori-27388-visible-farm-workers",
+            "title": "よくわかる青森県2026／3-1-1-2_基幹的農業従事者数",
+            "text": "よくわかる青森県2026／3-1-1-2_基幹的農業従事者数\n出典：青森県 https://opendata.pref.aomori.lg.jp/dataset/2444.html\nCC BY 4.0。保存原本の可視セルをセル番地付きテキストに加工（ふりがな除外）。\n可視シート「データ」A1:C17の全見出し・全15年齢区分・男女両列。数値は原本の千区切り表示。表題の個人経営体・2020年・出典を保持。グラフ描画や抜粋外は未確認。\nA1=基幹的農業従事者数（個人経営体）2020年（令和2年）　（資料：農林水産省「農林業センサス」）\nA2=年齢\nB2=男（人）\nC2=女（人）\nA3=85歳以上\nB3=1,205\nC3=908\nA4=80 ～ 84\nB4=2,283\nC4=1,871\nA5=75 ～ 79\nB5=2,984\nC5=2,834\nA6=70 ～ 74 \nB6=4,615\nC6=3,732\nA7=65 ～ 69\nB7=4,605\nC7=4,289\nA8=60 ～ 64\nB8=3,021\nC8=3,090\nA9=55 ～ 59\nB9=2,004\nC9=1,797\nA10=50 ～ 54\nB10=1,392\nC10=1,062\nA11=45 ～ 49\nB11=1,186\nC11=658\nA12=40 ～ 44\nB12=1,070\nC12=469\nA13=35 ～ 39\nB13=960\nC13=400\nA14=30 ～ 34\nB14=692\nC14=231\nA15=25 ～ 29\nB15=378\nC15=117\nA16=20 ～ 24\nB16=169\nC16=43\nA17=15 ～ 19歳\nB17=12\nC17=6",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "source_sha256": "dd934b9e08cbd89445374342285e51219ce8698e683ecc4f622d3202cfb29bea"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "84e62431e1d8b3ac94a44569eac2e3e363041ab6cd546dc06408a89e6b7876a5",
+        "review_commit": "7a9f712addbf8da4df7881dcdf3ea6ebf8c53eb4",
+        "exclusive_public_ownership": {
+          "private_state_commit": "7a9f712addbf8da4df7881dcdf3ea6ebf8c53eb4",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-27388-visible-farm-workers",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2444/resource/28571/3-1-1-2_%E5%9F%BA%E5%B9%B9%E7%9A%84%E8%BE%B2%E6%A5%AD%E5%BE%93%E4%BA%8B%E8%80%85%E6%95%B0.xlsx",
+            "source_sha256": "dd934b9e08cbd89445374342285e51219ce8698e683ecc4f622d3202cfb29bea",
+            "text_sha256": "0adc9980b984a4b178c22402cb57fe998c0c65a5b89909c95cecf80baa9e89d7",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-08T17:16:11.641708+09:00",
+            "public_scope": "可視シート「データ」A1:C17。全15年齢区分・男女両列・2020年・個人経営体・資料出典・千区切り表示を保持。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
     }
   ]
 }
