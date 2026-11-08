@@ -496,6 +496,47 @@
           }
         ]
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261109-1",
+        "documents": [
+          {
+            "id": "aomori-26757-visible-cultivated-area",
+            "title": "よくわかる青森県2026／3-1-1-5_耕地面積",
+            "text": "よくわかる青森県2026／3-1-1-5_耕地面積\n出典：青森県 https://opendata.pref.aomori.lg.jp/dataset/2444.html\nCC BY 4.0。保存原本の可視セルをセル番地付きテキストに加工（ふりがな除外）。\n可視シート「データ」C7,C8,F8:J8,C9:C30,F9:J30。2003〜2024年の全22年、田・普通畑・樹園地・牧草地・合計の全5数値列、資料名と単位haを保持。C列はyyyy、数値は千区切り。抜粋内に数式なし。グラフ1の描画は2018〜2024年を参照するが、ここでは可視の全データ系列を対象とする。A/B,D/Eの描画補助、C1:F5の操作案内、K列URL、コメント、元データシート、グラフ描画は対象外。\nC7=耕地面積の推移（資料：農林水産省「耕地及び作付面積統計」）（単位：ha）\nC8=西暦\nF8=田\nG8=普通畑\nH8=樹園地\nI8=牧草地\nJ8=合計\nC9=2003\nF9=85,900\nG9=33,400\nH9=25,000\nI9=16,000\nJ9=160,300\nC10=2004\nF10=85,500\nG10=33,500\nH10=24,900\nI10=15,800\nJ10=159,700\nC11=2005\nF11=85,100\nG11=33,600\nH11=24,700\nI11=15,800\nJ11=159,200\nC12=2006\nF12=84,600\nG12=33,600\nH12=24,600\nI12=15,700\nJ12=158,500\nC13=2007\nF13=84,300\nG13=33,900\nH13=24,300\nI13=15,600\nJ13=158,100\nC14=2008\nF14=84,000\nG14=34,100\nH14=24,100\nI14=15,500\nJ14=157,700\nC15=2009\nF15=83,700\nG15=34,200\nH15=23,900\nI15=15,400\nJ15=157,200\nC16=2010\nF16=83,600\nG16=34,400\nH16=23,500\nI16=15,400\nJ16=156,900\nC17=2011\nF17=83,500\nG17=34,400\nH17=23,400\nI17=15,300\nJ17=156,600\nC18=2012\nF18=83,400\nG18=34,600\nH18=23,200\nI18=15,200\nJ18=156,400\nC19=2013\nF19=83,100\nG19=34,900\nH19=22,900\nI19=15,000\nJ19=155,900\nC20=2014\nF20=82,300\nG20=34,700\nH20=22,800\nI20=15,000\nJ20=154,800\nC21=2015\nF21=81,200\nG21=34,500\nH21=22,700\nI21=14,900\nJ21=153,300\nC22=2016\nF22=80,700\nG22=34,500\nH22=22,700\nI22=14,500\nJ22=152,400\nC23=2017\nF23=80,000\nG23=34,700\nH23=22,600\nI23=14,200\nJ23=151,500\nC24=2018\nF24=79,800\nG24=35,000\nH24=22,400\nI24=13,700\nJ24=151,000\nC25=2019\nF25=79,600\nG25=35,200\nH25=22,300\nI25=13,400\nJ25=150,500\nC26=2020\nF26=79,400\nG26=34,900\nH26=22,300\nI26=13,300\nJ26=149,800\nC27=2021\nF27=79,200\nG27=35,100\nH27=22,200\nI27=13,100\nJ27=149,600\nC28=2022\nF28=78,900\nG28=35,400\nH28=22,100\nI28=12,900\nJ28=149,300\nC29=2023\nF29=78,100\nG29=35,400\nH29=22,000\nI29=12,800\nJ29=148,400\nC30=2024\nF30=77,500\nG30=35,500\nH30=21,600\nI30=12,800\nJ30=147,300",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "source_sha256": "be5dc902110a2ca81b60590006a5c444675a629d29e4e27f2449833d5ed7daed"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "0f79f854c23d03b376dfb9e7c48be6b3e14da8501202a59c50ea84b85b128762",
+        "review_commit": "c6cb28913ceb20314c1034b2ab4644bd8ee5fce9",
+        "exclusive_public_ownership": {
+          "private_state_commit": "c6cb28913ceb20314c1034b2ab4644bd8ee5fce9",
+          "reserved": true,
+          "no_prior_attempt": true
+        },
+        "documents": [
+          {
+            "id": "aomori-26757-visible-cultivated-area",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2444.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2444/resource/28574/3-1-1-5_%E8%80%95%E5%9C%B0%E9%9D%A2%E7%A9%8D.xlsx",
+            "source_sha256": "be5dc902110a2ca81b60590006a5c444675a629d29e4e27f2449833d5ed7daed",
+            "text_sha256": "fe1f2b2f564d976e1218d2ef6d254b1effa107b16a5294cf28cc83c356881a20",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0",
+            "checked_at_jst": "2026-11-09T08:00:50.349937+09:00",
+            "public_scope": "Visible worksheet データ C7,C8,F8:J8,C9:C30,F9:J30; all 22 years (2003-2024) and all five numeric columns, source and ha unit; yyyy dates and comma-separated numbers, no formulas in excerpt. Excludes helper columns, work notes, comments, original-data sheet, drawing and other cells.",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ]
+      }
     }
   ]
 }
