@@ -744,6 +744,47 @@
           "no_prior_attempt": true
         }
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-events-20261110-0500-1",
+        "documents": [
+          {
+            "id": "aomori-27629-visible-event-conditions",
+            "title": "【南部町】イベント一覧",
+            "text": "出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2013.html\nCC BY 4.0。保存原本の可視セルを番地付きテキストへ加工。ふりがなを除外、日付yyyy-mm-dd・時刻HH:MMに表示整形。掲載更新2026-06-10、原本取得2026-11-03。現行開催や実施状況の確認ではない。\n可視シート「12.イベント一覧」のD/E/P～U/Z/AC～AD/AK～AL/BK～BQ/BZ列、1～3行。2行事の名称・開催/申込時期・説明・料金・対象条件と注記。抜粋外、連絡先、住所、画像、コメント、作成者、非表示は対象外。\nD1=地方公共団体名\nE1=イベント名\nP1=開催パターン\nQ1=開始日\nR1=終了日\nS1=開始時間\nT1=終了時間\nU1=開始日時特記事項\nZ1=説明\nAC1=料金(基本)\nAD1=料金(詳細)\nAK1=対象者\nAL1=対象者備考\nBK1=開催条件\nBL1=参加申込終了日\nBM1=参加申込終了時間\nBN1=参加申込方法\nBO1=申込開始日\nBP1=申込開始時刻\nBQ1=申込URL\nBZ1=備考\nD2=青森県南部町\nE2=南部町春まつり\nP2=毎年４月中下旬\nQ2=2026-04-25\nR2=2026-04-26\nS2=09:30\nT2=15:00\nU2=\nZ2=県立自然公園名久井岳の山麓に鎮座している法光寺を会場に開催されます。ピンクや緑の着物を纏い、冠を載せた子供たちによる稚児入山行列や南部手踊りなど多彩な催しが見所です。\nAC2=無料\nAD2=\nAK2=\nAL2=\nBK2=\nBL2=\nBM2=\nBN2=\nBO2=\nBP2=\nBQ2=\nBZ2=\nD3=青森県南部町\nE3=南部町長谷ぼたんまつり\nP3=毎年５月中下旬\nQ3=2026-05-13\nR3=2026-05-24\nS3=08:30\nT3=20:00\nU3=ライトアップ 7月15～17日 日没～20:30\nZ3=県立自然公園名久井岳の中腹に位置する長谷ぼたん園を会場にし、５月中旬から下旬に開催されます。3.3haの園地には130種8,000本のボタンが植栽されており、環境省の「かおり百選」に認定されたこともあります。東北有数の美しさを誇るぼたんの花を観賞するため、県内外から多くのお客様が訪れています。\nAC3=賛助金500円（中学生以下無料）\nAD3=\nAK3=\nAL3=\nBK3=\nBL3=\nBM3=\nBN3=\nBO3=\nBP3=\nBQ3=\nBZ3=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2013.html",
+            "source_sha256": "3bb491b286acf59d8ad8a84e7db3b97c6090687d84be4d72e5e913c3b837d881"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "7384e8a5f1f359b064092dc8dab4ffe9cdca14e2a928ce2482438c6fd54e4ac8",
+        "review_commit": "f3e0307ff672019f1a21247baa25567c1cb7f820",
+        "documents": [
+          {
+            "id": "aomori-27629-visible-event-conditions",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2013.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2013/resource/24477/12.%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7.xlsx",
+            "source_sha256": "3bb491b286acf59d8ad8a84e7db3b97c6090687d84be4d72e5e913c3b837d881",
+            "text_sha256": "3e7d66caf973d4af4e413cdea482d3c57325cf38a51a54c02b1451c0e80fcddf",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）4.0: 南部町提供データ。出典と加工明記。",
+            "checked_at_jst": "2026-11-10T05:12:16.639180+09:00",
+            "public_scope": "可視シート「12.イベント一覧」のD/E/P～U/Z/AC～AD/AK～AL/BK～BQ/BZ列、1～3行。2行事の名称・開催/申込時期・説明・料金・対象条件と注記。抜粋外、連絡先、住所、画像、コメント、作成者、非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "f3e0307ff672019f1a21247baa25567c1cb7f820",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
