@@ -537,6 +537,172 @@
           }
         ]
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261109-0900-1",
+        "documents": [
+          {
+            "id": "aomori-27495-visible-town-population",
+            "title": "【南部町】地域・年齢別人口（2026年4月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年4月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2472.html\n保存メタデータの「表示（CC BY）」に基づく加工。ふりがなを除外し、可視セルを番地付きテキストへ加工。\n可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15773\nG2=7527\nH2=8246\nI2=163\nJ2=161\nK2=241\nL2=213\nM2=257\nN2=284\nO2=289\nP2=283\nQ2=237\nR2=220\nS2=248\nT2=191\nU2=289\nV2=283\nW2=336\nX2=323\nY2=423\nZ2=376\nAA2=479\nAB2=410\nAC2=550\nAD2=531\nAE2=584\nAF2=599\nAG2=648\nAH2=619\nAI2=653\nAJ2=673\nAK2=693\nAL2=775\nAM2=707\nAN2=800\nAO2=378\nAP2=531\nAQ2=352\nAR2=974\nAS2=7340\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2472.html",
+            "source_sha256": "cc8fc4b34247d9cc16f7179a3fa92addef5ac545b28daa8386e101f5e35a3d55"
+          },
+          {
+            "id": "aomori-27584-visible-town-population",
+            "title": "【南部町】地域・年齢別人口（2026年5月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年5月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2476.html\n保存メタデータの「表示（CC BY）」に基づく加工。ふりがなを除外し、可視セルを番地付きテキストへ加工。\n可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15757\nG2=7525\nH2=8232\nI2=163\nJ2=157\nK2=242\nL2=217\nM2=257\nN2=279\nO2=286\nP2=280\nQ2=241\nR2=218\nS2=250\nT2=189\nU2=283\nV2=281\nW2=336\nX2=328\nY2=421\nZ2=377\nAA2=482\nAB2=406\nAC2=552\nAD2=531\nAE2=580\nAF2=605\nAG2=646\nAH2=612\nAI2=650\nAJ2=670\nAK2=694\nAL2=769\nAM2=717\nAN2=814\nAO2=372\nAP2=531\nAQ2=353\nAR2=968\nAS2=7347\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2476.html",
+            "source_sha256": "9d27e590110b264c6e2ca4876c13a74a8718d06ec809dbb54cccbe2b0ec79c2a"
+          },
+          {
+            "id": "aomori-27639-visible-town-population",
+            "title": "【南部町】地域・年齢別人口（2026年6月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年6月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2481.html\n保存メタデータの「表示（CC BY）」に基づく加工。ふりがなを除外し、可視セルを番地付きテキストへ加工。\n可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15724\nG2=7504\nH2=8220\nI2=157\nJ2=160\nK2=246\nL2=211\nM2=253\nN2=276\nO2=287\nP2=278\nQ2=242\nR2=223\nS2=245\nT2=187\nU2=288\nV2=282\nW2=333\nX2=326\nY2=415\nZ2=378\nAA2=483\nAB2=400\nAC2=544\nAD2=525\nAE2=587\nAF2=604\nAG2=640\nAH2=619\nAI2=654\nAJ2=663\nAK2=693\nAL2=766\nAM2=714\nAN2=823\nAO2=369\nAP2=528\nAQ2=354\nAR2=971\nAS2=7348\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2481.html",
+            "source_sha256": "87192a0fcd3c15b3f9e81ae4644cc0e96291af851c5ba118e93d456577a3e399"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "920f19d1975f95a5d08aa68b87f1219304b4fcc9abb4c1c72a558dbcf0aa578f",
+        "review_commit": "7cc127fe919d724f368e4bd4094570a92f9b1995",
+        "documents": [
+          {
+            "id": "aomori-27495-visible-town-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2472.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2472/resource/29040/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_4%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "cc8fc4b34247d9cc16f7179a3fa92addef5ac545b28daa8386e101f5e35a3d55",
+            "text_sha256": "492c72862c5de1c8a20acc299e11cb2249c2d1a74a7f006f413cfb7c195d371b",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）: 保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-09T09:10:22.692511+09:00",
+            "public_scope": "可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-27584-visible-town-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2476.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2476/resource/29093/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_5%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "9d27e590110b264c6e2ca4876c13a74a8718d06ec809dbb54cccbe2b0ec79c2a",
+            "text_sha256": "c5bd1999a4def0fd95eb53f9324b29454a32fbb3a747f7239c0e26c1120fc9e7",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）: 保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-09T09:10:22.692511+09:00",
+            "public_scope": "可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-27639-visible-town-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2481.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2481/resource/29125/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_6%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "87192a0fcd3c15b3f9e81ae4644cc0e96291af851c5ba118e93d456577a3e399",
+            "text_sha256": "9875c7cb491e5f5f96dc03c3733e2ab91af0162d17f4e943b5a285bf4fdd7e9b",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）: 保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-09T09:10:22.692511+09:00",
+            "public_scope": "可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "781e518097db000c3b29b90004aef935053289ee",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-supply-20261109-0900-2",
+        "documents": [
+          {
+            "id": "aomori-27682-visible-town-population",
+            "title": "【南部町】地域・年齢別人口（2026年7月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年7月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2488.html\n保存メタデータの「表示（CC BY）」に基づく加工。ふりがなを除外し、可視セルを番地付きテキストへ加工。\n可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15711\nG2=7495\nH2=8216\nI2=158\nJ2=161\nK2=246\nL2=211\nM2=253\nN2=275\nO2=284\nP2=275\nQ2=246\nR2=224\nS2=242\nT2=192\nU2=289\nV2=279\nW2=335\nX2=322\nY2=407\nZ2=382\nAA2=486\nAB2=400\nAC2=537\nAD2=520\nAE2=590\nAF2=610\nAG2=632\nAH2=611\nAI2=659\nAJ2=665\nAK2=690\nAL2=769\nAM2=713\nAN2=817\nAO2=374\nAP2=527\nAQ2=354\nAR2=976\nAS2=7343\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2488.html",
+            "source_sha256": "d612c4ed2e40504485abd56a7cd0e2faaa00f13dc0dbc8c7a38e2b10b8201b00"
+          },
+          {
+            "id": "aomori-27716-visible-town-population",
+            "title": "【南部町】地域・年齢別人口（2026年8月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年8月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2492.html\n保存メタデータの「表示（CC BY）」に基づく加工。ふりがなを除外し、可視セルを番地付きテキストへ加工。\n可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15698\nG2=7483\nH2=8215\nI2=154\nJ2=159\nK2=246\nL2=213\nM2=254\nN2=272\nO2=281\nP2=275\nQ2=249\nR2=232\nS2=243\nT2=191\nU2=287\nV2=278\nW2=332\nX2=321\nY2=409\nZ2=381\nAA2=482\nAB2=397\nAC2=535\nAD2=523\nAE2=595\nAF2=610\nAG2=633\nAH2=611\nAI2=653\nAJ2=660\nAK2=686\nAL2=769\nAM2=711\nAN2=818\nAO2=381\nAP2=528\nAQ2=352\nAR2=977\nAS2=7352\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2492.html",
+            "source_sha256": "376dce435117a9a09a76c54bf6bd17dc835435d9396e7bcb03a8817991435df6"
+          },
+          {
+            "id": "aomori-27844-visible-town-population",
+            "title": "【南部町】地域・年齢別人口（2026年10月1日現在）",
+            "text": "【南部町】地域・年齢別人口（2026年10月1日現在）\n出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2504.html\n保存メタデータの「表示（CC BY）」に基づく加工。ふりがなを除外し、可視セルを番地付きテキストへ加工。\n可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。\nE1=地域名\nF1=総人口\nG1=男性\nH1=女性\nI1=0-4歳の男性\nJ1=0-4歳の女性\nK1=5-9歳の男性\nL1=5-9歳の女性\nM1=10-14歳の男性\nN1=10-14歳の女性\nO1=15-19歳の男性\nP1=15-19歳の女性\nQ1=20-24歳の男性\nR1=20-24歳の女性\nS1=25-29歳の男性\nT1=25-29歳の女性\nU1=30-34歳の男性\nV1=30-34歳の女性\nW1=35-39歳の男性\nX1=35-39歳の女性\nY1=40-44歳の男性\nZ1=40-44歳の女性\nAA1=45-49歳の男性\nAB1=45-49歳の女性\nAC1=50-54歳の男性\nAD1=50-54歳の女性\nAE1=55-59歳の男性\nAF1=55-59歳の女性\nAG1=60-64歳の男性\nAH1=60-64歳の女性\nAI1=65-69歳の男性\nAJ1=65-69歳の女性\nAK1=70-74歳の男性\nAL1=70-74歳の女性\nAM1=75-79歳の男性\nAN1=75-79歳の女性\nAO1=80-84歳の男性\nAP1=80-84歳の女性\nAQ1=85歳以上の男性\nAR1=85歳以上の女性\nAS1=世帯数\nAT1=備考\nE2=南部町\nF2=15650\nG2=7460\nH2=8190\nI2=154\nJ2=157\nK2=241\nL2=212\nM2=253\nN2=264\nO2=281\nP2=280\nQ2=245\nR2=227\nS2=241\nT2=196\nU2=287\nV2=274\nW2=335\nX2=322\nY2=409\nZ2=383\nAA2=472\nAB2=388\nAC2=531\nAD2=526\nAE2=606\nAF2=611\nAG2=617\nAH2=598\nAI2=661\nAJ2=663\nAK2=681\nAL2=762\nAM2=709\nAN2=824\nAO2=383\nAP2=531\nAQ2=354\nAR2=972\nAS2=7344\nAT2=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2504.html",
+            "source_sha256": "082205cbf9168361260086fada624774ba866d483188f73a8a38c9a70eed7f29"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "8c9ed4335f8fac3b8f5c0c8cfa8f30fae066c52d39692ec506861efe4f1bace3",
+        "review_commit": "7cc127fe919d724f368e4bd4094570a92f9b1995",
+        "documents": [
+          {
+            "id": "aomori-27682-visible-town-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2488.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2488/resource/29160/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_7%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "d612c4ed2e40504485abd56a7cd0e2faaa00f13dc0dbc8c7a38e2b10b8201b00",
+            "text_sha256": "269deb56000e436e6756cc9c85bb1a93746c3138cd3528c611a8eb949b6a1e74",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）: 保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-09T09:10:22.692511+09:00",
+            "public_scope": "可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-27716-visible-town-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2492.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2492/resource/29185/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_8%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "376dce435117a9a09a76c54bf6bd17dc835435d9396e7bcb03a8817991435df6",
+            "text_sha256": "d474dcc97b63510f9ffe51420a19295496a0c5396efda77379dde09c8e95e6bd",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）: 保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-09T09:10:22.692511+09:00",
+            "public_scope": "可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-27844-visible-town-population",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2504.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2504/resource/29272/04.%E5%9C%B0%E5%9F%9F%E3%83%BB%E5%B9%B4%E9%BD%A2%E5%88%A5%E4%BA%BA%E5%8F%A3_10%E6%9C%881%E6%97%A5%E7%8F%BE%E5%9C%A8.xlsx",
+            "source_sha256": "082205cbf9168361260086fada624774ba866d483188f73a8a38c9a70eed7f29",
+            "text_sha256": "f12695d135403ee2f01e97293f2c1c7cfa386b4187789e6ecf0cf28bb3ae30fd",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）: 保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-09T09:10:22.692511+09:00",
+            "public_scope": "可視シート「04.地域・年齢別人口」E1:AT2。町全体の総人口・男女・全年齢階級の男女・世帯数。単位：人口は人、世帯数は世帯。A～D列・抜粋外・コメント・非表示は対象外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "781e518097db000c3b29b90004aef935053289ee",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
