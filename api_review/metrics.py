@@ -11,15 +11,29 @@ from supply import refill
 def summarize(queue, catalog, state):
     queue, supply = refill(queue, catalog)
     records = state['requests']
-    prior = {key for r in records.values() for key in r['source_keys']}
     cohorts = {}
     available = 0
+    inventory = []
     for bundle in queue['entries']:
         identity = w.digest(w.payload(bundle))
         keys = [w.digest({'model': w.MODEL, 'source': d['source_sha256'], 'text': d['text']})
                 for d in bundle['documents']]
-        if not any(k in prior for k in keys):
+        matches = [r for rid, r in records.items()
+                   if rid == identity or set(keys).intersection(r['source_keys'])]
+        if not matches:
             available += 1
+        statuses = sorted({r['status'] for r in matches})
+        if not matches:
+            category = 'unattempted'
+        elif any(s in ('batch_submitted', 'reserved_or_interrupted') for s in statuses):
+            category = 'in_flight_or_reserved'
+        elif all(s == 'completed' for s in statuses):
+            category = 'completed'
+        else:
+            category = 'held'
+        inventory.append({'bundle_id': bundle['id'], 'document_ids': [d['id'] for d in bundle['documents']],
+                          'category': category, 'prior_statuses': statuses,
+                          'eligible_for_submission': not matches})
         # Exact payload identity proves the current contract even for old records
         # that predate explicit metadata. Source-key matching alone cannot.
         if identity in records:
@@ -29,12 +43,15 @@ def summarize(queue, catalog, state):
         previous_identity = w.digest(previous)
         if previous_identity in records:
             cohorts[previous_identity] = 'triage-v1'
-    result = {'supply': {**supply, 'unattempted_requests': available}, 'cohorts': {}}
+    result = {'supply': {**supply, 'unattempted_requests': available,
+                        'inventory_counts': dict(Counter(i['category'] for i in inventory))},
+              'inventory': inventory, 'cohorts': {}}
     for identity, record in records.items():
         cohort = cohorts.get(identity, record.get('output_contract', 'legacy_or_unknown'))
         group = result['cohorts'].setdefault(cohort, {
             'statuses': Counter(), 'diagnostics': Counter(), 'usage': Counter(),
-            'assessments': Counter(), 'usage_observed_requests': 0})
+            'assessments': Counter(), 'usage_observed_requests': 0,
+            'completed_usage': Counter(), 'completed_usage_observed_requests': 0})
         group['statuses'][record['status']] += 1
         if record.get('diagnostic'):
             group['diagnostics'][record['diagnostic']] += 1
@@ -42,6 +59,8 @@ def summarize(queue, catalog, state):
         group['usage'].update(usage)
         group['usage_observed_requests'] += bool(usage)
         if record['status'] == 'completed':
+            group['completed_usage'].update(usage)
+            group['completed_usage_observed_requests'] += bool(usage)
             items = record.get('report', {}).get('body', {}).get('items', [])
             group['assessments'].update(i['assessment'] for i in items)
     for group in result['cohorts'].values():
@@ -51,7 +70,10 @@ def summarize(queue, catalog, state):
         completed = statuses.get('completed', 0)
         group['validation_success_rate'] = completed / terminal if terminal else None
         group['tokens_per_completed_request'] = (
-            group['usage'].get('total_tokens', 0) / completed if completed else None)
+            group['completed_usage'].get('total_tokens', 0) / group['completed_usage_observed_requests']
+            if group['completed_usage_observed_requests'] else None)
+        assessed = sum(group['assessments'].values())
+        group['candidate_rate'] = group['assessments'].get('verify', 0) / assessed if assessed else None
         group['work_candidate_documents'] = group['assessments'].get('verify', 0)
         group['actual_work_reviews'] = None  # Requires separate human/Work review evidence.
     return result
