@@ -785,6 +785,89 @@
           "no_prior_attempt": true
         }
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-regional-20261110-0600-1",
+        "documents": [
+          {
+            "id": "aomori-27157-visible-regional-data",
+            "title": "4-1-1_地域別域内総生産_経済活動別構成割合",
+            "text": "4-1-1_地域別域内総生産_経済活動別構成割合\n出典：青森県／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2451.html\nCC BY指定に基づく可視セルの番地付き加工。\n可視シート「データ」A1:S5。出典/年度/単位の見出しを含む地域別集計。保存セル値の文字抽出（表示丸め前の小数を含む）。他シート・抜粋外・コメント・非表示・作成者情報は含めない。\nA1=地域別域内総生産の経済活動別構成割合（2021年度）（資料：県総合政策部「令和3年度市町村民経済計算」）（単位：％）\nA2=https://opendata.pref.aomori.lg.jp/dataset/dataland/estat27/estat32/\nA3=地域名\nB3=農業\nC3=林業\nD3=水産業\nE3=鉱業\nF3=製造業\nG3=電気・ｶﾞｽ・水道・廃棄物処理業\nH3=建設業\nI3=卸売・小売業\nJ3=運輸・郵便業\nK3=宿泊・飲食サービス業\nL3=情報通信業\nM3=金融・保険業\nN3=不動産業\nO3=専門・科学技術、業務支援サービス業\nP3=公務\nQ3=教育\nR3=保健衛生・社会事業\nS3=その他のサービス\nA4=東青地域\nB4=0.66433154019999996\nC4=5.9504161399999998E-2\nD4=0.9\nE4=0.1\nF4=4.8\nG4=2.2000000000000002\nH4=5.9\nI4=18.899999999999999\nJ4=6.4\nK4=1.6\nL4=4.0999999999999996\nM4=6.1\nN4=12.2\nO4=9.3000000000000007\nP4=7.6\nQ4=4.7466667093000003\nR4=12.1\nS4=4.2\nA5=中南地域\nB5=5.1938999337\nC5=0.1\nD5=4.161697E-4\nE5=2.3862048399999999E-2\nF5=11.8\nG5=2.2999999999999998\nH5=5.7\nI5=14.7\nJ5=4.0999999999999996\nK5=1.8\nL5=4.8\nM5=2.5\nN5=11.8\nO5=6.0512221359999998\nP5=5.4\nQ5=7.9\nR5=13.2\nS5=4.5",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2451.html",
+            "source_sha256": "461e26370e1598f21598b0b0b0205eaf4ac8e0b7c29049b0bd4fce96ef3f5953"
+          },
+          {
+            "id": "aomori-27169-visible-regional-data",
+            "title": "4-2-1_地域別農業産出額と農業経営体数",
+            "text": "4-2-1_地域別農業産出額と農業経営体数\n出典：青森県／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2451.html\nCC BY指定に基づく可視セルの番地付き加工。\n可視シート「データ」A1:H9。出典/年度/単位の見出しを含む地域別集計。保存セル値の文字抽出（表示丸め前の小数を含む）。他シート・抜粋外・コメント・非表示・作成者情報は含めない。\nA1=地域別農業産出額（2023年）と農業経営体数（2020年）（資料：農林水産省「市町村別農業産出額」、「2020年農林業センサス」）（単位：1000万円、戸）\nA3=地域名\nB3=総額\nC3=米\nD3=野菜\nE3=果実\nF3=畜産\nG3=その他\nH3=農業経営体数\nA4=東青地域\nB4=1486\nC4=570\nD4=133\nE4=534\nF4=219\nG4=49\nH4=1853\nA5=中南地域\nB5=9031\nC5=1013\nD5=497\nE5=7189\nF5=154\nG5=242\nH5=9683\nA6=三八地域\nB6=6925\nC6=419\nD6=1268\nE6=914\nF6=4162\nG6=301\nH6=4713\nA7=西北地域\nB7=6231\nC7=2263\nD7=1035\nE7=2290\nF7=415\nG7=398\nH7=7057\nA8=上北地域\nB8=10508\nC8=833\nD8=3875\nE8=32\nF8=5562\nG8=385\nH8=5376\nA9=下北地域\nB9=400\nC9=15\nD9=62\nE9=1\nF9=315\nG9=13\nH9=340",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2451.html",
+            "source_sha256": "f87a1cbfe766350fd3d67323a1c17a9c22d5ffd519ffb2ac670750b006f5643d"
+          },
+          {
+            "id": "aomori-27441-visible-regional-data",
+            "title": "4-2-2_地域別海面漁業漁獲金額と漁業経営体数",
+            "text": "4-2-2_地域別海面漁業漁獲金額と漁業経営体数\n出典：青森県／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2451.html\nCC BY指定に基づく可視セルの番地付き加工。\n可視シート「データ」A1:C9。出典/年度/単位の見出しを含む地域別集計。保存セル値の文字抽出（表示丸め前の小数を含む）。他シート・抜粋外・コメント・非表示・作成者情報は含めない。\nA1=地域別海面漁業漁獲金額（2025年）と漁業経営体数（2023年）（資料：県農林水産部「令和7年青森県海面漁業に関する調査結果書（属地調査年報）」、農林水産省「2023年漁業センサス」）（単位：千円、経営体）\nA3=地域名\nB3=海面漁業漁獲金額\nC3=漁業経営体数\nA4=東青地域\nB4=10538503 [数式の保存済みキャッシュ値・再計算なし]\nC4=861 [数式の保存済みキャッシュ値・再計算なし]\nA5=中南地域\nB5=-\nC5=0\nA6=三八地域\nB6=10148325 [数式の保存済みキャッシュ値・再計算なし]\nC6=123 [数式の保存済みキャッシュ値・再計算なし]\nA7=西北地域\nB7=2854616 [数式の保存済みキャッシュ値・再計算なし]\nC7=495 [数式の保存済みキャッシュ値・再計算なし]\nA8=上北地域\nB8=3565901 [数式の保存済みキャッシュ値・再計算なし]\nC8=287 [数式の保存済みキャッシュ値・再計算なし]\nA9=下北地域\nB9=8454362 [数式の保存済みキャッシュ値・再計算なし]\nC9=1350 [数式の保存済みキャッシュ値・再計算なし]",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2451.html",
+            "source_sha256": "408d1435c77db21ae0dbca3b4dafc727a77c5e56305448936220f44e3de0b6e9"
+          }
+        ],
+        "executor": "public",
+        "public_export_approved": true
+      },
+      "approval": {
+        "bundle_sha256": "1e2231f06f74ff584f74ee3c2489a7dcec6de0eef95b27a848fafabd83e3f118",
+        "review_commit": "a044f98a330f65fc6d86b2f14a50d1a3f364533c",
+        "documents": [
+          {
+            "id": "aomori-27157-visible-regional-data",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2451.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2451/resource/28811/4-1-1___________________.xlsx",
+            "source_sha256": "461e26370e1598f21598b0b0b0205eaf4ac8e0b7c29049b0bd4fce96ef3f5953",
+            "text_sha256": "e04470f2ecc2bbe2a59c1e6ecea7645f8d03d4a8647fb91a8ee8b33983f8e810",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）：保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-10T06:07:36.352874+09:00",
+            "public_scope": "可視シート「データ」A1:S5。出典/年度/単位の見出しを含む地域別集計。保存セル値の文字抽出（表示丸め前の小数を含む）。他シート・抜粋外・コメント・非表示・作成者情報は含めない。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-27169-visible-regional-data",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2451.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2451/resource/28812/4-2-1_%E5%9C%B0%E5%9F%9F%E5%88%A5%E8%BE%B2%E6%A5%AD%E7%94%A3%E5%87%BA%E9%A1%8D%E3%81%A8%E8%BE%B2%E6%A5%AD%E7%B5%8C%E5%96%B6%E4%BD%93%E6%95%B0.xlsx",
+            "source_sha256": "f87a1cbfe766350fd3d67323a1c17a9c22d5ffd519ffb2ac670750b006f5643d",
+            "text_sha256": "b68134b41a2a6e0690af57c5ec5c59d233a24641e207e38d1a68d8770ed2aaa0",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）：保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-10T06:07:36.352874+09:00",
+            "public_scope": "可視シート「データ」A1:H9。出典/年度/単位の見出しを含む地域別集計。保存セル値の文字抽出（表示丸め前の小数を含む）。他シート・抜粋外・コメント・非表示・作成者情報は含めない。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "aomori-27441-visible-regional-data",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2451.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2451/resource/28813/4-2-2_%E5%9C%B0%E5%9F%9F%E5%88%A5%E6%B5%B7%E9%9D%A2%E6%BC%81%E6%A5%AD%E6%BC%81%E7%8D%B2%E9%87%91%E9%A1%8D%E3%81%A8%E6%BC%81%E6%A5%AD%E7%B5%8C%E5%96%B6%E4%BD%93%E6%95%B0.xlsx",
+            "source_sha256": "408d1435c77db21ae0dbca3b4dafc727a77c5e56305448936220f44e3de0b6e9",
+            "text_sha256": "2f4d007923ddd9f15e0b055b28372e5b00d59e0b734f3fae4b2ad8528754b943",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）：保存公式メタデータの指定",
+            "checked_at_jst": "2026-11-10T06:07:36.352874+09:00",
+            "public_scope": "可視シート「データ」A1:C9。出典/年度/単位の見出しを含む地域別集計。保存セル値の文字抽出（表示丸め前の小数を含む）。他シート・抜粋外・コメント・非表示・作成者情報は含めない。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "b7289990588f3f378bc0c98baea88cf51ed60253",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
