@@ -868,6 +868,47 @@
           "no_prior_attempt": true
         }
       }
+    },
+    {
+      "bundle": {
+        "id": "aomori-visible-tourism-20261111-0440-1",
+        "documents": [
+          {
+            "id": "aomori-27628-visible-tourism-conditions",
+            "title": "【南部町】観光施設一覧",
+            "text": "出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2012.html\nCC BY 4.0。保存原本の可視セルを番地付きテキストへ加工。時刻をHH:MMに表示整形。掲載更新2026-06-10、原本取得2026-11-03。現行営業や実施状況の確認ではない。\n可視シート「11.観光施設一覧」のE/U～AA/BF列、1～5行。4施設の名称・利用曜日・時間・休業/季節条件・料金・説明・備考。抜粋外、住所、電話、画像、コメント、作成者、非表示は対象外。\nE1=名称\nU1=利用可能曜日\nV1=開始時間\nW1=終了時間\nX1=利用可能日時特記事項\nY1=料金(基本)\nZ1=料金(詳細)\nAA1=説明\nBF1=備考\nE2=バーデパーク\nU2=月火水木金土日\nV2=10:00\nW2=21:00\nX2=毎月第3木曜日休業\nY2=\nZ2=\nAA2=本館には、温泉施設だけでなく、レジャー施設や宿泊施設などがあります。温泉は、温度・圧力・浮力・抵抗などの物理的作用を最大限に利用しています。その他にも、スケートやプールなどもできますので、春夏秋冬問わず楽しむことができ、尚且つ健康な1年間を過ごすことが出来ます。\nBF2=\nE3=名川チェリリン村\nU3=月火水木金土日\nV3=09:00\nW3=17:00\nX3=4月中旬から10月下旬（期間内は無休）\nY3=\nZ3=\nAA3=名久井岳の山麓にあり、家族全員で楽しむことができます。チェリリン村の中には、テニスコートを備えたレジャー施設だけでなく、ユニークな三角屋根のツリーハウスがある「オートキャンプ場」、簡易宿泊施設「ケビンハウス」があります。大自然に囲まれた空間で最高の思い出を作り出します。\nBF3=\nE4=チェリウス\nU4=月火水木金土日\nV4=10:00\nW4=22:00\nX4=毎月第2水曜日休業（繁忙期変更あり）5/13～15　11/24～26\nY4=\nZ4=\nAA4=南部町の四季折々の景色を堪能できます。名久井岳の雄大な景色を目の前に、多彩なサービスでお迎えします。地元の食材を使った郷土料理を堪能でき、景色を楽しまる温泉で最高の1日の完成です。\nBF4=\nE5=長谷ぼたん園\nU5=月火水木金土日\nV5=09:00\nW5=17:00\nX5=5月中旬から5月下旬\nY5=\nZ5=\nAA5=南部町の花であるぼたんを楽しむことができます。名久井岳県立自然公園の中腹に位置し、八甲田山連峰を見渡すことができます。現在園内には、約130種8000本のぼたんがあり、東北有数の美しさです。また、環境省より「かおり風景百選」に認定されているため、当園地での散策を飽きることなく楽しめます。\nBF5=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2012.html",
+            "source_sha256": "b2b9389f235800cdbcb3a733a4452934851dd923408e00aa9030e8baa8e92eb4"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "4d8de9e50de5f170c4d69a5a3da64756d385e6a5b2f08aed65c7c4a0dbeba801",
+        "review_commit": "f03490284be44534495cc7cdf77a837c649dff72",
+        "documents": [
+          {
+            "id": "aomori-27628-visible-tourism-conditions",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2012.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2012/resource/24468/11.%E8%A6%B3%E5%85%89%E6%96%BD%E8%A8%AD%E4%B8%80%E8%A6%A7.xlsx",
+            "source_sha256": "b2b9389f235800cdbcb3a733a4452934851dd923408e00aa9030e8baa8e92eb4",
+            "text_sha256": "a6ae1f8f9c3e112987acde448cdd0df50778fe2546f03993fb803269750169ee",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "表示（CC BY）4.0：南部町提供データ。出典と加工明記。",
+            "checked_at_jst": "2026-11-11T04:46:00+09:00",
+            "public_scope": "可視シート「11.観光施設一覧」E/U～AA/BF列1～5行の45セル。施設名・曜日・時間・休業/季節条件・料金・説明・備考。住所/電話/画像/コメント/作者/非表示を除外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "f03490284be44534495cc7cdf77a837c649dff72",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
