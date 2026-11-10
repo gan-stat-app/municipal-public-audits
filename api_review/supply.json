@@ -909,6 +909,129 @@
           "no_prior_attempt": true
         }
       }
+    },
+    {
+      "bundle": {
+        "id": "nanbu-facilities-20261111-0615",
+        "documents": [
+          {
+            "id": "nanbu-2005-visible-facilities-20261111",
+            "title": "【南部町】公共施設一覧",
+            "text": "出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2005.html\nCC BY 4.0。原本の可視セルを番地付きテキストへ加工。ふりがなを除外、時刻をHH:MMへ表示整形。取得日2026-11-11。現行利用状況の確認ではない。\n可視シート「01.公共施設一覧」のD,AE,AF,AG,AH,AI,BD列、1～9行。名称・利用条件・注記をセル番号付きで抜粋。住所・電話・メール・画像・メタデータ・ふりがな・抜粋外を除外。\nD1=名称\nAE1=利用可能曜日\nAF1=開始時間\nAG1=終了時間\nAH1=利用可能時間特記事項\nAI1=説明\nBD1=備考\nD2=南部町役場\nAE2=月火水木金\nAF2=08:15\nAG2=17:00\nAH2=土日祝日、12/29～1/3を除く。\nAI2=\nBD2=\nD3=南部支所\nAE3=月火水木金\nAF3=08:15\nAG3=17:00\nAH3=土日祝日、12/29～1/3を除く。\nAI3=\nBD3=\nD4=福地支所\nAE4=月火水木金\nAF4=08:15\nAG4=17:00\nAH4=土日祝日、12/29～1/3を除く。\nAI4=\nBD4=\nD5=剣吉支所\nAE5=月火水木金\nAF5=08:15\nAG5=17:00\nAH5=土日祝日、12/29～1/3を除く。\nAI5=\nBD5=\nD6=南部町いちょうホール\nAE6=月火水木金土日\nAF6=09:00\nAG6=21:00\nAH6=12/29～1/3を除く。\nAI6=\nBD6=\nD7=南部町ふれあい交流プラザ\nAE7=月火水木金土日\nAF7=09:00\nAG7=22:00\nAH7=12/29～1/3を除く。\nAI7=\nBD7=\nD8=南部町営地方卸売市場\nAE8=月火水木金土\nAF8=07:00\nAG8=16:00\nAH8=5月～12月(土07:00～11:00)\n※1月～4月 08:00～17:00(土08:00～11:00)\n(祝日ほか市場休は除く。)\nAI8=\nBD8=\nD9=南部町総合保健福祉センターゆとりあ\nAE9=月火水木金\nAF9=08:15\nAG9=17:00\nAH9=土日祝日、12/29～1/3を除く。\nAI9=\nBD9=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2005.html",
+            "source_sha256": "5127c3f8bd95167482a4130fe431ad60803701546e7142210c2c1c4e3fabb8a2"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "5a7fe11d01c3fd5e7152d4cfca1c5763dc2145c9126589359967501d73b70eee",
+        "review_commit": "da30d4dd757877522b6966a7848c2a341d3c532d",
+        "documents": [
+          {
+            "id": "nanbu-2005-visible-facilities-20261111",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2005.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2005/resource/24653/01.%E5%85%AC%E5%85%B1%E6%96%BD%E8%A8%AD%E4%B8%80%E8%A6%A7.xlsx",
+            "source_sha256": "5127c3f8bd95167482a4130fe431ad60803701546e7142210c2c1c4e3fabb8a2",
+            "text_sha256": "6fdcf82628f11360e7060d32bb6bb9f586b6b2b0c0333d79df2f2304c3ccf633",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0：南部町提供データ。出典・加工明記。",
+            "checked_at_jst": "2026-11-11T06:09:25.621758+09:00",
+            "public_scope": "可視シート「01.公共施設一覧」のD,AE,AF,AG,AH,AI,BD列、1～9行。名称・利用条件・注記をセル番号付きで抜粋。住所・電話・メール・画像・メタデータ・ふりがな・抜粋外を除外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "da30d4dd757877522b6966a7848c2a341d3c532d",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
+    },
+    {
+      "bundle": {
+        "id": "nanbu-aed-20261111-0615",
+        "documents": [
+          {
+            "id": "nanbu-2009-visible-aed-20261111",
+            "title": "【南部町】AED設置箇所一覧",
+            "text": "出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/2009.html\nCC BY 4.0。原本の可視セルを番地付きテキストへ加工。ふりがなを除外、時刻をHH:MMへ表示整形。取得日2026-11-11。現行利用状況の確認ではない。\n可視シート「08.AED設置箇所一覧」のD,S,AB,AC,AD,AE,AF,AL,AM列、1～7行。名称・利用条件・注記をセル番号付きで抜粋。住所・電話・メール・画像・メタデータ・ふりがな・抜粋外を除外。\nD1=名称\nS1=設置位置\nAB1=利用可能曜日\nAC1=開始時間\nAD1=終了時間\nAE1=利用可能日時特記事項\nAF1=小児対応設備の有無\nAL1=外部利用不可\nAM1=備考\nD2=南部町役場\nS2=1階通路\nAB2=月火水木金\nAC2=08:15\nAD2=17:00\nAE2=土日祝日、12/29～1/3を除く。\nAF2=有\nAL2=外部利用不可\nAM2=\nD3=南部町営地方卸売市場\nS3=1階詰所\nAB3=月火水木金土\nAC3=07:00\nAD3=16:00\nAE3=5月～12月(土07:00～11:00)\n※1月～4月 08:00～17:00(土08:00～11:00)\n(祝日ほか市場休は除く。)\nAF3=無\nAL3=外部利用可能\n（開場日に限る）\nAM3=\nD4=南部町総合保健福祉センターゆとりあ\nS4=1階事務室\nAB4=月火水木金\nAC4=08:15\nAD4=17:00\nAE4=土日祝日、12/29～1/3を除く。\nAF4=無\nAL4=外部利用可能\nAM4=\nD5=南部町保健福祉センターぼたんの里\nS5=1階事務室\nAB5=月火水木金\nAC5=08:15\nAD5=17:00\nAE5=土日祝日、12/29～1/3を除く。\nAF5=無\nAL5=外部利用可能\nAM5=\nD6=南部町健康センター\nS6=1階事務室\nAB6=月火水木金\nAC6=08:15\nAD6=17:00\nAE6=土日祝日、12/29～1/3を除く。\nAF6=有\nAL6=外部利用可能\nAM6=\nD7=名川なかよしクラブ\nS7=保育室\nAB7=月～土\nAC7=下校時\nAD7=18:30\nAE7=日・祝日はお休み。12/29～1/3までは終日お休み\nAF7=有\nAL7=外部利用可能\nAM7=",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/2009.html",
+            "source_sha256": "fe6990668b6126293b0ad0295fc6924ecf31f3b9a307a30b15501d64d43472a2"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "291aef7fec7d200158ea11ddf12f4d6c81b9add38b8e0bc7b53604b512ab990a",
+        "review_commit": "da30d4dd757877522b6966a7848c2a341d3c532d",
+        "documents": [
+          {
+            "id": "nanbu-2009-visible-aed-20261111",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/2009.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/2009/resource/24482/08.AED%E8%A8%AD%E7%BD%AE%E7%AE%87%E6%89%80%E4%B8%80%E8%A6%A7.xlsx",
+            "source_sha256": "fe6990668b6126293b0ad0295fc6924ecf31f3b9a307a30b15501d64d43472a2",
+            "text_sha256": "c257f00639bbbefe3a54ff956dcf0f3f101e613eba42dc2dc8a3c2957c392f54",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0：南部町提供データ。出典・加工明記。",
+            "checked_at_jst": "2026-11-11T06:09:38.949707+09:00",
+            "public_scope": "可視シート「08.AED設置箇所一覧」のD,S,AB,AC,AD,AE,AF,AL,AM列、1～7行。名称・利用条件・注記をセル番号付きで抜粋。住所・電話・メール・画像・メタデータ・ふりがな・抜粋外を除外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "da30d4dd757877522b6966a7848c2a341d3c532d",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
+    },
+    {
+      "bundle": {
+        "id": "nanbu-wifi-20261111-0615",
+        "documents": [
+          {
+            "id": "nanbu-1977-visible-wifi-20261111",
+            "title": "【南部町】公衆無線LANアクセスポイント一覧",
+            "text": "出典：南部町／青い森オープンデータカタログ https://opendata.pref.aomori.lg.jp/dataset/1977.html\nCC BY 4.0。原本の可視セルを番地付きテキストへ加工。ふりがなを除外、時刻をHH:MMへ表示整形。取得日2026-11-11。現行利用状況の確認ではない。\n可視シート「公衆無線LANアクセスポイント一覧」のE,Y,Z,AB列、1～7行。名称・利用条件・注記をセル番号付きで抜粋。住所・電話・メール・画像・メタデータ・ふりがな・抜粋外を除外。\nE1=名称\nY1=SSID\nZ1=提供エリア\nAB1=備考\nE2=南部町役場\nY2=nabemaru22\nZ2=いちょうロード\nAB2=FREESPOT要認証\nE3=いちょうホール\nY3=nabemaru22\nZ3=いちょうロード、いちょうホール\nAB3=FREESPOT要認証\nE4=南部町健康センター\nY4=nabemaru22\nZ4=１階ロビー、集団指導室\nAB4=FREESPOT要認証\nE5=福地支所\nY5=nabemaru22\nZ5=１階ロビー、福地支所、会議室\nAB5=FREESPOT要認証\nE6=南部支所\nY6=nabemaru22\nZ6=１階ロビー、南部支所、学習室\nAB6=FREESPOT要認証\nE7=国民健康保険南部町医療センター \nY7=nabemaru22\nZ7=１階待合、2階デイルーム\nAB7=FREESPOT要認証",
+            "url": "https://opendata.pref.aomori.lg.jp/dataset/1977.html",
+            "source_sha256": "c51a069e8f30a6a783e02afe3ea00f5e223fba5122352d58683b05a8c8d1b65b"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "742cc4cc8454d2cf74c01ecb7de80993eac8df05b4ad12fe468ee37d53f7fca0",
+        "review_commit": "da30d4dd757877522b6966a7848c2a341d3c532d",
+        "documents": [
+          {
+            "id": "nanbu-1977-visible-wifi-20261111",
+            "source_url": "https://opendata.pref.aomori.lg.jp/dataset/1977.html",
+            "original_url": "https://opendata.pref.aomori.lg.jp/dataset/1977/resource/24431/07.%E5%85%AC%E8%A1%86%E7%84%A1%E7%B7%9ALAN%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7.xlsx",
+            "source_sha256": "c51a069e8f30a6a783e02afe3ea00f5e223fba5122352d58683b05a8c8d1b65b",
+            "text_sha256": "eb195c4132b9236dbc1c1716ed7088bd4d18637fa46901d6b2ba47834ac47c44",
+            "terms_url": "https://opendata.pref.aomori.lg.jp/privacy.html",
+            "license": "CC BY 4.0：南部町提供データ。出典・加工明記。",
+            "checked_at_jst": "2026-11-11T06:09:51.373545+09:00",
+            "public_scope": "可視シート「公衆無線LANアクセスポイント一覧」のE,Y,Z,AB列、1～7行。名称・利用条件・注記をセル番号付きで抜粋。住所・電話・メール・画像・メタデータ・ふりがな・抜粋外を除外。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "da30d4dd757877522b6966a7848c2a341d3c532d",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
