@@ -2380,6 +2380,172 @@
           "no_prior_attempt": true
         }
       }
+    },
+    {
+      "bundle": {
+        "id": "fukushima-visible-economic-20261112-2100-1",
+        "documents": [
+          {
+            "id": "fukushima-744497-visible-economic",
+            "title": "福島県主要経済指標CSV（原本番号744497）",
+            "text": "この抜粋は以下の公開データを加工して作成。\n主要経済指標、福島県、クリエイティブ・コモンズ・ライセンス 表示2.1日本（https://creativecommons.org/licenses/by/2.1/jp/）。\n原本CSVの論理行1～22、列A～Hの可視値。年月・区分・単位見出しを含む限定範囲。改行は / に表示。抜粋外未確認。\nC1=３　主要経済指標\nA2=区分\nC2=個人消費\nC3=1 百貨店・スーパー販売額\nG3=2　コンビニエンスストア / 販売額\nA4=年月\nC4=福島県\nD4=福島県\nE4=全　国\nF4=全　国\nG4=福島県\nH4=全　国\nC6=全店舗\nD6=既存店\nE6=全店舗\nF6=既存店\nC7=（百万円）\nD7=（百万円）\nE7=（億円）\nF7=（億円）\nG7=（百万円）\nH7=（億円）\nA9=令和5年　\nC9=285,834\nD9=-\nE9=216,049\nF9=-\nG9=209,741\nH9=127,321\nA10=6年　\nC10=284,862\nD10=-\nE10=223,812\nF10=-\nG10=209,491\nH10=128,887\nA11=7年　\nC11=286,889\nD11=-\nE11=0\nF11=-\nG11=211,903\nH11=133,212\nA13=6年\nB13=Ⅳ\nC13=74,516\nD13=-\nE13=60,351\nF13=-\nG13=52,989\nH13=32,935\nA14=7年\nB14=Ⅰ\nC14=69,090\nD14=-\nE14=55,814\nF14=-\nG14=50,113\nH14=31,339\nB15=Ⅱ\nC15=69,447\nD15=-\nE15=55,341\nF15=-\nG15=52,754\nH15=33,214\nB16=Ⅲ\nC16=71,018\nD16=-\nE16=0\nF16=-\nG16=55,657\nH16=34,744\nB17=Ⅳ\nC17=69,852\nD17=-\nE17=0\nF17=-\nG17=53,379\nH17=33,915\nA19=6年\nB19=10月\nC19=22,671\nD19=-\nE19=17,895\nF19=-\nG19=17,742\nH19=11,030\nB20=11月\nC20=22,916\nD20=-\nE20=18,976\nF20=-\nG20=16,955\nH20=10,534\nB21=12月\nC21=28,928\nD21=-\nE21=23,480\nF21=-\nG21=18,292\nH21=11,372\nA22=7年\nB22=1月\nC22=23,427\nD22=-\nE22=19,139\nF22=-\nG22=16,832\nH22=10,496",
+            "url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "source_sha256": "18ccfc7b622e05e40f03203ba5b9aef54a9009ec141d4ba7ad4ba86eb145fe8d"
+          },
+          {
+            "id": "fukushima-749645-visible-economic",
+            "title": "福島県主要経済指標CSV（原本番号749645）",
+            "text": "この抜粋は以下の公開データを加工して作成。\n主要経済指標、福島県、クリエイティブ・コモンズ・ライセンス 表示2.1日本（https://creativecommons.org/licenses/by/2.1/jp/）。\n原本CSVの論理行1～22、列A～Hの可視値。年月・区分・単位見出しを含む限定範囲。改行は / に表示。抜粋外未確認。\nC1=３　主要経済指標\nA2=区分\nC2=個人消費\nC3=1 百貨店・スーパー販売額\nG3=2　コンビニエンスストア / 販売額\nA4=年月\nC4=福島県\nD4=福島県\nE4=全　国\nF4=全　国\nG4=福島県\nH4=全　国\nC6=全店舗\nD6=既存店\nE6=全店舗\nF6=既存店\nC7=（百万円）\nD7=（百万円）\nE7=（億円）\nF7=（億円）\nG7=（百万円）\nH7=（億円）\nA9=令和5年　\nC9=285,834\nD9=-\nE9=216,049\nF9=-\nG9=209,741\nH9=127,321\nA10=6年　\nC10=284,862\nD10=-\nE10=223,812\nF10=-\nG10=209,491\nH10=128,887\nA11=7年　\nC11=286,889\nD11=-\nE11=0\nF11=-\nG11=211,903\nH11=133,212\nA13=6年\nB13=Ⅳ\nC13=74,516\nD13=-\nE13=60,351\nF13=-\nG13=52,989\nH13=32,935\nA14=7年\nB14=Ⅰ\nC14=69,090\nD14=-\nE14=55,814\nF14=-\nG14=50,113\nH14=31,339\nB15=Ⅱ\nC15=69,447\nD15=-\nE15=55,341\nF15=-\nG15=52,754\nH15=33,214\nB16=Ⅲ\nC16=71,018\nD16=-\nE16=0\nF16=-\nG16=55,657\nH16=34,744\nB17=Ⅳ\nC17=69,852\nD17=-\nE17=0\nF17=-\nG17=53,379\nH17=33,915\nA19=6年\nB19=11月\nC19=22,916\nD19=-\nE19=18,976\nF19=-\nG19=16,955\nH19=10,534\nB20=12月\nC20=28,928\nD20=-\nE20=23,480\nF20=-\nG20=18,292\nH20=11,372\nA21=7年\nB21=1月\nC21=23,427\nD21=-\nE21=19,139\nF21=-\nG21=16,832\nH21=10,496\nB22=2月\nC22=21,328\nD22=-\nE22=17,286\nF22=-\nG22=15,721\nH22=9,802",
+            "url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "source_sha256": "985f0a15e16ba5780fda8e003e394a104c8c5fe45ef123f5cad072b0de8c5568"
+          },
+          {
+            "id": "fukushima-754768-visible-economic",
+            "title": "福島県主要経済指標CSV（原本番号754768）",
+            "text": "この抜粋は以下の公開データを加工して作成。\n主要経済指標、福島県、クリエイティブ・コモンズ・ライセンス 表示2.1日本（https://creativecommons.org/licenses/by/2.1/jp/）。\n原本CSVの論理行1～22、列A～Hの可視値。年月・区分・単位見出しを含む限定範囲。改行は / に表示。抜粋外未確認。\nC1=３　主要経済指標\nA2=区分\nC2=個人消費\nC3=1 百貨店・スーパー販売額\nG3=2　コンビニエンスストア / 販売額\nA4=年月\nC4=福島県\nD4=福島県\nE4=全　国\nF4=全　国\nG4=福島県\nH4=全　国\nC6=全店舗\nD6=既存店\nE6=全店舗\nF6=既存店\nC7=（百万円）\nD7=（百万円）\nE7=（億円）\nF7=（億円）\nG7=（百万円）\nH7=（億円）\nA9=令和5年　\nC9=285,834\nD9=-\nE9=216,049\nF9=-\nG9=209,741\nH9=127,321\nA10=6年　\nC10=284,862\nD10=-\nE10=223,812\nF10=-\nG10=209,491\nH10=128,887\nA11=7年　\nC11=286,889\nD11=-\nE11=0\nF11=-\nG11=211,903\nH11=133,212\nA13=7年\nB13=Ⅰ\nC13=69,090\nD13=-\nE13=55,814\nF13=-\nG13=50,113\nH13=31,339\nB14=Ⅱ\nC14=69,447\nD14=-\nE14=55,341\nF14=-\nG14=52,754\nH14=33,214\nB15=Ⅲ\nC15=71,018\nD15=-\nE15=0\nF15=-\nG15=55,657\nH15=34,744\nB16=Ⅳ\nC16=69,852\nD16=-\nE16=0\nF16=-\nG16=53,379\nH16=33,915\nA17=8年\nB17=Ⅰ\nC17=70,105\nD17=-\nE17=0\nF17=-\nG17=0\nH17=0\nA19=6年\nB19=12月\nC19=28,928\nD19=-\nE19=23,480\nF19=-\nG19=18,292\nH19=11,372\nA20=7年\nB20=1月\nC20=23,427\nD20=-\nE20=19,139\nF20=-\nG20=16,832\nH20=10,496\nB21=2月\nC21=21,328\nD21=-\nE21=17,286\nF21=-\nG21=15,721\nH21=9,802\nB22=3月\nC22=24,335\nD22=-\nE22=19,328\nF22=-\nG22=17,560\nH22=11,041",
+            "url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "source_sha256": "5056756caaf7c30b9f07168fe8842193f96218eb968520565f04b73f4b7ad45f"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "fb5931497c54b9abac58e9c13cb930f13aa1eba2b8279b12eb12d50a608435b8",
+        "review_commit": "bdcd4c30152cfc2fcbb173391b06237f59342e1e",
+        "documents": [
+          {
+            "id": "fukushima-744497-visible-economic",
+            "source_url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "original_url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/744497.csv",
+            "source_sha256": "18ccfc7b622e05e40f03203ba5b9aef54a9009ec141d4ba7ad4ba86eb145fe8d",
+            "text_sha256": "8cf18b0e0ea47f4bb7d234d158fc268bf2eca64e6b8a72ec21208888c50ede75",
+            "terms_url": "https://www.pref.fukushima.lg.jp/uploaded/life/794107_2280812_misc.pdf",
+            "license": "CC BY 2.1 JP",
+            "checked_at_jst": "2026-11-11T06:18:44.894910+09:00",
+            "public_scope": "原本CSV論理行1～22・A～H。区分/年月/地域/全店・既存店/単位と統計集計値のみ。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "fukushima-749645-visible-economic",
+            "source_url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "original_url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/749645.csv",
+            "source_sha256": "985f0a15e16ba5780fda8e003e394a104c8c5fe45ef123f5cad072b0de8c5568",
+            "text_sha256": "049dc33df2fb853ae6dc3f4a75304f70ea4be43f4a381e2b02cb186624643d7b",
+            "terms_url": "https://www.pref.fukushima.lg.jp/uploaded/life/794107_2280812_misc.pdf",
+            "license": "CC BY 2.1 JP",
+            "checked_at_jst": "2026-11-11T06:18:57.395437+09:00",
+            "public_scope": "原本CSV論理行1～22・A～H。区分/年月/地域/全店・既存店/単位と統計集計値のみ。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "fukushima-754768-visible-economic",
+            "source_url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "original_url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/754768.csv",
+            "source_sha256": "5056756caaf7c30b9f07168fe8842193f96218eb968520565f04b73f4b7ad45f",
+            "text_sha256": "7d092aeaeb4cd7462447df57d176de6cf555865ba6aa5676ba4ed6bbb5c5c4e1",
+            "terms_url": "https://www.pref.fukushima.lg.jp/uploaded/life/794107_2280812_misc.pdf",
+            "license": "CC BY 2.1 JP",
+            "checked_at_jst": "2026-11-11T06:19:10.088885+09:00",
+            "public_scope": "原本CSV論理行1～22・A～H。区分/年月/地域/全店・既存店/単位と統計集計値のみ。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "bdcd4c30152cfc2fcbb173391b06237f59342e1e",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
+    },
+    {
+      "bundle": {
+        "id": "fukushima-visible-economic-20261112-2100-2",
+        "documents": [
+          {
+            "id": "fukushima-759064-visible-economic",
+            "title": "福島県主要経済指標CSV（原本番号759064）",
+            "text": "この抜粋は以下の公開データを加工して作成。\n主要経済指標、福島県、クリエイティブ・コモンズ・ライセンス 表示2.1日本（https://creativecommons.org/licenses/by/2.1/jp/）。\n原本CSVの論理行1～22、列A～Hの可視値。年月・区分・単位見出しを含む限定範囲。改行は / に表示。抜粋外未確認。\nC1=３　主要経済指標\nA2=区分\nC2=個人消費\nC3=1 百貨店・スーパー販売額\nG3=2　コンビニエンスストア / 販売額\nA4=年月\nC4=福島県\nD4=福島県\nE4=全　国\nF4=全　国\nG4=福島県\nH4=全　国\nC6=全店舗\nD6=既存店\nE6=全店舗\nF6=既存店\nC7=（百万円）\nD7=（百万円）\nE7=（億円）\nF7=（億円）\nG7=（百万円）\nH7=（億円）\nA9=令和5年　\nC9=285,834\nD9=-\nE9=216,049\nF9=-\nG9=209,741\nH9=127,321\nA10=6年　\nC10=284,862\nD10=-\nE10=223,812\nF10=-\nG10=209,491\nH10=128,887\nA11=7年　\nC11=283,946\nD11=-\nE11=230,150\nF11=-\nG11=211,903\nH11=133,212\nA13=7年\nB13=Ⅰ\nC13=69,090\nD13=-\nE13=55,753\nF13=-\nG13=50,113\nH13=31,339\nB14=Ⅱ\nC14=69,450\nD14=-\nE14=55,342\nF14=-\nG14=52,754\nH14=33,214\nB15=Ⅲ\nC15=71,479\nD15=-\nE15=56,529\nF15=-\nG15=55,657\nH15=34,744\nB16=Ⅳ\nC16=73,927\nD16=-\nE16=62,526\nF16=-\nG16=53,379\nH16=33,915\nA17=8年\nB17=Ⅰ\nC17=69,153\nD17=-\nE17=57,002\nF17=-\nG17=50,096\nH17=31,994\nA19=7年\nB19=1月\nC19=23,427\nD19=-\nE19=19,139\nF19=-\nG19=16,832\nH19=10,496\nB20=2月\nC20=21,328\nD20=-\nE20=17,286\nF20=-\nG20=15,721\nH20=9,802\nB21=3月\nC21=24,335\nD21=-\nE21=19,328\nF21=-\nG21=17,560\nH21=11,041\nB22=4月\nC22=22,442\nD22=-\nE22=18,025\nF22=-\nG22=17,053\nH22=10,779",
+            "url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "source_sha256": "7a9fc8bfe08e8ca252c9c6523c1ff884ad805d5b8e98cefc3393f8a5cdd0bd7a"
+          },
+          {
+            "id": "fukushima-763137-visible-economic",
+            "title": "福島県主要経済指標CSV（原本番号763137）",
+            "text": "この抜粋は以下の公開データを加工して作成。\n主要経済指標、福島県、クリエイティブ・コモンズ・ライセンス 表示2.1日本（https://creativecommons.org/licenses/by/2.1/jp/）。\n原本CSVの論理行1～22、列A～Hの可視値。年月・区分・単位見出しを含む限定範囲。改行は / に表示。抜粋外未確認。\nC1=３　主要経済指標\nA2=区分\nC2=個人消費\nC3=1 百貨店・スーパー販売額\nG3=2　コンビニエンスストア / 販売額\nA4=年月\nC4=福島県\nD4=福島県\nE4=全　国\nF4=全　国\nG4=福島県\nH4=全　国\nC6=全店舗\nD6=既存店\nE6=全店舗\nF6=既存店\nC7=（百万円）\nD7=（百万円）\nE7=（億円）\nF7=（億円）\nG7=（百万円）\nH7=（億円）\nA9=令和5年　\nC9=285,834\nD9=-\nE9=216,049\nF9=-\nG9=209,741\nH9=127,321\nA10=6年　\nC10=284,862\nD10=-\nE10=223,812\nF10=-\nG10=209,491\nH10=128,887\nA11=7年　\nC11=283,946\nD11=-\nE11=230,150\nF11=-\nG11=211,903\nH11=133,212\nA13=7年\nB13=Ⅰ\nC13=69,090\nD13=-\nE13=55,753\nF13=-\nG13=50,113\nH13=31,339\nB14=Ⅱ\nC14=69,450\nD14=-\nE14=55,342\nF14=-\nG14=52,754\nH14=33,214\nB15=Ⅲ\nC15=71,479\nD15=-\nE15=56,529\nF15=-\nG15=55,657\nH15=34,744\nB16=Ⅳ\nC16=73,927\nD16=-\nE16=62,526\nF16=-\nG16=53,379\nH16=33,915\nA17=8年\nB17=Ⅰ\nC17=69,153\nD17=-\nE17=57,002\nF17=-\nG17=50,096\nH17=31,994\nA19=7年\nB19=2月\nC19=21,328\nD19=-\nE19=17,286\nF19=-\nG19=15,721\nH19=9,802\nB20=3月\nC20=24,335\nD20=-\nE20=19,328\nF20=-\nG20=17,560\nH20=11,041\nB21=4月\nC21=22,442\nD21=-\nE21=18,025\nF21=-\nG21=17,053\nH21=10,779\nB22=5月\nC22=23,572\nD22=-\nE22=18,495\nF22=-\nG22=17,861\nH22=11,223",
+            "url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "source_sha256": "a7f47a33e56291b19ee5164da3df0dbd1a1c547287bfdc52e4630dd7bc78f94b"
+          },
+          {
+            "id": "fukushima-766287-visible-economic",
+            "title": "福島県主要経済指標CSV（原本番号766287）",
+            "text": "この抜粋は以下の公開データを加工して作成。\n主要経済指標、福島県、クリエイティブ・コモンズ・ライセンス 表示2.1日本（https://creativecommons.org/licenses/by/2.1/jp/）。\n原本CSVの論理行1～22、列A～Hの可視値。年月・区分・単位見出しを含む限定範囲。改行は / に表示。抜粋外未確認。\nC1=３　主要経済指標\nA2=区分\nC2=個人消費\nC3=1 百貨店・スーパー販売額\nG3=2　コンビニエンスストア / 販売額\nA4=年月\nC4=福島県\nD4=福島県\nE4=全　国\nF4=全　国\nG4=福島県\nH4=全　国\nC6=全店舗\nD6=既存店\nE6=全店舗\nF6=既存店\nC7=（百万円）\nD7=（百万円）\nE7=（億円）\nF7=（億円）\nG7=（百万円）\nH7=（億円）\nA9=令和5年　\nC9=285,834\nD9=-\nE9=216,049\nF9=-\nG9=209,741\nH9=127,321\nA10=6年　\nC10=284,862\nD10=-\nE10=223,812\nF10=-\nG10=209,491\nH10=128,887\nA11=7年　\nC11=283,946\nD11=-\nE11=230,150\nF11=-\nG11=211,903\nH11=133,212\nA13=7年\nB13=Ⅱ\nC13=69,450\nD13=-\nE13=55,342\nF13=-\nG13=52,754\nH13=33,214\nB14=Ⅲ\nC14=71,479\nD14=-\nE14=56,529\nF14=-\nG14=55,657\nH14=34,744\nB15=Ⅳ\nC15=73,927\nD15=-\nE15=62,526\nF15=-\nG15=53,379\nH15=33,915\nA16=8年\nB16=Ⅰ\nC16=69,153\nD16=-\nE16=57,002\nF16=-\nG16=50,096\nH16=31,994\nB17=Ⅱ\nC17=71,520\nD17=-\nE17=56,653\nF17=-\nG17=52,424\nH17=33,482\nA19=7年\nB19=3月\nC19=24,335\nD19=-\nE19=19,328\nF19=-\nG19=17,560\nH19=11,041\nB20=4月\nC20=22,442\nD20=-\nE20=18,025\nF20=-\nG20=17,053\nH20=10,779\nB21=5月\nC21=23,572\nD21=-\nE21=18,495\nF21=-\nG21=17,861\nH21=11,223\nB22=6月\nC22=23,436\nD22=-\nE22=18,821\nF22=-\nG22=17,840\nH22=11,211",
+            "url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "source_sha256": "0e864559fb8c2a87bcfadb45e1cc2e0bd5a019d92cfd94cdc9ca085901eed87e"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "d51681e7b33e81706ed9fa213821aa946d5935b53df48eeb130a393f183d44ee",
+        "review_commit": "bdcd4c30152cfc2fcbb173391b06237f59342e1e",
+        "documents": [
+          {
+            "id": "fukushima-759064-visible-economic",
+            "source_url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "original_url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/759064.csv",
+            "source_sha256": "7a9fc8bfe08e8ca252c9c6523c1ff884ad805d5b8e98cefc3393f8a5cdd0bd7a",
+            "text_sha256": "a553d09ba52d17f93078096b62c068da95b29b4c41ed81819fbf01404d3ac83a",
+            "terms_url": "https://www.pref.fukushima.lg.jp/uploaded/life/794107_2280812_misc.pdf",
+            "license": "CC BY 2.1 JP",
+            "checked_at_jst": "2026-11-11T06:31:35.739675+09:00",
+            "public_scope": "原本CSV論理行1～22・A～H。区分/年月/地域/全店・既存店/単位と統計集計値のみ。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "fukushima-763137-visible-economic",
+            "source_url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "original_url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/763137.csv",
+            "source_sha256": "a7f47a33e56291b19ee5164da3df0dbd1a1c547287bfdc52e4630dd7bc78f94b",
+            "text_sha256": "2da8ca1c693ff081ee279cbe3973a74c4c52b40c2bb72c2111e94ac42e252e98",
+            "terms_url": "https://www.pref.fukushima.lg.jp/uploaded/life/794107_2280812_misc.pdf",
+            "license": "CC BY 2.1 JP",
+            "checked_at_jst": "2026-11-11T06:31:48.447021+09:00",
+            "public_scope": "原本CSV論理行1～22・A～H。区分/年月/地域/全店・既存店/単位と統計集計値のみ。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          },
+          {
+            "id": "fukushima-766287-visible-economic",
+            "source_url": "https://www.pref.fukushima.lg.jp/sec/11045b/15911.html",
+            "original_url": "https://www.pref.fukushima.lg.jp/uploaded/attachment/766287.csv",
+            "source_sha256": "0e864559fb8c2a87bcfadb45e1cc2e0bd5a019d92cfd94cdc9ca085901eed87e",
+            "text_sha256": "af9d67648f0ed1d33a6fd9a18515c9fd1f54a13dbe525088ab4ca4c59bf146a7",
+            "terms_url": "https://www.pref.fukushima.lg.jp/uploaded/life/794107_2280812_misc.pdf",
+            "license": "CC BY 2.1 JP",
+            "checked_at_jst": "2026-11-11T06:32:01.269916+09:00",
+            "public_scope": "原本CSV論理行1～22・A～H。区分/年月/地域/全店・既存店/単位と統計集計値のみ。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "bdcd4c30152cfc2fcbb173391b06237f59342e1e",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
