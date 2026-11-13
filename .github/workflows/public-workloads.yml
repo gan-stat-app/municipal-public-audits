@@ -19,6 +19,36 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
+  score-csv-public-check:
+    # Bounded HTTPS check only: no original downloads, scoring, build or publish.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Compare public score CSV with its reviewed Git blob
+        run: |
+          python - <<'PY'
+          import csv, io, json, re, sys
+          sys.path.insert(0, 'workloads')
+          from common import blob, checked_public, manifest, sha
+          item = manifest()['score_sources'][0]
+          assert item['source_repository'] == 'gan-stat-app/municipal-smr-site'
+          assert re.fullmatch(r'[0-9a-f]{40}', item['source_commit'])
+          assert item['path'] == 'analysis/municipal-machine-readability/all-scores.csv'
+          public = checked_public(item)
+          assert len(public) == item['bytes']
+          rows = list(csv.DictReader(io.StringIO(public.decode('utf-8-sig'))))
+          assert len(rows) == 76 and len({r['source_id'] for r in rows}) == 76
+          print(json.dumps({'status': 'passed', 'scope': 'score_csv_only',
+              'source_commit': item['source_commit'], 'rows': len(rows),
+              'bytes': len(public), 'git_blob': blob(public), 'sha256': sha(public)}))
+          PY
   security-and-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 5

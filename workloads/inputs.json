@@ -21704,8 +21704,10 @@
   "score_sources": [
     {
       "path": "analysis/municipal-machine-readability/all-scores.csv",
-      "sha": "c5207fe03455091f645178dd93751f183d94ebca",
-      "bytes": 37151
+      "sha": "1b5b53e5ee374b40946d1edef697a809dc849f8b",
+      "bytes": 308646,
+      "source_repository": "gan-stat-app/municipal-smr-site",
+      "source_commit": "bd07c5bdae33c5ea418f7ea5b61c5e8cf180350f"
     },
     {
       "path": "analysis/municipal-machine-readability/opendata/akita/collection/results.json",
