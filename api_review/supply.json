@@ -3210,6 +3210,47 @@
           "no_prior_attempt": true
         }
       }
+    },
+    {
+      "bundle": {
+        "id": "kagawa-visible-population-20261114-0813-1",
+        "documents": [
+          {
+            "id": "kagawa-p202401-visible-population",
+            "title": "香川県人口移動調査報告（月報）令和6年1月・県市町集計",
+            "text": "出典：香川県「香川県人口移動調査報告（月報）（令和6年1月）」、香川県オープンデータ（表示 CC BY）。\n原本の可視セルをセル番地付きテキストへ加工。R6.1月シートの表見出し・県計/市計/町計と注記だけ。人口は令和6年1月1日現在、動態は前月中。人口・動態は人、世帯数は世帯。改行を / と表示。抜粋外未確認。\nA4=県人口 ９２３，７５４人（令和6年1月1日現在推計）\nA5=～香川県人口移動調査報告～\nB13=市 町 名 / (年月日)\nD13=人　口\nG13=前　月　中　の　人　口　動　態\nG14=自 然 動 態\nJ14=社 会 動 態\nM14=増減 / 総数\nN13=世帯数\nD15=総数\nE15=男\nF15=女\nG15=出生\nH15=死亡\nI15=自然増減\nJ15=転入\nK15=転出\nL15=社会増減\nB16=県計\nD16=923754\nE16=446999\nF16=476755\nG16=415\nH16=1198\nI16=-783\nJ16=1921\nK16=2004\nL16=-83\nM16=-866\nN16=411630\nB17=市計\nD17=783169\nE17=378648\nF17=404521\nG17=364\nH17=975\nI17=-611\nJ17=1564\nK17=1633\nL17=-69\nM17=-680\nN17=349849\nB18=町計\nD18=140585\nE18=68351\nF18=72234\nG18=51\nH18=223\nI18=-172\nJ18=357\nK18=371\nL18=-14\nM18=-186\nN18=61781\nC52=　 ○人口に外国人を含む。\nC53=　 ○県計の社会動態の数は、各市町からの報告数の累計であり、県外移動だけでなく、県内移動及び住所地不明を含む / 　 　総数である。",
+            "url": "https://opendata.pref.kagawa.lg.jp/dataset/952.html",
+            "source_sha256": "1812d05f1471c3aeaecc3298a7b3b72d6cef520c10fdb5a86c161c3dfcf45b4d"
+          }
+        ],
+        "public_export_approved": true,
+        "executor": "public"
+      },
+      "approval": {
+        "bundle_sha256": "a9abb6db9c4e2e1b3ab064afee9bbc274c4d07070c4f4098d881170e698cc1cf",
+        "review_commit": "af7821d36f07a989b8a10fbec7873215cc95ba0a",
+        "documents": [
+          {
+            "id": "kagawa-p202401-visible-population",
+            "source_url": "https://opendata.pref.kagawa.lg.jp/dataset/952.html",
+            "original_url": "https://www.pref.kagawa.lg.jp/documents/16720/p202401.xlsx",
+            "source_sha256": "1812d05f1471c3aeaecc3298a7b3b72d6cef520c10fdb5a86c161c3dfcf45b4d",
+            "text_sha256": "a87560d63bece378842318ca5148563c03e513558e62f4356f426483955465b0",
+            "terms_url": "https://opendata.pref.kagawa.lg.jp/dataset/952.html",
+            "license": "CC BY（公式カタログの表示、版番号未表示）",
+            "checked_at_jst": "2026-11-14T08:22:01.278946+09:00",
+            "public_scope": "R6.1月: A4/A5、B13:N18の表見出しと県計/市計/町計、C52/C53注記。可視セルのみ。人口/前月動態/人・世帯の単位保持。抜粋外未確認。",
+            "visible_only": true,
+            "no_personal_information": true,
+            "redistribution_approved": true
+          }
+        ],
+        "exclusive_public_ownership": {
+          "private_state_commit": "af7821d36f07a989b8a10fbec7873215cc95ba0a",
+          "reserved": true,
+          "no_prior_attempt": true
+        }
+      }
     }
   ]
 }
