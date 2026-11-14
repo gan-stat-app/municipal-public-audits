@@ -6,7 +6,7 @@
     <title>2040年地域医療構想・地域診断｜人口・DPC・NDBを横断</title>
     <meta
       name="description"
-      content="全国335二次医療圏について、2040年の人口構造、DPC急性期入院、NDB医療提供量を一画面で確認する地域診断です。"
+      content="全国の二次医療圏について、2040年の人口構造、DPC急性期入院、NDB医療提供量を一画面で確認する地域診断です。"
     />
     <link
       rel="canonical"
@@ -33,25 +33,130 @@
     <main id="main">
       <section class="region-selector" aria-labelledby="region-selector-title">
         <div>
-          <p class="eyebrow">全国47都道府県・335二次医療圏</p>
+          <p class="eyebrow">全国47都道府県</p>
           <h2 id="region-selector-title">地域を選ぶ</h2>
           <p>選択すると、下の地域診断がその場で切り替わります。</p>
         </div>
         <div class="selector-controls">
+          <label>区域の基準年<select id="vision-geography"><option value="2022">2022年（335圏）</option><option value="2024">2024年（330圏）</option></select></label>
           <label>都道府県<select id="vision-prefecture"></select></label
           ><label>二次医療圏<select id="vision-area"></select></label>
         </div>
         <div id="selected-region" class="selected-region" aria-live="polite">
           地域データを読み込んでいます…
         </div>
-        <div class="scope-guide" aria-label="選択条件と表示範囲">
+        <div id="legacy-scope" class="scope-guide" aria-label="選択条件と表示範囲">
           <span class="area-scope"
             >二次医療圏の選択と連動：人口・DPC・がん拠点病院・NDB</span
           >
         </div>
       </section>
 
-      <section class="diagnosis" aria-labelledby="diagnosis-title">
+      <p id="akita-acute-link" hidden></p>
+      <section id="versioned-diagnosis" class="diagnosis" hidden aria-labelledby="versioned-title">
+        <h2 id="versioned-title"></h2>
+        <div id="versioned-cards" class="metric-grid"></div>
+        <p id="versioned-members"></p>
+        <p>区域は<a href="https://www.e-stat.go.jp/stat-search/files?toukei=00450026&amp;tstat=000001135683&amp;tclass1=000001236302&amp;tclass2=000001236305">令和6年医師・歯科医師・薬剤師統計（表22～26）</a>によります。</p>
+        <p id="versioned-links"></p>
+        
+      </section>
+      <article hidden class="diagnosis" id="akita-acute-0501">
+<h3>県北医療圏の一般病棟入院基本料の届出病院</h3>
+<p>2026年9月1日現在、急性期Aは1病院・285床、急性期Bは1病院・318床です。一般病棟入院基本料を届け出た圏内の8病院を区分別に掲載します。</p>
+<h4>急性期病院A一般入院料</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">能代厚生医療センター</th><td>能代市</td><td>6棟</td><td>285床</td><td>2026年6月1日</td></tr>
+</tbody></table></div>
+<h4>急性期病院B一般入院料</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">大館市立総合病院</th><td>大館市</td><td>6棟</td><td>318床</td><td>2026年8月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料2</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">かづの厚生病院</th><td>鹿角市</td><td>2棟</td><td>116床</td><td>2026年3月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料4</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">能代山本医師会病院</th><td>能代市</td><td>3棟</td><td>162床</td><td>2024年10月1日</td></tr>
+<tr><th scope="row">大館記念病院</th><td>大館市</td><td>1棟</td><td>20床</td><td>2024年10月1日</td></tr>
+<tr><th scope="row">秋田労災病院</th><td>大館市</td><td>2棟</td><td>104床</td><td>2024年10月1日</td></tr>
+<tr><th scope="row">北秋田市民病院</th><td>北秋田市</td><td>2棟</td><td>113床</td><td>2025年4月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料5</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">秋田病院（地域医療機能推進機構）</th><td>能代市</td><td>1棟</td><td>52床</td><td>2026年9月1日</td></tr>
+</tbody></table></div>
+<p>病床数は名簿の備考欄に記載された当該区分の届出病床数です。特定機能病院入院基本料など、別の入院基本料を届け出た病棟は集計対象外です。</p>
+<p><a href="https://kouseikyoku.mhlw.go.jp/tohoku/koumoku01-05akita-ika-r0809.pdf">東北厚生局・秋田県届出項目別名簿（1～6頁）</a> ／ <a href="https://www.mhlw.go.jp/content/10800000/001344036.pdf">2024年再編後の二次医療圏</a></p>
+</article>
+<article hidden class="diagnosis" id="akita-acute-0502">
+<h3>県央医療圏の一般病棟入院基本料の届出病院</h3>
+<p>2026年9月1日現在、急性期Aは4病院・1,285床、急性期Bは0病院・0床です。一般病棟入院基本料を届け出た圏内の13病院を区分別に掲載します。</p>
+<h4>急性期病院A一般入院料</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">秋田厚生医療センター</th><td>秋田市</td><td>6棟</td><td>325床</td><td>2026年6月1日</td></tr>
+<tr><th scope="row">市立秋田総合病院</th><td>秋田市</td><td>6棟</td><td>316床</td><td>2026年6月1日</td></tr>
+<tr><th scope="row">秋田赤十字病院</th><td>秋田市</td><td>8棟</td><td>369床</td><td>2026年6月1日</td></tr>
+<tr><th scope="row">由利組合総合病院</th><td>由利本荘市</td><td>5棟</td><td>275床</td><td>2026年6月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料2</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">中通総合病院</th><td>秋田市</td><td>7棟</td><td>288床</td><td>2026年9月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料3</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">湖東厚生病院</th><td>八郎潟町</td><td>1棟</td><td>56床</td><td>2024年10月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料4</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">男鹿みなと市民病院</th><td>男鹿市</td><td>1棟</td><td>60床</td><td>2025年4月1日</td></tr>
+<tr><th scope="row">本荘第一病院</th><td>由利本荘市</td><td>2棟</td><td>96床</td><td>2025年7月1日</td></tr>
+<tr><th scope="row">秋田県立循環器・脳脊髄センター</th><td>秋田市</td><td>2棟</td><td>86床</td><td>2026年3月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料5</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">小泉病院</th><td>秋田市</td><td>1棟</td><td>17床</td><td>2024年10月1日</td></tr>
+<tr><th scope="row">藤原記念病院</th><td>潟上市</td><td>2棟</td><td>92床</td><td>2026年6月1日</td></tr>
+</tbody></table></div>
+<h4>地域一般入院料1</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">由利本荘医師会病院</th><td>由利本荘市</td><td>1棟</td><td>50床</td><td>2024年2月1日</td></tr>
+</tbody></table></div>
+<h4>地域一般入院料3</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">土崎病院</th><td>秋田市</td><td>1棟</td><td>26床</td><td>2006年4月1日</td></tr>
+</tbody></table></div>
+<p>病床数は名簿の備考欄に記載された当該区分の届出病床数です。特定機能病院入院基本料など、別の入院基本料を届け出た病棟は集計対象外です。</p>
+<p><a href="https://kouseikyoku.mhlw.go.jp/tohoku/koumoku01-05akita-ika-r0809.pdf">東北厚生局・秋田県届出項目別名簿（1～6頁）</a> ／ <a href="https://www.mhlw.go.jp/content/10800000/001344036.pdf">2024年再編後の二次医療圏</a></p>
+</article>
+<article hidden class="diagnosis" id="akita-acute-0503">
+<h3>県南医療圏の一般病棟入院基本料の届出病院</h3>
+<p>2026年9月1日現在、急性期Aは2病院・610床、急性期Bは1病院・148床です。一般病棟入院基本料を届け出た圏内の8病院を区分別に掲載します。</p>
+<h4>急性期病院A一般入院料</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">大曲厚生医療センター</th><td>大仙市</td><td>6棟</td><td>315床</td><td>2026年6月1日</td></tr>
+<tr><th scope="row">平鹿総合病院</th><td>横手市</td><td>6棟</td><td>295床</td><td>2026年6月1日</td></tr>
+</tbody></table></div>
+<h4>急性期病院B一般入院料</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">市立横手病院</th><td>横手市</td><td>3棟</td><td>148床</td><td>2026年7月1日</td></tr>
+</tbody></table></div>
+<h4>急性期一般入院料4</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">市立大森病院</th><td>横手市</td><td>1棟</td><td>50床</td><td>2024年10月1日</td></tr>
+<tr><th scope="row">市立角館総合病院</th><td>仙北市</td><td>2棟</td><td>107床</td><td>2024年10月1日</td></tr>
+<tr><th scope="row">羽後町立羽後病院</th><td>羽後町</td><td>1棟</td><td>58床</td><td>2025年11月1日</td></tr>
+<tr><th scope="row">雄勝中央病院</th><td>湯沢市</td><td>2棟</td><td>107床</td><td>2026年8月1日</td></tr>
+</tbody></table></div>
+<h4>地域一般入院料1</h4>
+<div class="table-wrap"><table><thead><tr><th scope="col">病院名</th><th scope="col">市町村</th><th scope="col">届出病棟数</th><th scope="col">届出病床数</th><th scope="col">算定開始日</th></tr></thead><tbody>
+<tr><th scope="row">大曲中通病院</th><td>大仙市</td><td>1棟</td><td>60床</td><td>2023年4月1日</td></tr>
+</tbody></table></div>
+<p>病床数は名簿の備考欄に記載された当該区分の届出病床数です。特定機能病院入院基本料など、別の入院基本料を届け出た病棟は集計対象外です。</p>
+<p><a href="https://kouseikyoku.mhlw.go.jp/tohoku/koumoku01-05akita-ika-r0809.pdf">東北厚生局・秋田県届出項目別名簿（1～6頁）</a> ／ <a href="https://www.mhlw.go.jp/content/10800000/001344036.pdf">2024年再編後の二次医療圏</a></p>
+</article>
+      <section id="legacy-diagnosis" class="diagnosis" aria-labelledby="diagnosis-title">
         <div class="section-head">
           <p class="eyebrow">公表データから確認できる範囲</p>
           <h2 id="diagnosis-title">選択地域の地域診断</h2>
@@ -490,7 +595,7 @@
                   </tr>
                   <tr>
                     <td>介護保険</td>
-                    <td>2023年度</td>
+                    <td>2024年度</td>
                     <td>介護保険事業状況報告</td>
                   </tr>
                   <tr>
@@ -514,7 +619,7 @@
         </p>
       </section>
 
-      <section aria-labelledby="detail-title">
+      <section id="legacy-links" aria-labelledby="detail-title">
         <div class="section-head">
           <p class="eyebrow">元データを詳しく確認</p>
           <h2 id="detail-title">選択条件を引き継いで詳細画面へ</h2>
@@ -531,7 +636,7 @@
         </div>
       </section>
 
-      <section class="coverage" aria-labelledby="coverage-title">
+      <section id="legacy-coverage" class="coverage" aria-labelledby="coverage-title">
         <h2 id="coverage-title">ガイドラインの論点と現在の収録状況</h2>
         <div class="table-wrap">
           <table>
@@ -624,7 +729,7 @@
       <section class="source-note" aria-labelledby="source-title">
         <h2 id="source-title">出典と読み方</h2>
         <p>
-          厚生労働省「新たな地域医療構想策定ガイドライン」（2026年3月）・「構想区域別の医療需要推計」、国立社会保障・人口問題研究所「日本の地域別将来推計人口（令和5年推計）」、令和4年医師・歯科医師・薬剤師統計、厚生労働省DPC調査、第11回NDBオープンデータ、国立がん研究センター「がん診療連携拠点病院等
+          厚生労働省「新たな地域医療構想策定ガイドライン」（2026年3月）・「構想区域別の医療需要推計」、国立社会保障・人口問題研究所「日本の地域別将来推計人口（令和5年推計）」、令和4年・令和6年医師・歯科医師・薬剤師統計、厚生労働省DPC調査、第11回NDBオープンデータ、国立がん研究センター「がん診療連携拠点病院等
           現況報告」を使用しています。
         </p>
         <p>
@@ -654,6 +759,8 @@
         >データと計算方法</a
       >
     </footer>
-    <script src="/regional-healthcare-vision/app.js?v=29" defer></script>
+    <script src="/regional-healthcare-vision/app.js?v=33" defer></script>
   </body>
 </html>
+
+

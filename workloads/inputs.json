@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "source_repository": "gan-stat-app/municipal-smr-site",
-  "source_commit": "a2851022e129960ac011780190a2ce84caf0d44d",
+  "source_commit": "4f1a6d4608a41831ff7506164f56caaac9554a3e",
   "assets": [
     {
       "path": "age-specific-mortality/app.js",
-      "sha": "8511bdd2927aecb37994da8c74ca60df9a09ceb5",
-      "size": 9873
+      "sha": "05d71a4cb600606f9bdf08c2653c17f22df61e35",
+      "size": 11653
     },
     {
       "path": "age-specific-mortality/comparison-methods.html",
@@ -295,13 +295,48 @@
     },
     {
       "path": "age-specific-mortality/index.html",
-      "sha": "a220b3012fbf433b5e8f3c5c96f5b3d590010a69",
-      "size": 4320
+      "sha": "cec2bce398a915e24a2c4d3c9dedca5097774182",
+      "size": 4649
     },
     {
       "path": "age-specific-mortality/style.css",
-      "sha": "252b44bd1bc6db417e80156d0bf19beb727cfc6b",
-      "size": 5324
+      "sha": "10896506a7c8357e22dd0dbea3dc2f21c4ccbd3d",
+      "size": 5651
+    },
+    {
+      "path": "analysis/article.css",
+      "sha": "c3259eb6f60bb9b208d97da7cf0a78432b17b089",
+      "size": 5797
+    },
+    {
+      "path": "analysis/death-difference-article.css",
+      "sha": "e48323173ad1f73e1f616ffea9ba75ae72dc65bf",
+      "size": 605
+    },
+    {
+      "path": "analysis/hub.css",
+      "sha": "891befd07653a3250c7b9c4e92df4b26a9a08d7c",
+      "size": 4753
+    },
+    {
+      "path": "analysis/hub.js",
+      "sha": "cf800b097861d0a44a6b81142b98fd335570e212",
+      "size": 4507
+    },
+    {
+      "path": "analysis/index.html",
+      "sha": "750f1a63f8c26d72d7c7f88a29a3138950e485ab",
+      "size": 72802
+    },
+    {
+      "path": "analysis/mortality-articles-20260910.css",
+      "sha": "c7db2369614be243251a9f55d7a14402bf244130",
+      "size": 384
+    },
+    {
+      "path": "assets/cause-profile.css",
+      "sha": "1c35c19fd5e2295ca81c42b4bf6cc775d65269a0",
+      "size": 2600
     },
     {
       "path": "assets/DeathDifferenceEntry-B3FRvSX3.js",
@@ -319,14 +354,24 @@
       "size": 2843
     },
     {
+      "path": "assets/DeathDifferenceEntry-BdLumfi7.js",
+      "sha": "ccf4941abba3e7533946d8db802b3ab8935b88b6",
+      "size": 3255
+    },
+    {
       "path": "assets/DeathDifferenceEntry-BGZHUeGv.js",
       "sha": "2ac92ae66c032938c25fc46a6ba5696727c713dd",
       "size": 3260
     },
     {
-      "path": "assets/DeathDifferenceEntry-BdLumfi7.js",
-      "sha": "ccf4941abba3e7533946d8db802b3ab8935b88b6",
-      "size": 3255
+      "path": "assets/DeathDifferenceEntry-Cd7u0wkP.js",
+      "sha": "d88fa35a68e95dcf4a73e1e28448ccf57939ab85",
+      "size": 2843
+    },
+    {
+      "path": "assets/DeathDifferenceEntry-CguBIXUp.js",
+      "sha": "7912b543b38501db7e53d29445b39e039c8f8860",
+      "size": 3260
     },
     {
       "path": "assets/DeathDifferenceEntry-CLIE9stH.js",
@@ -337,11 +382,6 @@
       "path": "assets/DeathDifferenceEntry-CWuDQ5t7.js",
       "sha": "37d574adc5f24dcd7ee8607aa0fd5f04be0fca42",
       "size": 3255
-    },
-    {
-      "path": "assets/DeathDifferenceEntry-Cd7u0wkP.js",
-      "sha": "d88fa35a68e95dcf4a73e1e28448ccf57939ab85",
-      "size": 2843
     },
     {
       "path": "assets/DeathDifferenceEntry-CylC_m5X.js",
@@ -384,6 +424,11 @@
       "size": 2843
     },
     {
+      "path": "assets/DeathDifferenceEntry-pr9mT999.js",
+      "sha": "a66671142c424bd3bae7ccd325d42cc6ea34c1c1",
+      "size": 1474
+    },
+    {
       "path": "assets/DeathDifferenceEntry-Rc7XO7-M.js",
       "sha": "432cab7315e621c85316321e1339b62e646cfc5b",
       "size": 3255
@@ -399,11 +444,6 @@
       "size": 3260
     },
     {
-      "path": "assets/DeathDifferenceEntry-pr9mT999.js",
-      "sha": "a66671142c424bd3bae7ccd325d42cc6ea34c1c1",
-      "size": 1474
-    },
-    {
       "path": "assets/DeathDifferencePyramid-1KUO1mRc.js",
       "sha": "5041d67323c8b5a91d8c71a516b83a1cbb61620d",
       "size": 13037
@@ -417,16 +457,6 @@
       "path": "assets/DeathDifferencePyramid-B4c43Y6H.js",
       "sha": "d1afb0237d3cfdb6d3e6442676ddb851bdf7b3c3",
       "size": 13027
-    },
-    {
-      "path": "assets/DeathDifferencePyramid-BNflXQtR.js",
-      "sha": "b876861332ddfa7934391af255d049817970ea3d",
-      "size": 10490
-    },
-    {
-      "path": "assets/DeathDifferencePyramid-BVBtMy8C.js",
-      "sha": "77a47acd730d64ce81c95e8522c0faea53a74132",
-      "size": 8920
     },
     {
       "path": "assets/DeathDifferencePyramid-Bd5IUzbR.js",
@@ -449,9 +479,19 @@
       "size": 13027
     },
     {
+      "path": "assets/DeathDifferencePyramid-BNflXQtR.js",
+      "sha": "b876861332ddfa7934391af255d049817970ea3d",
+      "size": 10490
+    },
+    {
       "path": "assets/DeathDifferencePyramid-BplAxFxQ.js",
       "sha": "c074eea2709ac501cd3500e269b607fe360ec599",
       "size": 13037
+    },
+    {
+      "path": "assets/DeathDifferencePyramid-BVBtMy8C.js",
+      "sha": "77a47acd730d64ce81c95e8522c0faea53a74132",
+      "size": 8920
     },
     {
       "path": "assets/DeathDifferencePyramid-C2NxB5jP.js",
@@ -459,14 +499,14 @@
       "size": 13037
     },
     {
-      "path": "assets/DeathDifferencePyramid-CWBHp0K3.js",
-      "sha": "631f822be2056e699286d71828fdc059c50d7718",
-      "size": 8920
-    },
-    {
       "path": "assets/DeathDifferencePyramid-CvtbQgIB.css",
       "sha": "c7c024d4e433195ff11d41c09b7543e4b0cd687a",
       "size": 987
+    },
+    {
+      "path": "assets/DeathDifferencePyramid-CWBHp0K3.js",
+      "sha": "631f822be2056e699286d71828fdc059c50d7718",
+      "size": 8920
     },
     {
       "path": "assets/DeathDifferencePyramid-D7aM8zLw.js",
@@ -494,13 +534,13 @@
       "size": 10490
     },
     {
-      "path": "assets/DeathDifferencePyramid-R_yvHgvi.js",
-      "sha": "c52f4e8558ecdff612ea78d608a49c0836bd4c2c",
+      "path": "assets/DeathDifferencePyramid-oRW-7VP3.js",
+      "sha": "03224403a4fb97eb53c8207357e4e9c4e3f58a00",
       "size": 10554
     },
     {
-      "path": "assets/DeathDifferencePyramid-oRW-7VP3.js",
-      "sha": "03224403a4fb97eb53c8207357e4e9c4e3f58a00",
+      "path": "assets/DeathDifferencePyramid-R_yvHgvi.js",
+      "sha": "c52f4e8558ecdff612ea78d608a49c0836bd4c2c",
       "size": 10554
     },
     {
@@ -509,199 +549,9 @@
       "size": 13037
     },
     {
-      "path": "assets/PopulationPyramid-249zKG7q.js",
-      "sha": "0f66518c7c864761d463cb04ed0285e997276de3",
-      "size": 11916
-    },
-    {
-      "path": "assets/PopulationPyramid-B5fjgK5R.js",
-      "sha": "17ff097a264164e322680276f8d56241e0242de9",
-      "size": 11916
-    },
-    {
-      "path": "assets/PopulationPyramid-BHgb_5c8.js",
-      "sha": "0ec9dc5a624a32c15b0bdd1a4cc8d82a4d42e0da",
-      "size": 11911
-    },
-    {
-      "path": "assets/PopulationPyramid-BPfU_-y7.js",
-      "sha": "b169317f09312fcda25af80aa6344bb185191596",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-BdO8KZkP.js",
-      "sha": "5b4fe4c00c4c96587bdf1484ebc283f4a03ca3ec",
-      "size": 11911
-    },
-    {
-      "path": "assets/PopulationPyramid-BwvkbxBJ.js",
-      "sha": "6f4f1108351cf9eaafe9ea168e0f9777501e018b",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-C6BBYf2A.js",
-      "sha": "0341507aa79e9bf088eaa41ea514baa7668a3143",
-      "size": 11911
-    },
-    {
-      "path": "assets/PopulationPyramid-CGWzGlQy.js",
-      "sha": "d81ae9e76f3797a746458400b6f5d84fbc1e4421",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-CIvKBoPa.js",
-      "sha": "a14d1be091c113585707569ece6b356c7a454bd1",
-      "size": 11911
-    },
-    {
-      "path": "assets/PopulationPyramid-CRSsPERw.js",
-      "sha": "88258968e85bd0b694bb562f3242f0054c09872e",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-CVI5rpHE.js",
-      "sha": "162df530f33b7938680606e0fe1329cac17daed9",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-CdC1oWcg.js",
-      "sha": "6edd142ef36effd12a7cbe710d2dbad3d6f4faea",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-Czc7fs5f.js",
-      "sha": "33ac65330a15d80a3769fb7bf92e00e7306d0b9d",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-DLYvduA_.js",
-      "sha": "86dcb2c478ad7ac6754d888d9e31c5e909fa1852",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-DSOmAQiU.js",
-      "sha": "efc558f8af96c326f417cab45042f111ecab76d8",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-D_GM1bEd.js",
-      "sha": "b1b46b91fce419f89c5805b3de8220159b397b15",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-DauobJ-F.js",
-      "sha": "365d2c2fc654dd5e43f83d52a1b8bfefe0e8f134",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-Dh9JOvp7.js",
-      "sha": "155dcbf2b74ee15723d7e6d0af0e0176d6bd0c15",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-Dhs9ys4c.js",
-      "sha": "ecac9c83791882b15300d7c9e95f81eec7178e44",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-DiL_EZPB.js",
-      "sha": "694f929a34283ef8643c11dbe772f32cf6ba0b9d",
-      "size": 11911
-    },
-    {
-      "path": "assets/PopulationPyramid-Dj_DsYDx.js",
-      "sha": "0796a1ea37abdfc08f99274515e9f2227a6c2c26",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-DkC0_rdk.js",
-      "sha": "bd6365df1fbed5f9b293f5ddc3805c902e8de515",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-DwddOGtM.js",
-      "sha": "36bff136ddb672c5522cd22a7e557954ac563bd0",
-      "size": 11916
-    },
-    {
-      "path": "assets/PopulationPyramid-H2hLfLb9.js",
-      "sha": "716417a3c17b8663db8766f3e84550f47a9ad9a1",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-HK_MpgS3.js",
-      "sha": "d3f5adc9861a86ece4ca1ec7fd82f01728e6ab2a",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-HPnG2KiV.js",
-      "sha": "b35d4133a7ddf09aca5a949d6b8b05f708e1393d",
-      "size": 11916
-    },
-    {
-      "path": "assets/PopulationPyramid-HhZp0vhr.js",
-      "sha": "d82b3f497f170845ce0e130735e9c19a5db76e37",
-      "size": 5370
-    },
-    {
-      "path": "assets/PopulationPyramid-XjWHhtWz.js",
-      "sha": "c3f16b4adff35788d0a8e445ee9a8a185c28087c",
-      "size": 11916
-    },
-    {
-      "path": "assets/PopulationPyramid-p-bTk-qg.js",
-      "sha": "c8540c9acdee711d048dda1472fe828f6d7aea48",
-      "size": 11954
-    },
-    {
-      "path": "assets/PopulationPyramid-tqRcOUDq.js",
-      "sha": "04fbf6b0db0f1d644c6bb7f4b40432d78cdaf04f",
-      "size": 11945
-    },
-    {
-      "path": "assets/PopulationPyramid-u5l1dM-1.js",
-      "sha": "34b14c84ca947822ec86f9c898ca728fac4fa669",
-      "size": 11954
-    },
-    {
-      "path": "assets/SmrBatchExport-BhVyaOgZ.js",
-      "sha": "27c1dd01a4a85a2f019fb114ce3d64936fa948cb",
-      "size": 12317
-    },
-    {
-      "path": "assets/SmrBatchExport-BiCJkQ98.js",
-      "sha": "7ace58c4e92a9e0b409e712386e5f246d75a5a2f",
-      "size": 12317
-    },
-    {
-      "path": "assets/SmrBatchExport-CsUYyW4a.js",
-      "sha": "094fe8ec771a651ffb338cb96fae60dd900add9e",
-      "size": 12317
-    },
-    {
-      "path": "assets/SmrBatchExport-CzxB2mfo.js",
-      "sha": "6240406fe3cf367d2bba7b98eadb439891310b08",
-      "size": 12317
-    },
-    {
-      "path": "assets/SmrBatchExport-qEKWdbAd.js",
-      "sha": "2fc57f58ea1bf6ebe13e2a81d70267d59fe3f065",
-      "size": 12317
-    },
-    {
-      "path": "assets/SmrBatchExport-vILALlmW.js",
-      "sha": "2e45e6a915d4d4302ea796646df5db3c4b3b29f8",
-      "size": 12317
-    },
-    {
-      "path": "assets/cause-profile.css",
-      "sha": "1c35c19fd5e2295ca81c42b4bf6cc775d65269a0",
-      "size": 2600
-    },
-    {
-      "path": "assets/formal-CJG_-x8v.css",
-      "sha": "69607f9ffe3e51ff912b5c7f146ffd63c30b22d5",
-      "size": 32245
+      "path": "assets/DeathDifferencePyramid-zg65cRQr.js",
+      "sha": "3676cb9e7fdaec010b6ad24d1b547705d1a82dcc",
+      "size": 13037
     },
     {
       "path": "assets/formal-app-B9-Qskpp.js",
@@ -729,9 +579,19 @@
       "size": 266065
     },
     {
+      "path": "assets/formal-CJG_-x8v.css",
+      "sha": "69607f9ffe3e51ff912b5c7f146ffd63c30b22d5",
+      "size": 32245
+    },
+    {
       "path": "assets/framework-CXnKph_e.js",
       "sha": "0cb1ad0272d96b40124557048c8d4dfccc2df231",
       "size": 189805
+    },
+    {
+      "path": "assets/index-_oWyQMXV.js",
+      "sha": "71f73508979b8011b64e07b4c95e5af26ba99b94",
+      "size": 285352
     },
     {
       "path": "assets/index--431LxqW.css",
@@ -747,6 +607,11 @@
       "path": "assets/index-5l0sWHJo.js",
       "sha": "e15e0b3e83cd8aee9b45d899abec6a8d33bd5b5d",
       "size": 308395
+    },
+    {
+      "path": "assets/index-B0LTYQHX.js",
+      "sha": "36c4464df8f98247e5330e556d25051f90ae8d24",
+      "size": 313087
     },
     {
       "path": "assets/index-B2jjQTBf.css",
@@ -774,6 +639,11 @@
       "size": 291633
     },
     {
+      "path": "assets/index-Bb2Y-AFb.js",
+      "sha": "a37ee4384855991b027a32925a95d85223168f13",
+      "size": 251925
+    },
+    {
       "path": "assets/index-BBwqwZDx.js",
       "sha": "cd8d0d4b7806d25ae71fa7d1690dd60585a230bd",
       "size": 234637
@@ -782,31 +652,6 @@
       "path": "assets/index-BF6wCFOt.js",
       "sha": "8957d210456dac9ddaa1d37415df9e62cd247308",
       "size": 309455
-    },
-    {
-      "path": "assets/index-BNRXDgYW.js",
-      "sha": "ef87ec148173405672c5164d25934221bf53fcee",
-      "size": 280087
-    },
-    {
-      "path": "assets/index-BWqem1Wf.js",
-      "sha": "104f8621cb1d5f8525b0b87c382941b4754b140e",
-      "size": 296841
-    },
-    {
-      "path": "assets/index-BX5DmsAO.js",
-      "sha": "bb3eb6455b79e0a55e7fa2f4630b3f1651a60275",
-      "size": 285352
-    },
-    {
-      "path": "assets/index-BZ35C2cd.js",
-      "sha": "9fb81da2b21d4d851d2cb383fd01ca7efcf161a6",
-      "size": 247548
-    },
-    {
-      "path": "assets/index-Bb2Y-AFb.js",
-      "sha": "a37ee4384855991b027a32925a95d85223168f13",
-      "size": 251925
     },
     {
       "path": "assets/index-BgGqalUx.css",
@@ -834,6 +679,26 @@
       "size": 250080
     },
     {
+      "path": "assets/index-BNRXDgYW.js",
+      "sha": "ef87ec148173405672c5164d25934221bf53fcee",
+      "size": 280087
+    },
+    {
+      "path": "assets/index-BWqem1Wf.js",
+      "sha": "104f8621cb1d5f8525b0b87c382941b4754b140e",
+      "size": 296841
+    },
+    {
+      "path": "assets/index-BX5DmsAO.js",
+      "sha": "bb3eb6455b79e0a55e7fa2f4630b3f1651a60275",
+      "size": 285352
+    },
+    {
+      "path": "assets/index-BZ35C2cd.js",
+      "sha": "9fb81da2b21d4d851d2cb383fd01ca7efcf161a6",
+      "size": 247548
+    },
+    {
       "path": "assets/index-C3QxqwF7.css",
       "sha": "38df2f6827dd1aa8e2b21ad00664e3fecee88abb",
       "size": 54384
@@ -859,9 +724,24 @@
       "size": 298291
     },
     {
+      "path": "assets/index-cCl9uKqr.css",
+      "sha": "4a1cea1bbc9119ca7695acc06bd97122aa5557a3",
+      "size": 41941
+    },
+    {
+      "path": "assets/index-CfaBAQjf.js",
+      "sha": "e51385e25f8a2ee5a720f31f551f4442b0e7df67",
+      "size": 251857
+    },
+    {
       "path": "assets/index-CG5-IdKQ.css",
       "sha": "44c5ff12549411626daa2745d59e55c576738a01",
       "size": 11436
+    },
+    {
+      "path": "assets/index-ClT8YJZ4.css",
+      "sha": "eaa9902ebe4c200a758c8bcaf31d51039c05b208",
+      "size": 41405
     },
     {
       "path": "assets/index-CMrzmjij.css",
@@ -872,26 +752,6 @@
       "path": "assets/index-CQZMDdIZ.css",
       "sha": "677667dbb94697e89836186e14b59b1ebca2de22",
       "size": 11368
-    },
-    {
-      "path": "assets/index-CWpIKpAm.js",
-      "sha": "532dcbf6e96781ed5cc648a1f60753ae89192be0",
-      "size": 250439
-    },
-    {
-      "path": "assets/index-CYiCU6zw.js",
-      "sha": "1857a4d2cfa09af8539705be77e89bd23e7a9ada",
-      "size": 297618
-    },
-    {
-      "path": "assets/index-CfaBAQjf.js",
-      "sha": "e51385e25f8a2ee5a720f31f551f4442b0e7df67",
-      "size": 251857
-    },
-    {
-      "path": "assets/index-ClT8YJZ4.css",
-      "sha": "eaa9902ebe4c200a758c8bcaf31d51039c05b208",
-      "size": 41405
     },
     {
       "path": "assets/index-CrSl3lEJ.js",
@@ -909,6 +769,16 @@
       "size": 309507
     },
     {
+      "path": "assets/index-CWpIKpAm.js",
+      "sha": "532dcbf6e96781ed5cc648a1f60753ae89192be0",
+      "size": 250439
+    },
+    {
+      "path": "assets/index-CYiCU6zw.js",
+      "sha": "1857a4d2cfa09af8539705be77e89bd23e7a9ada",
+      "size": 297618
+    },
+    {
       "path": "assets/index-D1U8XCrN.js",
       "sha": "6c27a3af53b3bcb7b33e5e3e4c521eda157f33ff",
       "size": 250840
@@ -924,6 +794,11 @@
       "size": 308432
     },
     {
+      "path": "assets/index-DbBLqQ6H.js",
+      "sha": "b72615bfe55a7a6ed5b548d81b422b2bc6aa3ac7",
+      "size": 252247
+    },
+    {
       "path": "assets/index-DBZfinbx.js",
       "sha": "7a7398470b95d64c5465a2f6e2a806bf6e48ff07",
       "size": 251982
@@ -932,6 +807,16 @@
       "path": "assets/index-DGCwctlg.js",
       "sha": "3993dba06e203f87a970e860bf532cc641881221",
       "size": 239884
+    },
+    {
+      "path": "assets/index-DgD9QxWH.js",
+      "sha": "9af13ab4c19dce61f78b7d4616c509096c60b7c7",
+      "size": 252718
+    },
+    {
+      "path": "assets/index-Dhft4nNR.js",
+      "sha": "d0733fca64dc6200bf2850e551b3ffa77c47e157",
+      "size": 253679
     },
     {
       "path": "assets/index-DK37ORVK.js",
@@ -949,9 +834,19 @@
       "size": 252334
     },
     {
+      "path": "assets/index-DtgV-8W7.css",
+      "sha": "bb39c32925d12ab43e3cc14164832d3c95a513e1",
+      "size": 19161
+    },
+    {
       "path": "assets/index-DTHQmYZP.css",
       "sha": "878848ac61bde70442e286025e902ce11c2cd613",
       "size": 7870
+    },
+    {
+      "path": "assets/index-DtXGC9zP.js",
+      "sha": "c6e1c7a780ab01ebc6118bc81dd0f8097a0ffe46",
+      "size": 295546
     },
     {
       "path": "assets/index-DTYJNuP3.js",
@@ -969,69 +864,14 @@
       "size": 246264
     },
     {
-      "path": "assets/index-DbBLqQ6H.js",
-      "sha": "b72615bfe55a7a6ed5b548d81b422b2bc6aa3ac7",
-      "size": 252247
-    },
-    {
-      "path": "assets/index-DgD9QxWH.js",
-      "sha": "9af13ab4c19dce61f78b7d4616c509096c60b7c7",
-      "size": 252718
-    },
-    {
-      "path": "assets/index-Dhft4nNR.js",
-      "sha": "d0733fca64dc6200bf2850e551b3ffa77c47e157",
-      "size": 253679
-    },
-    {
-      "path": "assets/index-DtXGC9zP.js",
-      "sha": "c6e1c7a780ab01ebc6118bc81dd0f8097a0ffe46",
-      "size": 295546
-    },
-    {
-      "path": "assets/index-DtgV-8W7.css",
-      "sha": "bb39c32925d12ab43e3cc14164832d3c95a513e1",
-      "size": 19161
+      "path": "assets/index-fQq0v1Ti.css",
+      "sha": "fd0e5cb6e8659aa473dd8562c61909c7b8fd8bd5",
+      "size": 19342
     },
     {
       "path": "assets/index-FuOE1-oq.css",
       "sha": "5b30b61d51c968adc703478f8b983dd7167cae77",
       "size": 19825
-    },
-    {
-      "path": "assets/index-JndoaZ4p.js",
-      "sha": "e335d88807943b60133c705dfb9151df9e032635",
-      "size": 245335
-    },
-    {
-      "path": "assets/index-MJFe6mur.css",
-      "sha": "f165280bfabe0f3309ee024f3f248732cdf83fe9",
-      "size": 16656
-    },
-    {
-      "path": "assets/index-R8yJClGK.js",
-      "sha": "b2a189883b5f7fb573ba1d9baf1267b5a7649442",
-      "size": 293667
-    },
-    {
-      "path": "assets/index-Yw-Wl7tN.js",
-      "sha": "5583bb84fcf87ae74aa5ca5d025dec5a899350b5",
-      "size": 251956
-    },
-    {
-      "path": "assets/index-_oWyQMXV.js",
-      "sha": "71f73508979b8011b64e07b4c95e5af26ba99b94",
-      "size": 285352
-    },
-    {
-      "path": "assets/index-cCl9uKqr.css",
-      "sha": "4a1cea1bbc9119ca7695acc06bd97122aa5557a3",
-      "size": 41941
-    },
-    {
-      "path": "assets/index-fQq0v1Ti.css",
-      "sha": "fd0e5cb6e8659aa473dd8562c61909c7b8fd8bd5",
-      "size": 19342
     },
     {
       "path": "assets/index-home-anchor-v1.css",
@@ -1044,6 +884,16 @@
       "size": 247579
     },
     {
+      "path": "assets/index-JndoaZ4p.js",
+      "sha": "e335d88807943b60133c705dfb9151df9e032635",
+      "size": 245335
+    },
+    {
+      "path": "assets/index-MJFe6mur.css",
+      "sha": "f165280bfabe0f3309ee024f3f248732cdf83fe9",
+      "size": 16656
+    },
+    {
       "path": "assets/index-mPf6aJgO.js",
       "sha": "7a4fdff612e5f265607c1e98ae32458d4f762f2f",
       "size": 250947
@@ -1052,6 +902,11 @@
       "path": "assets/index-poEd3Zzm.js",
       "sha": "9f226c0da24175756c41a5a3819eed28ee953e42",
       "size": 280087
+    },
+    {
+      "path": "assets/index-R8yJClGK.js",
+      "sha": "b2a189883b5f7fb573ba1d9baf1267b5a7649442",
+      "size": 293667
     },
     {
       "path": "assets/index-smr-v8.js",
@@ -1074,6 +929,11 @@
       "size": 234513
     },
     {
+      "path": "assets/index-Yw-Wl7tN.js",
+      "sha": "5583bb84fcf87ae74aa5ca5d025dec5a899350b5",
+      "size": 251956
+    },
+    {
       "path": "assets/layout-segment-context-_6xHAopt.js",
       "sha": "dd4f99d4200345b1e030de94349487a8d047a858",
       "size": 288
@@ -1094,14 +954,439 @@
       "size": 52803
     },
     {
+      "path": "assets/PopulationPyramid-249zKG7q.js",
+      "sha": "0f66518c7c864761d463cb04ed0285e997276de3",
+      "size": 11916
+    },
+    {
+      "path": "assets/PopulationPyramid-B5fjgK5R.js",
+      "sha": "17ff097a264164e322680276f8d56241e0242de9",
+      "size": 11916
+    },
+    {
+      "path": "assets/PopulationPyramid-BdO8KZkP.js",
+      "sha": "5b4fe4c00c4c96587bdf1484ebc283f4a03ca3ec",
+      "size": 11911
+    },
+    {
+      "path": "assets/PopulationPyramid-BHgb_5c8.js",
+      "sha": "0ec9dc5a624a32c15b0bdd1a4cc8d82a4d42e0da",
+      "size": 11911
+    },
+    {
+      "path": "assets/PopulationPyramid-BPfU_-y7.js",
+      "sha": "b169317f09312fcda25af80aa6344bb185191596",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-BwvkbxBJ.js",
+      "sha": "6f4f1108351cf9eaafe9ea168e0f9777501e018b",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-C6BBYf2A.js",
+      "sha": "0341507aa79e9bf088eaa41ea514baa7668a3143",
+      "size": 11911
+    },
+    {
+      "path": "assets/PopulationPyramid-CdC1oWcg.js",
+      "sha": "6edd142ef36effd12a7cbe710d2dbad3d6f4faea",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-CGWzGlQy.js",
+      "sha": "d81ae9e76f3797a746458400b6f5d84fbc1e4421",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-CIvKBoPa.js",
+      "sha": "a14d1be091c113585707569ece6b356c7a454bd1",
+      "size": 11911
+    },
+    {
+      "path": "assets/PopulationPyramid-CRSsPERw.js",
+      "sha": "88258968e85bd0b694bb562f3242f0054c09872e",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-CVI5rpHE.js",
+      "sha": "162df530f33b7938680606e0fe1329cac17daed9",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-Czc7fs5f.js",
+      "sha": "33ac65330a15d80a3769fb7bf92e00e7306d0b9d",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-D_GM1bEd.js",
+      "sha": "b1b46b91fce419f89c5805b3de8220159b397b15",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-DauobJ-F.js",
+      "sha": "365d2c2fc654dd5e43f83d52a1b8bfefe0e8f134",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-DCIlBmwx.js",
+      "sha": "5d1419f9e3acb757bf86028735b741e30a524a93",
+      "size": 12973
+    },
+    {
+      "path": "assets/PopulationPyramid-Dh9JOvp7.js",
+      "sha": "155dcbf2b74ee15723d7e6d0af0e0176d6bd0c15",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-Dhs9ys4c.js",
+      "sha": "ecac9c83791882b15300d7c9e95f81eec7178e44",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-DiL_EZPB.js",
+      "sha": "694f929a34283ef8643c11dbe772f32cf6ba0b9d",
+      "size": 11911
+    },
+    {
+      "path": "assets/PopulationPyramid-Dj_DsYDx.js",
+      "sha": "0796a1ea37abdfc08f99274515e9f2227a6c2c26",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-DkC0_rdk.js",
+      "sha": "bd6365df1fbed5f9b293f5ddc3805c902e8de515",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-DLYvduA_.js",
+      "sha": "86dcb2c478ad7ac6754d888d9e31c5e909fa1852",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-DSOmAQiU.js",
+      "sha": "efc558f8af96c326f417cab45042f111ecab76d8",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-DwddOGtM.js",
+      "sha": "36bff136ddb672c5522cd22a7e557954ac563bd0",
+      "size": 11916
+    },
+    {
+      "path": "assets/PopulationPyramid-H2hLfLb9.js",
+      "sha": "716417a3c17b8663db8766f3e84550f47a9ad9a1",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-HhZp0vhr.js",
+      "sha": "d82b3f497f170845ce0e130735e9c19a5db76e37",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-HK_MpgS3.js",
+      "sha": "d3f5adc9861a86ece4ca1ec7fd82f01728e6ab2a",
+      "size": 5370
+    },
+    {
+      "path": "assets/PopulationPyramid-HPnG2KiV.js",
+      "sha": "b35d4133a7ddf09aca5a949d6b8b05f708e1393d",
+      "size": 11916
+    },
+    {
+      "path": "assets/PopulationPyramid-p-bTk-qg.js",
+      "sha": "c8540c9acdee711d048dda1472fe828f6d7aea48",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-tqRcOUDq.js",
+      "sha": "04fbf6b0db0f1d644c6bb7f4b40432d78cdaf04f",
+      "size": 11945
+    },
+    {
+      "path": "assets/PopulationPyramid-u5l1dM-1.js",
+      "sha": "34b14c84ca947822ec86f9c898ca728fac4fa669",
+      "size": 11954
+    },
+    {
+      "path": "assets/PopulationPyramid-XjWHhtWz.js",
+      "sha": "c3f16b4adff35788d0a8e445ee9a8a185c28087c",
+      "size": 11916
+    },
+    {
       "path": "assets/rolldown-runtime-S-ySWqyJ.js",
       "sha": "8d9db23cb5ea5a6c1d13a1b9f46e33422750f904",
       "size": 694
     },
     {
+      "path": "assets/SmrBatchExport-BhVyaOgZ.js",
+      "sha": "27c1dd01a4a85a2f019fb114ce3d64936fa948cb",
+      "size": 12317
+    },
+    {
+      "path": "assets/SmrBatchExport-BiCJkQ98.js",
+      "sha": "7ace58c4e92a9e0b409e712386e5f246d75a5a2f",
+      "size": 12317
+    },
+    {
+      "path": "assets/SmrBatchExport-CsUYyW4a.js",
+      "sha": "094fe8ec771a651ffb338cb96fae60dd900add9e",
+      "size": 12317
+    },
+    {
+      "path": "assets/SmrBatchExport-CzxB2mfo.js",
+      "sha": "6240406fe3cf367d2bba7b98eadb439891310b08",
+      "size": 12317
+    },
+    {
+      "path": "assets/SmrBatchExport-DoVQ8-m8.js",
+      "sha": "30092586023af88e683afeef7e15374fe31e1f78",
+      "size": 12317
+    },
+    {
+      "path": "assets/SmrBatchExport-qEKWdbAd.js",
+      "sha": "2fc57f58ea1bf6ebe13e2a81d70267d59fe3f065",
+      "size": 12317
+    },
+    {
+      "path": "assets/SmrBatchExport-vILALlmW.js",
+      "sha": "2e45e6a915d4d4302ea796646df5db3c4b3b29f8",
+      "size": 12317
+    },
+    {
       "path": "assets/xlsx-B7Fe_CV5.js",
       "sha": "5573db666ed0f99ba2bfc3f52287d1db57d4b4aa",
       "size": 424762
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/manifest.json",
+      "sha": "0f981b3dfc60e0e82681592c0b7e5e6448ce5c1c",
+      "size": 686
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-00.json",
+      "sha": "547add5d3710aa773f6fdeb515479fcd067b0b5e",
+      "size": 118118
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-01.json",
+      "sha": "631e91d72dece79dbc7f72ab3bac6e9e82fab6d3",
+      "size": 133842
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-02.json",
+      "sha": "5c4a3822c867304d4fa26646b2778a2d1a3f60d1",
+      "size": 87846
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-03.json",
+      "sha": "7ef1bee57b201c38f91a7b78878dbda13ed80a18",
+      "size": 67220
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-04.json",
+      "sha": "53f5dbd54e2c44a463b9bcbcb660a17284e64932",
+      "size": 66906
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-05.json",
+      "sha": "6f20459d6a69778e3d419dda40617b2412409f97",
+      "size": 66928
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-06.json",
+      "sha": "aa6b966bbf9c980e970e1866fe5dec47d224176b",
+      "size": 67206
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-07.json",
+      "sha": "e6558891a51a89d462964c391fd4f03129249bc8",
+      "size": 67136
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-08.json",
+      "sha": "9d3448b33c22cf48cf43c14b7879679180b11dc5",
+      "size": 67204
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-09.json",
+      "sha": "612ac866c9657c81c2117484e283a279b2407ae6",
+      "size": 67206
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-10.json",
+      "sha": "6431655d63511431301e033c4bf609b68f5a1637",
+      "size": 67208
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-11.json",
+      "sha": "171c27b21daa6332f9ea577f9b7f81e4014c5c8c",
+      "size": 67402
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-12.json",
+      "sha": "78be0fbbaed9663bc42adc24533a7625a8c862a7",
+      "size": 67300
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-13.json",
+      "sha": "db953d2415ddf6bae09f3ad2de66d4b6243d04b7",
+      "size": 67088
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-14.json",
+      "sha": "1547c1f4090be3865cba6e87811d43fc121d3032",
+      "size": 67304
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-15.json",
+      "sha": "779073556fd793537043eca9fe5cf8a7c7beba24",
+      "size": 67352
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-16.json",
+      "sha": "f3b5812b05a87d6a92d814a31a745f0d8f7cc361",
+      "size": 67340
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-17.json",
+      "sha": "b671c714f91e31326ed92a5482f092ee40a18559",
+      "size": 67342
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-18.json",
+      "sha": "59e2f530ebe77983075bdf7f46a3d5a98414aa95",
+      "size": 67108
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-19.json",
+      "sha": "c1419088af44d50d73fdb3e6d4ef1ea0039de983",
+      "size": 67006
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-20.json",
+      "sha": "d10df850463c33a4af6a28d959f3e03dd53a634e",
+      "size": 67154
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-21.json",
+      "sha": "1d27a30ca7814189ae0794967b693c8dd6c87934",
+      "size": 67110
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-22.json",
+      "sha": "aa5536d8bbe5ee423a38fca1589a0d12937686af",
+      "size": 67200
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-23.json",
+      "sha": "f5270592f414c61544236258232763e275d322bf",
+      "size": 67476
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-24.json",
+      "sha": "018e84c24c19ca6ccc851f9cc2d004a495ec5d26",
+      "size": 67396
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-25.json",
+      "sha": "fa6b24653909fa41a30831bf137fde8000a609c0",
+      "size": 67430
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-26.json",
+      "sha": "fb7b7575b7214e506e8c3806cfa3a13c9c3a504a",
+      "size": 67154
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-27.json",
+      "sha": "44a497ed85c6837cae36aaa697563dd3dff00fe7",
+      "size": 67174
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-28.json",
+      "sha": "39707def87ab753fcf0cd81652c8ba7b6e270a13",
+      "size": 67190
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-29.json",
+      "sha": "7c80d29abc3508bac63e185cc93db445a6286c6b",
+      "size": 67190
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-30.json",
+      "sha": "d68d8bfe05fdddc23b7ea7455026fda0da6f727a",
+      "size": 67106
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-31.json",
+      "sha": "a9c00b8fe8866c819597ec60ec3511e7dd96249c",
+      "size": 67270
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-32.json",
+      "sha": "4545c6b9ba0444f3f7b49a59e428bfde131e4022",
+      "size": 67038
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-33.json",
+      "sha": "cd02384415e4ebc8eeaf606c33ec50562d5ebbb7",
+      "size": 67298
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-34.json",
+      "sha": "b7e9ea3225e7e20f9dd8d6c50ec97465be09e2e4",
+      "size": 67160
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-35.json",
+      "sha": "b910ef9fb175ac96679450475f11b54b3594387d",
+      "size": 67650
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-36.json",
+      "sha": "61df07a08fa687d5726baa45cfc5e51917f951a3",
+      "size": 67074
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-37.json",
+      "sha": "a3b92c0ceac869ffca4ce8ece550eb19f5c5e557",
+      "size": 67088
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-38.json",
+      "sha": "11c44a841d37ae3955af967a59a9c0ab4e1f91d2",
+      "size": 67046
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-39.json",
+      "sha": "e95500084d4785634daacf96e3afd128654652db",
+      "size": 67352
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-40.json",
+      "sha": "5d8479d122ce0a93742cbb2fe624fded30d0c99c",
+      "size": 67536
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-41.json",
+      "sha": "aa6ad9cdabee21f987270558f32397b73141915f",
+      "size": 67222
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-42.json",
+      "sha": "d882d740f9a87eca1313d219eb3d9803dc180ad2",
+      "size": 67300
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-43.json",
+      "sha": "03fe9364af187ad7e950f738e10507706d708914",
+      "size": 67140
+    },
+    {
+      "path": "cancer-care/2025-09/data-parts/part-44.json",
+      "sha": "390b062c7b72ae4eb98415076b8a32c92aa144ee",
+      "size": 46429
     },
     {
       "path": "cancer-care/app.css",
@@ -1110,8 +1395,8 @@
     },
     {
       "path": "cancer-care/app.js",
-      "sha": "5777d227a72f32c91d9c36f938f1e00b83edca25",
-      "size": 12358
+      "sha": "c2291023d61cd2608a7f343a0ee42571b33ab063",
+      "size": 13651
     },
     {
       "path": "cancer-care/current-designations.json",
@@ -1220,18 +1505,18 @@
     },
     {
       "path": "cancer-care/index.html",
-      "sha": "787891d3b381774aece7526b1d4c4c44cd7cd80a",
-      "size": 7016
-    },
-    {
-      "path": "cancer-screening/DATA_PROVENANCE.md",
-      "sha": "0aa76d5aec0787224c7533ccb59bc3bcdf6a9f4c",
-      "size": 2152
+      "sha": "80dc15dd90ba817dbf24e132dd1dfb59c84457b0",
+      "size": 7179
     },
     {
       "path": "cancer-screening/app.js",
       "sha": "465f0cc79926a078dde8ecdb44e0ee6444ce22a0",
       "size": 10393
+    },
+    {
+      "path": "cancer-screening/DATA_PROVENANCE.md",
+      "sha": "0aa76d5aec0787224c7533ccb59bc3bcdf6a9f4c",
+      "size": 2152
     },
     {
       "path": "cancer-screening/data/screening.json.gz.b64",
@@ -1255,8 +1540,8 @@
     },
     {
       "path": "care/app.js",
-      "sha": "5e038692c4f668c109f0d95223068b8fb7a937e4",
-      "size": 65156
+      "sha": "b818f05e59bf55538f8fca79c4dd6e75fde04034",
+      "size": 64963
     },
     {
       "path": "care/data/benef.001.json.gz",
@@ -1312,46 +1597,6 @@
       "path": "care/data/benef.011.json.gz",
       "sha": "cc770c6d9d6f348432bedf3dd28d6e3cf6b329c7",
       "size": 4433
-    },
-    {
-      "path": "care/data/benefit-annual-01.json",
-      "sha": "dcc50d7a4536cf57da322cc1325abcd43ea88409",
-      "size": 36623
-    },
-    {
-      "path": "care/data/benefit-annual-02.json",
-      "sha": "5af328a06c9e0951ab6d4a80a8a8745ae2a43fcf",
-      "size": 36997
-    },
-    {
-      "path": "care/data/benefit-annual-03.json",
-      "sha": "5d25844b42f24edd65a7719a9d3e44d3df36a283",
-      "size": 36879
-    },
-    {
-      "path": "care/data/benefit-annual-04.json",
-      "sha": "acc0071fa154abdcaa21908a4f57d8c43a5927e4",
-      "size": 37011
-    },
-    {
-      "path": "care/data/benefit-annual-05.json",
-      "sha": "166dd925a3c9d155d14b8112ceec0e2c1ccd1704",
-      "size": 36656
-    },
-    {
-      "path": "care/data/benefit-annual-06.json",
-      "sha": "ad9352809a1d2a6bf67225c016d577a965c5ebec",
-      "size": 36914
-    },
-    {
-      "path": "care/data/benefit-annual-07.json",
-      "sha": "0dc76ed89469092e24b95e82a6298e4dc5bf76a2",
-      "size": 36990
-    },
-    {
-      "path": "care/data/benefit-annual-08.json",
-      "sha": "d3a6b177ccf394f557c01a0fbe0e49de00d812e0",
-      "size": 31288
     },
     {
       "path": "care/data/benefit_adjusted.001.json.gz",
@@ -2004,9 +2249,49 @@
       "size": 8632
     },
     {
+      "path": "care/data/benefit-annual-01.json",
+      "sha": "dcc50d7a4536cf57da322cc1325abcd43ea88409",
+      "size": 36623
+    },
+    {
+      "path": "care/data/benefit-annual-02.json",
+      "sha": "5af328a06c9e0951ab6d4a80a8a8745ae2a43fcf",
+      "size": 36997
+    },
+    {
+      "path": "care/data/benefit-annual-03.json",
+      "sha": "5d25844b42f24edd65a7719a9d3e44d3df36a283",
+      "size": 36879
+    },
+    {
+      "path": "care/data/benefit-annual-04.json",
+      "sha": "acc0071fa154abdcaa21908a4f57d8c43a5927e4",
+      "size": 37011
+    },
+    {
+      "path": "care/data/benefit-annual-05.json",
+      "sha": "166dd925a3c9d155d14b8112ceec0e2c1ccd1704",
+      "size": 36656
+    },
+    {
+      "path": "care/data/benefit-annual-06.json",
+      "sha": "ad9352809a1d2a6bf67225c016d577a965c5ebec",
+      "size": 36914
+    },
+    {
+      "path": "care/data/benefit-annual-07.json",
+      "sha": "0dc76ed89469092e24b95e82a6298e4dc5bf76a2",
+      "size": 36990
+    },
+    {
+      "path": "care/data/benefit-annual-08.json",
+      "sha": "d3a6b177ccf394f557c01a0fbe0e49de00d812e0",
+      "size": 31288
+    },
+    {
       "path": "care/data/care_2024_benefit.json.gz",
-      "sha": "ca349c4968b6ead9d2ff2abe3d58a1f8a69d371f",
-      "size": 176626
+      "sha": "df4c48ff25738157aab6b9561dc267e652b26cef",
+      "size": 253648
     },
     {
       "path": "care/data/care_2024_core.json.gz",
@@ -3520,68 +3805,13 @@
     },
     {
       "path": "care/data/manifest.json",
-      "sha": "3c7f9d7fdac99095139db03ee99739086c11bef4",
-      "size": 24658
+      "sha": "5c071062bba3bbca17589fa9139cd87d9071078d",
+      "size": 24722
     },
     {
       "path": "care/data/national-recognition.json",
       "sha": "d403d8394b4738969b8fde728de30a98ccce5101",
       "size": 4143
-    },
-    {
-      "path": "care/data/premium.001.json.gz",
-      "sha": "c3c91dc2e343203fa126ea6e5b9d0807c91f103a",
-      "size": 6472
-    },
-    {
-      "path": "care/data/premium.002.json.gz",
-      "sha": "ce26ca6c00e12e15a6487ed2c610d196cb03bc31",
-      "size": 4991
-    },
-    {
-      "path": "care/data/premium.003.json.gz",
-      "sha": "a3174c1a0e34b9b4e3a030dd4c1aa7c9687a42d1",
-      "size": 6116
-    },
-    {
-      "path": "care/data/premium.004.json.gz",
-      "sha": "aabeeff7352122defe18b1b6fc13ff9471801289",
-      "size": 5423
-    },
-    {
-      "path": "care/data/premium.005.json.gz",
-      "sha": "7153d2b1c575168f3f8eeecb25e29c2a86700ac9",
-      "size": 5248
-    },
-    {
-      "path": "care/data/premium.006.json.gz",
-      "sha": "cdb06f38299317957db52619a6da1542c05b231f",
-      "size": 5913
-    },
-    {
-      "path": "care/data/premium.007.json.gz",
-      "sha": "a2b82fc6bcfc7268470ec56b9b09ac4262a1bb06",
-      "size": 5343
-    },
-    {
-      "path": "care/data/premium.008.json.gz",
-      "sha": "fe0343d7496dc5ee1385e3d524cdb585f0705683",
-      "size": 5246
-    },
-    {
-      "path": "care/data/premium.009.json.gz",
-      "sha": "afb2c12a24d0770f1748d06e71c9f9ceb0692be2",
-      "size": 5506
-    },
-    {
-      "path": "care/data/premium.010.json.gz",
-      "sha": "11db6aa6cc5d768188fc58887aa304a5bec90fbe",
-      "size": 5285
-    },
-    {
-      "path": "care/data/premium.011.json.gz",
-      "sha": "a6d271601d1d01f3094ab288e8e99f02aacf801f",
-      "size": 2789
     },
     {
       "path": "care/data/premium_residual.001.json.gz",
@@ -3637,6 +3867,61 @@
       "path": "care/data/premium_residual.011.json.gz",
       "sha": "b9f1243c1e10c5957e89ffcf4b51648b5fbd8c84",
       "size": 3823
+    },
+    {
+      "path": "care/data/premium.001.json.gz",
+      "sha": "c3c91dc2e343203fa126ea6e5b9d0807c91f103a",
+      "size": 6472
+    },
+    {
+      "path": "care/data/premium.002.json.gz",
+      "sha": "ce26ca6c00e12e15a6487ed2c610d196cb03bc31",
+      "size": 4991
+    },
+    {
+      "path": "care/data/premium.003.json.gz",
+      "sha": "a3174c1a0e34b9b4e3a030dd4c1aa7c9687a42d1",
+      "size": 6116
+    },
+    {
+      "path": "care/data/premium.004.json.gz",
+      "sha": "aabeeff7352122defe18b1b6fc13ff9471801289",
+      "size": 5423
+    },
+    {
+      "path": "care/data/premium.005.json.gz",
+      "sha": "7153d2b1c575168f3f8eeecb25e29c2a86700ac9",
+      "size": 5248
+    },
+    {
+      "path": "care/data/premium.006.json.gz",
+      "sha": "cdb06f38299317957db52619a6da1542c05b231f",
+      "size": 5913
+    },
+    {
+      "path": "care/data/premium.007.json.gz",
+      "sha": "a2b82fc6bcfc7268470ec56b9b09ac4262a1bb06",
+      "size": 5343
+    },
+    {
+      "path": "care/data/premium.008.json.gz",
+      "sha": "fe0343d7496dc5ee1385e3d524cdb585f0705683",
+      "size": 5246
+    },
+    {
+      "path": "care/data/premium.009.json.gz",
+      "sha": "afb2c12a24d0770f1748d06e71c9f9ceb0692be2",
+      "size": 5506
+    },
+    {
+      "path": "care/data/premium.010.json.gz",
+      "sha": "11db6aa6cc5d768188fc58887aa304a5bec90fbe",
+      "size": 5285
+    },
+    {
+      "path": "care/data/premium.011.json.gz",
+      "sha": "a6d271601d1d01f3094ab288e8e99f02aacf801f",
+      "size": 2789
     },
     {
       "path": "care/data/rank.001.json.gz",
@@ -3854,61 +4139,6 @@
       "size": 28025
     },
     {
-      "path": "care/data/service.001.json.gz",
-      "sha": "dc602eb4ff577d1173cdba5e0099aabb20ceb847",
-      "size": 11437
-    },
-    {
-      "path": "care/data/service.002.json.gz",
-      "sha": "8b8dd17ce6541f14d12b93f41f484c7f40b72236",
-      "size": 11595
-    },
-    {
-      "path": "care/data/service.003.json.gz",
-      "sha": "3f83c5937f2b8bf5beab165defd4727352f683d7",
-      "size": 11606
-    },
-    {
-      "path": "care/data/service.004.json.gz",
-      "sha": "49b554c9b9aec8977a21e79a4b4cca5892e2c761",
-      "size": 11729
-    },
-    {
-      "path": "care/data/service.005.json.gz",
-      "sha": "1990aa294dcf8de46cef8ea6a67581aae613ac61",
-      "size": 11732
-    },
-    {
-      "path": "care/data/service.006.json.gz",
-      "sha": "754e60fc2213b0da8cd65a34e66a9eb58a613d70",
-      "size": 11518
-    },
-    {
-      "path": "care/data/service.007.json.gz",
-      "sha": "eef7abefb0061f8920c416eb22c0b1637023689e",
-      "size": 11659
-    },
-    {
-      "path": "care/data/service.008.json.gz",
-      "sha": "3cddfbcbcb52cc4fe38577813406fae62efc2d81",
-      "size": 11470
-    },
-    {
-      "path": "care/data/service.009.json.gz",
-      "sha": "32b73f9cf0897b65e10948d5eb48e70f3a37b3d8",
-      "size": 11490
-    },
-    {
-      "path": "care/data/service.010.json.gz",
-      "sha": "785e2ff3c307bc4ec9abe0a6abde555c6c182fd2",
-      "size": 11580
-    },
-    {
-      "path": "care/data/service.011.json.gz",
-      "sha": "24a9a18961d80c69f3f531e163662bbefc2ce765",
-      "size": 5706
-    },
-    {
       "path": "care/data/service_adjusted.001.json.gz",
       "sha": "6c78c94483f70b09e1f38c2c35af721c6e91fa2f",
       "size": 22268
@@ -3962,6 +4192,61 @@
       "path": "care/data/service_adjusted.011.json.gz",
       "sha": "515838fe3805f84a4cb10f4d5019fefee0a7d8ea",
       "size": 10719
+    },
+    {
+      "path": "care/data/service.001.json.gz",
+      "sha": "dc602eb4ff577d1173cdba5e0099aabb20ceb847",
+      "size": 11437
+    },
+    {
+      "path": "care/data/service.002.json.gz",
+      "sha": "8b8dd17ce6541f14d12b93f41f484c7f40b72236",
+      "size": 11595
+    },
+    {
+      "path": "care/data/service.003.json.gz",
+      "sha": "3f83c5937f2b8bf5beab165defd4727352f683d7",
+      "size": 11606
+    },
+    {
+      "path": "care/data/service.004.json.gz",
+      "sha": "49b554c9b9aec8977a21e79a4b4cca5892e2c761",
+      "size": 11729
+    },
+    {
+      "path": "care/data/service.005.json.gz",
+      "sha": "1990aa294dcf8de46cef8ea6a67581aae613ac61",
+      "size": 11732
+    },
+    {
+      "path": "care/data/service.006.json.gz",
+      "sha": "754e60fc2213b0da8cd65a34e66a9eb58a613d70",
+      "size": 11518
+    },
+    {
+      "path": "care/data/service.007.json.gz",
+      "sha": "eef7abefb0061f8920c416eb22c0b1637023689e",
+      "size": 11659
+    },
+    {
+      "path": "care/data/service.008.json.gz",
+      "sha": "3cddfbcbcb52cc4fe38577813406fae62efc2d81",
+      "size": 11470
+    },
+    {
+      "path": "care/data/service.009.json.gz",
+      "sha": "32b73f9cf0897b65e10948d5eb48e70f3a37b3d8",
+      "size": 11490
+    },
+    {
+      "path": "care/data/service.010.json.gz",
+      "sha": "785e2ff3c307bc4ec9abe0a6abde555c6c182fd2",
+      "size": 11580
+    },
+    {
+      "path": "care/data/service.011.json.gz",
+      "sha": "24a9a18961d80c69f3f531e163662bbefc2ce765",
+      "size": 5706
     },
     {
       "path": "care/data/summary.001.json.gz",
@@ -4020,7 +4305,7 @@
     },
     {
       "path": "care/index.html",
-      "sha": "6a736e7bbd2b665d99735d5688c9049d4f5e435d",
+      "sha": "5afc7bc1bb2640aa1d9436c1fb8357028310906c",
       "size": 30634
     },
     {
@@ -4737,11 +5022,6 @@
       "path": "data/demographic-context-ssdse-a-2026.json.gz",
       "sha": "a76448d56ec09634de6e2426533c0eb7cca736e1",
       "size": 14739
-    },
-    {
-      "path": "data/facility-standards/README.md",
-      "sha": "89660337699e091c0aafd4a3de69ab6c42d30a15",
-      "size": 2876
     },
     {
       "path": "data/facility-standards/facility-index-meta.json",
@@ -6819,6 +7099,11 @@
       "size": 12806
     },
     {
+      "path": "data/facility-standards/README.md",
+      "sha": "89660337699e091c0aafd4a3de69ab6c42d30a15",
+      "size": 2876
+    },
+    {
       "path": "data/facility-standards/source-registry.json",
       "sha": "bacff862df8dd619bf41e2704034953db6c879d6",
       "size": 2522
@@ -7664,11 +7949,6 @@
       "size": 10985771
     },
     {
-      "path": "data/tohoku-facility-standards/README.md",
-      "sha": "7cf0c34e778773d2895a028db1ba5956e978b56b",
-      "size": 2440
-    },
-    {
       "path": "data/tohoku-facility-standards/diff/2026-07.json",
       "sha": "f942e071b75470902913623340235bae6ceab04e",
       "size": 259397
@@ -7707,6 +7987,11 @@
       "path": "data/tohoku-facility-standards/normalized/2026-09.json",
       "sha": "965786e50b26dd95f95d763d65b221b64581f49d",
       "size": 262800
+    },
+    {
+      "path": "data/tohoku-facility-standards/README.md",
+      "sha": "7cf0c34e778773d2895a028db1ba5956e978b56b",
+      "size": 2440
     },
     {
       "path": "dpc/app.js",
@@ -8435,13 +8720,13 @@
     },
     {
       "path": "food-business/catalog.json",
-      "sha": "32a923c62fa7aa25da7d515fefbba073cebda1b4",
-      "size": 280612
+      "sha": "1a02edb9288d3241d75b8a05b15168e0b819f2a8",
+      "size": 280714
     },
     {
       "path": "food-business/data/akita-city.json.gz",
-      "sha": "9749ad7a4dc09af9059a521c9db17f1aa71aebc5",
-      "size": 362694
+      "sha": "d52f10faa9562d442bd055a07cbd9da44093233c",
+      "size": 361593
     },
     {
       "path": "food-business/data/akita-pref-akita-central.json.gz",
@@ -9405,8 +9690,8 @@
     },
     {
       "path": "home-population-ranking-v1.js",
-      "sha": "28a8893c60a95d5830b0c46accc97f2f4c6258ec",
-      "size": 5815
+      "sha": "a4ce10a2c693901cf6d5545d11755768f6dcec73",
+      "size": 5937
     },
     {
       "path": "home-portal-v1.css",
@@ -9435,8 +9720,8 @@
     },
     {
       "path": "index.html",
-      "sha": "4bb235936a8c7459e6b3c7151889e7619db58354",
-      "size": 11204
+      "sha": "e9cb899ad32bef9b7c5b3037504cf46b0b30ee29",
+      "size": 11841
     },
     {
       "path": "jmd-entry.css",
@@ -9650,8 +9935,8 @@
     },
     {
       "path": "lifestyle/index.html",
-      "sha": "a527c2f05f1477412941ab1f113780e5cacc3ed1",
-      "size": 7481
+      "sha": "66f9db5fe408b97ed838813a533489fbcbe79764",
+      "size": 7482
     },
     {
       "path": "lifestyle/style.css",
@@ -9885,8 +10170,8 @@
     },
     {
       "path": "mental-health/app.js",
-      "sha": "0f8ed4e4194202190e99609d129c843a6ae41af1",
-      "size": 11768
+      "sha": "d7b938c3104f856d85476902c52aec1f711c53d2",
+      "size": 11769
     },
     {
       "path": "mental-health/data/mental-health-2024.json",
@@ -9895,8 +10180,8 @@
     },
     {
       "path": "mental-health/data/mental-health-history.json",
-      "sha": "538ecd71bf3211e2329c70484f29432365aebcb9",
-      "size": 247201
+      "sha": "5a1c00ea02ea75e07a93691965192743470dc432",
+      "size": 285002
     },
     {
       "path": "mental-health/data/raw/2019-detailed-table1.csv",
@@ -9990,8 +10275,8 @@
     },
     {
       "path": "mental-health/index.html",
-      "sha": "6cce62f3ce8387dfebfabeebe93ff0608bf37bc1",
-      "size": 7486
+      "sha": "ff0db841ed86eede39763e137ed986f6d88de571",
+      "size": 7487
     },
     {
       "path": "mental-health/style.css",
@@ -15620,8 +15905,8 @@
     },
     {
       "path": "population/app.js",
-      "sha": "a64b116b59b13c0464584054619268c2b3827069",
-      "size": 19085
+      "sha": "f2dad3e1ce40981dff88f9e0521ad013edcd345e",
+      "size": 19207
     },
     {
       "path": "population/census-2025.json.gz",
@@ -15749,9 +16034,19 @@
       "size": 274945
     },
     {
+      "path": "population/historical-recent.json.gz",
+      "sha": "1c03b6d43a3dc7b13e2b03a07de1b07028260cc8",
+      "size": 392810
+    },
+    {
       "path": "population/index.html",
-      "sha": "0ad93db5d0f9e872a8dcd6e6f53b43ffc5a18b84",
-      "size": 4185
+      "sha": "bae0f5ebbbdf7c27d784a175e010ce3ec52aaef1",
+      "size": 4186
+    },
+    {
+      "path": "population/recent-population.js",
+      "sha": "f7603f49ec51afe372f83bdcf785207a760b8366",
+      "size": 1371
     },
     {
       "path": "population/style.css",
@@ -15759,9 +16054,24 @@
       "size": 9734
     },
     {
+      "path": "regional-healthcare-vision/acute-hospitals/directory.js",
+      "sha": "bf57cd0d84d74ebb017463123d90d9dbe6c6b927",
+      "size": 5648
+    },
+    {
+      "path": "regional-healthcare-vision/acute-hospitals/hospitals.json",
+      "sha": "a5190f0b5db96ff799b122a1fe77f9879126dfa2",
+      "size": 527314
+    },
+    {
+      "path": "regional-healthcare-vision/acute-hospitals/index.html",
+      "sha": "4ea7ac012260eff1c91732960a62b0c2892677db",
+      "size": 2131
+    },
+    {
       "path": "regional-healthcare-vision/app.js",
-      "sha": "f905e8cbb100fa17e60034ed7d4996006025fc68",
-      "size": 82955
+      "sha": "5cb36eff3c12135bf729a32fd2e05cd50407a663",
+      "size": 89681
     },
     {
       "path": "regional-healthcare-vision/data/area-care-summary-v2.json",
@@ -15770,8 +16080,8 @@
     },
     {
       "path": "regional-healthcare-vision/data/area-care-summary-v3.json",
-      "sha": "1085ce1304abbc18c59197d47c3d3d05374c3367",
-      "size": 297523
+      "sha": "47e1628ae4446f50b567ad80e7885be0cc9fdf51",
+      "size": 415236
     },
     {
       "path": "regional-healthcare-vision/data/area-care-summary.json",
@@ -15802,6 +16112,11 @@
       "path": "regional-healthcare-vision/data/bed-function-facilities.json.gz.b64",
       "sha": "2bf1c92b01581ccd3d699b20dbb7332353bb2903",
       "size": 799228
+    },
+    {
+      "path": "regional-healthcare-vision/data/cancer-facilities-2025-09.json",
+      "sha": "88fddef019d0b0d0ec521339d0be3f12cf51c1a0",
+      "size": 224758
     },
     {
       "path": "regional-healthcare-vision/data/cancer-facilities-enriched.json",
@@ -15855,8 +16170,8 @@
     },
     {
       "path": "regional-healthcare-vision/index.html",
-      "sha": "a733196ecb4d7a795f7ba430d9af9c064040ce40",
-      "size": 31020
+      "sha": "b6eacdd90511efb960ee6d2c1ae2431f3d93c176",
+      "size": 42536
     },
     {
       "path": "regional-healthcare-vision/style.css",
@@ -15869,14 +16184,14 @@
       "size": 242
     },
     {
-      "path": "school-dental/DATA_PROVENANCE.md",
-      "sha": "9ae3c9f541e1a9109c8e2d37ff19757093019ea2",
-      "size": 1898
-    },
-    {
       "path": "school-dental/app.js",
       "sha": "d2de6d78ee8474a115cb65f15961aaa511ecf740",
       "size": 20317
+    },
+    {
+      "path": "school-dental/DATA_PROVENANCE.md",
+      "sha": "9ae3c9f541e1a9109c8e2d37ff19757093019ea2",
+      "size": 1898
     },
     {
       "path": "school-dental/data/school-body-2020.json",
@@ -15950,8 +16265,8 @@
     },
     {
       "path": "sitemap.xml",
-      "sha": "7676bdbee88700beae2c014db0b2afc5384eee67",
-      "size": 492186
+      "sha": "837517f5ce925de7c22285fab21b2a5224704fb7",
+      "size": 496141
     },
     {
       "path": "smr-json/v1/index.json",
@@ -16122,43 +16437,13 @@
       "path": "welfare/years.json",
       "sha": "6a25a5e93440e8121c44d64f071a42872555eb83",
       "size": 56
-    },
-    {
-      "path": "analysis/article.css",
-      "sha": "c3259eb6f60bb9b208d97da7cf0a78432b17b089",
-      "size": 5797
-    },
-    {
-      "path": "analysis/death-difference-article.css",
-      "sha": "e48323173ad1f73e1f616ffea9ba75ae72dc65bf",
-      "size": 605
-    },
-    {
-      "path": "analysis/hub.css",
-      "sha": "891befd07653a3250c7b9c4e92df4b26a9a08d7c",
-      "size": 4753
-    },
-    {
-      "path": "analysis/hub.js",
-      "sha": "cf800b097861d0a44a6b81142b98fd335570e212",
-      "size": 4507
-    },
-    {
-      "path": "analysis/index.html",
-      "sha": "06fc45e886f661220687ac6947717ebf5cca8a6d",
-      "size": 72189
-    },
-    {
-      "path": "analysis/mortality-articles-20260910.css",
-      "sha": "c7db2369614be243251a9f55d7a14402bf244130",
-      "size": 384
     }
   ],
   "aliases": [
     {
       "source": "age-specific-mortality/app.js",
       "target": "source/public/age-specific-mortality/app.js",
-      "sha": "8511bdd2927aecb37994da8c74ca60df9a09ceb5"
+      "sha": "05d71a4cb600606f9bdf08c2653c17f22df61e35"
     },
     {
       "source": "age-specific-mortality/comparison-methods.html",
@@ -16443,12 +16728,12 @@
     {
       "source": "age-specific-mortality/index.html",
       "target": "source/public/age-specific-mortality/index.html",
-      "sha": "a220b3012fbf433b5e8f3c5c96f5b3d590010a69"
+      "sha": "cec2bce398a915e24a2c4d3c9dedca5097774182"
     },
     {
       "source": "age-specific-mortality/style.css",
       "target": "source/public/age-specific-mortality/style.css",
-      "sha": "252b44bd1bc6db417e80156d0bf19beb727cfc6b"
+      "sha": "10896506a7c8357e22dd0dbea3dc2f21c4ccbd3d"
     },
     {
       "source": "assets/index-C3QxqwF7.css",
@@ -16468,7 +16753,7 @@
     {
       "source": "cancer-care/app.js",
       "target": "source/public/cancer-care/app.js",
-      "sha": "5777d227a72f32c91d9c36f938f1e00b83edca25"
+      "sha": "c2291023d61cd2608a7f343a0ee42571b33ab063"
     },
     {
       "source": "cancer-care/current-designations.json",
@@ -16578,7 +16863,7 @@
     {
       "source": "cancer-care/index.html",
       "target": "source/public/cancer-care/index.html",
-      "sha": "787891d3b381774aece7526b1d4c4c44cd7cd80a"
+      "sha": "80dc15dd90ba817dbf24e132dd1dfb59c84457b0"
     },
     {
       "source": "cancer-screening/DATA_PROVENANCE.md",
@@ -17358,7 +17643,7 @@
     {
       "source": "care/data/care_2024_benefit.json.gz",
       "target": "source/public/care/data/care_2024_benefit.json.gz",
-      "sha": "ca349c4968b6ead9d2ff2abe3d58a1f8a69d371f"
+      "sha": "df4c48ff25738157aab6b9561dc267e652b26cef"
     },
     {
       "source": "care/data/care_2024_core.json.gz",
@@ -18873,7 +19158,7 @@
     {
       "source": "care/data/manifest.json",
       "target": "source/public/care/data/manifest.json",
-      "sha": "3c7f9d7fdac99095139db03ee99739086c11bef4"
+      "sha": "5c071062bba3bbca17589fa9139cd87d9071078d"
     },
     {
       "source": "care/data/national-recognition.json",
@@ -19173,7 +19458,7 @@
     {
       "source": "care/index.html",
       "target": "source/public/care/index.html",
-      "sha": "6a736e7bbd2b665d99735d5688c9049d4f5e435d"
+      "sha": "5afc7bc1bb2640aa1d9436c1fb8357028310906c"
     },
     {
       "source": "data-use/index.html",
@@ -19998,12 +20283,12 @@
     {
       "source": "food-business/catalog.json",
       "target": "source/public/food-business/catalog.json",
-      "sha": "32a923c62fa7aa25da7d515fefbba073cebda1b4"
+      "sha": "1a02edb9288d3241d75b8a05b15168e0b819f2a8"
     },
     {
       "source": "food-business/data/akita-city.json.gz",
       "target": "source/public/food-business/data/akita-city.json.gz",
-      "sha": "9749ad7a4dc09af9059a521c9db17f1aa71aebc5"
+      "sha": "d52f10faa9562d442bd055a07cbd9da44093233c"
     },
     {
       "source": "food-business/data/akita-pref-akita-central.json.gz",
@@ -20858,7 +21143,7 @@
     {
       "source": "home-population-ranking-v1.js",
       "target": "source/public/home-population-ranking-v1.js",
-      "sha": "28a8893c60a95d5830b0c46accc97f2f4c6258ec"
+      "sha": "a4ce10a2c693901cf6d5545d11755768f6dcec73"
     },
     {
       "source": "home-portal-v1.css",
@@ -21288,7 +21573,7 @@
     {
       "source": "population/app.js",
       "target": "source/public/population/app.js",
-      "sha": "a64b116b59b13c0464584054619268c2b3827069"
+      "sha": "f2dad3e1ce40981dff88f9e0521ad013edcd345e"
     },
     {
       "source": "population/census-2025.json.gz",
@@ -21298,12 +21583,12 @@
     {
       "source": "population/index.html",
       "target": "source/public/population/index.html",
-      "sha": "0ad93db5d0f9e872a8dcd6e6f53b43ffc5a18b84"
+      "sha": "bae0f5ebbbdf7c27d784a175e010ce3ec52aaef1"
     },
     {
       "source": "regional-healthcare-vision/app.js",
       "target": "source/public/regional-healthcare-vision/app.js",
-      "sha": "f905e8cbb100fa17e60034ed7d4996006025fc68"
+      "sha": "5cb36eff3c12135bf729a32fd2e05cd50407a663"
     },
     {
       "source": "regional-healthcare-vision/data/area-care-summary-v2.json",
@@ -21313,7 +21598,7 @@
     {
       "source": "regional-healthcare-vision/data/area-care-summary-v3.json",
       "target": "source/public/regional-healthcare-vision/data/area-care-summary-v3.json",
-      "sha": "1085ce1304abbc18c59197d47c3d3d05374c3367"
+      "sha": "47e1628ae4446f50b567ad80e7885be0cc9fdf51"
     },
     {
       "source": "regional-healthcare-vision/data/area-care-summary.json",
@@ -21388,7 +21673,7 @@
     {
       "source": "regional-healthcare-vision/index.html",
       "target": "source/public/regional-healthcare-vision/index.html",
-      "sha": "a733196ecb4d7a795f7ba430d9af9c064040ce40"
+      "sha": "b6eacdd90511efb960ee6d2c1ae2431f3d93c176"
     },
     {
       "source": "regional-healthcare-vision/style.css",
@@ -21483,7 +21768,7 @@
     {
       "source": "sitemap.xml",
       "target": "source/public/sitemap.xml",
-      "sha": "7676bdbee88700beae2c014db0b2afc5384eee67"
+      "sha": "837517f5ce925de7c22285fab21b2a5224704fb7"
     },
     {
       "source": "smr-json/v1/index.json",
@@ -21613,7 +21898,7 @@
     {
       "source": "analysis/index.html",
       "target": "source/public/analysis/index.html",
-      "sha": "06fc45e886f661220687ac6947717ebf5cca8a6d"
+      "sha": "750f1a63f8c26d72d7c7f88a29a3138950e485ab"
     },
     {
       "source": "analysis/mortality-articles-20260910.css",
@@ -21699,6 +21984,266 @@
       "source": "food-poisoning/data/summary.json",
       "target": "source/food-poisoning/data/summary.json",
       "sha": "a63a79dc4eb5209b24fdb9d4f104fb66749a95ba"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/manifest.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/manifest.json",
+      "sha": "0f981b3dfc60e0e82681592c0b7e5e6448ce5c1c"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-00.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-00.json",
+      "sha": "547add5d3710aa773f6fdeb515479fcd067b0b5e"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-01.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-01.json",
+      "sha": "631e91d72dece79dbc7f72ab3bac6e9e82fab6d3"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-02.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-02.json",
+      "sha": "5c4a3822c867304d4fa26646b2778a2d1a3f60d1"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-03.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-03.json",
+      "sha": "7ef1bee57b201c38f91a7b78878dbda13ed80a18"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-04.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-04.json",
+      "sha": "53f5dbd54e2c44a463b9bcbcb660a17284e64932"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-05.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-05.json",
+      "sha": "6f20459d6a69778e3d419dda40617b2412409f97"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-06.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-06.json",
+      "sha": "aa6b966bbf9c980e970e1866fe5dec47d224176b"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-07.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-07.json",
+      "sha": "e6558891a51a89d462964c391fd4f03129249bc8"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-08.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-08.json",
+      "sha": "9d3448b33c22cf48cf43c14b7879679180b11dc5"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-09.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-09.json",
+      "sha": "612ac866c9657c81c2117484e283a279b2407ae6"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-10.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-10.json",
+      "sha": "6431655d63511431301e033c4bf609b68f5a1637"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-11.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-11.json",
+      "sha": "171c27b21daa6332f9ea577f9b7f81e4014c5c8c"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-12.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-12.json",
+      "sha": "78be0fbbaed9663bc42adc24533a7625a8c862a7"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-13.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-13.json",
+      "sha": "db953d2415ddf6bae09f3ad2de66d4b6243d04b7"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-14.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-14.json",
+      "sha": "1547c1f4090be3865cba6e87811d43fc121d3032"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-15.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-15.json",
+      "sha": "779073556fd793537043eca9fe5cf8a7c7beba24"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-16.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-16.json",
+      "sha": "f3b5812b05a87d6a92d814a31a745f0d8f7cc361"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-17.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-17.json",
+      "sha": "b671c714f91e31326ed92a5482f092ee40a18559"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-18.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-18.json",
+      "sha": "59e2f530ebe77983075bdf7f46a3d5a98414aa95"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-19.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-19.json",
+      "sha": "c1419088af44d50d73fdb3e6d4ef1ea0039de983"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-20.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-20.json",
+      "sha": "d10df850463c33a4af6a28d959f3e03dd53a634e"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-21.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-21.json",
+      "sha": "1d27a30ca7814189ae0794967b693c8dd6c87934"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-22.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-22.json",
+      "sha": "aa5536d8bbe5ee423a38fca1589a0d12937686af"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-23.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-23.json",
+      "sha": "f5270592f414c61544236258232763e275d322bf"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-24.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-24.json",
+      "sha": "018e84c24c19ca6ccc851f9cc2d004a495ec5d26"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-25.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-25.json",
+      "sha": "fa6b24653909fa41a30831bf137fde8000a609c0"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-26.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-26.json",
+      "sha": "fb7b7575b7214e506e8c3806cfa3a13c9c3a504a"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-27.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-27.json",
+      "sha": "44a497ed85c6837cae36aaa697563dd3dff00fe7"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-28.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-28.json",
+      "sha": "39707def87ab753fcf0cd81652c8ba7b6e270a13"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-29.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-29.json",
+      "sha": "7c80d29abc3508bac63e185cc93db445a6286c6b"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-30.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-30.json",
+      "sha": "d68d8bfe05fdddc23b7ea7455026fda0da6f727a"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-31.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-31.json",
+      "sha": "a9c00b8fe8866c819597ec60ec3511e7dd96249c"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-32.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-32.json",
+      "sha": "4545c6b9ba0444f3f7b49a59e428bfde131e4022"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-33.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-33.json",
+      "sha": "cd02384415e4ebc8eeaf606c33ec50562d5ebbb7"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-34.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-34.json",
+      "sha": "b7e9ea3225e7e20f9dd8d6c50ec97465be09e2e4"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-35.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-35.json",
+      "sha": "b910ef9fb175ac96679450475f11b54b3594387d"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-36.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-36.json",
+      "sha": "61df07a08fa687d5726baa45cfc5e51917f951a3"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-37.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-37.json",
+      "sha": "a3b92c0ceac869ffca4ce8ece550eb19f5c5e557"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-38.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-38.json",
+      "sha": "11c44a841d37ae3955af967a59a9c0ab4e1f91d2"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-39.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-39.json",
+      "sha": "e95500084d4785634daacf96e3afd128654652db"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-40.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-40.json",
+      "sha": "5d8479d122ce0a93742cbb2fe624fded30d0c99c"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-41.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-41.json",
+      "sha": "aa6ad9cdabee21f987270558f32397b73141915f"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-42.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-42.json",
+      "sha": "d882d740f9a87eca1313d219eb3d9803dc180ad2"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-43.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-43.json",
+      "sha": "03fe9364af187ad7e950f738e10507706d708914"
+    },
+    {
+      "source": "cancer-care/2025-09/data-parts/part-44.json",
+      "target": "source/public/cancer-care/2025-09/data-parts/part-44.json",
+      "sha": "390b062c7b72ae4eb98415076b8a32c92aa144ee"
+    },
+    {
+      "source": "population/historical-recent.json.gz",
+      "target": "source/public/population/historical-recent.json.gz",
+      "sha": "1c03b6d43a3dc7b13e2b03a07de1b07028260cc8"
+    },
+    {
+      "source": "population/recent-population.js",
+      "target": "source/public/population/recent-population.js",
+      "sha": "f7603f49ec51afe372f83bdcf785207a760b8366"
+    },
+    {
+      "source": "regional-healthcare-vision/acute-hospitals/directory.js",
+      "target": "source/public/regional-healthcare-vision/acute-hospitals/directory.js",
+      "sha": "bf57cd0d84d74ebb017463123d90d9dbe6c6b927"
+    },
+    {
+      "source": "regional-healthcare-vision/acute-hospitals/hospitals.json",
+      "target": "source/public/regional-healthcare-vision/acute-hospitals/hospitals.json",
+      "sha": "a5190f0b5db96ff799b122a1fe77f9879126dfa2"
+    },
+    {
+      "source": "regional-healthcare-vision/acute-hospitals/index.html",
+      "target": "source/public/regional-healthcare-vision/acute-hospitals/index.html",
+      "sha": "4ea7ac012260eff1c91732960a62b0c2892677db"
+    },
+    {
+      "source": "regional-healthcare-vision/data/cancer-facilities-2025-09.json",
+      "target": "source/public/regional-healthcare-vision/data/cancer-facilities-2025-09.json",
+      "sha": "88fddef019d0b0d0ec521339d0be3f12cf51c1a0"
     }
   ],
   "score_sources": [
@@ -21750,7 +22295,7 @@
     },
     {
       "path": "source/src/components/PopulationContext.jsx",
-      "sha": "ff090065e7a1461834862713ff56f0b12b5ae011"
+      "sha": "28dd33a9473de251cbc3e3f2c3c1481c81275d75"
     },
     {
       "path": "source/src/components/MunicipalityRankingCharts.jsx",
@@ -21758,7 +22303,7 @@
     },
     {
       "path": "source/src/components/PopulationPyramid.jsx",
-      "sha": "e15827f59396ae84e25eb0f3c69bcc5a90503485"
+      "sha": "a9f58ae57261f8781a682c64cc8e464f3190be33"
     },
     {
       "path": "source/src/components/SmrBatchExport.jsx",
@@ -21858,7 +22403,7 @@
     },
     {
       "path": "source/src/lib/populationData.js",
-      "sha": "71277d9e8c838d077b9fec63a0bb33cefc23bb96"
+      "sha": "1b397adcd9e75295b6dfd10334387f93d368213c"
     },
     {
       "path": "source/src/lib/ranking.js",
@@ -22090,7 +22635,7 @@
     },
     {
       "path": "source/scripts/mental-health-test.mjs",
-      "sha": "498daea5b9b04196ba2d8df1e55cfcb13e53250f"
+      "sha": "63fc8f495de65629992a20a748ba51aacb61479a"
     },
     {
       "path": "source/scripts/municipality-data-integrity-audit.mjs",
@@ -22162,7 +22707,7 @@
     },
     {
       "path": "source/scripts/regional-healthcare-vision-test.mjs",
-      "sha": "f25312fb16461b5a74c838b42f9b44ad6b05691e"
+      "sha": "93c4e9a7c7b5a3f104599c2e210e7338b711e86b"
     },
     {
       "path": "source/scripts/responsive-accessibility-test.mjs",
@@ -22246,7 +22791,7 @@
     },
     {
       "path": "source/scripts/ui-scope-entry-browser-test.mjs",
-      "sha": "a994f997c0cd38c5b63c5a1bfe5e3f122cb0d916"
+      "sha": "30483de27a66ede5553b0fbf6a9ab698fd8fe293"
     },
     {
       "path": "source/scripts/verify-cross-cause-data.mjs",
@@ -22270,7 +22815,7 @@
     },
     {
       "path": "source/index.html",
-      "sha": "164287a4f647c369f6c2be25beb99325b8c48ae9"
+      "sha": "8513fac9b9e73d9371b2753f9bba20a3892a88ec"
     },
     {
       "path": "source/package-lock.json",
@@ -22350,7 +22895,7 @@
     },
     {
       "path": "source/food-business/sources.json",
-      "sha": "fef29f46308e8693d7bc46434056ed5cd74577e4"
+      "sha": "59f6e666412b0059a9d188342fd35954c9b8e6bb"
     },
     {
       "path": "scripts/normalize-tokai-hokuriku-facility-standards.py",
@@ -22382,7 +22927,7 @@
     },
     {
       "path": "source/public/care/app.js",
-      "sha": "b07136859a039649e6ae13f076fc76882945ff45"
+      "sha": "30faa403d54029491b18816407513d9832e7f3ce"
     },
     {
       "path": "source/public/facility-standards/app.js",
@@ -22422,3 +22967,4 @@
     }
   ]
 }
+
