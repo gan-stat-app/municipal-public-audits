@@ -140,8 +140,27 @@ def tick(queue, store, api, *, max_requests=100):
         store.write(state)  # CAS before file upload or model submission.
         lines = b'\n'.join(w.raw({'custom_id': i, 'method': 'POST', 'url': '/v1/responses', 'body': p})
                            for i, p, _ in selected) + b'\n'
-        file_id = api.upload(lines)
-        batch_id = api.submit(file_id)
+        stage = 'file_upload'
+        try:
+            file_id = api.upload(lines)
+            # Keep the durable input identity before attempting batch creation.
+            for identity, _, _ in selected:
+                state['requests'][identity].update(input_file_id=file_id,
+                                                    submission_stage='input_file_saved')
+            stage = 'input_checkpoint'
+            store.write(state)
+            stage = 'batch_submit'
+            batch_id = api.submit(file_id)
+        except Exception as exc:
+            # Fixed stage/status only; no response body, key, inputs or exception text.
+            for identity, _, _ in selected:
+                record = state['requests'][identity]
+                record['submission_stage'] = stage + '_failed_or_unknown'
+                code = getattr(exc, 'code', None)
+                if type(code) is int and 400 <= code <= 599:
+                    record['submission_http_status'] = code
+            store.write(state)
+            raise
         for identity, _, _ in selected:
             state['requests'][identity].update(status='batch_submitted', batch_id=batch_id,
                                                input_file_id=file_id)
@@ -175,3 +194,4 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+
