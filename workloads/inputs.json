@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_repository": "gan-stat-app/municipal-smr-site",
-  "source_commit": "4f1a6d4608a41831ff7506164f56caaac9554a3e",
+  "source_commit": "0d0e205d615302a7da2f531cdec3f9dd4a6c7ad5",
   "assets": [
     {
       "path": "age-specific-mortality/app.js",
@@ -22683,7 +22683,7 @@
     },
     {
       "path": "source/scripts/population-pyramid-test.mjs",
-      "sha": "a3f0b54c88622d4875160ba7ff25a10c5244efbe"
+      "sha": "09f712cfcf5690cd5064c52a00a5d027b71afdbe"
     },
     {
       "path": "source/scripts/prefecture-map-performance-audit.mjs",
@@ -22967,4 +22967,3 @@
     }
   ]
 }
-
