@@ -101,6 +101,42 @@ class BatchTests(unittest.TestCase):
         w.drain(self.queue, self.store, 'sk-test', sender=lambda *a, **k: response())
         self.assertEqual(self.tick()['submitted'], 0)
 
+    def test_upload_failure_keeps_fixed_diagnostic_without_resend(self):
+        with patch.object(self.api, 'upload', side_effect=TimeoutError('private detail')):
+            with self.assertRaises(TimeoutError):
+                self.tick()
+        record = next(iter(self.store.state['requests'].values()))
+        self.assertEqual(record['submission_stage'], 'file_upload_failed_or_unknown')
+        self.assertNotIn('private detail', json.dumps(record))
+        self.assertEqual(self.tick()['submitted'], 0)
+        self.assertEqual(self.api.submissions, 0)
+
+    def test_submit_failure_keeps_input_id_and_never_retries(self):
+        self.api.fail = True
+        with self.assertRaises(TimeoutError):
+            self.tick()
+        record = next(iter(self.store.state['requests'].values()))
+        self.assertEqual(record['input_file_id'], 'file-input')
+        self.assertEqual(record['submission_stage'], 'batch_submit_failed_or_unknown')
+        self.assertEqual(self.tick()['submitted'], 0)
+        self.assertEqual(self.api.submissions, 1)
+
+    def test_failed_input_checkpoint_does_not_create_batch(self):
+        self.store.fail_at = 2
+        with self.assertRaises(w.Stop):
+            self.tick()
+        self.assertEqual(self.api.submissions, 0)
+
+    def test_http_error_keeps_only_status_not_provider_body(self):
+        import urllib.error
+        with patch.object(self.api, 'upload', side_effect=urllib.error.HTTPError(
+                'https://api.openai.com/v1/files', 429, 'sensitive detail', {}, None)):
+            with self.assertRaises(urllib.error.HTTPError):
+                self.tick()
+        record = next(iter(self.store.state['requests'].values()))
+        self.assertEqual(record['submission_http_status'], 429)
+        self.assertNotIn('sensitive detail', json.dumps(record))
+
     def test_batch_reservation_blocks_sync_submission(self):
         self.tick()
         def forbidden(*args, **kwargs):
@@ -140,3 +176,4 @@ class BatchTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
