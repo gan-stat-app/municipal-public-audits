@@ -12,6 +12,7 @@ from pathlib import Path
 import sys
 import tempfile
 from common import ROOT, SNAPSHOT, code_check, download, receipt, sha
+from facility_selection import normalize_whole_register
 
 
 def module(name, path):
@@ -32,7 +33,6 @@ def write_normalized(relative, data):
 def facilities(limit=0):
     archive = module('facility_archive', SNAPSHOT / 'scripts/archive-national-facility-standards.py')
     normal = module('facility_normal', SNAPSHOT / 'scripts/normalize-facility-standards.py')
-    tokai = module('facility_tokai', SNAPSHOT / 'scripts/normalize-tokai-hokuriku-facility-standards.py')
     registry = json.loads((SNAPSHOT / 'data/facility-standards/source-registry.json').read_bytes())
     bureaus = registry['bureaus'][:limit or None]
     results = []
@@ -50,14 +50,10 @@ def facilities(limit=0):
                     name = archive.safe_name(item['url'], digest)
                     (work / name).write_bytes(raw)
                     result['originals'].append({'url': item['url'], 'sha256': digest, 'bytes': len(raw), 'name': name})
-                if bureau['id'] == 'tokai-hokuriku':
-                    # This bureau's normalizer reads the official month itself
-                    # through its established CLI; do not invent the month.
-                    snapshot = normal.snapshot_from_workbooks(work)
-                    records, sources = tokai.normalize(sorted(work.glob('*.zip')), snapshot)
-                else:
-                    snapshot = normal.snapshot_from_workbooks(work)
-                    records, sources = normal.normalize(work, snapshot)
+                snapshot, records, sources, selected_members = normalize_whole_register(work, bureau['id'], normal)
+                used = {source['name'] for source in sources}
+                result['originals'] = [r for r in result['originals'] if r['name'] in used]
+                result['selected_members'] = selected_members
                 if not records:
                     raise ValueError('No verified facility records')
                 result.update(status='normalized', snapshot=snapshot, records=len(records),
