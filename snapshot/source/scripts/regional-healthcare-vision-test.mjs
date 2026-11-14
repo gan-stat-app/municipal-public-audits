@@ -1,3 +1,9 @@
+import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+import vm from "node:vm";
+import zlib from "node:zlib";
+import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { gunzipSync } from "node:zlib";
@@ -76,11 +82,11 @@ for (const source of [
   "/dpc/data/pref/",
   "/dpc/data/surgery/mdc",
   "/dpc/data/surgery-definitions.json",
-  "/cancer-care/data-parts/manifest.json",
+  "/cancer-care/2025-09/data-parts/manifest.json",
   "/ndb/service-volume/data/medical-areas.json.gz",
   "/population/future-0",
   "medical-area-municipalities.json",
-  "cancer-facilities-enriched.json",
+  "cancer-facilities-2025-09.json",
   "official-medical-demand.json",
   "official-beds.json",
   "area-care-summary-v3.json",
@@ -110,11 +116,16 @@ assert(!page.includes("少なくとも"));
 assert(!app.includes("少なくとも"));
 assert.equal(areas.areas.length, 335);
 assert.equal(new Set(areas.areas.map((item) => item.code)).size, 335);
-assert.equal(cancer.facilities.length, 464);
+assert.equal(cancer.facilities.length, 464); // archived 2023 input
+const currentCancer = JSON.parse(await readFile(new URL(
+  "../public/regional-healthcare-vision/data/cancer-facilities-2025-09.json", import.meta.url)));
+assert.equal(currentCancer.meta.version, "2025-09");
+assert.equal(currentCancer.facilities.length, 468);
+assert(currentCancer.facilities.every(f => areas.areas.some(a => a.code === f.area)));
 assert(cancer.facilities.every((item) => /^\d{4}$/.test(item.area)));
 assert(
   page.includes(
-    '<script src="/regional-healthcare-vision/app.js?v=29" defer></script>',
+    '<script src="/regional-healthcare-vision/app.js?v=33" defer></script>',
   ),
   "diagnosis script missing",
 );
@@ -284,6 +295,129 @@ console.log(
     pass: true,
     route: "/regional-healthcare-vision/",
     areas: 335,
-    cancerFacilities: 464,
+    cancerFacilities: currentCancer.facilities.length,
   }),
 );
+
+{
+  const root = fileURLToPath(new URL("../../", import.meta.url));
+  const read = (file) => fs.readFileSync(path.join(root, file));
+  const json = (file) => JSON.parse(read(file));
+  const base = "regional-healthcare-vision/";
+  const areaMap = json(base + "data/medical-area-municipalities.json");
+  const future = JSON.parse(zlib.gunzipSync(Buffer.concat(
+    ["00", "01", "02"].map((part) => read("population/future-" + part + ".part"))
+  )));
+  const app = read(base + "app.js").toString();
+  const hook = "init().catch(showError);";
+  assert.ok(app.includes(hook));
+  const context = { document: {getElementById: () => ({})}, inputs: {areaMap, future} };
+  vm.runInNewContext(app.replace(hook, `
+    areaMap = inputs.areaMap;
+    future = inputs.future;
+    globalThis.result = versionedAreas();
+    globalThis.population = populationSummary;
+  `), context);
+  
+  const rows = [...context.result].sort((a, b) => a.code.localeCompare(b.code));
+  assert.equal(rows.length, 330);
+  const axis = rows.map((r) => [r.code, r.name, [...r.municipalities].sort()]);
+  // Canonical sorted [area code, name, sorted [municipality code, name] pairs].
+  // Computed independently from the identical axes of e-Stat 000040383774–778.
+  assert.equal(crypto.createHash("sha256").update(JSON.stringify(axis)).digest("hex"),
+    "b33296e2823e4eaa832adcf4e26327259bf130e2741f1427db03851f85c009dc");
+  assert.equal(new Set(rows.flatMap((r) => r.municipalities.map(([c]) => c))).size, 1892);
+  const forecast = (code) => {
+    const r = rows.find((r) => r.code === code);
+    return context.population(code, {municipalities: r.populationMembers}).p2040;
+  };
+  for (const [code, total] of Object.entries({
+    "0501": 136121, "0502": 371634, "0503": 178445, "2208": 756154
+  })) assert.equal(forecast(code).total, total);
+  assert.equal(context.population("0502").p2040.total, 19693);
+  assert.equal(context.population("0504").p2040.total, 303331);
+  for (const year of ["p2020", "p2040"]) {
+    const old = areaMap.areas.filter((r) => r.code.startsWith("05"));
+    const merged = rows.filter((r) => r.code.startsWith("05"));
+    assert.equal(old.reduce((n, r) => n + context.population(r.code)[year].total, 0),
+      merged.reduce((n, r) => n + context.population(r.code, {municipalities: r.populationMembers})[year].total, 0));
+  }
+  const male = future.rows.findIndex((r) => r[0] === 2040 && r[1] === "22131" && r[2] === "M");
+  assert.ok(male >= 0);
+  const [removed] = future.rows.splice(male, 1);
+  assert.equal(forecast("2208"), null);
+  future.rows.push(removed, removed);
+  assert.equal(forecast("2208"), null);
+  console.log("2024 geography: official axis, population totals, both vintages, missing and duplicate rows passed");
+}
+
+async function checkGeographySwitch() {
+  const { chromium } = await import("playwright-core");
+  const { createServer } = await import("node:http");
+  const { resolve, sep } = await import("node:path");
+  const root = resolve(new URL("../../", import.meta.url).pathname);
+  const server = createServer(async (req, res) => {
+    const pathname = new URL(req.url, "http://localhost").pathname;
+    const file = resolve(root, "." + pathname + (pathname.endsWith("/") ? "index.html" : ""));
+    if (!file.startsWith(root + sep)) return res.writeHead(404).end();
+    try {
+      const bytes = await readFile(file);
+      const mime = file.endsWith(".js") ? "text/javascript" : file.endsWith(".html") ? "text/html; charset=utf-8" : file.endsWith(".css") ? "text/css" : "application/octet-stream";
+      res.writeHead(200, {"Content-Type": mime}).end(bytes);
+    } catch {
+      res.writeHead(404).end();
+    }
+  });
+  await new Promise((ok, fail) => server.once("error", fail).listen(0, "127.0.0.1", ok));
+  let browser;
+  try {
+    browser = await chromium.launch({executablePath: process.env.CHROMIUM_PATH, args: ["--no-sandbox"]});
+    const base = `http://127.0.0.1:${server.address().port}/regional-healthcare-vision/`;
+    for (const width of [390, 1440]) {
+      const page = await browser.newPage({viewport: {width, height: 900}});
+      const errors = [];
+      page.on("pageerror", (e) => errors.push(e.message));
+      await page.goto(base + "?area=0502");
+      await page.locator("#diagnosis-content").waitFor();
+      assert.match(await page.locator("#population-cards").innerText(), /19,693/);
+      await page.selectOption("#vision-geography", "2024");
+      await page.locator("#versioned-title").waitFor();
+      assert.match(await page.locator("#versioned-title").innerText(), /県北/);
+      await page.selectOption("#vision-area", "0502");
+      assert.match(await page.locator("#versioned-cards").innerText(), /371,634/);
+      assert.match(await page.locator("#versioned-title").innerText(), /県央/);
+      const central = page.locator("#akita-acute-0502");
+      assert.equal(await central.isVisible(), true);
+      assert.equal(await central.locator("tbody tr").count(), 13);
+      assert.match(await central.innerText(), /1,285床/);
+      assert.equal(await page.locator("#akita-acute-0501").isVisible(), false);
+      assert.equal(await page.locator("#legacy-diagnosis").isVisible(), false);
+      await page.locator("#versioned-links a").first().click();
+      await page.locator("#diagnosis-content").waitFor();
+      assert.match(page.url(), /area=0504/);
+      assert.equal(await central.isVisible(), true);
+      assert.match(await page.locator("#population-cards").innerText(), /303,331/);
+      await page.goto(base + "?area=2208&geography=2024");
+      await page.locator("#versioned-title").waitFor();
+      assert.match(await page.locator("#versioned-cards").innerText(), /756,154/);
+      assert.equal(await central.isVisible(), false);
+      await page.goto(base + "acute-hospitals/?area=0502");
+      await page.locator("#acute-results tbody tr").first().waitFor();
+      assert.match(await page.locator("#acute-results").innerText(), /1,285床/);
+      assert.equal(await page.locator("#acute-results tbody tr").count(), 13);
+      await page.selectOption("#acute-prefecture", "13");
+      assert.match(await page.locator("#acute-results h2").innerText(), /東京都/);
+      await page.selectOption("#acute-area", "1301");
+      assert.match(await page.locator("#acute-results h2").innerText(), /区中央部/);
+      await page.selectOption("#acute-prefecture", "");
+      assert.equal(await page.locator("#acute-results tbody tr").count(), 47);
+      assert.deepEqual(errors, []);
+      await page.close();
+    }
+  } finally {
+    await browser?.close();
+    server.close();
+  }
+}
+if (process.env.FEATURE === "regional-healthcare-vision") await checkGeographySwitch();
+

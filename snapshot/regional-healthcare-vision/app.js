@@ -136,14 +136,15 @@
     `<article class="metric-card"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(note)}</small></article>`;
   const ageSum = (ages, from, to = 20) =>
     ages.slice(from, to).reduce((a, b) => a + (Number(b) || 0), 0);
-  function populationSummary(areaCode) {
-    const mapping = areaMap.areas.find((a) => a.code === areaCode);
+  function populationSummary(areaCode, mapping = areaMap.areas.find((a) => a.code === areaCode)) {
     if (!mapping) return null;
     const codes = new Set(mapping.municipalities.map((m) => m[0])),
       unavailable = areaCode === "0706" || areaCode === "0707";
     const at = (year) => {
       const rows = future.rows.filter((r) => r[0] === year && codes.has(r[1]));
-      if (!rows.length || unavailable) return null;
+      const keys = new Set(rows.map((r) => r[1] + "/" + r[2]));
+      if (unavailable || rows.length !== codes.size * 2 ||
+          ![...codes].every((c) => keys.has(c + "/M") && keys.has(c + "/F"))) return null;
       const ages = Array(20).fill(0);
       rows.forEach((r) => r[4].forEach((v, i) => (ages[i] += Number(v) || 0)));
       return {
@@ -191,12 +192,12 @@
   async function loadFullCancer() {
     if (!fullCancerPromise)
       fullCancerPromise = (async () => {
-        const m = await fetch("/cancer-care/data-parts/manifest.json").then(
+        const m = await fetch("/cancer-care/2025-09/data-parts/manifest.json").then(
             (r) => r.json(),
           ),
           parts = await Promise.all(
             m.files.map((f) =>
-              fetch(`/cancer-care/data-parts/${f}`).then((r) =>
+              fetch(`/cancer-care/2025-09/data-parts/${f}`).then((r) =>
                 r.arrayBuffer(),
               ),
             ),
@@ -266,8 +267,12 @@
   }
   async function openCancerDetail(id) {
     openDialog("<p>全診療実績を読み込んでいます…</p>");
-    const data = await loadFullCancer(),
-      f = data.facilities.find((x) => x.id === id),
+    const data = await loadFullCancer();
+    if (data.metadata.version !== cancer.meta.version ||
+        data.metadata.sourceSha256 !== cancer.meta.sourceSha256) {
+      throw new Error("現況報告の要約と詳細の版が一致しません");
+    }
+    const f = data.facilities.find((x) => x.id === id),
       defs = new Map(data.metricDefs.map((x) => [x.id, x])),
       values = f.m.map(([mid, v]) => [defs.get(mid), v]).filter(([d]) => d);
     openDialog(
@@ -1322,6 +1327,8 @@
       "",
       `${location.pathname}?pref=${pc}&area=${areaCode}`,
     );
+    const currentAkitaArea = Object.keys(akitaComponents).find((code) => akitaComponents[code][1].includes(areaCode));
+    showAcuteArticle(currentAkitaArea || areaCode);
     links.population.href = `/population/?area=${pc}000`;
     links.dpc.href = `/dpc/?year=2024&view=area&area=${areaCode}`;
     links.ndb.href = `/ndb/service-volume/?year=2024&pref=${encodeURIComponent(pn)}&area=${areaCode}`;
@@ -1392,10 +1399,10 @@
       $("population-cards").innerHTML = card(
         "2040年人口",
         "算出できません",
-        "将来人口が浜通り地域として一括公表",
+        "構成市区町村の推計値を全件確認できません",
       );
       $("population-reading").textContent =
-        "相双・いわき医療圏は、将来人口が「浜通り地域」として一括公表され、医療圏別に分けられないため按分していません。";
+        areaCode === "0706" || areaCode === "0707" ? "相双・いわき医療圏は、将来人口が「浜通り地域」として一括公表され、医療圏別に分けられないため按分していません。" : "構成市区町村の男女別人口に欠落または重複があります。";
       $("demand-index").innerHTML =
         '<p class="empty">医療圏別人口を再現できないため表示しません。</p>';
     }
@@ -1591,7 +1598,108 @@
       ? wanted
       : rows[0]?.code || "";
   }
+  // 2024 physician tables 22–26 have identical regional axes. The old
+  // population projection and DPC summary both use the 2022 component areas.
+  const akitaComponents = {
+    "0501": ["県北", ["0501", "0502", "0503"]],
+    "0502": ["県央", ["0504", "0505"]],
+    "0503": ["県南", ["0506", "0507", "0508"]],
+  };
+  function showAcuteArticle(code) {
+    const container = $("akita-acute-link");
+    for (const areaCode of Object.keys(akitaComponents)) {
+      $("akita-acute-" + areaCode).hidden = areaCode !== code;
+    }
+    const region = akitaComponents[code];
+    container.hidden = false;
+    container.innerHTML = region
+      ? `<a href="#akita-acute-${code}">${esc(region[0])}医療圏の急性期A・Bなどの届出病院一覧（2026年9月）</a>`
+      : "";
+    const national = document.createElement("a");
+    national.href = "/regional-healthcare-vision/acute-hospitals/?area=" + code;
+    national.textContent = "急性期A・Bなどの届出病院一覧（選択中の医療圏）";
+    if (region) container.append(" ／ ");
+    container.append(national);
+  }
+  function versionedAreas() {
+    const old = new Map(areaMap.areas.map((row) => [row.code, row]));
+    return areaMap.areas.filter((row) => !row.code.startsWith("05") || akitaComponents[row.code])
+      .map((row) => {
+        const [name, components] = akitaComponents[row.code] ||
+          [row.code === "0807" ? "取手・竜ケ崎" : row.name, [row.code]];
+        const populationMembers = components.flatMap((code) => old.get(code).municipalities);
+        // 浜松市旧7区はすべて西部。人口は原資料の旧区単位のまま合算。
+        const municipalities = row.code === "2208"
+          ? [...populationMembers.filter(([code]) => !/^2213[1-7]$/.test(code)),
+             ["22138", "中央区"], ["22139", "浜名区"], ["22140", "天竜区"]]
+          : populationMembers;
+        return {code: row.code, name, components, municipalities, populationMembers};
+      });
+  }
+  async function initVersioned() {
+    [areaMap, future, dpc] = await Promise.all([
+      fetch("/regional-healthcare-vision/data/medical-area-municipalities.json").then((r) => r.json()),
+      loadFuture(), fetch("/dpc/data/summary.json").then((r) => r.json()),
+    ]);
+    const regions = versionedAreas();
+    const dpcByCode = new Map(dpc.areas.map((r) => [r.code, r]));
+    const prefs = new Map(regions.map((r) => [r.code.slice(0, 2), dpcByCode.get(r.code).prefecture]));
+    const q = new URLSearchParams(location.search);
+    pref.innerHTML = [...prefs].map(([code, name]) => `<option value="${code}">${esc(name)}</option>`).join("");
+    const candidate = q.get("area")?.slice(0, 2) || q.get("pref");
+    pref.value = prefs.has(candidate) ? candidate : "05";
+    const draw = () => {
+      const r = regions.find((row) => row.code === area.value);
+      const pop = populationSummary(r.code, {municipalities: r.populationMembers});
+      const current = pop.p2040;
+      const rows = r.components.map((code) => dpcByCode.get(code));
+      const sum = (key) => rows.reduce((n, row) => n + row[key], 0);
+      history.replaceState(null, "", `${location.pathname}?pref=${pref.value}&area=${r.code}&geography=2024`);
+      status.textContent = `${prefs.get(pref.value)} ${r.name}（2024年区域）`;
+      $("versioned-title").textContent = `${r.name}の人口と急性期入院医療`;
+      $("versioned-cards").innerHTML = [
+        card("2020年人口", pop.p2020 ? fmt(pop.p2020.total) + "人" : "算出不可", "社人研令和5年推計の基準人口"),
+        card("2040年人口", current ? fmt(current.total) + "人" : "算出不可",
+          current ? (current.total >= 200000 ? "20万人以上" : "20万人未満") : "構成市区町村別に再現できません"),
+        card("2040年の65歳以上人口", current ? fmt(current.old) + "人" : "算出不可",
+          current ? pct(current.old, current.total) : "構成市区町村別に再現できません"),
+        card("DPC対象施設", fmt(sum("hospitalCount")) + "施設", "令和6年度退院患者調査"),
+        publicValue("退院患者（公表分）", sum("published"), sum("suppressed")),
+      ].join("");
+      showAcuteArticle(r.code);
+      $("versioned-members").textContent = "構成市区町村：" + r.municipalities.map(([code, name]) => name + "（" + code + "）").join("、");
+      $("versioned-links").innerHTML = "NDB・病床・患者流動などの詳細（2022年区域） " + rows.map((row) =>
+        `<a href="?pref=${pref.value}&amp;area=${row.code}">${esc(row.name)}</a>`).join(" ／ ");
+      $("legacy-diagnosis").hidden = true;
+      $("versioned-diagnosis").hidden = false;
+      $("legacy-scope").firstElementChild.textContent = "2024年区域で集計：人口・DPC";
+      for (const id of ["legacy-links", "legacy-coverage"]) $(id).hidden = true;
+    };
+    const selectAreas = (wanted) => {
+      const list = regions.filter((r) => r.code.startsWith(pref.value));
+      area.innerHTML = list.map((r) => `<option value="${r.code}">${esc(r.name)}</option>`).join("");
+      area.value = list.some((r) => r.code === wanted) ? wanted : list[0].code;
+      draw();
+    };
+    pref.onchange = () => selectAreas("");
+    area.onchange = draw;
+    selectAreas(q.get("area"));
+  }
   async function init() {
+    const version = $("vision-geography");
+    version.value = new URLSearchParams(location.search).get("geography") === "2024" ? "2024" : "2022";
+    version.onchange = () => {
+      const params = new URLSearchParams({pref: pref.value || "05"});
+      if (version.value === "2024") {
+        params.set("geography", "2024");
+        const merged = Object.entries(akitaComponents).find(([, [, codes]]) => codes.includes(area.value));
+        if (area.value) params.set("area", merged?.[0] || area.value);
+      } else if (area.value) {
+        params.set("area", akitaComponents[area.value]?.[1][0] || area.value);
+      }
+      location.search = params.toString();
+    };
+    if (version.value === "2024") return initVersioned();
     [
       dpc,
       ndb,
@@ -1613,7 +1721,7 @@
         "/regional-healthcare-vision/data/medical-area-municipalities.json",
       ).then((r) => r.json()),
       fetch(
-        "/regional-healthcare-vision/data/cancer-facilities-enriched.json",
+        "/regional-healthcare-vision/data/cancer-facilities-2025-09.json",
       ).then((r) => r.json()),
       fetch(
         "/regional-healthcare-vision/data/official-medical-demand.json",
@@ -1699,3 +1807,4 @@
   }
   init().catch(showError);
 })();
+

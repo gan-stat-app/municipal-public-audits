@@ -21,6 +21,32 @@ const server=createServer(async(req,res)=>{try{
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
 const base=`http://127.0.0.1:${server.address().port}`;
 let browser;
+// All 23 reviewed home entries, including the two inspection directories.
+const expectedEntries=[
+  "/?area=05201#population-pyramid",
+  "/?area=05201#standardized-mortality",
+  "/age-specific-mortality/",
+  "/analysis/",
+  "/analysis/akita-website-quality/",
+  "/analysis/document-inspection/",
+  "/cancer-care/",
+  "/cancer-screening/",
+  "/care/",
+  "/dpc/",
+  "/facility-standards/",
+  "/food-business/",
+  "/food-poisoning/",
+  "/hospital-inspection/",
+  "/jmd/",
+  "/life-expectancy/",
+  "/lifestyle/",
+  "/medical-cost/",
+  "/mental-health/",
+  "/ndb/",
+  "/regional-healthcare-vision/",
+  "/school-dental/",
+  "/welfare/"
+];
 try{
  await mkdir(review,{recursive:true});
  browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/google-chrome',args:['--no-sandbox','--disable-dev-shm-usage']});
@@ -31,7 +57,8 @@ try{
   const low=page.getByRole('heading',{name:'都道府県内で値が低い10自治体',exact:true});
   await low.waitFor();
   assert.equal(await page.locator('#portal-municipality-report-link').getAttribute('href'),'/municipality/#directory-main');
-  assert.equal(await page.locator('.primary-entry,.secondary-entry').count(),21);
+  const entries=await page.locator('.primary-entry,.secondary-entry').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href')).sort());
+  assert.deepEqual(entries,expectedEntries,'each reviewed home feature must appear exactly once');
   assert.equal(await page.locator('.portal-nav a[href="/food-business/"]').count(),1);
   assert.equal(await page.locator('.secondary-entry[href="/food-business/"]').count(),1);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'top must not overflow');

@@ -12,10 +12,10 @@
       "authority_code": "05201",
       "scope": "published_permit_registry",
       "page": "https://www.city.akita.lg.jp/kurashi/kenko/1005368/1010019/1017339.html",
-      "url": "https://www.city.akita.lg.jp/_res/projects/default_project/_page_/001/017/339/r081001.xlsx",
+      "url": "https://www.city.akita.lg.jp/_res/projects/default_project/_page_/001/017/339/r081101.xlsx",
       "format": "xlsx",
       "parser": "akita-city",
-      "as_of": "2026-10-01",
+      "as_of": "2026-11-01",
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0/",
       "available": true
