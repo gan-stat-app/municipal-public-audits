@@ -16,6 +16,11 @@ BUREAU_CODES = {
     'kyushu': list(range(40, 48)),
 }
 CATEGORIES = {'医科', '歯科', '薬局'}
+FULL_REGISTER_COLUMNS = {
+    '項番', '都道府県コード', '都道府県名', '区分', '医療機関番号',
+    '医療機関名称', '受理届出名称', '受理記号',
+}
+NON_REGISTER_LABELS = ('コード内容', '直近届出', '保険外併用', '訪問看護')
 
 
 class SelectionError(ValueError):
@@ -25,19 +30,40 @@ class SelectionError(ValueError):
         self.code = code
 
 
-def whole_register(raw, diagnostics=None):
+def normalized_text(value):
+    return ''.join(unicodedata.normalize('NFKC', str(value)).split())
+
+
+def whole_register(raw, diagnostics=None, member=''):
     workbook = openpyxl.load_workbook(io.BytesIO(raw), read_only=True, data_only=True)
     try:
-        # Every sheet must identify the complete output. A mixed/unknown sheet
-        # is not silently accepted as a whole-register source.
+        # The bureaus now publish the same 24-column whole-register schema
+        # without the legacy "全医療機関出力" label.  Accept either positive
+        # identifier, but still reject code lists, recent filings and mixed
+        # workbooks before the coverage gate.
         for sheet in workbook.worksheets:
-            text = ''.join(str(v) for row in sheet.iter_rows(max_row=5, values_only=True)
-                           for v in row if v is not None)
-            text = ''.join(unicodedata.normalize('NFKC', text).split())
+            rows = list(sheet.iter_rows(max_row=10, values_only=True))
+            text = ''.join(normalized_text(v) for row in rows[:5] for v in row if v is not None)
+            full_schema = any(
+                FULL_REGISTER_COLUMNS <= {
+                    normalized_text(value) for value in row if value is not None
+                }
+                for row in rows
+            )
+            legacy_marker = '全医療機関出力' in text
+            excluded = next(
+                (label for label in NON_REGISTER_LABELS
+                 if label in text or label in normalized_text(member)),
+                None,
+            )
+            identified = (legacy_marker or full_schema) and excluded is None
             if diagnostics is not None:
                 diagnostics.append({'sheet': sheet.title,
-                                    'whole_register': '全医療機関出力' in text})
-            if '全医療機関出力' not in text:
+                                    'whole_register': identified,
+                                    'legacy_marker': legacy_marker,
+                                    'full_register_schema': full_schema,
+                                    'excluded_label': excluded})
+            if not identified:
                 return False
         return bool(workbook.worksheets)
     finally:
@@ -52,7 +78,7 @@ def normalize_whole_register(work, bureau, normal, diagnostics=None):
         detail = {'member': member, 'sha256': hashlib.sha256(raw).hexdigest(),
                   'bytes': len(raw), 'stage': 'heading', 'sheets': []}
         diagnostics['workbooks'].append(detail)
-        if not whole_register(raw, detail['sheets']):
+        if not whole_register(raw, detail['sheets'], member):
             detail['status'] = 'excluded_heading'
             continue
         detail['stage'] = 'reference_month'
@@ -94,4 +120,5 @@ def normalize_whole_register(work, bureau, normal, diagnostics=None):
                for member, raw in selected]
     diagnostics['stage'] = 'complete'
     return snapshot, records, sources, members
+
 
