@@ -14,10 +14,18 @@ normal = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(normal)
 
 
-def workbook(month=10, scopes=None, marker='全医療機関出力'):
+def workbook(month=10, scopes=None, marker='全医療機関出力', full_schema=False):
     book = Workbook()
     sheet = book.active
     sheet.append([f'[令和８年{month}月１日 現在]令和８年１１月２日作成 {marker}'])
+    if full_schema:
+        sheet.append([
+            '項番', '都道府県コード', '都道府県名', '区分', '医療機関番号',
+            '併設医療機関番号', '医療機関記号番号', '医療機関名称', '郵便番号',
+            '所在地', '電話番号', 'FAX番号', '許可病床数', '受理届出名称',
+            '受理記号', '受理番号', '算定開始年月日', '個別算定開始年月日',
+            '備考見出し', '備考内容', '市町村コード', '市町村名',
+        ])
     for code, category in scopes or []:
         row = [''] * 22
         row[1], row[3], row[4], row[7], row[13] = f'{code:02d}', category, '1234567', '架空病院', '架空届出'
@@ -71,8 +79,38 @@ class SelectionTests(unittest.TestCase):
             with self.assertRaises(SelectionError) as error:
                 normalize_whole_register(root, 'hokkaido', normal, diagnostic)
             self.assertEqual(error.exception.code, 'no_whole_register')
-            self.assertEqual(diagnostic['workbooks'][0]['sheets'][-1],
-                             {'sheet': '空白シート', 'whole_register': False})
+            self.assertEqual(diagnostic['workbooks'][0]['sheets'][-1], {
+                'sheet': '空白シート', 'whole_register': False,
+                'legacy_marker': False, 'full_register_schema': False,
+                'excluded_label': None,
+            })
+
+    def test_current_full_register_schema_without_legacy_marker(self):
+        scopes = [(1, category) for category in CATEGORIES]
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / 'current.xlsx').write_bytes(
+                workbook(scopes=scopes, marker='届出受理医療機関名簿', full_schema=True))
+            month, records, sources, members = normalize_whole_register(
+                root, 'hokkaido', normal)
+        self.assertEqual(month, '2026-10')
+        self.assertEqual(len(records), 3)
+        self.assertEqual([source['name'] for source in sources], ['current.xlsx'])
+        self.assertEqual([member['member'] for member in members], ['current.xlsx'])
+
+    def test_full_schema_does_not_accept_recent_or_non_register_lists(self):
+        for marker in ('直近届出分', '保険外併用療養費医療機関名簿', '訪問看護事業所名簿'):
+            with self.subTest(marker=marker), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                raw = workbook(
+                    scopes=[(1, category) for category in CATEGORIES],
+                    marker=marker,
+                    full_schema=True,
+                )
+                (root / 'input.xlsx').write_bytes(raw)
+                with self.assertRaises(SelectionError) as error:
+                    normalize_whole_register(root, 'hokkaido', normal)
+                self.assertEqual(error.exception.code, 'no_whole_register')
 
     def test_collector_preserves_failure_diagnostics_and_continues(self):
         import collectors
@@ -220,4 +258,5 @@ class SelectionTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 
