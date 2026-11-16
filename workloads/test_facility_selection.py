@@ -6,7 +6,7 @@ import unittest
 import zipfile
 from unittest.mock import patch
 from openpyxl import Workbook
-from facility_selection import BUREAU_CODES, CATEGORIES, normalize_whole_register
+from facility_selection import BUREAU_CODES, CATEGORIES, SelectionError, normalize_whole_register
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('normal', ROOT / 'snapshot/scripts/normalize-facility-standards.py')
@@ -28,6 +28,105 @@ def workbook(month=10, scopes=None, marker='全医療機関出力'):
 
 
 class SelectionTests(unittest.TestCase):
+    def test_failure_codes_and_stages(self):
+        cases = [
+            (workbook(marker='コード内容一覧'), 'no_whole_register', 'heading'),
+            (workbook(), 'no_register_rows', 'register_rows'),
+            (workbook(scopes=[(1, '医科')]), 'coverage_mismatch', 'register_rows'),
+        ]
+        from openpyxl import load_workbook
+        book = load_workbook(io.BytesIO(workbook(scopes=[(1, '医科')])))
+        book.active['A1'] = '全医療機関出力 日付なし'
+        out = io.BytesIO()
+        book.save(out)
+        cases.append((out.getvalue(), 'missing_reference_month', 'reference_month'))
+        for raw, code, stage in cases:
+            with self.subTest(code=code), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                (root / 'input.xlsx').write_bytes(raw)
+                diagnostic = {}
+                with self.assertRaises(SelectionError) as error:
+                    normalize_whole_register(root, 'hokkaido', normal, diagnostic)
+                self.assertEqual(error.exception.code, code)
+                detail = diagnostic['workbooks'][0]
+                self.assertEqual(detail['stage'], stage)
+                self.assertEqual(detail['member'], 'input.xlsx')
+                import hashlib
+                self.assertEqual(detail['sha256'], hashlib.sha256(raw).hexdigest())
+                if code == 'coverage_mismatch':
+                    self.assertEqual(diagnostic['snapshot'], '2026-10')
+                    self.assertEqual(set(diagnostic['missing']), {('01', '歯科'), ('01', '薬局')})
+                    self.assertEqual(diagnostic['unexpected'], [])
+
+    def test_blank_sheet_identified_without_relaxing_heading_gate(self):
+        from openpyxl import load_workbook
+        book = load_workbook(io.BytesIO(workbook(scopes=[(1, c) for c in CATEGORIES])))
+        book.create_sheet('空白シート')
+        out = io.BytesIO()
+        book.save(out)
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / 'input.xlsx').write_bytes(out.getvalue())
+            diagnostic = {}
+            with self.assertRaises(SelectionError) as error:
+                normalize_whole_register(root, 'hokkaido', normal, diagnostic)
+            self.assertEqual(error.exception.code, 'no_whole_register')
+            self.assertEqual(diagnostic['workbooks'][0]['sheets'][-1],
+                             {'sheet': '空白シート', 'whole_register': False})
+
+    def test_collector_preserves_failure_diagnostics_and_continues(self):
+        import collectors
+        import types
+        import json
+        failed = workbook(scopes=[(1, '医科')])
+        valid = workbook(scopes=[(c, k) for c in range(2, 8) for k in CATEGORIES])
+        archive = types.SimpleNamespace(discover=lambda b: (b'', [{'url': b['id']}]),
+                                        safe_name=lambda url, digest: url + '.xlsx')
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            path = root / 'data/facility-standards/source-registry.json'
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps({'bureaus': [{'id': 'hokkaido'}, {'id': 'tohoku'}]}))
+            with patch.object(collectors, 'SNAPSHOT', root), \
+                 patch.object(collectors, 'module', side_effect=[archive, normal]), \
+                 patch.object(collectors, 'download', side_effect=[failed, valid]), \
+                 patch.object(collectors, 'write_normalized', return_value={'path': 'fixture'}) as writer:
+                result = collectors.facilities()
+            self.assertEqual(result['status'], 'review_required')
+            row, success = result['rows']
+            self.assertEqual(row['error_type'], 'ValueError')
+            self.assertEqual(row['error_code'], 'coverage_mismatch')
+            self.assertEqual(row['error_stage'], 'selection')
+            self.assertEqual(row['selection_diagnostics']['stage'], 'coverage')
+            self.assertEqual(len(row['originals']), 1)
+            self.assertNotIn('output', row)
+            self.assertEqual(success['status'], 'normalized')
+            self.assertEqual(writer.call_count, 1)
+            json.dumps(result)  # Public receipt remains serializable.
+
+    def test_unexpected_exception_goes_to_log_and_retains_stage(self):
+        import collectors
+        import types
+        import json
+        archive = types.SimpleNamespace(discover=lambda b: (b'', [{'url': 'fixture'}]),
+                                        safe_name=lambda url, digest: 'input.xlsx')
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            path = root / 'data/facility-standards/source-registry.json'
+            path.parent.mkdir(parents=True)
+            path.write_text(json.dumps({'bureaus': [{'id': 'hokkaido'}]}))
+            with patch.object(collectors, 'SNAPSHOT', root), \
+                 patch.object(collectors, 'module', side_effect=[archive, normal]), \
+                 patch.object(collectors, 'download', return_value=b'invalid xlsx'), \
+                 patch.object(collectors.traceback, 'print_exc') as log:
+                result = collectors.facilities()
+            row = result['rows'][0]
+            self.assertEqual(row['status'], 'unavailable')
+            self.assertEqual(row['error_stage'], 'selection')
+            self.assertEqual(row['selection_diagnostics']['workbooks'][0]['stage'], 'heading')
+            self.assertNotIn('error_message', row)
+            log.assert_called_once_with()
+
     def test_collector_receipt_binds_only_selected_originals(self):
         import collectors
         registry = {'bureaus': [{'id': 'hokkaido'}]}
@@ -121,3 +220,4 @@ class SelectionTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
