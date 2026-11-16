@@ -31,8 +31,13 @@ class TriageTests(unittest.TestCase):
                                 'text': source['documents'][0]['text'] + str(i)} for i in range(3)]
         queue = {'schema_version': 1, 'entries': [source]}
         store, api = MemoryStore(), FakeAPI()
-        b.tick(queue, store, api)
-        identity = api.lines[0]['custom_id']
+        # Existing three-document Batch still collects under the new submission policy.
+        identity = w.digest(w.payload(source))
+        store.state['requests'][identity] = {
+            'status': 'batch_submitted', 'batch_id': 'batch_test', 'date': '2026-11-07',
+            'source_keys': [w.digest({'model': w.MODEL, 'source': d['source_sha256'],
+                                    'text': d['text']}) for d in source['documents']]}
+
         api.status = 'completed'
         api.rows = [{'custom_id': identity, 'response': {'status_code': 200, 'body': triage([
             item('0', 'reject'), item('1', 'hold'), item('2', 'verify')])}}]
@@ -46,7 +51,7 @@ class TriageTests(unittest.TestCase):
         self.assertTrue(all(x['publication_approved'] is False for x in items))
         self.assertTrue(all(x['fact_confirmed'] is False for x in items))
         self.assertEqual(b.tick(queue, store, api)['submitted'], 0)
-        self.assertEqual(api.submissions, 1)
+        self.assertEqual(api.submissions, 0)
 
     def test_bad_compact_evidence_never_creates_candidate(self):
         for evidence in [[], ['invented'], ['x' * 181], ['B2=100 C3=200 A1=見出し']]:
@@ -68,3 +73,4 @@ class TriageTests(unittest.TestCase):
         with self.assertRaises(w.Stop):
             b.tick({'schema_version': 1, 'entries': [source]}, MemoryStore(), api)
         self.assertEqual(api.submissions, 0)
+
