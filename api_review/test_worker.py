@@ -194,7 +194,7 @@ class WorkerTests(unittest.TestCase):
             return response(evidence=['not in source']) if len(calls) == 1 else response()
         result = self.run_queue([bundle(), second], sender=send)
         self.assertEqual(result, {'attempted': 2, 'completed': 1, 'held': 1,
-                                  'legacy_migrated': 0, 'legacy_held': 0})
+                                  'legacy_migrated': 0, 'legacy_held': 0, 'multi_document_pending': 0})
 
     def test_transport_failure_stops_run_without_resend(self):
         second = bundle()
@@ -225,4 +225,5 @@ class WorkerTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 

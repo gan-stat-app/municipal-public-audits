@@ -265,6 +265,7 @@ def drain(queue, store, api_key, result_key=None, *, seconds=2400, max_requests=
     state = store.read()
     attempted = completed = held = 0
     migrated = legacy_held = 0
+    multi_document_pending = 0
     # Recover only approved queue sources locally, without another API call.
     for bundle, request, identity, source_keys in prepared:
         record = state['requests'].get(identity)
@@ -311,6 +312,10 @@ def drain(queue, store, api_key, result_key=None, *, seconds=2400, max_requests=
             break
         if identity in state['requests'] or any(k in prior_keys for k in source_keys):
             continue
+        # Preserve old results/reservations; only fresh submissions require one document.
+        if len(bundle['documents']) != 1:
+            multi_document_pending += 1
+            continue
         record = {'status': 'reserved_or_interrupted', 'source_keys': source_keys,
                   'payload_sha256': identity, 'usage': {},
                   'date': datetime.now(ZoneInfo('Asia/Tokyo')).date().isoformat()}
@@ -343,7 +348,8 @@ def drain(queue, store, api_key, result_key=None, *, seconds=2400, max_requests=
         if stop_run:
             break
     return {'attempted': attempted, 'completed': completed, 'held': held,
-            'legacy_migrated': migrated, 'legacy_held': legacy_held}
+            'legacy_migrated': migrated, 'legacy_held': legacy_held,
+            'multi_document_pending': multi_document_pending}
 
 
 def execution_limit(event, mode):
@@ -380,3 +386,4 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+

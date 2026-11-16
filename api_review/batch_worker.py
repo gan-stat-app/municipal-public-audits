@@ -120,8 +120,14 @@ def tick(queue, store, api, *, max_requests=100):
         store.write(state)
     prior = {k for record in state['requests'].values() for k in record['source_keys']}
     selected = []
+    multi_document_pending = 0
     for identity, (bundle, request, keys) in prepared.items():
         if identity in state['requests'] or any(k in prior for k in keys):
+            continue
+        # Never split/reidentify historical attempts or silently alter an approval.
+        # New supplies must be reviewed/delegated as one-document bundles.
+        if len(bundle['documents']) != 1:
+            multi_document_pending += 1
             continue
         selected.append((identity, request, keys))
         prior.update(keys)
@@ -167,6 +173,7 @@ def tick(queue, store, api, *, max_requests=100):
         store.write(state)
         submitted = len(selected)
     return {'submitted': submitted, 'completed': completed, 'held': held,
+            'multi_document_pending': multi_document_pending,
             'triage_no_finding': triage_counts['reject'],
             'triage_needs_evidence': triage_counts['hold'],
             'triage_candidates': triage_counts['verify'],
@@ -194,4 +201,5 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+
 
