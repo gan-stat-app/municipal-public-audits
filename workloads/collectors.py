@@ -11,8 +11,9 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import traceback
 from common import ROOT, SNAPSHOT, code_check, download, receipt, sha
-from facility_selection import normalize_whole_register
+from facility_selection import SelectionError, normalize_whole_register
 
 
 def module(name, path):
@@ -38,30 +39,42 @@ def facilities(limit=0):
     results = []
     for bureau in bureaus:
         result = {'bureau': bureau['id'], 'originals': []}
+        stage = 'discover'
         try:
             _, files = archive.discover(bureau)
             if not files:
                 raise ValueError('No structured official inputs')
             with tempfile.TemporaryDirectory() as folder:
                 work = Path(folder)
+                stage = 'download'
                 for item in files:
                     raw = download(item['url'], limit=80*1024*1024)
                     digest = sha(raw)
                     name = archive.safe_name(item['url'], digest)
                     (work / name).write_bytes(raw)
                     result['originals'].append({'url': item['url'], 'sha256': digest, 'bytes': len(raw), 'name': name})
-                snapshot, records, sources, selected_members = normalize_whole_register(work, bureau['id'], normal)
+                stage = 'selection'
+                result['selection_diagnostics'] = {}
+                snapshot, records, sources, selected_members = normalize_whole_register(
+                    work, bureau['id'], normal, result['selection_diagnostics'])
                 used = {source['name'] for source in sources}
                 result['originals'] = [r for r in result['originals'] if r['name'] in used]
                 result['selected_members'] = selected_members
                 if not records:
                     raise ValueError('No verified facility records')
+                stage = 'write_normalized'
                 result.update(status='normalized', snapshot=snapshot, records=len(records),
                     output=write_normalized(f'facility/{bureau["id"]}/{snapshot}.json.gz',
                         {'schema_version': 1, 'bureau': bureau['id'], 'snapshot': snapshot,
                          'records': records, 'sources': sources, 'originals': result['originals']}))
         except Exception as exc:
-            result.update(status='unavailable', error_type=type(exc).__name__)
+            result.update(status='unavailable', error_type='ValueError' if isinstance(exc, SelectionError)
+                          else type(exc).__name__, error_stage=stage)
+            if isinstance(exc, SelectionError):
+                result.update(error_code=exc.code, error_message=str(exc))
+            else:
+                # Unexpected exception messages belong in job logs, not public receipts.
+                traceback.print_exc()
         results.append(result)
     return {'scope': 'facility', 'rows': results, 'expected': len(bureaus),
             'full_scope': len(bureaus) == len(registry['bureaus']),
@@ -129,3 +142,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+
